@@ -781,44 +781,44 @@
                             size="310" data-component="textbox" aria-labelledby="label_268"
                             value="" /> </div>
                 </li>
-                <li class="form-line form-line-column form-col-4" data-type="control_datetime" id="id_315">
-                    <label class="form-label form-label-top form-label-auto" id="label_315" for="lite_mode_315"
+                <li class="form-line form-line-column form-col-3" data-type="control_datetime" id="id_314">
+                    <label class="form-label form-label-top form-label-auto" id="label_314" for="lite_mode_314"
                         aria-hidden="false"> Effective Date </label>
-                    <div id="cid_315" class="form-input-wide" data-layout="half">
+                    <div id="cid_314" class="form-input-wide" data-layout="half">
                         <div data-wrapper-react="true">
                             <div style="display:none"><span class="form-sub-label-container"
                                     style="vertical-align:top"><input type="tel"
-                                        class="form-textbox validate[limitDate]" id="month_315"
-                                        name="q315_expirationDate315[month]" size="2" data-maxlength="2"
+                                        class="form-textbox validate[limitDate]" id="month_314"
+                                        name="q314_effectiveDate[month]" size="2" data-maxlength="2"
                                         data-age="" maxLength="2" value="" autoComplete="off"
-                                        aria-labelledby="label_315 sublabel_315_month" /><span class="date-separate"
-                                        aria-hidden="true"> -</span><label class="form-sub-label" for="month_315"
-                                        id="sublabel_315_month" style="min-height:13px">Month</label></span><span
+                                        aria-labelledby="label_314 sublabel_314_month" /><span class="date-separate"
+                                        aria-hidden="true"> -</span><label class="form-sub-label" for="month_314"
+                                        id="sublabel_314_month" style="min-height:13px">Month</label></span><span
                                     class="form-sub-label-container" style="vertical-align:top"><input
-                                        type="tel" class="form-textbox validate[limitDate]" id="day_315"
-                                        name="q315_expirationDate315[day]" size="2" data-maxlength="2"
+                                        type="tel" class="form-textbox validate[limitDate]" id="day_314"
+                                        name="q314_effectiveDate[day]" size="2" data-maxlength="2"
                                         data-age="" maxLength="2" value="" autoComplete="off"
-                                        aria-labelledby="label_315 sublabel_315_day" /><span class="date-separate"
-                                        aria-hidden="true"> -</span><label class="form-sub-label" for="day_315"
-                                        id="sublabel_315_day" style="min-height:13px">Day</label></span><span
+                                        aria-labelledby="label_314 sublabel_314_day" /><span class="date-separate"
+                                        aria-hidden="true"> -</span><label class="form-sub-label" for="day_314"
+                                        id="sublabel_314_day" style="min-height:13px">Day</label></span><span
                                     class="form-sub-label-container" style="vertical-align:top"><input
-                                        type="tel" class="form-textbox validate[limitDate]" id="year_315"
-                                        name="q315_expirationDate315[year]" size="4" data-maxlength="4"
+                                        type="tel" class="form-textbox validate[limitDate]" id="year_314"
+                                        name="q314_effectiveDate[year]" size="4" data-maxlength="4"
                                         data-age="" maxLength="4" value="" autoComplete="off"
-                                        aria-labelledby="label_315 sublabel_315_year" /><label
-                                        class="form-sub-label" for="year_315" id="sublabel_315_year"
+                                        aria-labelledby="label_314 sublabel_314_year" /><label
+                                        class="form-sub-label" for="year_314" id="sublabel_314_year"
                                         style="min-height:13px">Year</label></span></div><span
                                 class="form-sub-label-container" style="vertical-align:top"><input type="text"
-                                    class="form-textbox validate[limitDate, validateLiteDate]" id="lite_mode_315"
+                                    class="form-textbox validate[limitDate, validateLiteDate]" id="lite_mode_314"
                                     size="12" data-maxlength="12" maxLength="12" data-age=""
                                     value="" data-format="mmddyyyy" data-seperator="-"
                                     placeholder="MM-DD-YYYY" data-placeholder="MM-DD-YYYY" autoComplete="off"
-                                    aria-labelledby="label_315" /><img
+                                    aria-labelledby="label_314" /><img
                                     class="showAutoCalendar newDefaultTheme-dateIcon icon-liteMode"
-                                    alt="Pick a Date" id="input_315_pick"
+                                    alt="Pick a Date" id="input_314_pick"
                                     src="https://cdn.jotfor.ms/images/calendar.png" data-component="datetime"
                                     aria-hidden="true" data-allow-time="No" data-version="v2" /><label
-                                    class="form-sub-label is-empty" for="lite_mode_315" id="sublabel_315_litemode"
+                                    class="form-sub-label is-empty" for="lite_mode_314" id="sublabel_314_litemode"
                                     style="min-height:13px"></label></span>
                         </div>
                     </div>
