@@ -292,7 +292,7 @@
                                     @endif
                                 </span><span class="form-sub-label-container"
                                 style="vertical-align:top" data-input-type="suffix"><input type="text"
-                                    id="suffix_3" name="q3_patientName[suffix]" class="form-textbox"
+                                    id="suffix_3" name="extension" class="form-textbox"
                                     data-defaultvalue="" autoComplete="section-input_3 honorific-suffix"
                                     size="4" placeholder="Ext." data-component="suffix"
                                     aria-labelledby="label_3" value="" /></span></div>
