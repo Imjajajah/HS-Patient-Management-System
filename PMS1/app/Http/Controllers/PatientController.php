@@ -113,7 +113,7 @@ class PatientController extends Controller
 
         $request->session()->flash('success', 'New Patient was added successfully!');
 
-        return redirect('/');
+        return redirect()->back();
 
     }
 

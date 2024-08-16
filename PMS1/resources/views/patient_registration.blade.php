@@ -955,7 +955,7 @@
                                     style="text-indent:0" for="other_321">Other</label><span id="other_321_input"
                                     class="other-input-container" style="display:none"><input type="text"
                                         class="form-checkbox-other-input form-textbox"
-                                        name="family_history[]" data-otherhint="Other" size="15"
+                                        name="" data-otherhint="Other" size="15"
                                         id="input_321" data-placeholder="Please type another option here"
                                         placeholder="Please type another option here" /></span></span></div>
                     </div>
@@ -1113,10 +1113,10 @@
                                 <label id="label_input_309_3" for="input_309_3">HDHP (High Deductible Health Plan)</label>
                             </span>
                             <span class="form-radio-item formRadioOther" style="clear:left">
-                                <input type="radio" class="form-radio-other form-radio" name="plan_type" id="other_309" value="other" tabindex="0" aria-label="Other" />
+                                <input type="radio" class="form-radio-other form-radio" name="" id="other_309" value="other" tabindex="0" aria-label="Other" />
                                 <label id="label_other_309" style="text-indent:0" for="other_309">Other</label>
                                 <span id="other_309_input" class="other-input-container" style="display:none">
-                                    <input type="text" class="form-radio-other-input form-textbox" name="plan_type_other" size="15" id="input_309_other" placeholder="Please type another option here" />
+                                    <input type="text" class="form-radio-other-input form-textbox" name="" size="15" id="input_309_other" placeholder="Please type another option here" />
                                 </span>
                             </span>
                         </div>
@@ -1320,7 +1320,7 @@
                     </div>
                 </li>
                 <li style="clear:both"></li>
-                <li style="display:none">Should be Empty: <input type="text" name="website" value=""
+                <li style="display:none">Should be Empty: <input type="text" name="" value=""
                         type="hidden" /></li>
             </ul>
         </div>
