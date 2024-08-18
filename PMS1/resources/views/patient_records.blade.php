@@ -7,39 +7,7 @@
     <title>Syncore Medical Hospital</title>
     <link rel="icon" href="/build/assets/syncore.png">
 
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca" /> -->
-    <style type="text/css">
-        @media print {
-            * {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-
-            .form-section {
-                display: inline !important
-            }
-
-            .form-pagebreak {
-                display: none !important
-            }
-
-            .form-section-closed {
-                height: auto !important
-            }
-
-            .page-section {
-                position: initial !important
-            }
-        }
-    </style>
-    <link type="text/css" rel="stylesheet"
-        href="https://cdn02.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?v=3.3.55928&themeRevisionID=63997999613766562e95ef1b" />
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn03.jotfor.ms/css/styles/payment/payment_styles.css?3.3.55928" />
-    <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/css/styles/payment/payment_feature.css?3.3.55928" /> -->
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-
-
-
+    <link rel="stylesheet" href="{{ asset('/css/patient_records.css') }}">
 
 </head>
 
