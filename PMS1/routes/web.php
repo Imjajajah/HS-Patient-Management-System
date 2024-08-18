@@ -7,8 +7,8 @@ Route::get('/', function () {
     return view('patient_registration');
 });
 
-
 Route::controller(PatientController::class)->group(function() {
     Route::get('/index', 'index');
     Route::post('/store', 'store');
+    Route::get('/patients/{patient_id}', 'show')->name('patients.show'); // Add this line
 });

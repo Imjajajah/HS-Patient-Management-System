@@ -17,7 +17,8 @@ class PatientController extends Controller
      */
     public function index() //just getting the CSRF Token, wag pansinin haha
     {
-        return csrf_token();
+        $patients = Patient::all();
+        return view('patient_records', compact('patients'));
     }
 
     /**
@@ -120,7 +121,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        return view('patient_details', compact('patient'));
     }
 
     /**
