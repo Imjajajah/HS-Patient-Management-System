@@ -307,11 +307,6 @@
                             <option value="">Please Select</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Intersex">Intersex</option>
-                            <option value="Non-Binary">Non-Binary</option>
-                            <option value="Transgender Female (MTF)">Transgender Female (MTF)</option>
-                            <option value="Transgender Male (FTM)">Transgender Male (FTM)</option>
-                            <option value="Prefer Not to Say">Prefer Not to Say</option>
                         </select>
                         @if ($errors->has('sex'))
                             @foreach ($errors->get('sex') as $error)

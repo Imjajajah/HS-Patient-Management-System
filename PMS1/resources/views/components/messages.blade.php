@@ -10,3 +10,5 @@
   </div>
 
 @endif
+
+{{-- for practice lang, no need intindihin haha --}}
