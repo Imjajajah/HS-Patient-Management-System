@@ -1316,8 +1316,8 @@
                     </div>
                 </li>
                 <li style="clear:both"></li>
-                <li style="display:none">Should be Empty: <input type="text" name="" value=""
-                        type="hidden" /></li>
+                {{-- <li style="display:none">Should be Empty: <input type="text" name="" value=""
+                        type="hidden" /></li> --}}
             </ul>
         </div>
     </form>

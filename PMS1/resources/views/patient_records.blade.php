@@ -26,7 +26,11 @@
             </th>
             <th class="Patient-Action">Actions</th>
         </tr>
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
         @foreach($patients as $patient)
         <tr>
             <td class="Patient-Name-Data">{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }}</td>
@@ -42,7 +46,13 @@
         @endforeach
     </table>
     <div class="add-patient">
+<<<<<<< Updated upstream
         <button class="add-patient-button"> Add New Patient </button>
+=======
+        <a href="/create">
+            <button class="add-patient-button">Add New Patient</button>
+        </a>
+>>>>>>> Stashed changes
     </div>
 </div>
 

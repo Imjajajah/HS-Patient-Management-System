@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use App\Models\HealthHistories;
+use App\Models\InsuranceInformation;
 use Carbon;
 use Illuminate\Validation\Rule;
 
@@ -15,7 +17,7 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() //just getting the CSRF Token, wag pansinin haha
+    public function index()
     {
         $patients = Patient::all();
         return view('patient_records', compact('patients'));
@@ -26,7 +28,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('/')->with('title', 'Add Patient');
+        return view('patient_registration')->with('title', 'Add Patient');
     }
 
     /**
@@ -42,7 +44,7 @@ class PatientController extends Controller
             "extension" => ['nullable', 'string', 'max:10'],
             "sex" => ['required'],
             "civil_status" => ['required'],
-            "dob" => ['required', 'date_format:m-d-Y'], //'date_format:m-d-Y'
+            "dob" => ['required', 'date_format:m-d-Y'],
             "phone" => ['required', 'string', 'digits:11'],
             "email" => ['required', 'email', 'max:255'],
             "employment" => ['required', 'string'],
@@ -60,6 +62,7 @@ class PatientController extends Controller
             "emergency_phone" => ['required', 'string', 'digits:11'],
             "emergency_phone_2" => ['required', 'string', 'digits:11'],
             "emergency_email" => ['required', 'email', 'max:255'],
+            // Health History
             "reason_registration" => ['required', 'string'],
             "additional_note" => ['nullable', 'string'],
             "history_operation" => ['required', 'string'],
@@ -75,7 +78,7 @@ class PatientController extends Controller
             "patient_smoke" => ['required', 'string'],
             "patient_alcohol" => ['required', 'string'],
             "family_history" => ['required', 'array'],
-            //
+            // Insurance Information
             "primary_holder" => ['nullable', 'string'],
             "insurance_company" => ['nullable', 'string', 'max:255'],
             "insurance_number" => ['nullable', 'string', 'max:255'],
@@ -94,21 +97,81 @@ class PatientController extends Controller
             "holder_zip" => ['nullable', 'string', 'max:10'],
         ]);
 
-        function convertDateFormat($date, $format = 'm-d-Y') {
-            try {
-                return Carbon\Carbon::createFromFormat($format, trim($date))->format('Y-m-d');
-            } catch (\Exception $e) {
-                return null; // or handle the error as needed
+        // Convert dates to 'Y-m-d' format
+        $dates = ['dob', 'effective_date', 'expiration_date', 'holder_dob'];
+        foreach ($dates as $date) {
+            if (!empty($validated[$date])) {
+                $validated[$date] = Carbon\Carbon::createFromFormat('m-d-Y', $validated[$date])->format('Y-m-d');
             }
         }
 
-        // Convert dates to 'Y-m-d' format
-        $validated['dob'] = convertDateFormat($request->input('dob'));
-        $validated['effective_date'] = convertDateFormat($request->input('effective_date'));
-        $validated['expiration_date'] = convertDateFormat($request->input('expiration_date'));
-        $validated['holder_dob'] = convertDateFormat($request->input('holder_dob'));
+        // Create HealthHistory, InsuranceInformation, and Patient records in one go
+        $healthHistory = HealthHistories::create([
+            'reason_registration' => $validated['reason_registration'],
+            'additional_note' => $validated['additional_note'],
+            'history_operation' => $validated['history_operation'],
+            'history_note' => $validated['history_note'],
+            'current_condition' => $validated['current_condition'],
+            'condition_note' => $validated['condition_note'],
+            'taking_medications' => $validated['taking_medications'],
+            'medications_note' => $validated['medications_note'],
+            'food_allergy' => $validated['food_allergy'],
+            'food_allergy_note' => $validated['food_allergy_note'],
+            'drug_allergy' => $validated['drug_allergy'],
+            'drug_allergy_note' => $validated['drug_allergy_note'],
+            'patient_smoke' => $validated['patient_smoke'],
+            'patient_alcohol' => $validated['patient_alcohol'],
+            'family_history' => json_encode($validated['family_history']),
+        ]);
 
-        Patient::create($validated);
+        $insuranceInformation = InsuranceInformation::create([
+            'primary_holder' => $validated['primary_holder'],
+            'insurance_company' => $validated['insurance_company'],
+            'insurance_number' => $validated['insurance_number'],
+            'effective_date' => $validated['effective_date'],
+            'expiration_date' => $validated['expiration_date'],
+            'plan_type' => $validated['plan_type'],
+            'holder_first_name' => $validated['holder_first_name'],
+            'holder_last_name' => $validated['holder_last_name'],
+            'holder_dob' => $validated['holder_dob'],
+            'holder_phone' => $validated['holder_phone'],
+            'holder_email' => $validated['holder_email'],
+            'holder_street_address' => $validated['holder_street_address'],
+            'holder_street_address_2' => $validated['holder_street_address_2'],
+            'holder_city' => $validated['holder_city'],
+            'holder_state' => $validated['holder_state'],
+            'holder_zip' => $validated['holder_zip'],
+        ]);
+
+        Patient::create([
+            "patient_type" => $validated['patient_type'],
+            "first_name" => $validated['first_name'],
+            "middle_name" => $validated['middle_name'],
+            "last_name" => $validated['last_name'],
+            "extension" => $validated['extension'],
+            "sex" => $validated['sex'],
+            "civil_status" => $validated['civil_status'],
+            "dob" => $validated['dob'],
+            "phone" => $validated['phone'],
+            "email" => $validated['email'],
+            "employment" => $validated['employment'],
+            "nationality" => $validated['nationality'],
+            "religion" => $validated['religion'],
+            "street_address" => $validated['street_address'],
+            "street_address_2" => $validated['street_address_2'],
+            "city" => $validated['city'],
+            "state" => $validated['state'],
+            "zip" => $validated['zip'],
+            "emergency_first_name" => $validated['emergency_first_name'],
+            "emergency_middle_name" => $validated['emergency_middle_name'],
+            "emergency_last_name" => $validated['emergency_last_name'],
+            "relationship" => $validated['relationship'],
+            "emergency_phone" => $validated['emergency_phone'],
+            "emergency_phone_2" => $validated['emergency_phone_2'],
+            "emergency_email" => $validated['emergency_email'],
+            "health_history_id" => $healthHistory->id,
+            "insurance_information_id" => $insuranceInformation->id,
+        ]);
 
         $request->session()->flash('success', 'New Patient was added successfully!');
 
