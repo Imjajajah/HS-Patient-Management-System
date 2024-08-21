@@ -77,6 +77,11 @@ body, html {
     
 }
 
+.center-logo .logo {
+    width: 37%;
+    margin-bottom: 20px;
+}
+
 .center-text {
     padding: 40px;
     text-align: center;
@@ -93,10 +98,7 @@ body, html {
     
 }
 
-.center-logo .logo {
-    width: 37%;
-    margin-bottom: 20px;
-}
+
 
 .login-container {
     background-color: transparent;
