@@ -26,9 +26,7 @@
             </th>
             <th class="Patient-Action">Actions</th>
         </tr>
-<<<<<<< Updated upstream
-        
-=======
+
 
 >>>>>>> Stashed changes
         @foreach($patients as $patient)
@@ -46,9 +44,7 @@
         @endforeach
     </table>
     <div class="add-patient">
-<<<<<<< Updated upstream
-        <button class="add-patient-button"> Add New Patient </button>
-=======
+
         <a href="/create">
             <button class="add-patient-button">Add New Patient</button>
         </a>
