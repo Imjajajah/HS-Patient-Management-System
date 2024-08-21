@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('patient_registration');
 });
 
+Route::get('/login', function () {
+    return view('login');
+});
+
 Route::controller(PatientController::class)->group(function() {
     Route::get('/index', 'index');
     Route::get('/create', 'create');
