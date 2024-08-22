@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <!-- row -->
-                @include('admin_med.patient_records')
+                @include('admin_med.med_reords.patient_records')
             </div>
         </div>
         <!--**********************************

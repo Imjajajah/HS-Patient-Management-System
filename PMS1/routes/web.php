@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('records', function () {
-    return view('admin_med.records');
+    return view('admin_med.med_records.records');
 });
 
 Route::get('/login', function () {
