@@ -32,7 +32,7 @@
     
                             <tr>
                                 <td>Garrett</td>
-                                <td>Winters</td>
+                                <td>Winters</td>    
                                 <td>2024/07/25</td>
                                 <td>Out-Patient</td>
                                 <td>
