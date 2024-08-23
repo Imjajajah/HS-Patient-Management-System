@@ -29,13 +29,14 @@
         <div class="center-text">
             <h1>Hello, User!</h1>
         </div>
-        
+
         <div class="login-container">
-        
-        
-        <form>
-            <input type="text" placeholder="Username" required>
-            <input type="password" placeholder="Password" required>
+
+
+        <form action="/login/process" method="POST">
+            @csrf
+            <input type="text" placeholder="Username" name="email" required>
+            <input type="password" placeholder="Password" name="password" required>
             <button type="submit">Login</button>
         </form>
         <a href="#">Forgot Password?</a> | <a href="#">Need help?</a>

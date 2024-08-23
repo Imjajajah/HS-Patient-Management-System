@@ -175,41 +175,65 @@
         <p>{{ session('success') }}</p>
         <button id="okayButton">Okay</button>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var confirmationMessage = document.getElementById('confirmationMessage');
-            var okayButton = document.getElementById('okayButton');
-
-            if (confirmationMessage) {
-                okayButton.addEventListener('click', function() {
-                    confirmationMessage.style.display = 'none'; // Hide the message
-                });
-            }
-        });
-    </script>
-
-    <style>
-        .confirmation-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border: 1px solid #c3e6cb;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-        #okayButton {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        #okayButton:hover {
-            background-color: #218838;
-        }
-    </style>
 @endif
+
+@if ($errors->has('duplicate'))
+    <div id="errorMessage" class="error-message">
+        <p>{{ $errors->first('duplicate') }}</p>
+        <button id="errorOkayButton">Okay</button>
+    </div>
+@endif
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var confirmationMessage = document.getElementById('confirmationMessage');
+        var okayButton = document.getElementById('okayButton');
+
+        var errorMessage = document.getElementById('errorMessage');
+        var errorOkayButton = document.getElementById('errorOkayButton');
+
+        if (confirmationMessage) {
+            okayButton.addEventListener('click', function() {
+                confirmationMessage.style.display = 'none'; // Hide the success message
+            });
+        }
+
+        if (errorMessage) {
+            errorOkayButton.addEventListener('click', function() {
+                errorMessage.style.display = 'none'; // Hide the error message
+            });
+        }
+    });
+</script>
+
+<style>
+    .confirmation-message, .error-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border: 1px solid #c3e6cb;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
+
+    #okayButton, #errorOkayButton {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    #okayButton:hover, #errorOkayButton:hover {
+        background-color: #218838;
+    }
+</style>
     <form class="jotform-form" onsubmit="" action="/store" method="POST" name="" id=""
         accept-charset="utf-8" autocomplete="on">
         @csrf
@@ -219,7 +243,7 @@
         <input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="build-date-1723175856338" />
         <input type="hidden" id="submitSource" name="submitSource" value="unknown" />
         <input type="hidden" id="buildDate" name="buildDate" value="1723175856338" /> -->
-        <div role="main" class="form-all">  
+        <div role="main" class="form-all">
             <ul class="form-section page-section">
                 <li id="cid_322" class="form-input-wide" data-type="control_head">
                     <div class="form-header-group  header-large">

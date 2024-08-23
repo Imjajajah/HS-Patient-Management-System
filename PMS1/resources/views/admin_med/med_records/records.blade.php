@@ -84,7 +84,9 @@
                                 {{-- <p class="mb-0 subtitle">add <code>.btn-square</code> to change the style</p> --}}
                             </div>
                             <div class="card-body">
-                                <button type="button" class="btn btn-square btn-outline-primary btn-lg">Register</button>                        
+                                <a href="/create">
+                                    <button type="button" class="btn btn-square btn-outline-primary btn-lg">Register</button>
+                                </a>
                             </div>
                         </div>
                     </div>

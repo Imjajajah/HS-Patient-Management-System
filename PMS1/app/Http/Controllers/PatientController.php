@@ -20,7 +20,7 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patient::all();
-        return view('patient_records', compact('patients'));
+        return view('admin_med.med_records.records', compact('patients'));
     }
 
     /**
@@ -96,6 +96,17 @@ class PatientController extends Controller
             "holder_state" => ['nullable', 'string', 'max:255'],
             "holder_zip" => ['nullable', 'string', 'max:10'],
         ]);
+
+        $existingPatient = Patient::where('first_name', $validated['first_name'])
+            ->where('middle_name', $validated['middle_name'])
+            ->where('last_name', $validated['last_name'])
+            ->first();
+
+        // Check if the patient already exists based on first_name, middle_name, and last_name
+        if ($existingPatient) {
+            // Redirect back with an error message
+            return redirect()->back()->withErrors(['duplicate' => 'A patient with this name already exists.'])->withInput();
+        }
 
         // Convert dates to 'Y-m-d' format
         $dates = ['dob', 'effective_date', 'expiration_date', 'holder_dob'];

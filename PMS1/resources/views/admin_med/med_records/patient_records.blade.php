@@ -16,23 +16,25 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-    
+
                         <tbody>
+                        @foreach($patients as $patient)
                             <tr>
-                                <td>Tiger</td>
-                                <td>Nixon</td>
-                                <td>2024/04/25</td>
-                                <td>In-Patient</td>
+                                <td>{{ $patient->first_name }}</td>
+                                <td>{{ $patient->last_name }}</td>
+                                <td>{{ $patient->created_at->format('m/d/Y') }}</td>
+                                <td>{{ $patient->patient_type }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-square btn-success">View</button>
+                                    <button type="button" class="btn btn-square btn-success" onclick="window.location='{{ route('patients.show', ['patient_id' => $patient->patient_id]) }}'">View</button>
                                     <button type="button" class="btn btn-square btn-secondary">Edit</button>
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+                            @endforeach
+
                             <tr>
                                 <td>Garrett</td>
-                                <td>Winters</td>    
+                                <td>Winters</td>
                                 <td>2024/07/25</td>
                                 <td>Out-Patient</td>
                                 <td>
@@ -41,7 +43,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Ashton</td>
                                 <td>Cox</td>
@@ -53,7 +55,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Cedric</td>
                                 <td>Kelly</td>
@@ -65,7 +67,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Airi</td>
                                 <td>Satou</td>
@@ -77,7 +79,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Brielle</td>
                                 <td>Williamson</td>
@@ -89,7 +91,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Herrod</td>
                                 <td>Chandler</td>
@@ -101,7 +103,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Rhona</td>
                                 <td>Davidson</td>
@@ -113,7 +115,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Colleen</td>
                                 <td>Hurst</td>
@@ -125,7 +127,7 @@
                                     <button type="button" class="btn btn-square btn-danger">Delete</button>
                                 </td>
                             </tr>
-    
+
                             <tr>
                                 <td>Sonya</td>
                                 <td>Frost</td>

@@ -11,7 +11,7 @@
                             <form>
                                 <input class="form-control" type="search" placeholder="Search"
                                     aria-label="Search">
-                            </form> 
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -93,10 +93,10 @@
                                 <i class="icon-envelope-open"></i>
                                 <span class="ml-2">Inbox </span>
                             </a>
-                            <a href="./page-login.html" class="dropdown-item">
-                                <i class="icon-key"></i>
-                                <span class="ml-2">Logout </span>
-                            </a>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button class="block py-2 pr-4 pl-3">Logout</button>
+                            </form>
                         </div>
                     </li>
                 </ul>

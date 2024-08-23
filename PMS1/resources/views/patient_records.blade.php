@@ -14,6 +14,10 @@
 <body>
 <div class="Patient-Records">
     <table class="Patient-Records-Table" border="1">
+        <form action="/logout" method="POST">
+            @csrf
+            <button class="block py-2 pr-4 pl-3">Logout</button>
+        </form>
         <tr>
             <th>
                 <div class="Patient-Name-Header">Patient Name</div>
