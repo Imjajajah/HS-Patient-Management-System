@@ -31,8 +31,15 @@ class Patient extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-        'family_history' => 'json',
-    ];
+    // Define the relationship with the HealthHistory model
+    public function healthHistory()
+    {
+        return $this->belongsTo(HealthHistories::class, 'health_history_id');
+    }
 
+    // Define the relationship with the InsuranceInformation model
+    public function insuranceInformation()
+    {
+        return $this->belongsTo(InsuranceInformation::class, 'insurance_information_id');
+    }
 }

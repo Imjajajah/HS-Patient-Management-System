@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syncore Medical Hospital</title>
     <link rel="icon" href="/build/assets/syncore.png">
-
+    <link rel="stylesheet" href="{{ asset('/css/patient_registration.css') }}">
     <!-- <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca" /> -->
     <style type="text/css">
         @media print {
@@ -175,41 +175,65 @@
         <p>{{ session('success') }}</p>
         <button id="okayButton">Okay</button>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var confirmationMessage = document.getElementById('confirmationMessage');
-            var okayButton = document.getElementById('okayButton');
-
-            if (confirmationMessage) {
-                okayButton.addEventListener('click', function() {
-                    confirmationMessage.style.display = 'none'; // Hide the message
-                });
-            }
-        });
-    </script>
-
-    <style>
-        .confirmation-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border: 1px solid #c3e6cb;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-        #okayButton {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        #okayButton:hover {
-            background-color: #218838;
-        }
-    </style>
 @endif
+
+@if ($errors->has('duplicate'))
+    <div id="errorMessage" class="error-message">
+        <p>{{ $errors->first('duplicate') }}</p>
+        <button id="errorOkayButton">Okay</button>
+    </div>
+@endif
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var confirmationMessage = document.getElementById('confirmationMessage');
+        var okayButton = document.getElementById('okayButton');
+
+        var errorMessage = document.getElementById('errorMessage');
+        var errorOkayButton = document.getElementById('errorOkayButton');
+
+        if (confirmationMessage) {
+            okayButton.addEventListener('click', function() {
+                confirmationMessage.style.display = 'none'; // Hide the success message
+            });
+        }
+
+        if (errorMessage) {
+            errorOkayButton.addEventListener('click', function() {
+                errorMessage.style.display = 'none'; // Hide the error message
+            });
+        }
+    });
+</script>
+
+<style>
+    .confirmation-message, .error-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border: 1px solid #c3e6cb;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
+
+    #okayButton, #errorOkayButton {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    #okayButton:hover, #errorOkayButton:hover {
+        background-color: #218838;
+    }
+</style>
     <form class="jotform-form" onsubmit="" action="/store" method="POST" name="" id=""
         accept-charset="utf-8" autocomplete="on">
         <h2>fjsdkljfkldsjfkldj</h2>
@@ -308,11 +332,6 @@
                             <option value="">Please Select</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Intersex">Intersex</option>
-                            <option value="Non-Binary">Non-Binary</option>
-                            <option value="Transgender Female (MTF)">Transgender Female (MTF)</option>
-                            <option value="Transgender Male (FTM)">Transgender Male (FTM)</option>
-                            <option value="Prefer Not to Say">Prefer Not to Say</option>
                         </select>
                         @if ($errors->has('sex'))
                             @foreach ($errors->get('sex') as $error)
@@ -343,6 +362,7 @@
                         @endif
                     </div>
                 </li>
+
                 <li class="form-line form-line-column form-col-3 jf-required" data-type="control_datetime" id="id_333">
                     <label class="form-label form-label-top" id="label_333" for="lite_mode_333" aria-hidden="false"> Date of Birth<span class="form-required">*</span> </label>
                     <div id="cid_333" class="form-input-wide jf-required" data-layout="half">
@@ -1321,8 +1341,8 @@
                     </div>
                 </li>
                 <li style="clear:both"></li>
-                <li style="display:none">Should be Empty: <input type="text" name="" value=""
-                        type="hidden" /></li>
+                {{-- <li style="display:none">Should be Empty: <input type="text" name="" value=""
+                        type="hidden" /></li> --}}
             </ul>
         </div>
     </form>
