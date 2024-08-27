@@ -4,17 +4,24 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+// ito yung mga routes associated sa changes ko.. ikaw na bahala mag adjust
 // Route::get('/', function () {
-//     return view('login');
+//     return view('admin_med.dashboard.home');
 // });
 
 // Route::get('records', function () {
-//     return view('admin_med.med_records.records');
+//     return view('admin_med.patient.records');
 // });
 
-// Route::get('/login', function () {
-//     return view('login');
+// Route::get('register', function () {
+//     return view('admin_med.patient.register');
 // });
+
+// Route::get('calendar', function () {
+//     return view('admin_med.calendar.calendar');
+// });
+
+
 
 Route::controller(UserController::class)->group(function() {
     Route::get('/', 'login')->name('login')->middleware('guest');
