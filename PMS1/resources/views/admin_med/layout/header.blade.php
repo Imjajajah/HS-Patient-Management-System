@@ -1,20 +1,42 @@
+{{-- <div class="header">
+    <div class="menu-logo">
+        <div class="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <img class="syncore-logo" src="{{ asset('admin_mdcss/theme/images/images/syncore-main.png') }}"
+            alt="Company Logo">
+    </div>
+    <div class="user-profile">
+        <div class="user-info">
+            <p> username </p>
+            <span> role </span>
+        </div>
+        <div class="user-dropdown">
+            <img src="{{ asset('admin_mdcss/theme/images/images/User_icon.png') }}" alt="User Icon">
+            <div class="triangle"></div>
+            <div class="dropdown-content">
+                <a href="#">
+                    Profile
+                    <img src="{{ asset('admin_mdcss/theme/images/images/profile_icon.png') }}" alt="Profile Icon"
+                        class="dropdown-icon">
+                </a>
+                <a href="#">
+                    Logout
+                    <img src="{{ asset('admin_mdcss/theme/images/images/logout_icon.png') }}" alt="Logout Icon"
+                        class="dropdown-icon">
+                </a>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
             <div class="collapse navbar-collapse justify-content-between">
-                <div class="header-left">
-                    <div class="search_bar dropdown">
-                        <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                            <i class="mdi mdi-magnify"></i>
-                        </span>
-                        <div class="dropdown-menu p-0 m-0">
-                            <form>
-                                <input class="form-control" type="search" placeholder="Search"
-                                    aria-label="Search">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <div class="header-left"></div>
 
                 <ul class="navbar-nav header-right">
                     <li class="nav-item dropdown notification_dropdown">
@@ -48,8 +70,7 @@
                                     <span class="danger"><i class="ti-bookmark"></i></span>
                                     <div class="media-body">
                                         <a href="#">
-                                            <p><strong>Robin</strong> marked a <strong>ticket</strong> as
-                                                unsolved.
+                                            <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
                                             </p>
                                         </a>
                                     </div>
@@ -95,7 +116,10 @@
                             </a>
                             <form action="/logout" method="POST">
                                 @csrf
-                                <button class="block py-2 pr-4 pl-3">Logout</button>
+                                <a class="dropdown-item block py-2 pr-5 pl-4">
+                                    <i class="icon-key"></i>
+                                    <span class="ml-2">Logout </span>
+                                </a>
                             </form>
                         </div>
                     </li>

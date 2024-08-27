@@ -1,3 +1,6 @@
+@extends('admin_med.layout.index')
+
+@section('content')
 <div class="content-body">
     <div class="container-fluid">
         <div class="row page-titles mx-0">
@@ -616,3 +619,4 @@
         </div>
     </div>
 </div>
+@endsection
