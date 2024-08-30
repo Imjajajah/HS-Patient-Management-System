@@ -79,9 +79,10 @@
 <!-- Pickdate -->
 <script src="{{asset('admin_medcss/theme/./js/plugins-init/pickadate-init.js')}} "></script> --}}
 
+<script src="https://server.fillout.com/embed/v1/"></script>
 
 {{-- <script src="https://cdn03.jotfor.ms/static/prototype.forms.js?v=3.3.56372" type="text/javascript"></script> --}}
-<script src="{{asset('admin_medcss/reg_form/js/jotform.forms.js')}}" type="text/javascript"></script>
+{{-- <script src="{{asset('admin_medcss/reg_form/js/jotform.forms.js')}}" type="text/javascript"></script>
 <script src="https://cdn02.jotfor.ms/js/vendor/maskedinput_5.0.9.min.js?v=3.3.56372" type="text/javascript"></script>
 <script src="https://cdn03.jotfor.ms/js/punycode-1.4.1.min.js?v=3.3.56372" type="text/javascript" defer></script>
 <script src="{{asset('admin_medcss/reg_form/js/vendor/smoothscroll.min.js')}}" type="text/javascript"></script>
@@ -1212,4 +1213,4 @@
             }
         ]);
     }, 20);
-</script>
+</script> --}}
