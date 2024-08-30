@@ -10,19 +10,17 @@
                                 <th>Last name</th>
                                 <th>First name</th>
                                 <th>Type</th>
-                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {{-- @foreach ($patients as $patient)
+                            @foreach ($patients as $patient)
                                 <tr>
                                     <td>{{ $patient->created_at->format('m/d/Y') }}</td>
                                     <td>{{ $patient->last_name }}</td>
                                     <td>{{ $patient->first_name }}</td>
                                     <td>{{ $patient->patient_type }}</td>
-                                    <td>{{ $patient->patient_type }}</td> Add ka nalang for status
                                     <td>
                                         <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                             data-toggle="tooltip" type="button" data-placement="top"
@@ -37,16 +35,15 @@
                                             title="Close"><i class="fa fa-close color-danger"></i></a>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
 
                             <tr>
                                 <td>2024/07/25</td>
                                 <td>Winters</td>
                                 <td>Garrett</td>
                                 <td>Out-Patient</td>
-                                <td>Active </td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -66,9 +63,8 @@
                                 <td>Cox</td>
                                 <td>Ashton</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -88,9 +84,8 @@
                                 <td>Kelly</td>
                                 <td>Cedric</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -110,9 +105,8 @@
                                 <td>Satou</td>
                                 <td>Airi</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -132,9 +126,8 @@
                                 <td>Williamson</td>
                                 <td>Brielle</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -154,9 +147,8 @@
                                 <td>Chandler</td>
                                 <td>Herrod</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -176,9 +168,8 @@
                                 <td>Davidson</td>
                                 <td>Rhona</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -198,9 +189,8 @@
                                 <td>Hurst</td>
                                 <td>Colleen</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
@@ -220,9 +210,8 @@
                                 <td>Frost</td>
                                 <td>Sonya</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top"
                                         title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
