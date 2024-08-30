@@ -10,6 +10,7 @@
                                 <th>Last name</th>
                                 <th>First name</th>
                                 <th>Type</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -23,16 +24,15 @@
                                     <td>{{ $patient->patient_type }}</td>
                                     <td>
                                         <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                            data-toggle="tooltip" type="button" data-placement="top"
-                                            title="View"
+                                            data-toggle="tooltip" type="button" data-placement="top" title="View"
                                             onclick="window.location='{{ route('patients.show', ['patient_id' => $patient->patient_id]) }}'">
                                             <i class="fa fa-eye color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                            data-toggle="tooltip" type="button" data-placement="top"
-                                            title="Edit"><i class="fa fa-pencil color-muted"></i> </a>
+                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"><i
+                                                class="fa fa-pencil color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-danger"
-                                            data-toggle="tooltip" type="button" data-placement="top"
-                                            title="Close"><i class="fa fa-close color-danger"></i></a>
+                                            data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
+                                                class="fa fa-close color-danger"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -42,18 +42,16 @@
                                 <td>Winters</td>
                                 <td>Garrett</td>
                                 <td>Out-Patient</td>
+                                <td>Active </td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                    <a href="javascript:void()" class="btn btn-square btn-danger" data-toggle="tooltip"
+                                        type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -63,18 +61,16 @@
                                 <td>Cox</td>
                                 <td>Ashton</td>
                                 <td>In-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                    <a href="javascript:void()" class="btn btn-square btn-danger" data-toggle="tooltip"
+                                        type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -84,18 +80,16 @@
                                 <td>Kelly</td>
                                 <td>Cedric</td>
                                 <td>In-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                    <a href="javascript:void()" class="btn btn-square btn-danger" data-toggle="tooltip"
+                                        type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -105,18 +99,16 @@
                                 <td>Satou</td>
                                 <td>Airi</td>
                                 <td>Out-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
                                     <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -126,18 +118,16 @@
                                 <td>Williamson</td>
                                 <td>Brielle</td>
                                 <td>Out-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
                                     <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -147,18 +137,16 @@
                                 <td>Chandler</td>
                                 <td>Herrod</td>
                                 <td>In-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
                                     <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -168,18 +156,16 @@
                                 <td>Davidson</td>
                                 <td>Rhona</td>
                                 <td>Out-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
                                     <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -189,18 +175,16 @@
                                 <td>Hurst</td>
                                 <td>Colleen</td>
                                 <td>Out-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
                                     <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>
@@ -210,18 +194,16 @@
                                 <td>Frost</td>
                                 <td>Sonya</td>
                                 <td>In-Patient</td>
+                                <td>Active</td>
                                 <td>
-                                    <a href="javascript:void()" class="btn btn-square btn-success mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="View">
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
-                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Edit">
+                                    <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted"></i> </a>
                                     <a href="javascript:void()" class="btn btn-square btn-danger"
-                                        data-toggle="tooltip" type="button" data-placement="top"
-                                        title="Close">
+                                        data-toggle="tooltip" type="button" data-placement="top" title="Close">
                                         <i class="fa fa-close color-danger"></i></a>
                                 </td>
                             </tr>

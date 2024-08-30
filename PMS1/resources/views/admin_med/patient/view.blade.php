@@ -58,8 +58,8 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
-                                                        <dt class="mb-2">Mobile Number:</dt>
-                                                        <dd>(+63)[Mobile Number]</dd>
+                                                        <dt class="mb-2">Religion</dt>
+                                                        <dd class="mb-4">[Religion]</dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -72,16 +72,16 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
-                                                        <dt class="mb-2">Address:</dt>
-                                                        <dd>[Address]</dd>
+                                                        <dt class="mb-2">Full Address:</dt>
+                                                        <dd>[Full Address]</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
-                                                        <dt class="mb-2">Email:</dt>
-                                                        <dd>[Email]</dd>
+                                                        <dt class="mb-2">Phone Number:</dt>
+                                                        <dd>(+63)[Phone Number]</dd>
                                                     </dl>
-                                                </div>
+                                                </div>                                                
                                             </div>
                                             <div class="col-xl-4">
                                                 <div class="col-lg-12">
@@ -96,6 +96,12 @@
                                                         <dd>[Employment]</dd>
                                                     </dl>
                                                 </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Email:</dt>
+                                                        <dd>[Email]</dd>
+                                                    </dl>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -106,14 +112,15 @@
                                             <div class="col-xl-4">
                                                 <div class="col-lg-12">
                                                     <dl>
-                                                        <dt class="mb-2">Weight:</dt>
-                                                        <dd class="mb-4">[Weight]</dd>
+                                                        <dt class="mb-2">Complaints:</dt>
+                                                        <dd class="mb-4">[Complaints]</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
-                                                        <dt class="mb-2">Blood Pressure:</dt>
-                                                        <dd class="mb-4">[Blood Pressure]</dd>
+                                                        <dt class="mb-2">Diagnosis:</dt>
+                                                        <dd class="mb-4">[Diagnosis]</dd>
+                                                        {{-- Should be null --}}
                                                     </dl>
                                                 </div>
                                             </div>

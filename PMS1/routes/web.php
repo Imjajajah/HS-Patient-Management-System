@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin_med.patient.view');
 // });
 
+// Route::get('edit', function () {
+//     return view('admin_med.patient.edit');
+// });
+
 // Route::get('calendar', function () {
 //     return view('admin_med.calendar.calendar');
 // });
