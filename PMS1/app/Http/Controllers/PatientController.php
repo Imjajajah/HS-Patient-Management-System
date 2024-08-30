@@ -235,15 +235,15 @@ class PatientController extends Controller
         $patient = Patient::findOrFail($patient_id);
 
         $patient->update([
-            'dob' => $request->input('dob'),
-            'nationality' => $request->input('nationality'),
-            'religion' => $request->input('religion'),
-            'sex' => $request->input('sex'),
-            'street_address' => $request->input('street_address'),
-            'phone' => $request->input('phone'),
-            'civil_status' => $request->input('civil_status'),
-            'employment' => $request->input('employment'),
-            'email' => $request->input('email'),
+            'dob' => $validated['dob'],
+            'nationality' => $validated['nationality'],
+            'religion' => $validated['religion'],
+            'sex' => $validated['sex'],
+            'street_address' => $validated['street_address'],
+            'phone' => $validated['phone'],
+            'civil_status' => $validated['civil_status'],
+            'employment' => $validated['employment'],
+            'email' => $validated['email'],
         ]);
 
         // Update health history data

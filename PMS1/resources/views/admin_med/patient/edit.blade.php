@@ -105,8 +105,10 @@
                                                     <dl>
                                                         <dt class="mb-2">Full Address:</dt>
                                                         <dd>
-                                                            <input type="text" class="form-control" name="street_address"
-                                                                value={{ $patient->street_address }} id="fullAddress">
+                                                            {{-- <input type="text" class="form-control" name="street_address"
+                                                                value={{ $patient->street_address }} id="fullAddress"> --}}
+                                                            <textarea type="text" name="street_address" class="form-control" rows="2"
+                                                            id="allergies">{{ $patient->street_address }}</textarea>
                                                         </dd>
                                                     </dl>
                                                 </div>
