@@ -36,7 +36,7 @@
                                     </thead>
 
                                     <tbody>
-                                        {{-- @foreach ($patients as $patient)
+                                         @foreach ($patients as $patient)
                                             <tr>
                                                 <td>{{ $patient->created_at->format('m/d/Y') }}</td>
                                                 <td>{{ $patient->last_name }}</td>
@@ -56,7 +56,7 @@
                                                         title="Close"><i class="fa fa-close color-danger"></i></a>
                                                 </td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach 
 
                                         <tr>
                                             <td>2024/07/25</td>
