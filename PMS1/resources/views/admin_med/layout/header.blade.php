@@ -1,37 +1,3 @@
-{{-- <div class="header">
-    <div class="menu-logo">
-        <div class="menu-icon">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <img class="syncore-logo" src="{{ asset('admin_mdcss/theme/images/images/syncore-main.png') }}"
-            alt="Company Logo">
-    </div>
-    <div class="user-profile">
-        <div class="user-info">
-            <p> username </p>
-            <span> role </span>
-        </div>
-        <div class="user-dropdown">
-            <img src="{{ asset('admin_mdcss/theme/images/images/User_icon.png') }}" alt="User Icon">
-            <div class="triangle"></div>
-            <div class="dropdown-content">
-                <a href="#">
-                    Profile
-                    <img src="{{ asset('admin_mdcss/theme/images/images/profile_icon.png') }}" alt="Profile Icon"
-                        class="dropdown-icon">
-                </a>
-                <a href="#">
-                    Logout
-                    <img src="{{ asset('admin_mdcss/theme/images/images/logout_icon.png') }}" alt="Logout Icon"
-                        class="dropdown-icon">
-                </a>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">

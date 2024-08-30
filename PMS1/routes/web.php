@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin_med.patient.records');
 // });
 
-// Route::get('register', function () {
-//     return view('admin_med.patient.register');
+// Route::get('view', function () {
+//     return view('admin_med.patient.view');
 // });
 
 // Route::get('calendar', function () {
