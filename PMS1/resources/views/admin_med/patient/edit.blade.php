@@ -19,7 +19,7 @@
                                             alt="..."></a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading text-primary">[Patient Full Name]</h4>
+                                    <h4 class="media-heading text-primary">{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }} {{ $patient->extension }}</h4>
                                     <p>&#8203</p>
                                 </div>
                             </div>
@@ -38,6 +38,9 @@
                                         <a class="nav-link" data-toggle="tab" href="#message1">Message</a>
                                     </li> --}}
                             </ul>
+                            <form action="{{ route('patients.update', ['patient_id' => $patient->patient_id]) }}" method="POST">
+                                @csrf
+                                @method('PUT')
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="patientInfo1" role="tabpanel">
                                     <div class="pt-4">
@@ -48,8 +51,8 @@
                                                     <dl>
                                                         <dt class="mb-2">Age:</dt>
                                                         <dd class="mb-4">
-                                                            <input type="text" class="form-control" name="dateOfBirth"
-                                                                value="" id="mdate">
+                                                            <input type="text" class="form-control" name="dob"
+                                                             value={{ $patient->dob }} id="mdate">
                                                             {{-- The value="" should have the Date of Birth inputted for the patient --}}
                                                         </dd>
                                                     </dl>
@@ -59,7 +62,7 @@
                                                         <dt class="mb-2">Nationality</dt>
                                                         <dd class="mb-4">
                                                             <input type="text" class="form-control" name="nationality"
-                                                                value="[Nationality]" id="nationality">
+                                                                value={{ $patient->nationality }} id="nationality">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -68,7 +71,7 @@
                                                         <dt class="mb-2">Religion</dt>
                                                         <dd class="mb-4">
                                                             <input type="text" class="form-control" name="religion"
-                                                                value="[Religion]" id="religion">
+                                                                value={{ $patient->religion }} id="religion">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -81,18 +84,18 @@
                                                             <select class="custom-select form-control" id="sex"
                                                                 name="sex" data-component="dropdown" required
                                                                 aria-label="Sex">
-                                                                <option value="">Please Select</option>
-                                                                <option value="Male">Male</option>
-                                                                <option value="Female">Female</option>
-                                                                <option value="Intersex">Intersex</option>
-                                                                <option value="Non-Binary">Non-Binary</option>
-                                                                <option value="Transgender Female (MTF)">Transgender
+                                                                <option value="" {{ $patient->sex == "" ? 'selected' : '' }}>Please Select</option>
+                                                                <option value="Male" {{ $patient->sex == "Male" ? 'selected' : '' }}>Male</option>
+                                                                <option value="Female" {{ $patient->sex == "Female" ? 'selected' : '' }}>Female</option>
+                                                                <option value="Intersex" {{ $patient->sex == "Intersex" ? 'selected' : '' }}>Intersex</option>
+                                                                <option value="Non-Binary" {{ $patient->sex == "Non-Binary" ? 'selected' : '' }}>Non-Binary</option>
+                                                                <option value="Transgender Female (MTF)" {{ $patient->sex == "Transgender Female (MTF)" ? 'selected' : '' }}>Transgender
                                                                     Female (MTF)
                                                                 </option>
-                                                                <option value="Transgender Male (FTM)">Transgender
+                                                                <option value="Transgender Male (FTM)" {{ $patient->sex == "Transgender Male (FTM)" ? 'selected' : '' }}>Transgender
                                                                     Male (FTM)
                                                                 </option>
-                                                                <option value="Prefer Not to Say">Prefer Not to Say
+                                                                <option value="Prefer Not to Say" {{ $patient->sex == "Prefer Not to Say" ? 'selected' : '' }}>Prefer Not to Say
                                                                 </option>
                                                             </select>
                                                         </dd>
@@ -102,8 +105,8 @@
                                                     <dl>
                                                         <dt class="mb-2">Full Address:</dt>
                                                         <dd>
-                                                            <input type="text" class="form-control" name="fullAddress"
-                                                                value="[Full Address]" id="fullAddress">
+                                                            <input type="text" class="form-control" name="street_address"
+                                                                value={{ $patient->street_address }} id="fullAddress">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -111,8 +114,8 @@
                                                     <dl>
                                                         <dt class="mb-2">Phone Number:</dt>
                                                         <dd>
-                                                            <input type="tel" class="form-control" name="phoneNumber"
-                                                                value="(+63)Phone Number]" id="phoneNumber">
+                                                            <input type="tel" class="form-control" name="phone"
+                                                                value={{ $patient->phone }} id="phoneNumber">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -123,16 +126,16 @@
                                                         <dt class="mb-2">Civil Status:</dt>
                                                         <dd class="mb-4">
                                                             <select class="custom-select form-control" id=""
-                                                                name="civilStatus" data-component="dropdown" required=""
+                                                                name="civil_status" data-component="dropdown" required=""
                                                                 aria-label="Civil Status">
-                                                                <option value="">Please Select</option>
-                                                                <option value="Single">Single</option>
-                                                                <option value="Married">Married</option>
-                                                                <option value="Divorced">Divorced</option>
-                                                                <option value="Legally separated">Legally separated
+                                                                <option value="" {{ $patient->civil_status == "" ? 'selected' : '' }}>Please Select</option>
+                                                                <option value="Single" {{ $patient->civil_status == "Single" ? 'selected' : '' }}>Single</option>
+                                                                <option value="Married" {{ $patient->civil_status == "Married" ? 'selected' : '' }}>Married</option>
+                                                                <option value="Divorced" {{ $patient->civil_status == "Divorced" ? 'selected' : '' }}>Divorced</option>
+                                                                <option value="Legally separated" {{ $patient->civil_status == "Legally separated" ? 'selected' : '' }}>Legally separated
                                                                 </option>
-                                                                <option value="Widowed">Widowed</option>
-                                                                <option value="Other">Other</option>
+                                                                <option value="Widowed" {{ $patient->civil_status == "Widowed" ? 'selected' : '' }}>Widowed</option>
+                                                                <option value="Other" {{ $patient->civil_status == "Other" ? 'selected' : '' }}>Other</option>
                                                             </select>
                                                         </dd>
                                                     </dl>
@@ -144,14 +147,14 @@
                                                             <select class="custom-select form-control" id=""
                                                                 name="employment" data-component="dropdown"
                                                                 required="" aria-label="Employment">
-                                                                <option value="">Please Select</option>
-                                                                <option value="Employed">Employed</option>
-                                                                <option value="Self-Employed">Self-Employed
+                                                                <option value="" {{ $patient->employment == "" ? 'selected' : '' }}>Please Select</option>
+                                                                <option value="Employed" {{ $patient->employment == "Employed" ? 'selected' : '' }}>Employed</option>
+                                                                <option value="Self-Employed" {{ $patient->employment == "Self-Employed" ? 'selected' : '' }}>Self-Employed
                                                                 </option>
-                                                                <option value="Unemployed">Unemployed</option>
-                                                                <option value="Retired">Retired</option>
-                                                                <option value="Student">Student</option>
-                                                                <option value="Other">Other</option>
+                                                                <option value="Unemployed" {{ $patient->employment == "Unemployed" ? 'selected' : '' }}>Unemployed</option>
+                                                                <option value="Retired" {{ $patient->employment == "Retired" ? 'selected' : '' }}>Retired</option>
+                                                                <option value="Student" {{ $patient->employment == "Student" ? 'selected' : '' }}>Student</option>
+                                                                <option value="Other" {{ $patient->employment == "Other" ? 'selected' : '' }}>Other</option>
                                                             </select>
                                                         </dd>
                                                     </dl>
@@ -161,7 +164,7 @@
                                                         <dt class="mb-2">Email:</dt>
                                                         <dd>
                                                             <input type="email" class="form-control" name="email"
-                                                                value="[Email]" id="email">
+                                                                value={{ $patient->email }} id="email">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -176,13 +179,23 @@
                                                 <div class="col-lg-10">
                                                     <dl>
                                                         <dt class="mb-2">Complaints:</dt>
-                                                        <dd class="mb-4">[Complaints]</dd>
+                                                        <dd class="mb-4">{{ $patient->health_histories->reason_registration }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-10">
                                                     <dl>
                                                         <dt class="mb-2">Diagnosis:</dt>
-                                                        <dd class="mb-4">[Diagnosis]</dd>
+                                                        <dd class="mb-4">
+                                                            @if ($patient->health_histories)
+                                                                <?php
+                                                                $familyHistoryArray = json_decode($patient->health_histories->family_history, true);
+                                                                $familyHistoryString = implode(', ', $familyHistoryArray);
+                                                                ?>
+                                                                {{ $familyHistoryString }}
+                                                            @else
+                                                                <p>No family history available.</p>
+                                                            @endif
+                                                        </dd>
                                                         {{-- Will be updates after charting --}}
                                                     </dl>
                                                 </div>
@@ -192,8 +205,8 @@
                                                     <dl>
                                                         <dt class="mb-2">Allergies:</dt>
                                                         <dd class="mb-4">
-                                                            <textarea type="text" name="allergies" class="form-control" rows="2" value="[Allergy1], [Allergy2]"
-                                                                id="allergies"></textarea>
+                                                            <textarea type="text" name="food_allergy_note" class="form-control" rows="2"
+                                                                id="allergies">{{ $patient->health_histories->food_allergy_note }}</textarea>
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -201,8 +214,8 @@
                                                     <dl>
                                                         <dt class="mb-2">Chronic/Other Illness:</dt>
                                                         <dd class="mb-4">
-                                                            <textarea type="text" name="coroIllness" class="form-control" rows="2"
-                                                                value="[Chronic/Other Illness1], [Chronic/Other Illness2]" id="coroIllness"></textarea>
+                                                            <textarea type="text" name="condition_note" class="form-control" rows="2"
+                                                                value="[Chronic/Other Illness1], [Chronic/Other Illness2]" id="coroIllness">{{ $patient->health_histories->condition_note }}</textarea>
 
                                                         </dd>
                                                     </dl>
@@ -213,8 +226,8 @@
                                                     <dl>
                                                         <dt class="mb-2">Surgeries Done:</dt>
                                                         <dd class="mb-4">
-                                                            <textarea type="text" name="surgeries" class="form-control" rows="2"
-                                                                value="[Surgeries Done1], [Surgeries Done2]" id="surgeries"></textarea>
+                                                            <textarea type="text" name="history_note" class="form-control" rows="2"
+                                                                value="[Surgeries Done1], [Surgeries Done2]" id="surgeries">{{ $patient->health_histories->history_note }}</textarea>
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -222,7 +235,25 @@
                                                     <dl>
                                                         <dt class="mb-2">Vices:</dt>
                                                         <dd>
-                                                            [Drinking or Smoking]</dd>
+                                                            @php
+                                                                $vices = [];
+
+                                                                // Check for smoking
+                                                                if ($patient->health_histories->patient_smoke === 'Yes') {
+                                                                    $vices[] = 'Smoking';
+                                                                }
+
+                                                                 // Check for drinking
+                                                                 if ($patient->health_histories->patient_alcohol === 'Yes') {
+                                                                    $vices[] = 'Drinking';
+                                                                }
+
+                                                                 // Combine vices or show default message
+                                                                 $vicesDisplay = !empty($vices) ? implode(' and ', $vices) : 'No vices';
+                                                            @endphp
+
+                                                            {{ $vicesDisplay }}
+                                                        </dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -271,6 +302,7 @@
                                 onclick="window.history.back();">{{ __('Cancel') }}</button>
                                 <button type="submit" class="btn btn-square btn-outline-primary btn-lg" aria-label="Save Changes"
                                 data-target="">{{ __('Save') }}</button>
+                            </form>
                             </div>
                         </div>
                     </div>

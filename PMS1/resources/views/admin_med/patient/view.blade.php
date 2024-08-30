@@ -19,7 +19,7 @@
                                             alt="..."></a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading text-primary">[Patient Full Name]</h4>
+                                    <h4 class="media-heading text-primary">{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }} {{ $patient->extension }}</h4>
                                     <p>&#8203</p>
                                 </div>
                             </div>
@@ -47,19 +47,19 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Age:</dt>
-                                                        <dd class="mb-4">[Age] years old</dd>
+                                                        <dd class="mb-4">{{ $patient->dob }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Nationality</dt>
-                                                        <dd class="mb-4">[Nationality]</dd>
+                                                        <dd class="mb-4">{{ $patient->nationality }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Religion</dt>
-                                                        <dd class="mb-4">[Religion]</dd>
+                                                        <dd class="mb-4">{{ $patient->religion }}</dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -67,39 +67,39 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Sex:</dt>
-                                                        <dd class="mb-4">[Sex]</dd>
+                                                        <dd class="mb-4">{{ $patient->sex }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Full Address:</dt>
-                                                        <dd>[Full Address]</dd>
+                                                        <dd>{{ $patient->street_address }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Phone Number:</dt>
-                                                        <dd>(+63)[Phone Number]</dd>
+                                                        <dd>{{ $patient->phone }}</dd>
                                                     </dl>
-                                                </div>                                                
+                                                </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Civil Status:</dt>
-                                                        <dd class="mb-4">[Civil Status]</dd>
+                                                        <dd class="mb-4">{{ $patient->civil_status }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Employment:</dt>
-                                                        <dd>[Employment]</dd>
+                                                        <dd>{{ $patient->employment }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Email:</dt>
-                                                        <dd>[Email]</dd>
+                                                        <dd>{{ $patient->email }}</dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -113,13 +113,23 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Complaints:</dt>
-                                                        <dd class="mb-4">[Complaints]</dd>
+                                                        <dd class="mb-4">{{ $patient->health_histories->reason_registration }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Diagnosis:</dt>
-                                                        <dd class="mb-4">[Diagnosis]</dd>
+                                                        <dd class="mb-4">
+                                                            @if ($patient->health_histories)
+                                                                <?php
+                                                                $familyHistoryArray = json_decode($patient->health_histories->family_history, true);
+                                                                $familyHistoryString = implode(', ', $familyHistoryArray);
+                                                                ?>
+                                                                {{ $familyHistoryString }}
+                                                            @else
+                                                                <p>No family history available.</p>
+                                                            @endif
+                                                        </dd>
                                                         {{-- Should be null --}}
                                                     </dl>
                                                 </div>
@@ -128,13 +138,13 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Allergies:</dt>
-                                                        <dd class="mb-4">[Allergy1], [Allergy2]</dd>
+                                                        <dd class="mb-4">{{ $patient->health_histories->food_allergy_note }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Chronic/Other Illness:</dt>
-                                                        <dd>[Chronic/Other Illness1], [Chronic/Other Illness2]</dd>
+                                                        <dd>{{ $patient->health_histories->condition_note }}</dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -142,13 +152,32 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Surgeries Done:</dt>
-                                                        <dd class="mb-4">[Surgeries Done1], [Surgeries Done2]</dd>
+                                                        <dd class="mb-4">{{ $patient->health_histories->history_note }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Vices:</dt>
-                                                        <dd>[Drinking or Smoking]</dd>
+                                                        <dd>
+                                                            @php
+                                                                $vices = [];
+
+                                                                // Check for smoking
+                                                                if ($patient->health_histories->patient_smoke === 'Yes') {
+                                                                    $vices[] = 'Smoking';
+                                                                }
+
+                                                                 // Check for drinking
+                                                                 if ($patient->health_histories->patient_alcohol === 'Yes') {
+                                                                    $vices[] = 'Drinking';
+                                                                }
+
+                                                                 // Combine vices or show default message
+                                                                 $vicesDisplay = !empty($vices) ? implode(' and ', $vices) : 'No vices';
+                                                            @endphp
+
+                                                            {{ $vicesDisplay }}
+                                                        </dd>
                                                     </dl>
                                                 </div>
                                             </div>

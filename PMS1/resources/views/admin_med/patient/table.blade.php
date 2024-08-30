@@ -22,13 +22,15 @@
                                     <td>{{ $patient->last_name }}</td>
                                     <td>{{ $patient->first_name }}</td>
                                     <td>{{ $patient->patient_type }}</td>
+                                    <td>{{ $patient->patient_status }}</td>
                                     <td>
                                         <a href="javascript:void()" class="btn btn-square btn-success mr-4"
                                             data-toggle="tooltip" type="button" data-placement="top" title="View"
                                             onclick="window.location='{{ route('patients.show', ['patient_id' => $patient->patient_id]) }}'">
                                             <i class="fa fa-eye color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"><i
+                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                            onclick="window.location='{{ route('patients.edit', ['patient_id' => $patient->patient_id]) }}'"><i
                                                 class="fa fa-pencil color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-danger"
                                             data-toggle="tooltip" type="button" data-placement="top" title="Close"><i

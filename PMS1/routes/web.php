@@ -38,4 +38,6 @@ Route::controller(PatientController::class)->group(function() {
     Route::get('/create', 'create');
     Route::post('/store', 'store');
     Route::get('/patients/{patient_id}', 'show')->name('patients.show');
+    Route::get('/patients/edit/{patient_id}', 'edit')->name('patients.edit');
+    Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
 });

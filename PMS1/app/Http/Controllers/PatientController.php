@@ -11,6 +11,7 @@ use App\Models\HealthHistories;
 use App\Models\InsuranceInformation;
 use Carbon;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
@@ -193,25 +194,72 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Patient $patient)
+    public function show($patient_id)
     {
-        return view('patient_details', compact('patient'));
+        $patient = Patient::with(['health_histories', 'insurance_information'])->findOrFail($patient_id);
+
+        return view('admin_med.patient.view', compact('patient'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Patient $patient)
+    public function edit($patient_id)
     {
-        //
+        $patient = Patient::with(['health_histories', 'insurance_information'])->findOrFail($patient_id);
+
+        return view('admin_med.patient.edit', compact('patient'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePatientRequest $request, Patient $patient)
+    public function update(Request $request, $patient_id)
     {
-        //
+        $validated = $request->validate([
+            "dob" => ['required', 'date_format:Y-m-d'],
+            "nationality" => ['required', 'string', 'max:255'],
+            "religion" => ['required', 'string', 'max:255'],
+            "sex" => ['required'],
+            "street_address" => ['required', 'string', 'max:255'],
+            "phone" => ['required', 'string', 'digits:11'],
+            "civil_status" => ['required'],
+            "employment" => ['required', 'string'],
+            "email" => ['required', 'email', 'max:255'],
+            //
+            "food_allergy_note" => ['nullable', 'string'],
+            "condition_note" => ['nullable', 'string'],
+            "history_note" => ['nullable', 'string'],
+        ]);
+
+        $patient = Patient::findOrFail($patient_id);
+
+        $patient->update([
+            'dob' => $request->input('dob'),
+            'nationality' => $request->input('nationality'),
+            'religion' => $request->input('religion'),
+            'sex' => $request->input('sex'),
+            'street_address' => $request->input('street_address'),
+            'phone' => $request->input('phone'),
+            'civil_status' => $request->input('civil_status'),
+            'employment' => $request->input('employment'),
+            'email' => $request->input('email'),
+        ]);
+
+        // Update health history data
+        // If health_history_id is present, update the health history record
+        if ($patient->health_history_id) {
+            $healthHistory = HealthHistories::find($patient->health_history_id);
+            if ($healthHistory) {
+                $healthHistory->update([
+                    'food_allergy_note' => $validated['food_allergy_note'],
+                    'condition_note' => $validated['condition_note'],
+                    'history_note' => $validated['history_note'],
+                ]);
+            }
+        }
+
+        return redirect('/dashboard')->with('message', 'Patient was successfully updated');
     }
 
     /**

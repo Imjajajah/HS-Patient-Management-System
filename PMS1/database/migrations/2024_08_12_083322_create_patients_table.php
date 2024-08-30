@@ -45,6 +45,8 @@ return new class extends Migration
             $table->string('emergency_phone_2')->nullable();
             $table->string('emergency_email')->nullable()->comment('because one email can be use for multiple patient from the same house');
 
+            $table->string('patient_status')->nullable();
+
             $table->unsignedBigInteger('health_history_id')->nullable();
             $table->unsignedBigInteger('insurance_information_id')->nullable();
 
