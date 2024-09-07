@@ -24,6 +24,12 @@ class PatientController extends Controller
         return view('admin_med.patient.records', compact('patients'));
     }
 
+    public function indexm()
+    {
+        $patients = Patient::all();
+        return view('admin_med.patient.recordsm', compact('patients'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

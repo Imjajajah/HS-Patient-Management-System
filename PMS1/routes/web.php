@@ -35,6 +35,7 @@ Route::controller(UserController::class)->group(function() {
 
 Route::controller(PatientController::class)->group(function() {
     Route::get('/dashboard', 'index');
+    Route::get('/dashboard/modal', 'indexm');
     Route::get('/create', 'create');
     Route::post('/store', 'store');
     Route::get('/patients/{patient_id}', 'show')->name('patients.show');
