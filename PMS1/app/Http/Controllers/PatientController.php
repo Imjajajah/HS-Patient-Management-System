@@ -188,8 +188,8 @@ class PatientController extends Controller
             "emergency_phone_2" => $validated['emergency_phone_2'],
             "emergency_email" => $validated['emergency_email'],
             "patient_status" => "Active",
-            "health_history_id" => $healthHistory->id,
-            "insurance_information_id" => $insuranceInformation->id,
+            "health_history_id" => $healthHistory->health_history_id,
+            "insurance_information_id" => $insuranceInformation->insurance_information_id,
         ]);
 
         $request->session()->flash('success', 'New Patient was added successfully!');
