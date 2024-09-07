@@ -181,6 +181,7 @@ class PatientController extends Controller
             "emergency_phone" => $validated['emergency_phone'],
             "emergency_phone_2" => $validated['emergency_phone_2'],
             "emergency_email" => $validated['emergency_email'],
+            "patient_status" => "Active",
             "health_history_id" => $healthHistory->id,
             "insurance_information_id" => $insuranceInformation->id,
         ]);

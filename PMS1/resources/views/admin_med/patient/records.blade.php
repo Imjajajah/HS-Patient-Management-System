@@ -5,6 +5,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center my-4">
                 <div class="col-lg-12">
+                    @include('components.messages')
                     <div class="row align-items-center ">
                         <div class="col">
                             <h2 class="h3 mb-0 page-title">{{ __('Patient Records') }}</h2>

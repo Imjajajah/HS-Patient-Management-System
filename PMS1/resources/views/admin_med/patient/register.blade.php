@@ -174,51 +174,7 @@
 </head>
 
 <body>
-    @if (session('success'))
-    <div id="confirmationMessage" class="confirmation-message">
-        <p>{{ session('success') }}</p>
-        <button id="okayButton">Okay</button>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var confirmationMessage = document.getElementById('confirmationMessage');
-            var okayButton = document.getElementById('okayButton');
-
-            if (confirmationMessage) {
-                okayButton.addEventListener('click', function() {
-                    confirmationMessage.style.display = 'none'; // Hide the message
-                });
-            }
-        });
-    </script>
-
-    <style>
-        .confirmation-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border: 1px solid #c3e6cb;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }   
-        .error-message {
-        background-color: #f8d7da;
-        color: #721c24;
-        border-color: #f5c6cb;
-    }
-        #okayButton {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        #okayButton:hover {
-            background-color: #218838;
-        }
-    </style>
-@endif
     <form class="jotform-form" onsubmit="" action="/store" method="POST" name="" id=""
         accept-charset="utf-8" autocomplete="on">
         @csrf
@@ -228,7 +184,7 @@
         <input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="build-date-1723175856338" />
         <input type="hidden" id="submitSource" name="submitSource" value="unknown" />
         <input type="hidden" id="buildDate" name="buildDate" value="1723175856338" /> -->
-        <div role="main" class="form-all">  
+        <div role="main" class="form-all">
             <ul class="form-section page-section">
                 <li id="cid_322" class="form-input-wide" data-type="control_head">
                     <div class="form-header-group  header-large">
@@ -1118,10 +1074,10 @@
                                 <label id="label_input_309_3" for="input_309_3">HDHP (High Deductible Health Plan)</label>
                             </span>
                             <span class="form-radio-item formRadioOther" style="clear:left">
-                                <input type="radio" class="form-radio-other form-radio" name="" id="other_309" value="other" tabindex="0" aria-label="Other" />
+                                <input type="radio" class="form-radio-other form-radio" name="" id="other_309" value="" tabindex="0" aria-label="Other" />
                                 <label id="label_other_309" style="text-indent:0" for="other_309">Other</label>
                                 <span id="other_309_input" class="other-input-container" style="display:none">
-                                    <input type="text" class="form-radio-other-input form-textbox" name="" size="15" id="input_309_other" placeholder="Please type another option here" />
+                                    <input type="text" class="form-radio-other-input form-textbox" name="plan_type" size="15" id="input_309_other" placeholder="Please type another option here" />
                                 </span>
                             </span>
                         </div>
@@ -1331,7 +1287,7 @@
         </div>
     </form>
 
-                
+
             </div>
         </div>
         </div>
