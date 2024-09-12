@@ -26,6 +26,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+// Ito ung bago route for register
+// Route::get('register', function () {
+//     return view('admin_med.patient.register');
+// });
+
+
 
 Route::controller(UserController::class)->group(function() {
     Route::get('/', 'login')->name('login')->middleware('guest');

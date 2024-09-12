@@ -1,13 +1,37 @@
 <div class="quixnav">
     <div class="quixnav-scroll">
         <ul class="metismenu" id="menu">
-            <li class="nav-label first">Main Menu</li>
-            <li><a href="{{url('index')}}" aria-expanded="false"><i class="icon Board (Regular)"></i><span
-                        class="nav-text">Dashboard</span></a>
+            <li class="nav-label first">Home</li>
+            <li><a href="{{ url('') }}" aria-expanded="false">
+                    <i class="icon icon-single-04"></i>
+                    <span class="nav-text">Dashboard</span></a>
             </li>
 
-            <li class="nav-label">Apps</li>
-            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+            <li class="nav-label">Schedule</li>
+            <li>
+                <a href="javascript:void()" aria-expanded="false">
+                    <i class="icon icon-time-3"></i>
+                    <span class="nav-text">Calendar</span>
+                </a>
+            </li>
+
+            <li class="nav-label">Information</li>
+            <li>
+                <a href="{{url('record_list')}}" aria-expanded="false">
+                    <i class="icon icon-folder-15"></i>
+                    <span class="nav-text">Records</span>
+                </a>
+            </li>
+
+            {{-- <li>
+                <a href="{{url('')}}" aria-expanded="false">
+                    <i class="icon icon-wallet-90"></i>
+                    <span class="nav-text">Transactions</span>
+                </a>
+            </li> --}}
+
+            {{-- <li class="nav-label">Apps</li> --}}
+            {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
                 <ul aria-expanded="false">
                     <li><a href="./app-profile.html">Profile</a></li>
@@ -31,9 +55,9 @@
                     <li><a href="./chart-sparkline.html">Sparkline</a></li>
                     <li><a href="./chart-peity.html">Peity</a></li>
                 </ul>
-            </li>
-            <li class="nav-label">Components</li>
-            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+            </li> --}}
+            {{-- <li class="nav-label">Components</li> --}}
+            {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-world-2"></i><span class="nav-text">Bootstrap</span></a>
                 <ul aria-expanded="false">
                     <li><a href="./ui-accordion.html">Accordion</a></li>
@@ -67,15 +91,9 @@
                     <li><a href="./uc-toastr.html">Toastr</a></li>
                     <li><a href="./map-jqvmap.html">Jqv Map</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li>
-                <a href="records" aria-expanded="false">
-                    <i class="icon icon-folder-15"></i>
-                    <span class="nav-text">Records</span>
-                </a>
-            </li>
-            <li class="nav-label">Forms</li>
+            {{-- <li class="nav-label">Forms</li>
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-form"></i><span
                         class="nav-text">Forms</span></a>
                 <ul aria-expanded="false">
@@ -112,7 +130,7 @@
                     </li>
                     <li><a href="./page-lock-screen.html">Lock Screen</a></li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>
