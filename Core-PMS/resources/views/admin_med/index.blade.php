@@ -33,19 +33,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="{{asset('admin_medcss/theme/./images/logo.png')}}" alt="">
-                <img class="logo-compact" src="{{asset('admin_medcss/theme/./images/logo-text.png')}}" alt="">
-                <img class="brand-title" src="{{asset('admin_medcss/theme/./images/logo-text.png')}}" alt="">
-            </a>
-
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
+        @include('admin_med.nav_header')
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -69,7 +57,7 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        @include('admin_med.dashboard')
+        @include('admin_med.home.dashboard')
         <!--**********************************
             Content body end
         ***********************************-->

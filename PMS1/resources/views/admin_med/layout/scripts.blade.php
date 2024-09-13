@@ -58,6 +58,27 @@
 <script src="{{ asset('admin_medcss/theme/js/plugins-init/form-pickers-init.js') }} "></script>
 
 
+<!-- custom script -->
+<script src="form/script.js"></script>
+
+<!-- Vanilla Datepicker JS -->
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+
+<script>
+    var elems = document.querySelectorAll('.date-picker');
+
+    elems.forEach(function (elem) {
+        new Datepicker(elem, {
+            autohide: true,            // Hide after selection
+            format: 'yyyy-mm-dd',      // Format for backend/database storage
+            altInput: true,            // Enable alternate input display
+            altFormat: 'MM dd, yyyy',  // Display format for users
+            todayHighlight: true       // Highlight today's date
+        });
+    });
+</script>
+
+
 {{-- <!-- Daterangepicker -->
 <!-- momment js is must -->
 <script src="{{asset('admin_medcss/theme/./vendor/moment/moment.min.js')}} "></script>

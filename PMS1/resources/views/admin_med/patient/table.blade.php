@@ -21,16 +21,14 @@
                                     <td>{{ $patient->created_at->format('m/d/Y') }}</td>
                                     <td>{{ $patient->last_name }}</td>
                                     <td>{{ $patient->first_name }}</td>
-                                    <td>{{ $patient->patient_type }}</td>
-                                    <td>{{ $patient->patient_status }}</td>
+                                    <td><span class="badge badge-success">{{ $patient->patient_type }}</span></td>
                                     <td>
-                                        <a href="javascript:void()" class="btn btn-square btn-success mr-4"
+                                        <a href="javascript:void()" class="btn btn-square btn-primary mr-4"
                                             data-toggle="tooltip" type="button" data-placement="top" title="View"
                                             onclick="window.location='{{ route('patients.show', ['patient_id' => $patient->patient_id]) }}'">
                                             <i class="fa fa-eye color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                            onclick="window.location='{{ route('patients.edit', ['patient_id' => $patient->patient_id]) }}'"><i
+                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"><i
                                                 class="fa fa-pencil color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-danger"
                                             data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
@@ -44,9 +42,9 @@
                                 <td>Winters</td>
                                 <td>Garrett</td>
                                 <td>Out-Patient</td>
-                                <td>Active </td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -63,9 +61,9 @@
                                 <td>Cox</td>
                                 <td>Ashton</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -82,9 +80,9 @@
                                 <td>Kelly</td>
                                 <td>Cedric</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -101,9 +99,9 @@
                                 <td>Satou</td>
                                 <td>Airi</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -120,9 +118,9 @@
                                 <td>Williamson</td>
                                 <td>Brielle</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -139,9 +137,9 @@
                                 <td>Chandler</td>
                                 <td>Herrod</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -158,9 +156,9 @@
                                 <td>Davidson</td>
                                 <td>Rhona</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -177,9 +175,9 @@
                                 <td>Hurst</td>
                                 <td>Colleen</td>
                                 <td>Out-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
@@ -196,9 +194,9 @@
                                 <td>Frost</td>
                                 <td>Sonya</td>
                                 <td>In-Patient</td>
-                                <td>Active</td>
+                                <td><span class="badge badge-success">Active</span></td>
                                 <td>
-                                    <a href="{{ url('view') }}" class="btn btn-square btn-success mr-4"
+                                    <a href="{{ url('view') }}" class="btn btn-square btn-primary mr-4"
                                         data-toggle="tooltip" type="button" data-placement="top" title="View">
                                         <i class="fa fa-eye color-muted"></i> </a>
                                     <a href="{{ url('edit') }}" class="btn btn-square btn-secondary mr-4"
