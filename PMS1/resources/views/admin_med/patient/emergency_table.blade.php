@@ -10,6 +10,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#medRecord1">In-Patients</a>
                     </li>
+
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="patientInfo1" role="tabpanel">
@@ -116,6 +117,9 @@
                         </div>
 
                     </div>
+
+
+
                 </div>
             </div>
         </div>
