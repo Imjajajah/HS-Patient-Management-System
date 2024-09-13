@@ -10,8 +10,7 @@
                             <h4 class="">Patient Details</h4>
                         </div>
                         <div class="card-body">
-                            <!-- Nav tabs -->
-                            {{-- <div class="custom-tab-1"> --}}
+                            
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#"><img class="media-object mr-3"

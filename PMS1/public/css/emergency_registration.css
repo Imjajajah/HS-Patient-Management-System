@@ -1,0 +1,54 @@
+.unidentified-cb{
+    margin-right: 10px;
+}
+
+.unidentified-label{
+    margin-top: 10px;
+}
+
+.generate-btn{
+    background-color: #012d74; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px;
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -60px;
+}
+
+
+
+.generate-btn:hover {
+    background-color: black; /* Darken the background on hover */
+}
+
+.form-subtitle {
+    margin-bottom: 20px;
+    color: #666;
+    text-align: center;
+}
+.reg-date-time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reg-date{
+    margin-left: -1px;
+}
+
+.reg-time{
+    margin-left: 20px;
+    width: 120px;
+}
+.time-label {
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 190px;
+}

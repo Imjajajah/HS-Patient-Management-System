@@ -42,3 +42,23 @@ Route::controller(PatientController::class)->group(function() {
     Route::get('/patients/edit/{patient_id}', 'edit')->name('patients.edit');
     Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
 });
+
+Route::get('/blank1', function () {
+    return view('blank1');
+});
+
+Route::get('/blank2', function () {
+    return view('blank2');
+});
+
+Route::get('/blank3', function () {
+    return view('blank3');
+});
+
+Route::get('/blank4', function () {
+    return view('blank4');
+});
+
+Route::get('/blank5', function () {
+    return view('blank5');
+});
