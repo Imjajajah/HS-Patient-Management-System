@@ -1,7 +1,6 @@
 <script src="{{ asset('/js/emergency_registration.js') }}"></script>
 
 
-
 @extends('admin_med.layout.index')
 
 @section('content')
@@ -20,8 +19,6 @@
                             data-toggle="modal" data-target="#exampleModalLong">{{ __('Register a Patient') }}</button>
 
                             @include('admin_med.patient.emergency_registration')
-
-
 
                             {{-- <a href="{{ url('create') }}">
                                 <button type="button"

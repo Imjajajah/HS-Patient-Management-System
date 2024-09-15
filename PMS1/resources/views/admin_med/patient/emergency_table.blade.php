@@ -10,9 +10,10 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#medRecord1">In-Patients</a>
                     </li>
-
                 </ul>
+
                 <div class="tab-content">
+
                     <div class="tab-pane fade show active" id="patientInfo1" role="tabpanel">
                         <div class="pt-4">
                             <div class="table-responsive">
@@ -29,7 +30,7 @@
 
                                     <tbody>
                                             
-                                        <t>
+                                        <tr>
                                             <td>Satou</td>
                                             <td>Airi</td>
                                             <td>Non-Urgent</td>
@@ -109,16 +110,10 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="tab-pane fade" id="medRecord1">
-                        <div class="pt-4">
 
-                                
-                        </div>
-
+                    <div class="tab-pane fade" id="medRecord1" role="tabpanel">    
+                        @include('admin_med.patient.inpatient_table')
                     </div>
-
-
 
                 </div>
             </div>
