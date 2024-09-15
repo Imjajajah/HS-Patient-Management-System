@@ -6,23 +6,20 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="card-header">
-                    <h3 class=" card-title--large">EMERGENCY PATIENT REGISTRATION FORM</h3>
-                </div>
-                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                <h5 class="modal-title" id="exampleModalLabel">Register a Patient</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+
             <div class="modal-body">
-                <form action="#" id="step-form-horizontal" class="step-form-horizontal"
-                    method="POST" onsubmit="">
-                    @csrf
+                <form action="#" class="step-form-horizontal" method="POST" onsubmit="">
+                @csrf
                     <div>
                         <h4>Information</h4>
                         <section>
-
-                        <!-- DO NOT DELETE, FOR REGISTRATION DATE -->
-
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="regDateTime">Registration Date and Time</label>
 
                                 <div class="reg-date-time">
@@ -38,19 +35,18 @@
                                 </div>
 
                                 <small class="time-label">Hour Minutes</small>
-                            </div> -->
-
-                        <!-- DO NOT DELETE, FOR REGISTRATION DATE -->
+                            </div>
 
                             <div class="row form-material align-items-center">
+                                
                                 <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
-                                        <input type="checkbox" id="unidentifiedCB" name="unidentified" class="unidentified-cb">
-                                        <label for="unidentified" class="unidentified-label">Unidentified Patient</label>
+                                        <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
+                                        <input type="checkbox" id="unidentifiedCB" name="unidentified" class="unidentifiedCB">
                                     </div>
                                 </div>
+
                                 <div class="col-lg-4 mb-2">
-                                    <!-- Button with custom styling -->
                                     <button type="button" id="generateID-btn" class="generate-btn" disabled>
                                         Generate Temporary ID
                                     </button>
@@ -114,7 +110,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="col-lg-3 mb-4">
                                     <div class="form-group">
                                         <label class="text-label">Priority Level <span
@@ -124,11 +119,11 @@
                                             data-component="dropdown" required=""
                                             aria-label="Priority Level">
                                             <option value="">Please Select</option>
-                                            <option value="lvl1">Level 1 - Resuscitation</option>
-                                            <option value="lvl2">Level 2 - Emergent </option>
-                                            <option value="lvl3">Level 3 - Urgent</option>
-                                            <option value="lvl4">Level 4 - Less Urgent</option>
-                                            <option value="lvl5">Level 5 - Non-Urgent</option>
+                                            <option value="lvl1">1 - Resuscitation</option>
+                                            <option value="lvl2">2 - Emergent </option>
+                                            <option value="lvl3">3 - Urgent</option>
+                                            <option value="lvl4">4 - Less Urgent</option>
+                                            <option value="lvl5">5 - Non-Urgent</option>
                                         </select>
                                     </div>
                                 </div>
@@ -137,9 +132,15 @@
                     </div>
                 </form>
             </div>
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 

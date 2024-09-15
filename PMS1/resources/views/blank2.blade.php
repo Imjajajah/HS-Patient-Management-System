@@ -15,9 +15,14 @@
                             <h2 class="h3 mb-0 page-title">{{ __('Patient Records') }}</h2>
                         </div>
                         <div class="col-auto">
-                            <button type="button" id="registerBtn" class="btn btn-square btn-outline-primary btn-lg" data-toggle="modal"
-                                data-target="#exampleModalLong">{{ __('Register a Patient') }}</button>
+
+                            <button type="button" id="registerBtn" class="btn btn-square btn-outline-primary btn-lg"
+                            data-toggle="modal" data-target="#exampleModalLong">{{ __('Register a Patient') }}</button>
+
                             @include('admin_med.patient.emergency_registration')
+
+
+
                             {{-- <a href="{{ url('create') }}">
                                 <button type="button"
                                     class="btn btn-square btn-outline-primary btn-lg">{{ __('Register a Patient') }}</button>
