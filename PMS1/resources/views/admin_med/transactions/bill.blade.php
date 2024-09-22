@@ -1,5 +1,5 @@
 @extends('admin_med.layout.index')
 
-@section('content')
+@section('med_content')
 
 @endsection

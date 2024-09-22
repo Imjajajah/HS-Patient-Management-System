@@ -4,7 +4,7 @@
 
 <head>
    
-    @include('admin_med.layout.css')
+    @include('doctors.doc_layout.css')
 
 </head>
 
@@ -33,7 +33,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        @include('admin_med.layout.nav_header')
+        @include('doctors.doc_layout.nav_header')
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -41,7 +41,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        @include('admin_med.layout.header')
+        @include('doctors.doc_layout.header')
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -49,7 +49,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-       @include('admin_med.layout.sidebar')
+       @include('doctors.doc_layout.sidebar')
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -57,8 +57,7 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        {{-- @include('admin_med.dashboard.home') --}}
-        @yield('med_content')
+        @yield('doc_content')
         <!--**********************************
             Content body end
         ***********************************-->
@@ -66,7 +65,7 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        @include('admin_med.layout.footer')
+        @include('doctors.doc_layout.footer')
         <!--**********************************
             Footer end
         ***********************************-->
@@ -88,7 +87,7 @@
     <!--**********************************
         Scripts
     ***********************************-->
-   @include('admin_med.layout.scripts')
+   @include('doctors.doc_layout.scripts')
 
 </body>
 

@@ -23,47 +23,44 @@
                                 </div>
                             </div>
 
+
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient
+                                        Information</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#patientCharts">Charts</a>
+                                    <a class="nav-link" data-toggle="tab" href="patientCharts">Charts</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#medRecord1">Medical Record</a>
                                 </li>
 
+    
                             </ul>
 
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="patientInfo1" role="tabpanel">
                                     <div class="pt-4">
                                         <h4 class="card-title mb-4">General Information</h4>
-                                        <div class="update-button">
-                                            <button class="update-info">Update</button>
-                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="patientCharts">
                                     <div class="pt-4">
-                                        <div class="update-button">
-                                            <button class="update-charts">Update</button>
-                                        </div>       
+                                        
                                     </div>
                                 </div>
-
 
                                 <div class="tab-pane fade" id="medRecord1">
                                     <div class="pt-4">
-
-                                            
+                                        
                                     </div>
-
                                 </div>
-                            </div>
 
+                               
+                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
                 </div>

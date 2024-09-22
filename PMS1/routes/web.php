@@ -4,33 +4,6 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// ito yung mga routes associated sa changes ko.. ikaw na bahala mag adjust
-// Route::get('/', function () {
-//     return view('admin_med.dashboard.home');
-// });
-
-// Route::get('records', function () {
-//     return view('admin_med.patient.records');
-// });
-
-// Route::get('view', function () {
-//     return view('admin_med.patient.view');
-// });
-
-// Route::get('edit', function () {
-//     return view('admin_med.patient.edit');
-// });
-
-// Route::get('calendar', function () {
-//     return view('admin_med.calendar.calendar');
-// });
-
-
-// Ito ung bago route for register
-// Route::get('register', function () {
-//     return view('admin_med.patient.register');
-// });
-
 
 
 Route::controller(UserController::class)->group(function() {
@@ -68,3 +41,36 @@ Route::get('/blank4', function () {
 Route::get('/blank5', function () {
     return view('blank5');
 });
+
+
+
+
+// Ito yung latest na routes sa end ko
+// Route::get('med_dashboard', function () {
+//     return view('admin_med.dashboard.med_dashboard');
+// });
+
+// Route::get('med_records', function () {
+//     return view('admin_med.patient.records');
+// });
+
+// Route::get('med_register', function () {
+//     return view('admin_med.patient.register');
+// });
+
+// Route::get('med_view', function () {
+//     return view('admin_med.patient.view');
+// });
+
+// Route::get('med_edit', function () {
+//     return view('admin_med.patient.edit');
+// });
+
+
+// Route::get('/', function () {
+//     return view('doctors.doc_dashboard.doctor_dashboard');
+// });
+
+// Route::get('doc_records', function () {
+//     return view('doctors.doc_patient.doctor_records');
+// });

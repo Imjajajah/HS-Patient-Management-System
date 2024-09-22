@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog">
+{{-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
          <div class="modal-header">
@@ -1095,11 +1095,11 @@
                         <textarea id="input_313" class="form-textarea validate[AlphaNumeric]" name=""
                             style="width:648px;height:100px" data-component="textarea" aria-labelledby="label_313"></textarea>
                     </div>
-                    {{-- @if ($errors->has('plan_type'))
+                    @if ($errors->has('plan_type'))
                         @foreach ($errors->get('plan_type') as $error)
                             <span style="color:red;">{{ $error }}</span><br>
                         @endforeach
-                    @endif --}}
+                    @endif
                 </li>
                 <li class="form-line form-line-column form-col-2" data-type="control_fullname" id="id_269"
                     data-compound-hint="First Name,Last Name"><label
@@ -1281,8 +1281,8 @@
                     </div>
                 </li>
                 <li style="clear:both"></li>
-                {{-- <li style="display:none">Should be Empty: <input type="text" name="" value=""
-                        type="hidden" /></li> --}}
+                <li style="display:none">Should be Empty: <input type="text" name="" value=""
+                        type="hidden" /></li>
             </ul>
         </div>
     </form>
@@ -1295,4 +1295,4 @@
     </div>
 </body>
 
-</html>
+</html> --}}

@@ -1,6 +1,6 @@
 @extends('admin_med.layout.index')
 
-@section('content')
+@section('med_content')
     <div class="content-body">
         <div class="container-fluid">
             <div class="row">
