@@ -21,14 +21,16 @@
                                     <td>{{ $patient->created_at->format('m/d/Y') }}</td>
                                     <td>{{ $patient->last_name }}</td>
                                     <td>{{ $patient->first_name }}</td>
-                                    <td><span class="badge badge-success">{{ $patient->patient_type }}</span></td>
+                                    <td>{{ $patient->patient_type }}</span></td>
+                                    <td><span class="badge badge-success">{{ $patient->patient_status }}</span></td>
                                     <td>
                                         <a href="javascript:void()" class="btn btn-square btn-primary mr-4"
                                             data-toggle="tooltip" type="button" data-placement="top" title="View"
                                             onclick="window.location='{{ route('patients.show', ['patient_id' => $patient->patient_id]) }}'">
                                             <i class="fa fa-eye color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"><i
+                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                            onclick="window.location='{{ route('patients.edit', ['patient_id' => $patient->patient_id]) }}'"><i
                                                 class="fa fa-pencil color-muted"></i> </a>
                                         <a href="javascript:void()" class="btn btn-square btn-danger"
                                             data-toggle="tooltip" type="button" data-placement="top" title="Close"><i

@@ -36,22 +36,18 @@ return new class extends Migration
             $table->text('city')->nullable();
             $table->text('state')->nullable();
             $table->text('zip')->nullable();
-            //
-            $table->string('emergency_first_name')->nullable();
-            $table->string('emergency_middle_name')->nullable();
-            $table->string('emergency_last_name')->nullable();
-            $table->string('relationship')->nullable();
-            $table->string('emergency_phone')->nullable();
-            $table->string('emergency_phone_2')->nullable();
-            $table->string('emergency_email')->nullable()->comment('because one email can be use for multiple patient from the same house');
 
             $table->string('patient_status')->nullable();
 
             $table->unsignedBigInteger('health_history_id')->nullable();
             $table->unsignedBigInteger('insurance_information_id')->nullable();
+            $table->unsignedBigInteger('emergency_patient_id')->nullable();
+            $table->unsignedBigInteger('emergency_contact_id')->nullable();
 
             $table->foreign('health_history_id')->references('health_history_id')->on('health_histories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('insurance_information_id')->references('insurance_information_id')->on('insurance_information')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('emergency_patient_id')->references('emergency_patient_id')->on('emergency_patients')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('emergency_contact_id')->references('emergency_contact_id')->on('emergency_contacts')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

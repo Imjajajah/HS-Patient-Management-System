@@ -47,7 +47,15 @@ Route::controller(PatientController::class)->group(function() {
     Route::get('/patients/{patient_id}', 'show')->name('patients.show');
     Route::get('/patients/edit/{patient_id}', 'edit')->name('patients.edit');
     Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
+    //
+    Route::post('/emergency/store', 'emergency_person_store');
+    Route::get('/emergency', 'emergency_index');
+    Route::get('/emergency-patient/{emergency_patient_id}', 'emergency_patient_show')->name('patients.emergency_patient_show');
+    // UUID route
+    Route::get('/generate-unique-id', 'generateUniqueId');
 });
+
+
 
 Route::get('/blank1', function () {
     return view('blank1');
@@ -68,3 +76,4 @@ Route::get('/blank4', function () {
 Route::get('/blank5', function () {
     return view('blank5');
 });
+
