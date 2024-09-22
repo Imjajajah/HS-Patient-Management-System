@@ -4,8 +4,6 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::controller(UserController::class)->group(function() {
     Route::get('/', 'login')->name('login')->middleware('guest');
     Route::post('/login/process', 'process');
@@ -27,7 +25,6 @@ Route::controller(PatientController::class)->group(function() {
     // UUID route
     Route::get('/generate-unique-id', 'generateUniqueId');
 });
-
 
 
 Route::get('/blank1', function () {
@@ -54,31 +51,31 @@ Route::get('/blank5', function () {
 
 
 // Ito yung latest na routes sa end ko
-// Route::get('med_dashboard', function () {
-//     return view('admin_med.dashboard.med_dashboard');
-// });
+Route::get('med_dashboard', function () {
+    return view('admin_med.dashboard.med_dashboard');
+});
 
-// Route::get('med_records', function () {
-//     return view('admin_med.patient.records');
-// });
+Route::get('med_records', function () {
+    return view('admin_med.patient.records');
+});
 
-// Route::get('med_register', function () {
-//     return view('admin_med.patient.register');
-// });
+Route::get('med_register', function () {
+    return view('admin_med.patient.register');
+});
 
-// Route::get('med_view', function () {
-//     return view('admin_med.patient.view');
-// });
+Route::get('med_view', function () {
+    return view('admin_med.patient.view');
+});
 
-// Route::get('med_edit', function () {
-//     return view('admin_med.patient.edit');
-// });
+Route::get('med_edit', function () {
+    return view('admin_med.patient.edit');
+});
 
 
-// Route::get('/', function () {
-//     return view('doctors.doc_dashboard.doctor_dashboard');
-// });
+Route::get('/', function () {
+    return view('doctors.doc_dashboard.doctor_dashboard');
+});
 
-// Route::get('doc_records', function () {
-//     return view('doctors.doc_patient.doctor_records');
-// });
+Route::get('doc_records', function () {
+    return view('doctors.doc_patient.doctor_records');
+});

@@ -372,8 +372,8 @@ class PatientController extends Controller
     {
         $emergency_patient = EmergencyPatient::findOrFail($emergency_patient_id);
 
-        return view('admin_med.patient.emergency_view', compact('emergency_patient'));
-    }
+        return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient'));
+    } 
 
     public function emergency_patient_edit($emergency_patient_id)
     {
@@ -383,3 +383,4 @@ class PatientController extends Controller
     }
 
 }
+
