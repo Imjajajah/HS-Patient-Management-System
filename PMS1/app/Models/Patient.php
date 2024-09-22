@@ -46,4 +46,16 @@ class Patient extends Model
     {
         return $this->belongsTo(InsuranceInformation::class, 'insurance_information_id');
     }
+
+    //
+    public function emergency_patients()
+    {
+        return $this->belongsTo(EmergencyPatient::class, 'emergency_patient_id');
+    }
+
+    //
+    public function emergency_contact()
+    {
+        return $this->belongsTo(EmergencyContact::class, 'emergency_contact_id');
+    }
 }

@@ -1077,7 +1077,7 @@
                                 <input type="radio" class="form-radio-other form-radio" name="" id="other_309" value="" tabindex="0" aria-label="Other" />
                                 <label id="label_other_309" style="text-indent:0" for="other_309">Other</label>
                                 <span id="other_309_input" class="other-input-container" style="display:none">
-                                    <input type="text" class="form-radio-other-input form-textbox" name="plan_type" size="15" id="input_309_other" placeholder="Please type another option here" />
+                                    <input type="text" class="form-radio-other-input form-textbox" name="" size="15" id="input_309_other" placeholder="Please type another option here" />
                                 </span>
                             </span>
                         </div>
