@@ -50,7 +50,6 @@ Route::get('/blank5', function () {
     return view('blank5');
 });
 
-<<<<<<< HEAD
 
 
 
@@ -83,5 +82,3 @@ Route::get('/blank5', function () {
 // Route::get('doc_records', function () {
 //     return view('doctors.doc_patient.doctor_records');
 // });
-=======
->>>>>>> 4ac2ac497f5d95569ab1f988c9152d1dd4951747
