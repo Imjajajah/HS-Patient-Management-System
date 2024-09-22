@@ -1,4 +1,4 @@
-{{-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog">
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
          <div class="modal-header">
@@ -11,7 +11,7 @@
     <title>Syncore Medical Hospital</title>
     <link rel="icon" href="/build/assets/syncore.png">
     <link rel="stylesheet" href="{{ asset('/css/patient_registration.css') }}">
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca" /> -->
+    <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca" /> -->
     <style type="text/css">
         @media print {
             * {
@@ -1295,4 +1295,4 @@
     </div>
 </body>
 
-</html> --}}
+</html> 

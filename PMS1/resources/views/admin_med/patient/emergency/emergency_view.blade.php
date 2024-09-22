@@ -30,7 +30,7 @@
                                         Information</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="patientCharts">Charts</a>
+                                    <a class="nav-link" data-toggle="tab" href="#patientCharts">Charts</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#medRecord1">Medical Record</a>
@@ -43,6 +43,125 @@
                                 <div class="tab-pane fade show active" id="patientInfo1" role="tabpanel">
                                     <div class="pt-4">
                                         <h4 class="card-title mb-4">General Information</h4>
+
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Age:</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Nationality</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Religion</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Sex:</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Full Address:</dt>
+                                                        <dd></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Phone Number:</dt>
+                                                        <dd></dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Civil Status:</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Employment:</dt>
+                                                        <dd></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Email:</dt>
+                                                        <dd></dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <hr>
+                                        </div>
+
+                                        <h4 class="card-title mb-4">Medical Data</h4>
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Complaints:</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Diagnosis:</dt>
+                                                        <dd class="mb-4">
+                                                           
+                                                        </dd>
+                                                        {{-- Should be null --}}
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Allergies:</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Chronic/Other Illness:</dt>
+                                                        <dd></dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4">
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Surgeries Done:</dt>
+                                                        <dd class="mb-4"></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <dl>
+                                                        <dt class="mb-2">Vices:</dt>
+                                                        <dd>
+                                    
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
 
@@ -60,8 +179,20 @@
 
                                
                             </div>
-                            {{-- </div> --}}
+                            
                         </div>
+
+                        <div>
+
+                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
+                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                onclick="window.location='{{ route('patients.edit', ['patient_id' => $emergency_patient->emergency_patient_id]) }}'">
+                                <i class="fa fa-pencil color-muted"> Edit</i> 
+                            </a>
+
+                        </div>
+                        
+
                     </div>
                 </div>
             </div>
