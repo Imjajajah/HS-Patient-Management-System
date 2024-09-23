@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Register a Patient</h5>
+                <h2 class="modal-title" id="exampleModalLabel">Register a Patient</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -74,8 +74,9 @@
 
                                 <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
+                                        <!-- Move the input before the label for proper CSS targeting -->
+                                        <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
                                         <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
-                                        <input type="checkbox" id="unidentifiedCB" name="" class="unidentifiedCB">
                                     </div>
                                 </div>
 
@@ -207,9 +208,83 @@
                                             @endif
                                     </div>
                                 </div>
+
+                                
+                                <div class="col-lg-3 mb-5">
+                                    <h4 style="margin-bottom: -15px;"> Vital Signs </h4>
+                                </div>
+                                <div class="w-100"></div>
+
+                                <div class="col-lg-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="text-label">Blood Pressure
+                                            <span class="form-required text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="bloodPressure" name="blood-pressure" placeholder="BP" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="text-label">Temperature
+                                            <span class="form-required text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="temperature" name="temperature" placeholder="Temp (C)" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="text-label">Heart Rate
+                                            <span class="form-required text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="heartRate" name="heart-rate" placeholder="Heart Rate" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+
+                                <div class="col-lg-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="text-label">Pulse Rate
+                                            <span class="form-required text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="pulseRate" name="pulse-rate" placeholder="Pulse Rate" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="text-label">Respiration Rate
+                                            <span class="form-required text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="respirationRate" name="respiration-rate" placeholder="Pulse Rate" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="text-label">Note</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="note" name="note" placeholder="Note:" >
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </section>
                     </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
