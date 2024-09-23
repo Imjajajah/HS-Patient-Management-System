@@ -57,6 +57,9 @@
 
 <script src="{{ asset('admin_medcss/theme/js/plugins-init/form-pickers-init.js') }} "></script>
 
+<script src="{{ asset('/js/emergency_registration.js') }}"></script>
+
+
 
 <!-- custom script -->
 <script src="form/script.js"></script>

@@ -43,6 +43,18 @@ Route::get('/blank5', function () {
 });
 
 
+Route::get('overall_records', function () {
+    return view('admin_med.patient.overall_records');
+});
+
+Route::get('emergency_records', function () {
+    return view('admin_med.patient.emergency.emergency_records');
+});
+
+Route::get('inpatient_records', function () {
+    return view('admin_med.patient.inpatient.inpatient_records');
+});
+
 
 
 // Ito yung latest na routes sa end ko

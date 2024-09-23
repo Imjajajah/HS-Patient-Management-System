@@ -85,18 +85,37 @@
             </li>
             <li class="nav-label">Patient</li>
             <li>
-                <a href="records" aria-expanded="false">
+                <a href="overall_records" aria-expanded="false">
+                    <i class="icon icon-single-04"></i>
+                    <span class="nav-text">Overview</span>
+                </a>
+            </li>
+            <li>
+                <a class="has-arrow" href="records" aria-expanded="false">
                     <i class="mdi mdi-folder-outline mdi-24px"></i>
                     <span class="nav-text">Records</span>
                 </a>
+                <ul aria-expanded="false">
+                    {{-- <li><a href="overall_records">All Patients</a></li> --}}
+                    <li><a href="emergency_records">Emergency Patients</a></li>
+                    <li><a href="inpatient_records" aria-expanded="false">In-Patients</a>
+                        {{-- <ul aria-expanded="false">
+                            <li><a href="javascript:void()">##</a></li>
+                            <li><a href="javascript:void()">##</a></li>
+                            <li><a href="javascript:void()">##</a></li>
+                        </ul> --}}
+                    </li>
+                    <li><a href="javascript:void()">Out-Patients</a></li>
+                </ul>
             </li>
+            <li class="nav-label">Transactions</li>
             <li>
                 <a href="javascript:void()" aria-expanded="false">
                     <i class="mdi mdi-monitor mdi-24px"></i>
                     <span class="nav-text">Transactions</span>
                 </a>
             </li>
-            
+
             {{-- <li class="nav-label">Apps</li>
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
