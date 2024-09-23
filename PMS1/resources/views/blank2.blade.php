@@ -19,11 +19,6 @@
                             data-toggle="modal" data-target="#exampleModalLong">{{ __('Register a Patient') }}</button>
 
                             @include('admin_med.patient.emergency.emergency_registration')
-
-                            {{-- <a href="{{ url('create') }}">
-                                <button type="button"
-                                    class="btn btn-square btn-outline-primary btn-lg">{{ __('Register a Patient') }}</button>
-                            </a> --}}
                         </div>
                     </div>
                 </div>
