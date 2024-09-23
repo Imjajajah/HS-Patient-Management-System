@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use App\Models\EmergencyContact;
+use App\Models\EmergencyPatient;
 use App\Models\HealthHistories;
 use App\Models\InsuranceInformation;
 use Carbon;
@@ -62,6 +64,7 @@ class PatientController extends Controller
             "city" => ['required', 'string', 'max:15'],
             "state" => ['required', 'string', 'max:15'],
             "zip" => ['required', 'string', 'max:4'],
+            // Emergency
             "emergency_first_name" => ['required', 'string', 'max:15'],
             "emergency_middle_name" => ['required', 'string', 'max:15'],
             "emergency_last_name" => ['required', 'string', 'max:15'],
@@ -107,6 +110,7 @@ class PatientController extends Controller
         $existingPatient = Patient::where('first_name', $validated['first_name'])
             ->where('middle_name', $validated['middle_name'])
             ->where('last_name', $validated['last_name'])
+            ->where('dob', $validated['dob'])
             ->first();
 
         // Check if the patient already exists based on first_name, middle_name, and last_name
@@ -123,7 +127,7 @@ class PatientController extends Controller
             }
         }
 
-        // Create HealthHistory, InsuranceInformation, and Patient records in one go
+        // Create HealthHistory, InsuranceInformation, EmergencyContact, and Patient records in one go
         $healthHistory = HealthHistories::create([
             'reason_registration' => $validated['reason_registration'],
             'additional_note' => $validated['additional_note'],
@@ -161,6 +165,16 @@ class PatientController extends Controller
             'holder_zip' => $validated['holder_zip'],
         ]);
 
+        $emergencyContact = EmergencyContact::create([
+            "emergency_first_name" => $validated['emergency_first_name'],
+            "emergency_middle_name" => $validated['emergency_middle_name'],
+            "emergency_last_name" => $validated['emergency_last_name'],
+            "relationship" => $validated['relationship'],
+            "emergency_phone" => $validated['emergency_phone'],
+            "emergency_phone_2" => $validated['emergency_phone_2'],
+            "emergency_email" => $validated['emergency_email'],
+        ]);
+
         Patient::create([
             "patient_type" => $validated['patient_type'],
             "first_name" => $validated['first_name'],
@@ -180,21 +194,15 @@ class PatientController extends Controller
             "city" => $validated['city'],
             "state" => $validated['state'],
             "zip" => $validated['zip'],
-            "emergency_first_name" => $validated['emergency_first_name'],
-            "emergency_middle_name" => $validated['emergency_middle_name'],
-            "emergency_last_name" => $validated['emergency_last_name'],
-            "relationship" => $validated['relationship'],
-            "emergency_phone" => $validated['emergency_phone'],
-            "emergency_phone_2" => $validated['emergency_phone_2'],
-            "emergency_email" => $validated['emergency_email'],
             "patient_status" => "Active",
             "health_history_id" => $healthHistory->health_history_id,
             "insurance_information_id" => $insuranceInformation->insurance_information_id,
+            "emergency_contact_id" => $emergencyContact->emergency_contact_id,
         ]);
 
         $request->session()->flash('success', 'New Patient was added successfully!');
 
-        return redirect()->back();
+        return redirect('/dashboard');
 
     }
 
@@ -266,7 +274,7 @@ class PatientController extends Controller
             }
         }
 
-        return redirect('/dashboard')->with('message', 'Patient was successfully updated');
+        return redirect('/dashboard')->with('success', 'Patient was successfully updated');
     }
 
     /**
@@ -276,4 +284,103 @@ class PatientController extends Controller
     {
         //
     }
+
+    public function emergency_person_store(Request $request)
+    {
+        info($request->all());
+        // Validation rules
+        $validated = $request->validate([
+            'patient_temporary_id' => 'nullable|string|unique:emergency_patients,patient_temporary_id|max:255',
+            // 'emergency_date' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
+            'emergency_time' => 'nullable|regex:/^\d{2}:\d{2}$/', // hh:mm AM/PM format
+            'emergency_first_name' => 'nullable|string|max:255',
+            'emergency_middle_name' => 'nullable|string|max:255',
+            'emergency_last_name' => 'nullable|string|max:255',
+            'emergency_extension' => 'nullable|string|max:10',
+            // 'emergency_dob' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
+            'emergency_sex' => 'nullable|in:Male,Female', // Ensure it's Male or Female
+            'emergency_age' => 'nullable|integer|min:0|max:120', // Age validation
+            'priority_level' => 'nullable|string|max:255',
+            'status' => 'nullable|string|max:255',
+        ]);
+
+
+        // Convert 24-hour time to 12-hour format with AM/PM
+        if (!empty($validated['emergency_time'])) {
+            $dateTime = \DateTime::createFromFormat('H:i', $validated['emergency_time']);
+            if ($dateTime) {
+                $validated['emergency_time'] = $dateTime->format('g:i A'); // 12-hour format
+            }
+        }
+
+        // Check if an emergency patient already exists with the same first, middle, and last names
+        $existingPatient = EmergencyPatient::where('emergency_first_name', $validated['emergency_first_name'])
+            ->where('emergency_middle_name', $validated['emergency_middle_name'])
+            ->where('emergency_last_name', $validated['emergency_last_name'])
+            ->where('emergency_dob', $request['emergency_dob'])
+            ->first();
+
+        if ($existingPatient) {
+            // If the patient already exists, redirect back with an error message
+            return redirect()->back()->withErrors(['duplicate' => 'An emergency patient with this name already exists.'])->withInput();
+        }
+
+        // Convert dates to 'Y-m-d' format
+        $dates = ['emergency_date', 'emergency_dob'];
+        foreach ($dates as $date) {
+            if (!empty($validated[$date])) {
+                $validated[$date] = Carbon\Carbon::createFromFormat('m-d-Y', $validated[$date])->format('Y-m-d');
+            }
+        }
+
+        // Create new EmergencyPatient record with validated data
+        EmergencyPatient::create([
+            "patient_temporary_id" => $validated['patient_temporary_id'],
+            "emergency_date" => $request->input('emergency_date'),
+            "emergency_time" => $validated['emergency_time'],
+            "emergency_first_name" => $validated['emergency_first_name'],
+            "emergency_middle_name" => $validated['emergency_middle_name'],
+            "emergency_last_name" => $validated['emergency_last_name'],
+            "emergency_extension" => $validated['emergency_extension'],
+            "emergency_dob" => $request->input('emergency_dob'),
+            "emergency_sex" => $validated['emergency_sex'],
+            "emergency_age" => $validated['emergency_age'],
+            "priority_level" => $validated['priority_level'],
+            "status" => "Active",
+        ]);
+        $request->session()->flash('success', 'Emergency Patient data stored successfully!');
+
+        return redirect('/emergency');
+    }
+
+    public function generateUniqueId()
+    {
+        do {
+            $id = 'TEMP-' . str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+        } while (DB::table('emergency_patients')->where('patient_temporary_id', $id)->exists());
+
+        return response()->json(['id' => $id]);
+    }
+
+    public function emergency_index()
+    {
+        $emergency_patients = EmergencyPatient::all();
+        return view('emergency_records', compact('emergency_patients'));
+    }
+
+    public function emergency_patient_show($emergency_patient_id)
+    {
+        $emergency_patient = EmergencyPatient::findOrFail($emergency_patient_id);
+
+        return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient'));
+    } 
+
+    public function emergency_patient_edit($emergency_patient_id)
+    {
+        $emergency_patient = EmergencyPatient::findOrFail($emergency_patient_id);
+
+        return view('admin_med.patient.emergency_edit', compact('emergency_patient'));
+    }
+
 }
+

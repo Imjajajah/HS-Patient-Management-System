@@ -1,24 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('unidentifiedCB').addEventListener('change', function () {
-        const isChecked = this.checked;
-        document.getElementById('generateID-btn').disabled = !isChecked;
+    const isChecked = document.getElementById('unidentifiedCB').checked;
+    document.getElementById('generateID-btn').disabled = !isChecked;
 
-        // Log the state of the checkbox to the console
-        console.log('Checkbox state:', isChecked ? 'Checked' : 'Unchecked');
-        // Log the button disabled state to the console
-        console.log('Button disabled state:', document.getElementById('generateID-btn').disabled ? 'Disabled' : 'Enabled');
-    });
+    console.log('Initial checkbox state:', isChecked ? 'Checked' : 'Unchecked');
+    console.log('Initial button disabled state:', document.getElementById('generateID-btn').disabled ? 'Disabled' : 'Enabled');
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const sexSelect = document.querySelector('select[name="sex"]');
-    const firstNameInput = document.querySelector('input[name="firstName"]');
-    const lastNameInput = document.querySelector('input[name="lastName"]');
+
+document.addEventListener('DOMContentLoaded', function () {
+    const checkbox = document.getElementById('unidentifiedCB');
     const generateIDBtn = document.getElementById('generateID-btn');
+    const sexSelect = document.querySelector('select[name="emergency_sex"]');
+    const firstNameInput = document.querySelector('input[name="emergency_first_name"]');
+    const lastNameInput = document.querySelector('input[name="emergency_last_name"]');
 
     // Initialize counter (for demonstration; should be retrieved from a server/database)
     let doeCounter = 0;
+
+    checkbox.addEventListener('change', function () {
+        const isChecked = this.checked;
+        generateIDBtn.disabled = !isChecked;
+
+        console.log('Checkbox state:', isChecked ? 'Checked' : 'Unchecked');
+        console.log('Button disabled state:', generateIDBtn.disabled ? 'Disabled' : 'Enabled');
+    });
 
     generateIDBtn.addEventListener('click', () => {
         if (sexSelect.value === 'Male') {
@@ -30,13 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (sexSelect.value) {
-            doeCounter++; // Increment counter
-            const paddedCounter = String(doeCounter).padStart(3, '0'); // Pad with leading zeros
+            doeCounter++;
+            const paddedCounter = String(doeCounter).padStart(3, '0');
             lastNameInput.value = `Doe ${paddedCounter}`;
         } else {
             lastNameInput.value = '';
         }
     });
+
+    // Initialize button state
+    const isChecked = checkbox.checked;
+    generateIDBtn.disabled = !isChecked;
 });
 
 

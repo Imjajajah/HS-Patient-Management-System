@@ -1,4 +1,4 @@
-{{-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog">
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
          <div class="modal-header">
@@ -11,7 +11,7 @@
     <title>Syncore Medical Hospital</title>
     <link rel="icon" href="/build/assets/syncore.png">
     <link rel="stylesheet" href="{{ asset('/css/patient_registration.css') }}">
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca" /> -->
+    <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca" /> -->
     <style type="text/css">
         @media print {
             * {
@@ -1077,7 +1077,7 @@
                                 <input type="radio" class="form-radio-other form-radio" name="" id="other_309" value="" tabindex="0" aria-label="Other" />
                                 <label id="label_other_309" style="text-indent:0" for="other_309">Other</label>
                                 <span id="other_309_input" class="other-input-container" style="display:none">
-                                    <input type="text" class="form-radio-other-input form-textbox" name="plan_type" size="15" id="input_309_other" placeholder="Please type another option here" />
+                                    <input type="text" class="form-radio-other-input form-textbox" name="" size="15" id="input_309_other" placeholder="Please type another option here" />
                                 </span>
                             </span>
                         </div>
@@ -1295,4 +1295,4 @@
     </div>
 </body>
 
-</html> --}}
+</html> 

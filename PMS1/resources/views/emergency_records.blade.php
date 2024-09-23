@@ -1,4 +1,4 @@
-<script src="{{ asset('/js/emergency_registration.js') }}"></script>
+{{-- <script src="{{ asset('/js/emergency_registration.js') }}"></script> --}}
 
 
 @extends('admin_med.layout.index')

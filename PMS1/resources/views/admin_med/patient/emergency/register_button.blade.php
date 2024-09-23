@@ -8,7 +8,7 @@
             <div class="col-auto">
 
                 <button type="button" id="registerBtn" class="btn btn-square btn-outline-primary btn-lg"
-                    data-toggle="modal" data-target="#exampleModalLong">{{ __('Register a Patient') }}</button>
+                data-toggle="modal" data-target="#exampleModalLong">{{ __('Register a Patient') }}</button>
 
                 @include('admin_med.patient.emergency.emergency_registration')
             </div>
