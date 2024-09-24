@@ -10,7 +10,7 @@
                             <h4 class="">Patient Details</h4>
                         </div>
                         <div class="card-body">
-                            
+
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#"><img class="media-object mr-3"
@@ -192,7 +192,7 @@
                                     <div class="pt-4">
                                         <div class="update-button">
                                             <button class="update-charts">Update</button>
-                                        </div>       
+                                        </div>
                                     </div>
                                 </div>
 
@@ -200,7 +200,7 @@
                                 <div class="tab-pane fade" id="medRecord1">
                                     <div class="pt-4">
 
-                                            
+
                                     </div>
 
                                 </div>

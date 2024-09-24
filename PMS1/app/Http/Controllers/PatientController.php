@@ -11,6 +11,7 @@ use App\Models\EmergencyContact;
 use App\Models\EmergencyPatient;
 use App\Models\HealthHistories;
 use App\Models\InsuranceInformation;
+use App\Models\VitalSigns;
 use Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -287,21 +288,28 @@ class PatientController extends Controller
 
     public function emergency_person_store(Request $request)
     {
-        info($request->all());
+        // info($request->all());
         // Validation rules
         $validated = $request->validate([
             'patient_temporary_id' => 'nullable|string|unique:emergency_patients,patient_temporary_id|max:255',
             // 'emergency_date' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
-            'emergency_time' => 'nullable|regex:/^\d{2}:\d{2}$/', // hh:mm AM/PM format
-            'emergency_first_name' => 'nullable|string|max:255',
-            'emergency_middle_name' => 'nullable|string|max:255',
-            'emergency_last_name' => 'nullable|string|max:255',
+            'emergency_time' => 'required|regex:/^\d{2}:\d{2}$/', // hh:mm AM/PM format
+            'emergency_first_name' => 'required|string|max:255',
+            'emergency_middle_name' => 'required|string|max:255',
+            'emergency_last_name' => 'required|string|max:255',
             'emergency_extension' => 'nullable|string|max:10',
             // 'emergency_dob' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
             'emergency_sex' => 'nullable|in:Male,Female', // Ensure it's Male or Female
             'emergency_age' => 'nullable|integer|min:0|max:120', // Age validation
-            'priority_level' => 'nullable|string|max:255',
+            'priority_level' => 'required|string|max:255',
             'status' => 'nullable|string|max:255',
+            //
+            'B_P' => 'nullable|string|regex:/^\d{1,3}\/\d{1,3}$/', // Blood pressure in format: '120/80'
+            'temperature' => 'nullable|numeric|min:30|max:45', // Temperature validation (range: 30-45°C)
+            'heart_rate' => 'nullable|integer|min:30|max:200', // Heart rate in beats per minute
+            'pulse_rate' => 'nullable|integer|min:30|max:200', // Pulse rate in beats per minute
+            'respiratory_rate' => 'nullable|integer|min:10|max:60', // Respiratory rate in breaths per minute
+            'vitals_note' => 'nullable|string|max:1000', // Optional notes, up to 1000 characters
         ]);
 
 
@@ -333,6 +341,15 @@ class PatientController extends Controller
             }
         }
 
+        $vitalSigns = VitalSigns::create([
+            'B_P' => $validated['B_P'],
+            'temperature' => $validated['temperature'],
+            'heart_rate' => $validated['heart_rate'],
+            'pulse_rate' => $validated['pulse_rate'],
+            'respiratory_rate' => $validated['respiratory_rate'],
+            'vitals_note' => $validated['vitals_note'],
+        ]);
+
         // Create new EmergencyPatient record with validated data
         EmergencyPatient::create([
             "patient_temporary_id" => $validated['patient_temporary_id'],
@@ -347,10 +364,11 @@ class PatientController extends Controller
             "emergency_age" => $validated['emergency_age'],
             "priority_level" => $validated['priority_level'],
             "status" => "Active",
+            "vital_signs_id" => $vitalSigns->vital_signs_id,
         ]);
         $request->session()->flash('success', 'Emergency Patient data stored successfully!');
 
-        return redirect('/emergency');
+        return redirect('/emergency_records');
     }
 
     public function generateUniqueId()

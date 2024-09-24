@@ -15,6 +15,11 @@ class EmergencyPatient extends Model
 
     protected $guarded = [];
 
+    public function vital_signs()
+    {
+        return $this->belongsTo(VitalSigns::class, 'vital_signs_id');
+    }
+
     public function patients()
     {
         return $this->hasMany(Patient::class, 'emergency_patient_id');
