@@ -38,6 +38,7 @@
                                         <a class="nav-link" data-toggle="tab" href="#message1">Message</a>
                                     </li> --}}
                             </ul>
+
                             <form action="" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -87,16 +88,6 @@
                                                                 <option value="" >Please Select</option>
                                                                 <option value="Male" >Male</option>
                                                                 <option value="Female" >Female</option>
-                                                                <option value="Intersex" >Intersex</option>
-                                                                <option value="Non-Binary" >Non-Binary</option>
-                                                                <option value="Transgender Female (MTF)" >Transgender
-                                                                    Female (MTF)
-                                                                </option>
-                                                                <option value="Transgender Male (FTM)" >Transgender
-                                                                    Male (FTM)
-                                                                </option>
-                                                                <option value="Prefer Not to Say" >Prefer Not to Say
-                                                                </option>
                                                             </select>
                                                         </dd>
                                                     </dl>
@@ -108,7 +99,8 @@
                                                             {{-- <input type="text" class="form-control" name="street_address"
                                                                 value={{ $patient->street_address }} id="fullAddress"> --}}
                                                             <textarea type="text" name="street_address" class="form-control" rows="2"
-                                                            id="allergies">
+                                                            id="allergies"></textarea>
+                                                        </dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-10">
@@ -154,7 +146,7 @@
                                                                 </option>
                                                                 <option value="Unemployed" >Unemployed</option>
                                                                 <option value="Retired" >Retired</option>
-                                                                <option value="Student" >Student</option>
+                                                                <option value="Student">Student</option>
                                                                 <option value="Other" >Other</option>
                                                             </select>
                                                         </dd>
@@ -187,7 +179,7 @@
                                                     <dl>
                                                         <dt class="mb-2">Diagnosis:</dt>
                                                         <dd class="mb-4">
-
+                                                            
                                                         </dd>
                                                         {{-- Will be updates after charting --}}
                                                     </dl>
@@ -228,7 +220,7 @@
                                                     <dl>
                                                         <dt class="mb-2">Vices:</dt>
                                                         <dd>
-
+                                                           
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -253,24 +245,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                {{-- <div class="tab-pane fade" id="contact1">
-                                        <div class="pt-4">
-                                            <h4>This is contact title</h4>
-                                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
-                                            </p>
-                                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="message1">
-                                        <div class="pt-4">
-                                            <h4>This is message title</h4>
-                                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor.
-                                            </p>
-                                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor.
-                                            </p>
-                                        </div>
-                                    </div> --}}
+ 
                             </div>
                             {{-- </div> --}}
                             <div class="container d-flex justify-content-end">
