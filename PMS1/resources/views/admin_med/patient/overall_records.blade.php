@@ -11,7 +11,7 @@
                             <h2 class="h3 mb-0 page-title">{{ __('Patient Records') }}</h2>
                         </div>
                        <div class="col-auto">
-                            <a type="button" class="btn btn-square btn-outline-primary btn-lg" 
+                            <a type="button" class="btn btn-square btn-outline-primary btn-lg"
                             href="register">{{ __('Register a Patient') }}</a>
                             {{-- @include('admin_med.patient.register') --}}
                         </div>

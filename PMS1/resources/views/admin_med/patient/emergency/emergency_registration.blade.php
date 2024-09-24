@@ -191,11 +191,11 @@
                                             data-component="dropdown" required=""
                                             aria-label="Priority Level">
                                             <option value="">Please Select</option>
-                                            <option value="Resuscitation">1 - Resuscitation</option>
-                                            <option value="Emergent">2 - Emergent </option>
-                                            <option value="Urgent">3 - Urgent</option>
-                                            <option value="Less Urgent">4 - Less Urgent</option>
-                                            <option value="Non-Urgent">5 - Non-Urgent</option>
+                                            <option value="1 - Resuscitation">1 - Resuscitation</option>
+                                            <option value="2 - Emergent">2 - Emergent </option>
+                                            <option value="3 - Urgent">3 - Urgent</option>
+                                            <option value="4 - Less Urgent">4 - Less Urgent</option>
+                                            <option value="5 - Non-Urgent">5 - Non-Urgent</option>
                                         </select>
                                         @if ($errors->has('priority_level'))
                                             @foreach ($errors->get('priority_level') as $error)
@@ -205,7 +205,7 @@
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="col-lg-3 mb-5">
                                     <h4 style="margin-bottom: -15px;"> Vital Signs </h4>
                                 </div>
@@ -280,7 +280,7 @@
                             </div>
                         </section>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>

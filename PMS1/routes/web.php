@@ -20,7 +20,7 @@ Route::controller(PatientController::class)->group(function() {
     Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
     //
     Route::post('/emergency/store', 'emergency_person_store');
-    Route::get('/emergency', 'emergency_index');
+    Route::get('/emergency_records', 'emergency_index');
     Route::get('/emergency-patient/{emergency_patient_id}', 'emergency_patient_show')->name('patients.emergency_patient_show');
     // UUID route
     Route::get('/generate-unique-id', 'generateUniqueId');
@@ -52,9 +52,9 @@ Route::get('overall_records', function () {
     return view('admin_med.patient.overall_records');
 });
 
-Route::get('emergency_records', function () {
-    return view('admin_med.patient.emergency.emergency_records');
-});
+// Route::get('emergency_records', function () {
+//     return view('admin_med.patient.emergency.emergency_records');
+// });
 
 Route::get('inpatient_records', function () {
     return view('admin_med.patient.inpatient.inpatient_records');
@@ -90,4 +90,9 @@ Route::get('/', function () {
 
 Route::get('doc_records', function () {
     return view('doctors.doc_patient.doctor_records');
+});
+
+
+Route::get('merd_registration', function () {
+    return view('admin_med.patient.edit');
 });

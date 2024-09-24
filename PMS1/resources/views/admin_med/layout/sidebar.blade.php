@@ -55,7 +55,7 @@
                 class="sub-menu-icon">
             Financial Statements
         </a>
-        <a href=javascript:void(0);">    
+        <a href=javascript:void(0);">
          <img src="{{ asset('admin_mdcss/theme/images/images/asset_icon.png') }}" alt="Icon" class="sub-menu-icon">
             Asset Register
         </a>
@@ -97,7 +97,7 @@
                 </a>
                 <ul aria-expanded="false">
                     {{-- <li><a href="overall_records">All Patients</a></li> --}}
-                    <li><a href="emergency_records">Emergency Patients</a></li>
+                    <li><a href="/emergency_records">Emergency Patients</a></li>
                     <li><a href="inpatient_records" aria-expanded="false">In-Patients</a>
                         {{-- <ul aria-expanded="false">
                             <li><a href="javascript:void()">##</a></li>

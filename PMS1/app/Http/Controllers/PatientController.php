@@ -365,7 +365,7 @@ class PatientController extends Controller
     public function emergency_index()
     {
         $emergency_patients = EmergencyPatient::all();
-        return view('emergency_records', compact('emergency_patients'));
+        return view('admin_med.patient.emergency.emergency_records', compact('emergency_patients'));
     }
 
     public function emergency_patient_show($emergency_patient_id)
@@ -373,7 +373,7 @@ class PatientController extends Controller
         $emergency_patient = EmergencyPatient::findOrFail($emergency_patient_id);
 
         return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient'));
-    } 
+    }
 
     public function emergency_patient_edit($emergency_patient_id)
     {
