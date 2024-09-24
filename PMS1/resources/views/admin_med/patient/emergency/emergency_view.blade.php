@@ -92,13 +92,13 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Employment:</dt>
-                                                        <dd>{{ $patient->employment }}</dd>
+                                                        <dd></dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Email:</dt>
-                                                        <dd>{{ $patient->email }}</dd>
+                                                        <dd></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -106,85 +106,22 @@
                                         <div class="col-12">
                                             <hr>
                                         </div>
-                                        <h4 class="card-title mb-4">Medical Data</h4>
-                                        <div class="row">
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Complaints:</dt>
-                                                        <dd class="mb-4">{{ $patient->health_histories->reason_registration }}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Diagnosis:</dt>
-                                                        <dd class="mb-4">
-                                                            @if ($patient->health_histories)
-                                                                <?php
-                                                                $familyHistoryArray = json_decode($patient->health_histories->family_history, true);
-                                                                $familyHistoryString = implode(', ', $familyHistoryArray);
-                                                                ?>
-                                                                {{ $familyHistoryString }}
-                                                            @else
-                                                                <p>No family history available.</p>
-                                                            @endif
-                                                        </dd>
-                                                        {{-- Should be null --}}
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Allergies:</dt>
-                                                        <dd class="mb-4">{{ $patient->health_histories->food_allergy_note }}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Chronic/Other Illness:</dt>
-                                                        <dd>{{ $patient->health_histories->condition_note }}</dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Surgeries Done:</dt>
-                                                        <dd class="mb-4">{{ $patient->health_histories->history_note }}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Vices:</dt>
-                                                        <dd>
-                                                            @php
-                                                                $vices = [];
-
-                                                                // Check for smoking
-                                                                if ($patient->health_histories->patient_smoke === 'Yes') {
-                                                                    $vices[] = 'Smoking';
-                                                                }
-
-                                                                 // Check for drinking
-                                                                 if ($patient->health_histories->patient_alcohol === 'Yes') {
-                                                                    $vices[] = 'Drinking';
-                                                                }
-
-                                                                 // Combine vices or show default message
-                                                                 $vicesDisplay = !empty($vices) ? implode(' and ', $vices) : 'No vices';
-                                                            @endphp
-
-                                                            {{ $vicesDisplay }}
-                                                        </dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        
                                         <div class="update-button">
                                             <button class="update-info">Update</button>
                                         </div>
+
+                                        <!-- <div>
+                                            <button type="button" id="updateButton" class="btn btn-square btn-outline-primary btn-lg"
+                                            data-toggle="modal" data-target="#emergencyEdit">{{ __('Update Information') }}</button>
+
+                                            @include('admin_med.patient.emergency.emergency_edit')
+                                        </div> -->
+                                        
+
+
+
+
                                     </div>
                                 </div>
 
