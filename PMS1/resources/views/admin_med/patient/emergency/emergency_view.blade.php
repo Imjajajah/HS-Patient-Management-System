@@ -18,7 +18,7 @@
                                             alt="..."></a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading text-primary"></h4>
+                                    <h4 class="media-heading text-primary">{{ $emergency_patient->emergency_first_name }} {{ $emergency_patient->emergency_middle_name }} {{ $emergency_patient->emergency_last_name }} {{ $emergency_patient->emergency_extension }}</h4>
                                     <p>&#8203</p>
                                 </div>
                             </div>
@@ -45,8 +45,8 @@
                                             <div class="col-xl-4">
                                                 <div class="col-lg-12">
                                                     <dl>
-                                                        <dt class="mb-2">Age:</dt>
-                                                        <dd class="mb-4"></dd>
+                                                        <dt class="mb-2">Date of Birth:</dt>
+                                                        <dd class="mb-4">{{ $emergency_patient->emergency_dob }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -66,7 +66,7 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Sex:</dt>
-                                                        <dd class="mb-4"></dd>
+                                                        <dd class="mb-4">{{ $emergency_patient->emergency_sex }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -106,18 +106,18 @@
                                         <div class="col-12">
                                             <hr>
                                         </div>
-                                        
+
                                         <div class="update-button">
-                                            <button class="update-info">Update</button>
+                                            <button class="update-button" onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">Update</button>
                                         </div>
 
                                         <!-- <div>
                                             <button type="button" id="updateButton" class="btn btn-square btn-outline-primary btn-lg"
                                             data-toggle="modal" data-target="#emergencyEdit">{{ __('Update Information') }}</button>
 
-                                            @include('admin_med.patient.emergency.emergency_edit')
+                                            {{-- @include('admin_med.patient.emergency.emergency_edit') --}}
                                         </div> -->
-                                        
+
 
 
 

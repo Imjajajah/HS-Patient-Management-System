@@ -134,7 +134,7 @@
                                                         <i class="fa fa-eye color-muted"></i> </a>
                                                     <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
                                                         data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                        onclick="window.location='{{ route('patients.emergency_patient_show', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'"><i
+                                                        onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'"><i
                                                             class="fa fa-pencil color-muted"></i> </a>
                                                     <a href="javascript:void()" class="btn btn-square btn-danger"
                                                         data-toggle="tooltip" type="button" data-placement="top" title="Close"><i

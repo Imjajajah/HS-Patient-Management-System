@@ -20,8 +20,10 @@ Route::controller(PatientController::class)->group(function() {
     Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
     //
     Route::post('/emergency/store', 'emergency_person_store');
-    Route::get('/emergency_records', 'emergency_index');
+    Route::get('/emergency-records', 'emergency_index');
     Route::get('/emergency-patient/{emergency_patient_id}', 'emergency_patient_show')->name('patients.emergency_patient_show');
+    Route::get('/emergency-patient/edit/{emergency_patient_id}', 'emergency_patient_edit')->name('patients.emergency_patient_edit');
+    Route::put('/emergency-patient/update/{emergency_patient_id}', 'emergency_patient_update')->name('patients.emergency_patient_update');
     // UUID route
     Route::get('/generate-unique-id', 'generateUniqueId');
 });
