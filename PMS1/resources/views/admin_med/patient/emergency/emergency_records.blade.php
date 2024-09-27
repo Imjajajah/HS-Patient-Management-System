@@ -19,9 +19,9 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-        
+
                                 <tbody>
-        
+
                                     <tr>
                                         <td>Satou</td>
                                         <td>Airi</td>
@@ -39,7 +39,7 @@
                                                 <i class="fa fa-close color-danger"></i></a>
                                         </td>
                                     </tr>
-        
+
                                     <tr>
                                         <td>Williamson</td>
                                         <td>John</td>
@@ -57,7 +57,7 @@
                                                 <i class="fa fa-close color-danger"></i></a>
                                         </td>
                                     </tr>
-        
+
                                     <tr>
                                         <td>Chandler</td>
                                         <td>Herrod</td>
@@ -75,7 +75,7 @@
                                                 <i class="fa fa-close color-danger"></i></a>
                                         </td>
                                     </tr>
-        
+
                                     <tr>
                                         <td>Davidson</td>
                                         <td>Rhona</td>
@@ -118,9 +118,9 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-            
+
                                     <tbody>
-            
+
                                         @foreach ($emergency_patients as $emergency_patient)
                                             <tr>
                                                 <td>{{ $emergency_patient->emergency_last_name }}</td>
@@ -134,7 +134,7 @@
                                                         <i class="fa fa-eye color-muted"></i> </a>
                                                     <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
                                                         data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                        onclick="window.location='{{ route('patients.edit', ['patient_id' => $emergency_patient->emergency_patient_id]) }}'"><i
+                                                        onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'"><i
                                                             class="fa fa-pencil color-muted"></i> </a>
                                                     <a href="javascript:void()" class="btn btn-square btn-danger"
                                                         data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
@@ -142,7 +142,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-            
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -153,8 +153,8 @@
                         </div>
                     </div>
                 </div>
-            
-            
+
+
         </div>
     </div>
 @endsection

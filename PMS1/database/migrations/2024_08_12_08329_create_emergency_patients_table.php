@@ -29,6 +29,9 @@ return new class extends Migration
             $table->string('emergency_age')->nullable();
             $table->string('priority_level')->nullable();
             $table->string('status')->nullable();
+            //
+            $table->unsignedBigInteger('vital_signs_id')->nullable();
+            $table->foreign('vital_signs_id')->references('vital_signs_id')->on('vital_signs')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

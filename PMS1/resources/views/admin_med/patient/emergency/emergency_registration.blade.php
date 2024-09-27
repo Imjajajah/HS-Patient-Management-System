@@ -71,7 +71,7 @@
                                 <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
                                         <!-- Move the input before the label for proper CSS targeting -->
-                                        <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
+                                        {{-- <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB"> --}}
                                         <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
                                     </div>
                                 </div>
@@ -191,11 +191,11 @@
                                             data-component="dropdown" required=""
                                             aria-label="Priority Level">
                                             <option value="">Please Select</option>
-                                            <option value="Resuscitation">1 - Resuscitation</option>
-                                            <option value="Emergent">2 - Emergent </option>
-                                            <option value="Urgent">3 - Urgent</option>
-                                            <option value="Less Urgent">4 - Less Urgent</option>
-                                            <option value="Non-Urgent">5 - Non-Urgent</option>
+                                            <option value="1 - Resuscitation">1 - Resuscitation</option>
+                                            <option value="2 - Emergent">2 - Emergent </option>
+                                            <option value="3 - Urgent">3 - Urgent</option>
+                                            <option value="4 - Less Urgent">4 - Less Urgent</option>
+                                            <option value="5 - Non-Urgent">5 - Non-Urgent</option>
                                         </select>
                                         @if ($errors->has('priority_level'))
                                             @foreach ($errors->get('priority_level') as $error)
@@ -205,7 +205,7 @@
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="col-lg-3 mb-5">
                                     <h4 style="margin-bottom: -15px;"> Vital Signs </h4>
                                 </div>
@@ -217,7 +217,12 @@
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="bloodPressure" name="blood-pressure" placeholder="BP" >
+                                            <input type="text" class="form-control" id="bloodPressure" name="B_P" placeholder="BP" >
+                                            @if ($errors->has('B_P'))
+                                                @foreach ($errors->get('B_P') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -229,6 +234,11 @@
                                         </label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="temperature" name="temperature" placeholder="Temp (C)" >
+                                            @if ($errors->has('temperature'))
+                                                @foreach ($errors->get('temperature') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +249,12 @@
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="heartRate" name="heart-rate" placeholder="Heart Rate" >
+                                            <input type="text" class="form-control" id="heartRate" name="heart_rate" placeholder="Heart Rate" >
+                                            @if ($errors->has('heart_rate'))
+                                                @foreach ($errors->get('heart_rate') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +266,12 @@
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="pulseRate" name="pulse-rate" placeholder="Pulse Rate" >
+                                            <input type="text" class="form-control" id="pulseRate" name="pulse_rate" placeholder="Pulse Rate" >
+                                            @if ($errors->has('pulse_rate'))
+                                                @foreach ($errors->get('pulse_rate') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -262,7 +282,12 @@
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="respirationRate" name="respiration-rate" placeholder="Pulse Rate" >
+                                            <input type="text" class="form-control" id="respirationRate" name="respiratory_rate" placeholder="Pulse Rate" >
+                                            @if ($errors->has('respiratory_rate'))
+                                                @foreach ($errors->get('respiratory_rate') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -271,7 +296,12 @@
                                     <div class="form-group">
                                         <label class="text-label">Note</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="note" name="note" placeholder="Note:" >
+                                            <input type="text" class="form-control" id="note" name="vitals_note" placeholder="Note:" >
+                                            @if ($errors->has('vitals_note'))
+                                                @foreach ($errors->get('vitals_note') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -280,7 +310,7 @@
                             </div>
                         </section>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
