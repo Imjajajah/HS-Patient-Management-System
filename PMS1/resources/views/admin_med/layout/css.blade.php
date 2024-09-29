@@ -64,11 +64,14 @@
 <link href="{{asset('admin_medcss/reg_form/css/form-design.css')}} " rel="stylesheet" />
 
 
+
+
 <!-- custom stylesheet -->
 {{-- <link rel="stylesheet" href="form/style.css"> --}}
 
 <!-- Vanilla Datepicker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker/dist/css/datepicker.min.css">
+
 
 
 <link rel="stylesheet" href="{{ asset('/css/emergency_registration.css') }}">

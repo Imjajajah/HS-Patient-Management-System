@@ -13,7 +13,7 @@
                        <div class="col-auto">
                             <a type="button" class="btn btn-square btn-outline-primary btn-lg"
                             href="register">{{ __('Register a Patient') }}</a>
-                            {{-- @include('admin_med.patient.register') --}}
+                            @include('admin_med.patient.registerm')
                         </div>
                     </div>
                 </div>
