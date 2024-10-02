@@ -107,16 +107,12 @@
                                             <hr>
                                         </div>
                                         
-                                        <div class="update-button">
-                                            <button class="update-info">Update</button>
+
+                                        <div>
+                                            <button type="button" id="updateButton" class="btn btn-square btn-outline-primary btn-lg">
+                                                {{ __('Update Information') }}
+                                            </button>                                
                                         </div>
-
-                                        <!-- <div>
-                                            <button type="button" id="updateButton" class="btn btn-square btn-outline-primary btn-lg"
-                                            data-toggle="modal" data-target="#emergencyEdit">{{ __('Update Information') }}</button>
-
-                                            @include('admin_med.patient.emergency.emergency_edit')
-                                        </div> -->
                                         
 
 
