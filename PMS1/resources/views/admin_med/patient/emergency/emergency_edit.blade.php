@@ -18,12 +18,56 @@
                                             src="{{ asset('admin_medcss/theme/./images/avatar/4.png') }} "
                                             alt="..."></a>
                                 </div>
+                                <form action="{{ route('patients.emergency_patient_update', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <div class="media-body">
-                                    <h4 class="media-heading text-primary">{{ $emergency_patient->emergency_first_name }} {{ $emergency_patient->emergency_middle_name }} {{ $emergency_patient->emergency_last_name }} {{ $emergency_patient->emergency_extension }}</h4>
+                                    {{-- <h4 class="media-heading text-primary">{{ $emergency_patient->emergency_first_name }} {{ $emergency_patient->emergency_middle_name }} {{ $emergency_patient->emergency_last_name }} {{ $emergency_patient->emergency_extension }}</h4> --}}
+                                    {{-- <p>&#8203</p> --}}
+                                        <dt class="mb-2">First Name:</dt>
+                                        <dd class="mb-4">
+                                            <input type="text" class="form-control" name="emergency_first_name"
+                                            value="{{ $emergency_patient->emergency_first_name }}">
+                                            @if ($errors->has('emergency_first_name'))
+                                                @foreach ($errors->get('emergency_first_name') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
+                                        </dd>
+                                        <dt class="mb-2">Middle Name:</dt>
+                                        <dd class="mb-4">
+                                            <input type="text" class="form-control" name="emergency_middle_name"
+                                            value="{{ $emergency_patient->emergency_middle_name }}">
+                                            @if ($errors->has('emergency_middle_name'))
+                                                @foreach ($errors->get('emergency_middle_name') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
+                                        </dd>
+                                        <dt class="mb-2">Last Name:</dt>
+                                        <dd class="mb-4">
+                                            <input type="text" class="form-control" name="emergency_last_name"
+                                            value="{{ $emergency_patient->emergency_last_name }}">
+                                            @if ($errors->has('emergency_last_name'))
+                                                @foreach ($errors->get('emergency_last_name') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
+                                        </dd>
+                                        <dd class="mb-4">
+                                            <dt class="mb-2">Extension:</dt>
+                                            <input type="text" class="form-control" name="emergency_extension"
+                                            value="{{ $emergency_patient->emergency_extension }}">
+                                            @if ($errors->has('emergency_extension'))
+                                                @foreach ($errors->get('emergency_extension') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
+                                            @endif
+                                        </dd>
                                     <p>&#8203</p>
                                 </div>
                             </div>
-                            
+
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
@@ -37,9 +81,9 @@
 
                             </ul>
 
-                            <form action="{{ route('patients.emergency_patient_update', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}" method="POST">
+                            {{-- <form action="{{ route('patients.emergency_patient_update', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                @method('PUT') --}}
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="patientInfo1" role="tabpanel">
                                     <div class="pt-4">
@@ -51,7 +95,7 @@
                                                         <dt class="mb-2">Date of Birth:</dt>
                                                         <dd class="mb-4">
                                                             <input type="text" class="form-control" name="emergency_dob"
-                                                            value={{ $emergency_patient->emergency_dob }} id="mdate">
+                                                                   value="{{ old('emergency_dob', $emergency_patient->emergency_dob) }}" id="mdate">
                                                             {{-- The value="" should have the Date of Birth inputted for the patient --}}
                                                             @if ($errors->has('emergency_dob'))
                                                                 @foreach ($errors->get('emergency_dob') as $error)
@@ -60,22 +104,22 @@
                                                             @endif
                                                         </dd>
                                                     </dl>
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    <dl>
-                                                        <dt class="mb-2">Nationality</dt>
-                                                        <dd class="mb-4">
-                                                            <input type="text" class="form-control" name=""
-                                                                value="" id="nationality">
-                                                        </dd>
-                                                    </dl>
-                                                </div>
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <dl>
+                                                            <dt class="mb-2">Nationality</dt>
+                                                            <dd class="mb-4">
+                                                                <input type="text" class="form-control" name="ep_nationality"
+                                                                       value="{{ old('ep_nationality', optional($emergency_patient->emergency_information)->ep_nationality) }}" id="nationality">
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
                                                 <div class="col-lg-10">
                                                     <dl>
                                                         <dt class="mb-2">Religion</dt>
                                                         <dd class="mb-4">
-                                                            <input type="text" class="form-control" name=""
-                                                                value="" id="religion">
+                                                            <input type="text" class="form-control" name="ep_religion"
+                                                                value="{{ old('ep_religion', optional($emergency_patient->emergency_information)->ep_religion) }}" id="religion">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -92,8 +136,8 @@
                                                                 <option value="Male" {{ $emergency_patient->emergency_sex == "Male" ? 'selected' : '' }}>Male</option>
                                                                 <option value="Female" {{ $emergency_patient->emergency_sex == "Female" ? 'selected' : '' }}>Female</option>
                                                             </select>
-                                                            @if ($errors->has('emergency_dob'))
-                                                                @foreach ($errors->get('emergency_dob') as $error)
+                                                            @if ($errors->has('emergency_sex'))
+                                                                @foreach ($errors->get('emergency_sex') as $error)
                                                                     <span style="color:red;">{{ $error }}</span><br>
                                                                 @endforeach
                                                             @endif
@@ -106,8 +150,8 @@
                                                         <dd>
                                                             {{-- <input type="text" class="form-control" name="street_address"
                                                                 value={{ $patient->street_address }} id="fullAddress"> --}}
-                                                            <textarea type="text" name="" class="form-control" rows="2"
-                                                            id="allergies"></textarea>
+                                                            <textarea type="text" name="ep_full_address" class="form-control" rows="2"
+                                                            id="fullAddress">{{ old('ep_full_address', optional($emergency_patient->emergency_information)->ep_full_address) }}</textarea>
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -115,8 +159,8 @@
                                                     <dl>
                                                         <dt class="mb-2">Phone Number:</dt>
                                                         <dd>
-                                                            <input type="tel" class="form-control" name=""
-                                                                value="" id="phoneNumber">
+                                                            <input type="tel" class="form-control" name="ep_phone"
+                                                                value="{{ old('ep_phone', optional($emergency_patient->emergency_information)->ep_phone) }}" id="phoneNumber">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -126,17 +170,16 @@
                                                     <dl>
                                                         <dt class="mb-2">Civil Status:</dt>
                                                         <dd class="mb-4">
-                                                            <select class="custom-select form-control" id=""
-                                                                name="" data-component="dropdown"
-                                                                aria-label="Civil Status">
-                                                                <option value="" >Please Select</option>
-                                                                <option value="Single" >Single</option>
-                                                                <option value="Married" >Married</option>
-                                                                <option value="Divorced" >Divorced</option>
-                                                                <option value="Legally separated" >Legally separated
-                                                                </option>
-                                                                <option value="Widowed" >Widowed</option>
-                                                                <option value="Other" >Other</option>
+                                                            <select class="custom-select form-control" id="civil_status"
+                                                                    name="ep_civil_status" data-component="dropdown"
+                                                                    aria-label="Civil Status">
+                                                                <option value="" {{ old('ep_civil_status', $emergency_patient->emergency_information->ep_civil_status ?? '') == "" ? 'selected' : '' }}>Please Select</option>
+                                                                <option value="Single" {{ old('ep_civil_status', $emergency_patient->emergency_information->ep_civil_status ?? '') == "Single" ? 'selected' : '' }}>Single</option>
+                                                                <option value="Married" {{ old('ep_civil_status', $emergency_patient->emergency_information->ep_civil_status ?? '') == "Married" ? 'selected' : '' }}>Married</option>
+                                                                <option value="Divorced" {{ old('ep_civil_status', $emergency_patient->emergency_information->ep_civil_status ?? '') == "Divorced" ? 'selected' : '' }}>Divorced</option>
+                                                                <option value="Legally separated" {{ old('ep_civil_status', $emergency_patient->emergency_information->ep_civil_status ?? '') == "Legally separated" ? 'selected' : '' }}>Legally separated</option>
+                                                                <option value="Widowed" {{ old('ep_civil_status', $emergency_patient->emergency_information->ep_civil_status ?? '') == "Widowed" ? 'selected' : '' }}>Widowed</option>
+                                                                <option value="Other" {{ old('ep_civil_status', $emergency_patient->emergency_information->ep_civil_status ?? '') == "Other" ? 'selected' : '' }}>Other</option>
                                                             </select>
                                                         </dd>
                                                     </dl>
@@ -145,27 +188,27 @@
                                                     <dl>
                                                         <dt class="mb-2">Employment:</dt>
                                                         <dd>
-                                                            <select class="custom-select form-control" id=""
-                                                                name="" data-component="dropdown"
-                                                                 aria-label="Employment">
-                                                                <option value="" >Please Select</option>
-                                                                <option value="Employed" >Employed</option>
-                                                                <option value="Self-Employed" >Self-Employed
-                                                                </option>
-                                                                <option value="Unemployed" >Unemployed</option>
-                                                                <option value="Retired" >Retired</option>
-                                                                <option value="Student">Student</option>
-                                                                <option value="Other" >Other</option>
+                                                            <select class="custom-select form-control" id="employment_status"
+                                                                    name="ep_employment" data-component="dropdown"
+                                                                    aria-label="Employment">
+                                                                <option value="" {{ old('ep_employment', $emergency_patient->emergency_information->ep_employment ?? '') == "" ? 'selected' : '' }}>Please Select</option>
+                                                                <option value="Employed" {{ old('ep_employment', $emergency_patient->emergency_information->ep_employment ?? '') == "Employed" ? 'selected' : '' }}>Employed</option>
+                                                                <option value="Self-Employed" {{ old('ep_employment', $emergency_patient->emergency_information->ep_employment ?? '') == "Self-Employed" ? 'selected' : '' }}>Self-Employed</option>
+                                                                <option value="Unemployed" {{ old('ep_employment', $emergency_patient->emergency_information->ep_employment ?? '') == "Unemployed" ? 'selected' : '' }}>Unemployed</option>
+                                                                <option value="Retired" {{ old('ep_employment', $emergency_patient->emergency_information->ep_employment ?? '') == "Retired" ? 'selected' : '' }}>Retired</option>
+                                                                <option value="Student" {{ old('ep_employment', $emergency_patient->emergency_information->ep_employment ?? '') == "Student" ? 'selected' : '' }}>Student</option>
+                                                                <option value="Other" {{ old('ep_employment', $emergency_patient->emergency_information->ep_employment ?? '') == "Other" ? 'selected' : '' }}>Other</option>
                                                             </select>
                                                         </dd>
                                                     </dl>
                                                 </div>
+                                            </div>
                                                 <div class="col-lg-10">
                                                     <dl>
                                                         <dt class="mb-2">Email:</dt>
                                                         <dd>
-                                                            <input type="email" class="form-control" name=""
-                                                                value="" id="email">
+                                                            <input type="email" class="form-control" name="ep_email"
+                                                                value="{{ old('ep_email', optional($emergency_patient->emergency_information)->ep_email) }}" id="email">
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -175,7 +218,7 @@
                                             <hr>
                                         </div>
 
-  
+
 
                                         <h4 class="card-title mb-4">Medical Data</h4>
                                         <div class="row">

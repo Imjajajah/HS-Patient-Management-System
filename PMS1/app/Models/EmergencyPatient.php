@@ -19,6 +19,10 @@ class EmergencyPatient extends Model
     {
         return $this->belongsTo(VitalSigns::class, 'vital_signs_id');
     }
+    public function emergency_information()
+    {
+        return $this->belongsTo(EmergencyInformation::class, 'emergency_information_id');
+    }
 
     public function patients()
     {

@@ -31,7 +31,10 @@ return new class extends Migration
             $table->string('status')->nullable();
             //
             $table->unsignedBigInteger('vital_signs_id')->nullable();
+            $table->unsignedBigInteger('emergency_information_id')->nullable();
+
             $table->foreign('vital_signs_id')->references('vital_signs_id')->on('vital_signs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('emergency_information_id')->references('emergency_information_id')->on('emergency_information')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
