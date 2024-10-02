@@ -71,6 +71,27 @@
                                 <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
                                         <!-- Move the input before the label for proper CSS targeting -->
+                                        {{-- <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB"> --}}
+                                        <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 mb-2">
+                                    <button type="button" id="generateID-btn" class="generate-btn">
+                                        Generate Temporary ID
+                                    </button>
+                                </div>
+
+                                <input type="hidden" id="patientTemporaryID" name="patient_temporary_id">
+                                @if ($errors->has('patient_temporary_id'))
+                                    @foreach ($errors->get('patient_temporary_id') as $error)
+                                        <span style="color:red;">{{ $error }}</span><br>
+                                    @endforeach
+                                @endif
+
+                                {{-- <div class="col-lg-4 mb-2">
+                                    <div class="form-group form-inline">
+                                        <!-- Move the input before the label for proper CSS targeting -->
                                         <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
                                         <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
                                     </div>
@@ -91,7 +112,7 @@
                                     @foreach ($errors->get('patient_temporary_id') as $error)
                                         <span style="color:red;">{{ $error }}</span><br>
                                     @endforeach
-                                @endif
+                                @endif --}}
                             </div>
 
                             <div class="row form-material">
@@ -348,7 +369,7 @@
     });
 </script> --}}
 
-{{-- <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('generateID-btn').addEventListener('click', function() {
             fetch('/generate-unique-id')
@@ -359,9 +380,9 @@
                 .catch(error => console.error('Error:', error));
         });
     });
-</script> --}}
+</script>
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('generateID-btn').addEventListener('click', function() {
             fetch('/generate-unique-id')
@@ -374,6 +395,6 @@
                 .catch(error => console.error('Error:', error));
         });
     });
-</script>
+</script> --}}
 
 
