@@ -68,10 +68,10 @@
                                     @endforeach
                                 @endif --}}
 
-                                <div class="col-lg-4 mb-2">
+                                <!-- <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
-                                        <!-- Move the input before the label for proper CSS targeting -->
-                                        {{-- <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB"> --}}
+                                  
+                                        <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
                                         <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
                                     </div>
                                 </div>
@@ -87,9 +87,12 @@
                                     @foreach ($errors->get('patient_temporary_id') as $error)
                                         <span style="color:red;">{{ $error }}</span><br>
                                     @endforeach
-                                @endif
+                                @endif -->
 
-                                {{-- <div class="col-lg-4 mb-2">
+
+
+                                <!-- WORKING CODE FOR UNIDENTIFIED -->
+                                <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
                                         <!-- Move the input before the label for proper CSS targeting -->
                                         <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
@@ -112,9 +115,11 @@
                                     @foreach ($errors->get('patient_temporary_id') as $error)
                                         <span style="color:red;">{{ $error }}</span><br>
                                     @endforeach
-                                @endif --}}
+                                @endif
                             </div>
+                            <!-- END of WORKING CODE FOR UNIDENTIFIED -->
 
+                            
                             <div class="row form-material">
                                 <div class="col-lg-3 mb-2">
                                     <div class="form-group">
