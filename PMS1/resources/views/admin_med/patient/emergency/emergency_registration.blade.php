@@ -75,17 +75,16 @@
                                         <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-lg-4 mb-2">
                                     <button type="button" id="generateID-btn" class="generate-btn">
                                         Generate Temporary ID
                                     </button>
-                                     
                                 </div>
+
                                 <div class="col-lg-4 mb-2">
                                     <span class="selection-message" id="sex-selection-message"></span>
                                 </div>
-
 
                                 <input type="hidden" id="patientTemporaryID" name="patient_temporary_id">
                                 @if ($errors->has('patient_temporary_id'))
@@ -146,7 +145,7 @@
                                     </div>
                                 </div>
 
-     
+
                                 <div class="col-lg-3 mb-4">
                                     <label class="text-label">Date of Birth</label>
                                     <input type="date" class="form-control" name="emergency_dob" id="birthOfDate" required>
@@ -349,6 +348,19 @@
     });
 </script> --}}
 
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('generateID-btn').addEventListener('click', function() {
+            fetch('/generate-unique-id')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('patientTemporaryID').value = data.id;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+</script> --}}
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('generateID-btn').addEventListener('click', function() {
@@ -356,6 +368,8 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('patientTemporaryID').value = data.id;
+                    // Check the checkbox when the button is clicked
+                    document.getElementById('unidentifiedCB').checked = true;
                 })
                 .catch(error => console.error('Error:', error));
         });

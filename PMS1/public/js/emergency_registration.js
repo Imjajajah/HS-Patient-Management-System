@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Calculated Age:', age); // For debugging
 
             // Display the age
-            document.getElementById('patientAge').value = age !== null ? `${age} years old` : '';
+            document.getElementById('patientAge').value = age !== null ? `${age}` : '';
         } else {
             document.getElementById('patientAge').value = ''; // Clear the age input if no date is selected
         }
