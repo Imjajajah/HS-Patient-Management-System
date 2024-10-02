@@ -28,17 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Set first name based on selected sex
         if (sexSelect.value === 'Male') {
-            firstNameInput.value = 'John';
+            firstNameInput.value = 'John Doe';
         } else if (sexSelect.value === 'Female') {
-            firstNameInput.value = 'Jane';
+            firstNameInput.value = 'Jane Doe';
         } else {
             firstNameInput.value = '';
         }
 
-        // Increment counter and set last name
-        doeCounter++;
-        const paddedCounter = String(doeCounter).padStart(3, '0');
-        lastNameInput.value = `Doe ${paddedCounter}`;
     });
 
     function updateButtonState() {

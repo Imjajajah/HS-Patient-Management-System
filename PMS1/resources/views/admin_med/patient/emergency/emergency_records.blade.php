@@ -4,7 +4,7 @@
     <div class="content-body">
         <div class="container-fluid">
             @include('admin_med.patient.emergency.register_button')
-            
+
             <div class="row">
                 <div class="col-12">
                     <div class="card card-default">

@@ -466,7 +466,7 @@ class PatientController extends Controller
     public function generateUniqueId()
     {
         do {
-            $id = 'TEMP-' . str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+            $id = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT). ' - TEMP';
         } while (DB::table('emergency_patients')->where('patient_temporary_id', $id)->exists());
 
         return response()->json(['id' => $id]);

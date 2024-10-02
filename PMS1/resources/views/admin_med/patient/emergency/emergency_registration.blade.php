@@ -68,10 +68,10 @@
                                     @endforeach
                                 @endif --}}
 
-                                <div class="col-lg-4 mb-2">
+                                <!-- <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
-                                        <!-- Move the input before the label for proper CSS targeting -->
-                                        {{-- <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB"> --}}
+
+                                        <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
                                         <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
                                     </div>
                                 </div>
@@ -87,9 +87,12 @@
                                     @foreach ($errors->get('patient_temporary_id') as $error)
                                         <span style="color:red;">{{ $error }}</span><br>
                                     @endforeach
-                                @endif
+                                @endif -->
 
-                                {{-- <div class="col-lg-4 mb-2">
+
+
+                                <!-- WORKING CODE FOR UNIDENTIFIED -->
+                                <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
                                         <!-- Move the input before the label for proper CSS targeting -->
                                         <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
@@ -112,8 +115,10 @@
                                     @foreach ($errors->get('patient_temporary_id') as $error)
                                         <span style="color:red;">{{ $error }}</span><br>
                                     @endforeach
-                                @endif --}}
+                                @endif
                             </div>
+                            <!-- END of WORKING CODE FOR UNIDENTIFIED -->
+
 
                             <div class="row form-material">
                                 <div class="col-lg-3 mb-2">
@@ -143,7 +148,7 @@
                                 <div class="col-lg-3 mb-2">
                                     <div class="form-group">
                                         <label class="text-label">&#8203</label>
-                                        <input type="text" name="emergency_last_name"
+                                        <input type="text" id="emergency_last_name" name="emergency_last_name"
                                             class="form-control" placeholder="Last Name">
                                             @if ($errors->has('emergency_last_name'))
                                             @foreach ($errors->get('emergency_last_name') as $error)
@@ -376,6 +381,7 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('patientTemporaryID').value = data.id;
+                    document.getElementById('emergency_last_name').value = data.id; // Set the value to the last name input
                 })
                 .catch(error => console.error('Error:', error));
         });
@@ -396,5 +402,3 @@
         });
     });
 </script> --}}
-
-
