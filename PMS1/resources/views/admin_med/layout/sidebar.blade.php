@@ -97,7 +97,7 @@
                 </a>
                 <ul aria-expanded="false">
                     {{-- <li><a href="overall_records">All Patients</a></li> --}}
-                    <li><a href="/emergency_records">Emergency Patients</a></li>
+                    <li><a href="/emergency-records">Emergency Patients</a></li>
                     <li><a href="inpatient_records" aria-expanded="false">In-Patients</a>
                         {{-- <ul aria-expanded="false">
                             <li><a href="javascript:void()">##</a></li>
