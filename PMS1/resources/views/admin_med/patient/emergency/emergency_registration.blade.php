@@ -71,16 +71,21 @@
                                 <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
                                         <!-- Move the input before the label for proper CSS targeting -->
-                                        {{-- <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB"> --}}
+                                        <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
                                         <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-lg-4 mb-2">
                                     <button type="button" id="generateID-btn" class="generate-btn">
                                         Generate Temporary ID
                                     </button>
+                                     
                                 </div>
+                                <div class="col-lg-4 mb-2">
+                                    <span class="selection-message" id="sex-selection-message"></span>
+                                </div>
+
 
                                 <input type="hidden" id="patientTemporaryID" name="patient_temporary_id">
                                 @if ($errors->has('patient_temporary_id'))
@@ -141,16 +146,17 @@
                                     </div>
                                 </div>
 
-
+     
                                 <div class="col-lg-3 mb-4">
                                     <label class="text-label">Date of Birth</label>
-                                    <input type="date" class="form-control" name="emergency_dob" id="mdate" required>
-                                        @if ($errors->has('emergency_dob'))
-                                            @foreach ($errors->get('emergency_dob') as $error)
-                                                <span style="color:red;">{{ $error }}</span><br>
-                                            @endforeach
-                                        @endif
+                                    <input type="date" class="form-control" name="emergency_dob" id="birthOfDate" required>
+                                    @if ($errors->has('emergency_dob'))
+                                        @foreach ($errors->get('emergency_dob') as $error)
+                                            <span style="color:red;">{{ $error }}</span><br>
+                                        @endforeach
+                                    @endif
                                 </div>
+
 
                                 <div class="col-lg-3 mb-4">
                                     <div class="form-group">
@@ -168,19 +174,24 @@
                                     </div>
                                 </div>
 
+
+
                                 <div class="col-lg-3 mb-4">
                                     <div class="form-group">
                                         <label class="text-label">Age</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="age" name="emergency_age" placeholder="Age" >
+                                            <input type="text" class="form-control" id="patientAge" name="emergency_age" placeholder="Age" readonly>
                                             @if ($errors->has('emergency_age'))
-                                            @foreach ($errors->get('emergency_age') as $error)
-                                                <span style="color:red;">{{ $error }}</span><br>
-                                            @endforeach
+                                                @foreach ($errors->get('emergency_age') as $error)
+                                                    <span style="color:red;">{{ $error }}</span><br>
+                                                @endforeach
                                             @endif
                                         </div>
                                     </div>
                                 </div>
+
+
+
 
                                 <div class="col-lg-3 mb-4">
                                     <div class="form-group">
@@ -217,13 +228,14 @@
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="bloodPressure" name="B_P" placeholder="BP" >
+                                            <input type="text" class="form-control" id="bloodPressure" name="B_P" placeholder="BP" oninput="validateBloodPressure()" required>
                                             @if ($errors->has('B_P'))
                                                 @foreach ($errors->get('B_P') as $error)
                                                     <span style="color:red;">{{ $error }}</span><br>
                                                 @endforeach
                                             @endif
                                         </div>
+                                        <span id="bpError" style="color:red; display:none;">Please enter a valid format (eg., 100/80).</span>
                                     </div>
                                 </div>
 
@@ -233,62 +245,66 @@
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="temperature" name="temperature" placeholder="Temp (C)" >
+                                            <input type="text" class="form-control" id="temperature" name="temperature" placeholder="Temp (C)" oninput="validateTemperature()">
                                             @if ($errors->has('temperature'))
                                                 @foreach ($errors->get('temperature') as $error)
                                                     <span style="color:red;">{{ $error }}</span><br>
                                                 @endforeach
                                             @endif
                                         </div>
+                                        <span id="temperatureError" style="color:red; display:none;">Please enter a valid format (e.g., 36.5).</span>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3 mb-3">
                                     <div class="form-group">
-                                        <label class="text-label">Heart Rate
+                                        <label class="text-label">Heart Rate/Minute
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="heartRate" name="heart_rate" placeholder="Heart Rate" >
+                                            <input type="text" class="form-control" id="heartRate" name="heart_rate" placeholder="Heart Rate" oninput="validateHeartRate()">
                                             @if ($errors->has('heart_rate'))
                                                 @foreach ($errors->get('heart_rate') as $error)
                                                     <span style="color:red;">{{ $error }}</span><br>
                                                 @endforeach
                                             @endif
                                         </div>
+                                        <span id="heartRateError" style="color:red; display:none;">Please enter a valid heart rate (e.g., 60-100 BPM).</span>
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
 
                                 <div class="col-lg-3 mb-3">
                                     <div class="form-group">
-                                        <label class="text-label">Pulse Rate
+                                        <label class="text-label">Pulse Rate/Minute
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="pulseRate" name="pulse_rate" placeholder="Pulse Rate" >
+                                            <input type="text" class="form-control" id="pulseRate" name="pulse_rate" placeholder="Pulse Rate" oninput="validatePulseRate()">
                                             @if ($errors->has('pulse_rate'))
                                                 @foreach ($errors->get('pulse_rate') as $error)
                                                     <span style="color:red;">{{ $error }}</span><br>
                                                 @endforeach
                                             @endif
                                         </div>
+                                        <span id="pulseRateError" style="color:red; display:none;">Please enter a valid pulse rate (e.g., 60-100 BPM).</span>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3 mb-3">
                                     <div class="form-group">
-                                        <label class="text-label">Respiration Rate
+                                        <label class="text-label">Respiration Rate/Minute
                                             <span class="form-required text-danger">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="respirationRate" name="respiratory_rate" placeholder="Pulse Rate" >
+                                            <input type="text" class="form-control" id="respirationRate" name="respiratory_rate" placeholder="Respiration Rate" oninput="validateRespirationRate()">
                                             @if ($errors->has('respiratory_rate'))
                                                 @foreach ($errors->get('respiratory_rate') as $error)
                                                     <span style="color:red;">{{ $error }}</span><br>
                                                 @endforeach
                                             @endif
                                         </div>
+                                        <span id="respirationRateError" style="color:red; display:none;">Please enter a valid respiration rate (e.g., 12-20 BPM).</span>
                                     </div>
                                 </div>
 
@@ -345,3 +361,5 @@
         });
     });
 </script>
+
+
