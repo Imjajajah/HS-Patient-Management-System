@@ -23,20 +23,18 @@
                                     <p>&#8203</p>
                                 </div>
                             </div>
+                            
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient
-                                        Information</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#patientCharts">Charts</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#medRecord1">Medical Record</a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#contact1">Contact</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#message1">Message</a>
-                                    </li> --}}
+
                             </ul>
 
                             <form action="{{ route('patients.emergency_patient_update', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}" method="POST">
@@ -176,6 +174,9 @@
                                         <div class="col-12">
                                             <hr>
                                         </div>
+
+  
+
                                         <h4 class="card-title mb-4">Medical Data</h4>
                                         <div class="row">
                                             <div class="col-xl-4">
@@ -238,6 +239,16 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="tab-pane fade" id="patientCharts">
+                                    <div class="pt-4">
+                                        <div class="update-button">
+                                            <button class="update-charts">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="tab-pane fade" id="medRecord1">
                                     <div class="pt-4">
                                         <h4>Medical Record</h4>
