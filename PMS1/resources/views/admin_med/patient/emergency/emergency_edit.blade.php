@@ -24,47 +24,63 @@
                                 <div class="media-body">
                                     {{-- <h4 class="media-heading text-primary">{{ $emergency_patient->emergency_first_name }} {{ $emergency_patient->emergency_middle_name }} {{ $emergency_patient->emergency_last_name }} {{ $emergency_patient->emergency_extension }}</h4> --}}
                                     {{-- <p>&#8203</p> --}}
-                                        <dt class="mb-2">First Name:</dt>
-                                        <dd class="mb-4">
-                                            <input type="text" class="form-control" name="emergency_first_name"
-                                            value="{{ $emergency_patient->emergency_first_name }}">
-                                            @if ($errors->has('emergency_first_name'))
-                                                @foreach ($errors->get('emergency_first_name') as $error)
-                                                    <span style="color:red;">{{ $error }}</span><br>
-                                                @endforeach
-                                            @endif
-                                        </dd>
-                                        <dt class="mb-2">Middle Name:</dt>
-                                        <dd class="mb-4">
-                                            <input type="text" class="form-control" name="emergency_middle_name"
-                                            value="{{ $emergency_patient->emergency_middle_name }}">
-                                            @if ($errors->has('emergency_middle_name'))
-                                                @foreach ($errors->get('emergency_middle_name') as $error)
-                                                    <span style="color:red;">{{ $error }}</span><br>
-                                                @endforeach
-                                            @endif
-                                        </dd>
-                                        <dt class="mb-2">Last Name:</dt>
-                                        <dd class="mb-4">
-                                            <input type="text" class="form-control" name="emergency_last_name"
-                                            value="{{ $emergency_patient->emergency_last_name }}">
-                                            @if ($errors->has('emergency_last_name'))
-                                                @foreach ($errors->get('emergency_last_name') as $error)
-                                                    <span style="color:red;">{{ $error }}</span><br>
-                                                @endforeach
-                                            @endif
-                                        </dd>
-                                        <dd class="mb-4">
+
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <dt class="mb-2">First Name:</dt>
+                                            <dd class="mb-4">
+                                                <input type="text" class="form-control" name="emergency_first_name"
+                                                value="{{ $emergency_patient->emergency_first_name }}">
+                                                @if ($errors->has('emergency_first_name'))
+                                                    @foreach ($errors->get('emergency_first_name') as $error)
+                                                        <span style="color:red;">{{ $error }}</span><br>
+                                                    @endforeach
+                                                @endif
+                                            </dd>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <dt class="mb-2">Middle Name:</dt>
+                                            <dd class="mb-4">
+                                                <input type="text" class="form-control" name="emergency_middle_name"
+                                                value="{{ $emergency_patient->emergency_middle_name }}">
+                                                @if ($errors->has('emergency_middle_name'))
+                                                    @foreach ($errors->get('emergency_middle_name') as $error)
+                                                        <span style="color:red;">{{ $error }}</span><br>
+                                                    @endforeach
+                                                @endif
+                                            </dd>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <dt class="mb-2">Last Name:</dt>
+                                            <dd class="mb-4">
+                                                <input type="text" class="form-control" name="emergency_last_name"
+                                                value="{{ $emergency_patient->emergency_last_name }}">
+                                                @if ($errors->has('emergency_last_name'))
+                                                    @foreach ($errors->get('emergency_last_name') as $error)
+                                                        <span style="color:red;">{{ $error }}</span><br>
+                                                    @endforeach
+                                                @endif
+                                            </dd>
+                                        </div>
+
+                                        <div class="col-lg-3">
                                             <dt class="mb-2">Extension:</dt>
-                                            <input type="text" class="form-control" name="emergency_extension"
-                                            value="{{ $emergency_patient->emergency_extension }}">
-                                            @if ($errors->has('emergency_extension'))
-                                                @foreach ($errors->get('emergency_extension') as $error)
-                                                    <span style="color:red;">{{ $error }}</span><br>
-                                                @endforeach
-                                            @endif
-                                        </dd>
+                                            <dd class="mb-4">
+                                                <input type="text" class="form-control" name="emergency_extension"
+                                                value="{{ $emergency_patient->emergency_extension }}">
+                                                @if ($errors->has('emergency_extension'))
+                                                    @foreach ($errors->get('emergency_extension') as $error)
+                                                        <span style="color:red;">{{ $error }}</span><br>
+                                                    @endforeach
+                                                @endif
+                                            </dd>
+                                        </div>
+                                    </div>
+
                                     <p>&#8203</p>
+                                    
                                 </div>
                             </div>
 
@@ -73,10 +89,10 @@
                                     <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#patientCharts">Charts</a>
+                                    <a class="nav-link" data-toggle="tab" href="patientCharts">Charts</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#medRecord1">Medical Record</a>
+                                    <a class="nav-link" data-toggle="tab" href="medRecord1">Medical Record</a>
                                 </li>
 
                             </ul>
@@ -202,7 +218,6 @@
                                                         </dd>
                                                     </dl>
                                                 </div>
-                                            </div>
                                                 <div class="col-lg-10">
                                                     <dl>
                                                         <dt class="mb-2">Email:</dt>
@@ -219,8 +234,9 @@
                                         </div>
 
 
-
-                                        <h4 class="card-title mb-4">Medical Data</h4>
+                                    <!-- DO NOT DELETE, THIS IS FOR MEDICAL DATA OF THE PATIENT  -->
+                                     <!-- BUT THE MEDICAL DATA SHOULD BE IN THE MEDICAL DATA TAB -->
+                                        <!-- <h4 class="card-title mb-4">Medical Data</h4>
                                         <div class="row">
                                             <div class="col-xl-4">
                                                 <div class="col-lg-10">
@@ -235,7 +251,7 @@
                                                         <dd class="mb-4">
 
                                                         </dd>
-                                                        {{-- Will be updates after charting --}}
+                                                        
                                                     </dl>
                                                 </div>
                                             </div>
@@ -279,7 +295,13 @@
                                                     </dl>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
+
+                                    <!--END OF DO NOT DELETE, THIS IS FOR MEDICAL DATA OF THE PATIENT -->
+                                    <!--END OF BUT THE MEDICAL DATA SHOULD BE IN THE MEDICAL DATA TAB -->
+
+
+
                                     </div>
                                 </div>
 
