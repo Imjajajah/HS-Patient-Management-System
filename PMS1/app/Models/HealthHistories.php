@@ -9,6 +9,10 @@ class HealthHistories extends Model
 {
     use HasFactory;
 
+    protected $table = 'health_histories';
+
+    protected $primaryKey = 'health_history_id';
+
     protected $guarded = [];
 
     protected $casts = [
