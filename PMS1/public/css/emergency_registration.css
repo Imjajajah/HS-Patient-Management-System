@@ -64,9 +64,13 @@
     align-items: center;
     justify-content: center;
     margin-left: -60px;
+    
 }
 
-
+.selection-message{
+    
+    margin-left: -130px;
+}
 
 .generate-btn:hover {
     background-color: black; /* Darken the background on hover */
