@@ -52,13 +52,13 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Nationality</dt>
-                                                        <dd class="mb-4"></dd>
+                                                        <dd class="mb-4">{{ $emergency_patient->emergency_information->ep_nationality }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Religion</dt>
-                                                        <dd class="mb-4"></dd>
+                                                        <dd class="mb-4">{{ $emergency_patient->emergency_information->ep_religion }}</dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -72,13 +72,13 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Full Address:</dt>
-                                                        <dd></dd>
+                                                        <dd>{{ $emergency_patient->emergency_information->ep_full_address }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Phone Number:</dt>
-                                                        <dd></dd>
+                                                        <dd>{{ $emergency_patient->emergency_information->ep_phone }}</dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -86,19 +86,19 @@
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Civil Status:</dt>
-                                                        <dd class="mb-4"></dd>
+                                                        <dd class="mb-4">{{ $emergency_patient->emergency_information->ep_civil_status }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Employment:</dt>
-                                                        <dd></dd>
+                                                        <dd>{{ $emergency_patient->emergency_information->ep_employment }}</dd>
                                                     </dl>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <dl>
                                                         <dt class="mb-2">Email:</dt>
-                                                        <dd></dd>
+                                                        <dd>{{ $emergency_patient->emergency_information->ep_email }}</dd>
                                                     </dl>
                                                 </div>
                                             </div>

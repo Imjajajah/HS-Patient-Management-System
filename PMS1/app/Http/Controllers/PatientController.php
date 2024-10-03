@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Models\EmergencyContact;
+use App\Models\EmergencyInformation;
 use App\Models\EmergencyPatient;
 use App\Models\HealthHistories;
 use App\Models\InsuranceInformation;
@@ -466,7 +467,7 @@ class PatientController extends Controller
     public function generateUniqueId()
     {
         do {
-            $id = 'TEMP-' . str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+            $id = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT). ' - TEMP';
         } while (DB::table('emergency_patients')->where('patient_temporary_id', $id)->exists());
 
         return response()->json(['id' => $id]);
@@ -480,14 +481,14 @@ class PatientController extends Controller
 
     public function emergency_patient_show($emergency_patient_id)
     {
-        $emergency_patient = EmergencyPatient::with(['vital_signs'])->findOrFail($emergency_patient_id);
+        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information'])->findOrFail($emergency_patient_id);
 
         return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient'));
     }
 
     public function emergency_patient_edit($emergency_patient_id)
     {
-        $emergency_patient = EmergencyPatient::with(['vital_signs'])->findOrFail($emergency_patient_id);
+        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information'])->findOrFail($emergency_patient_id);
 
         return view('admin_med.patient.emergency.emergency_edit', compact('emergency_patient'));
     }
@@ -556,12 +557,59 @@ class PatientController extends Controller
     {
         info($request->all());
         $validated = $request->validate([
+            'emergency_first_name' => 'required|string|max:255',
+            'emergency_middle_name' => 'nullable|string|max:255',
+            'emergency_last_name' => 'required|string|max:255',
+            'emergency_extension' => 'nullable|string|max:10',
             'emergency_sex' => 'nullable|in:Male,Female', // Ensure it's Male or Female
+            'ep_nationality' => 'nullable|string|max:255',
+            'ep_religion' => 'nullable|string|max:255',
+            'ep_full_address' => 'nullable|string|max:500',
+            'ep_phone' => 'nullable|string|max:15|regex:/^[0-9]{10,15}$/', // Example: 10 to 15 digits for phone
+            'ep_civil_status' => 'nullable|string|max:50',
+            'ep_employment' => 'nullable|string|max:50',
+            'ep_email' => 'nullable|email|max:255', // Valid email format
         ]);
 
         $emergency_patient = EmergencyPatient::findOrFail($emergency_patient_id);
 
+        // Check if emergency information exists
+        if ($emergency_patient->emergency_information) {
+            // If emergency information exists, update it
+            $emergency_info = $emergency_patient->emergency_information;
+
+            $emergency_info->ep_nationality = $validated['ep_nationality'];
+            $emergency_info->ep_religion = $validated['ep_religion'];
+            $emergency_info->ep_full_address = $validated['ep_full_address'];
+            $emergency_info->ep_phone = $validated['ep_phone'];
+            $emergency_info->ep_civil_status = $validated['ep_civil_status'];
+            $emergency_info->ep_employment = $validated['ep_employment'];
+            $emergency_info->ep_email = $validated['ep_email'];
+            // Save updated information
+            $emergency_info->save();
+        } else {
+            // If no emergency information exists, create a new record
+            $emergency_info = new EmergencyInformation();
+            $emergency_info->ep_nationality = $validated['ep_nationality'];
+            $emergency_info->ep_religion = $validated['ep_religion'];
+            $emergency_info->ep_full_address = $validated['ep_full_address'];
+            $emergency_info->ep_phone = $validated['ep_phone'];
+            $emergency_info->ep_civil_status = $validated['ep_civil_status'];
+            $emergency_info->ep_employment = $validated['ep_employment'];
+            $emergency_info->ep_email = $validated['ep_email'];
+            // Save new emergency information
+            $emergency_info->save();
+
+            // Update the emergency_patient with the new emergency_information_id
+            $emergency_patient->emergency_information_id = $emergency_info->emergency_information_id;
+            $emergency_patient->save();
+        }
+
         $emergency_patient->update([
+            'emergency_first_name' => $validated['emergency_first_name'],
+            'emergency_middle_name' => $validated['emergency_middle_name'],
+            'emergency_last_name' => $validated['emergency_last_name'],
+            'emergency_extension' => $validated['emergency_extension'],
             'emergency_sex' => $validated['emergency_sex'],
             'emergency_dob' => $request->input('emergency_dob'),
         ]);
