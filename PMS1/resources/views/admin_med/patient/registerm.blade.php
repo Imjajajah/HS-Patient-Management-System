@@ -499,7 +499,7 @@
                                             <div class="btn-group">
                                                 <button type="button" class="btn-prev" disabled>Back</button>
                                                 <button type="button" class="btn-next">Next</button>
-                                                <button type="submit" class="btn-submit">Submit</button>
+                                                <button type="submit" class="btn-submit" id="toastr-success-top-right">Submit</button>
                                             </div>
                                         </form>
                                     </div>
