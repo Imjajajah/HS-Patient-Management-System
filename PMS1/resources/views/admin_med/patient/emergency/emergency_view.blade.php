@@ -24,15 +24,37 @@
                             </div>
 
                             <ul class="nav nav-tabs">
+                                
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#patientCharts">Charts</a>
+                                    <a class="nav-link" data-toggle="tab" href="#diagnosisAndProcedure">Diagnosis and Procedure</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#medRecord1">Medical Record</a>
+                                    <a class="nav-link" data-toggle="tab" href="#vitalSigns">Vital Signs</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#doctorsOrder">Doctor's Order</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#nursesNotes">Nurse's Notes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#intakeAndOutput">Intake & Output</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#medicationLog">Medication Log</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ivFluid">IV Fluid</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#charges">Charges</a>
+                                </li>
+
+                               
 
                             </ul>
 
@@ -129,27 +151,79 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="patientCharts">
+
+
+                            <!-- Testing Tab -->
+
+                                <div class="tab-pane fade" id="diagnosisAndProcedure">
                                     <div class="pt-4">
-                                        <div class="update-button">
-                                            <button class="update-charts">Update</button>
-                                        </div>
+                                        
+
                                     </div>
+
                                 </div>
 
-                                
-
-
-
-
-
-                                <div class="tab-pane fade" id="medRecord1">
+                                <div class="tab-pane fade" id="vitalSigns">
                                     <div class="pt-4">
 
 
                                     </div>
 
                                 </div>
+
+                                <div class="tab-pane fade" id="doctorsOrder">
+                                    <div class="pt-4">
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="nursesNotes">
+                                    <div class="pt-4">
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="intakeAndOutput">
+                                    <div class="pt-4">
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="medicationLog">
+                                    <div class="pt-4">
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="ivFluid">
+                                    <div class="pt-4">
+
+
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="charges">
+                                    <div class="pt-4">
+
+
+                                    </div>
+
+                                </div>
+                            <!--End of Testing Tab -->
+
+
+
+
+
+
                             </div>
 
                         </div>

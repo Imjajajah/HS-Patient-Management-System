@@ -277,7 +277,7 @@
                                                 @endforeach
                                             @endif
                                         </div>
-                                        <span id="temperatureError" style="color:red; display:none;">Please enter a valid format (e.g., 36.5).</span>
+                                        <span id="temperatureError" style="color:red; display:none;">Please enter a valid format (e.g., 20-45).</span>
                                     </div>
                                 </div>
 
@@ -355,7 +355,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn sweet-confirm" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" id="toastr-success-top-right">Save changes</button>
-                        </div>
+                    </div>
                 </form>
             </div>
 
