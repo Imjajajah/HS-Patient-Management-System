@@ -1,0 +1,83 @@
+/* .vital-signs{
+    border: 1px black;
+    padding-left: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 2px; 
+} */
+
+
+.card{
+    margin-top: -3%;
+    max-width: 100%;
+    
+}
+
+.patient-name-card-body{
+    
+}
+
+.basic-form{
+    margin-top: -.5%;
+}
+
+
+
+.basic-form {
+    text-align: left; /* Aligns the text inside the table to the left */
+}
+
+
+.vitalid-form-control{
+    width: 190px;
+    height: 33px;
+    margin-top: 10px;
+    margin-left: 2px;
+    border: 1px solid lightgrey;
+}
+
+.date-form-control{
+    width: 200px;
+    height: 33px;
+    margin-top: 10px;
+    margin-left: 2px;
+    border: 1px solid lightgrey;
+}
+
+
+
+.vital-signs-id{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+
+}
+
+.vs-input{
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+
+table {
+    width: 100%; /* If you want the table to take full width */
+}
+
+/* .table-left {
+    margin: 0;
+} */
+
+.bp-form-control, .hr-form-control, .pr-form-control {
+    width: 100%; /* Full width to match the column */
+    height: 33px; 
+    margin-top: 10px;
+    border: 1px solid lightgrey; /* Use solid for border */
+}
+
+/* Optional: Make sure the entire form control layout aligns */
+.vital-signs-input {
+    display: flex;
+    justify-content: space-between;
+}
