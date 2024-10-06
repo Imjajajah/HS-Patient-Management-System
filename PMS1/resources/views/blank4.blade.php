@@ -55,6 +55,7 @@
                 <div class="col-xl-5 col-xxl-12">
                     <div class="card">
 
+                        <!-- Card body for vital signs input-->
                         <div class="card-body">
 
                             <!-- Id and Date Section -->
@@ -222,7 +223,42 @@
                             <!-- End of weight, height,bmi --> 
 
 
+                            <!-- Remarks Pattern -->
+                            <div class="vital-signs-remarks">
+                                
+                                <!-- Remarks Text -->
+                                <div>
+                                    <div class="col-md-4">
+                                        <h5 class="remarks-text">Remarks</h5>
+                                    </div>
+                                    
+                                </div>
+                                <!-- End of Remarks Text -->
+                                
+                                <!-- Remarks Input -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" name="vital-signs-remarks" class="remarks-input" placeholder="">
+                                    </div>
+                                    
+                                </div>
+                                <!-- End of Remarks Input -->
+
+                            </div>
+                            <!--End of Remarks Pattern -->
+
+
+                            <div class="card-footer d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary ms-3">Save</button>
+                            </div>
+
+
+
+
+
                         </div>
+                        <!-- End of card body for vital signs input-->
 
 
                     </div>
