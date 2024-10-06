@@ -33,13 +33,13 @@
                                         <label>Patient's Name</label>
                                         <div class="row">
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control" placeholder="First name">
+                                                <input type="text" class="form-control" placeholder="First name" readyonly>
                                             </div>
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control" placeholder="Last name">
+                                                <input type="text" class="form-control" placeholder="Last name" readyonly>
                                             </div>
                                             <div class="col-sm-2 mt-2 mt-sm-0">
-                                                <input type="text" class="form-control" placeholder="M. I.">
+                                                <input type="text" class="form-control" placeholder="M. I." readyonly>
                                             </div>
                                         </div>
                                     </form>
@@ -59,67 +59,167 @@
 
                             <!-- Id and Date Section -->
                             <div class="id-and-date">
-                                <div class="row vital-signs-text">
-                                    <div class="col-md-2">
-                                        <h5 class="vitalid-signs-text ml-n3">ID</h5>
-                                    </div>
-                                        
-                                    <div class="col-md-10">
-                                        <h5 class="vitalid-signs-text ml-n1">Date</h5>
-                                    </div>
 
+                                <!-- Id and Date Section Text -->
+                                <div class="row id-and-date-text">
+                                    <div class="col-md-6">
+                                        <h5 class="id-and-date-label">ID</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="id-and-date-label">Date</h5>
+                                    </div>
                                 </div>
+                                <!-- End of Id and Date Section Text -->
                                 
-                                <div class="row vital-signs-input mt-n3">
+                                <!-- Id and Date Section Input -->
+                                <div class="row id-and-date-input">
                                     <div class="col-md-6">
-                                        <input type="text" name="vital-signs-id" class="vitalid-form-control" placeholder="">
+                                        <input type="text" name="vital-signs-id" class="form-control id-input" placeholder="">
                                     </div>
-                                    
                                     <div class="col-md-6">
-                                        <input type="date" name="vital-signs-date" class="date-form-control" placeholder="">
+                                        <input type="date" name="vital-signs-date" class="form-control date-input" placeholder="">
                                     </div>
                                 </div>
+                                <!-- End of Id and Date Section Input -->
                             </div>
-                            <!-- End of Id and Date Section -->
 
                             <!-- BP HR and PR -->
                             <div class="bp-hr-pr">
-
-                                <div class="row vital-signs-text">
-                                    
-                                    <div class="col-md-3">
-                                        <h5 class="vitalid-signs-text mt-3">BP</h5>
-                                    </div>
-                                        
-                                    <div class="col-md-3">
-                                        <h5 class="vitalid-signs-text mt-3">HR</h5>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <h5 class="vitalid-signs-text mt-3">PR</h5>
-                                    </div>
-
-                                </div>
                                 
-                                <div class="row vital-signs-input mt-n3">
-                                    <div class="col-md-3">
-                                        <input type="text" name="vital-signs-bp" class="bp-form-control" placeholder="">
+                                <!-- BP HR and PR Section Text -->
+                                <div class="row bp-hr-pr-text">
+                                    <div class="col-md-4">
+                                        <h5 class="bp-text">BP</h5>
                                     </div>
-                                    
-                                    <div class="col-md-3">
-                                        <input type="text" name="vital-signs-hr" class="hr-form-control" placeholder="">
+                                    <div class="col-md-4">
+                                        <h5 class="hr-text">HR</h5>
                                     </div>
-
-                                    <div class="col-md-3">
-                                        <input type="text" name="vital-signs-pr" class="pr-form-control" placeholder="">
+                                    <div class="col-md-4">
+                                        <h5 class="pr-text">PR</h5>
                                     </div>
-
-
                                 </div>
+                                <!-- End of BP HR and PR Section Text -->
+                                
+                                <!-- BP HR and PR Section Input -->
+                                <div class="row vital-signs-input">
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-bp" class="form-control bp-input" placeholder="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-hr" class="form-control hr-input" placeholder="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-pr" class="form-control pr-input" placeholder="">
+                                    </div>
+                                </div>
+                                <!-- End of BP HR and PR Section Input -->
+
                             </div>
                             <!-- End of BP HR and PR -->
 
 
+                            <!-- Temp, O2Sat, Pain Scale -->
+                            <div class="bp-hr-pr">
+                                
+                                <!-- Temp, O2Sat, Pain Scale Section Text -->
+                                <div class="row temp-o2,ps-text">
+                                    <div class="col-md-4">
+                                        <h5 class="temp-text">Temp</h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="o2-text">O2Sat</h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="pain-scale-text">Pain Scale</h5>
+                                    </div>
+                                </div>
+                                <!-- End of Temp, O2Sat, Pain Scale Section Text -->
+                                
+                                <!-- Temp, O2Sat, Pain Scale Section Input -->
+                                <div class="row temp-o2,ps-input">
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-temp" class="form-control temp-input" placeholder="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-o2" class="form-control o2-input" placeholder="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-pain-scale" class="form-control pain-scale-input" placeholder="">
+                                    </div>
+                                </div>
+                                <!-- End of Temp, O2Sat, Pain Scale Section Input -->
+
+                            </div>
+                            <!-- End of Temp, O2Sat, Pain Scale -->
+
+                            <!-- Resp Rate, Resp Pattern -->
+                            <div class="bp-hr-pr">
+                                
+                                <!-- Resp Rate, Resp Pattern Text -->
+                                <div class="row resprate-resp-pattern-text">
+                                    <div class="col-md-4">
+                                        <h5 class="resp-rate-text">Resp Rate</h5>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h5 class="resp-pattern-text">Resp Pattern</h5>
+                                    </div>
+                                </div>
+                                <!-- End of Resp Rate, Resp Pattern Text -->
+                                
+                                <!-- Resp Rate, Resp Pattern Input -->
+                                <div class="row resprate-resp-pattern-input">
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-resp-rate" class="form-control resp-rate-input" placeholder="">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input list="resp-patterns" name="vital-signs-resp-pattern" class="form-control resp-pattern-input" placeholder="">
+                                        <datalist id="resp-patterns">
+                                            <option value="Normal">
+                                            <option value="Tachypnea">
+                                            <option value="Bradypnea">
+                                            <option value="Apnea">
+                                            <option value="Hyperventilation">
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <!-- Resp Rate, Rest Pattern Input -->
+
+                            </div>
+                            <!-- End of Resp Rate, Rest Pattern --> 
+
+                            <!-- weight, height,bmi -->
+                            <div class="bp-hr-pr">
+                                
+                                <!-- weight, height,bmi Text -->
+                                <div class="row weight-height-bmi-text">
+                                    <div class="col-md-4">
+                                        <h5 class="weight-text">Weight</h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="height-text">Height</h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="bmi-text">BMI</h5>
+                                    </div>
+                                </div>
+                                <!-- End of weight, height,bmi Text -->
+                                
+                                <!-- weight, height,bmi Input -->
+                                <div class="row weight-height-bmi-input">
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-weight" class="form-control weight-input" placeholder="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-height" class="form-control height-input" placeholder="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="vital-signs-bmi" class="form-control bmi-input" placeholder="">
+                                    </div>
+                                </div>
+                                <!-- weight, height,bmi Input -->
+
+                            </div>
+                            <!-- End of weight, height,bmi --> 
 
 
                         </div>
@@ -133,7 +233,7 @@
                     <div class="card">
 
                          <div class="card-header">
-                            <h4 class="card-title">Patient Diagnosis and Procedure</h4>
+                            <h4 class="card-title">Patient's Vital Signs</h4>
                         </div>
 
 
