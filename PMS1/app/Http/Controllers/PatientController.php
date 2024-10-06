@@ -443,8 +443,35 @@ class PatientController extends Controller
                         'vital_signs_id' => $vitalSigns->vital_signs_id,
                     ]);
 
-                    // Flash success message and redirect
-                    $request->session()->flash('success', 'Emergency Patient data stored successfully!');
+                    // Only send email if the priority level is between 1 and 3
+                    $priorityLevelsForEmail = ['1 - Resuscitation', '2 - Emergent', '3 - Urgent'];
+
+                    if (in_array($validated['priority_level'], $priorityLevelsForEmail)) {
+                        // Data to send to the email notification microservice
+                        $emailData = [
+                            'emergency_first_name' => $validated['emergency_first_name'],
+                            'emergency_last_name' => $validated['emergency_last_name'],
+                            'emergency_age' => $validated['emergency_age'],
+                            'priority_level' => $validated['priority_level'],
+                        ];
+
+                        // Send POST request to the email notification microservice
+                        $response = Http::post('https://email-notification-microservice-xzv1.onrender.com/add-emergency-patient', $emailData);
+
+                        // Flash success message and redirect
+                        // $request->session()->flash('success', 'Emergency Patient data stored successfully!');
+                        if ($response->successful()) {
+                            // Email sent successfully, you can log it or flash a success message if needed
+                            $request->session()->flash('success', 'Emergency Patient data stored successfully and email notification sent!');
+                        } else {
+                            // Handle error when sending email
+                            $request->session()->flash('error', 'Emergency Patient data stored successfully, but there was an issue sending the email.');
+                        }
+                    } else {
+                        // No email sent, just flash success message for data stored
+                        $request->session()->flash('success', 'Emergency Patient data stored successfully!');
+                    }
+
                     return redirect('/emergency-records');
                 } else {
                     // Log and handle if 'data' key is missing
