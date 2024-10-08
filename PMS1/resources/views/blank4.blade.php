@@ -1,4 +1,8 @@
 <link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
+<script src="{{ asset('js/patient_charts.js') }}"></script>
+
+
+<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <div>
     <div>
@@ -39,7 +43,7 @@
                                 </div>
                             </div>
                             <!-- End of Id and Date Section Text -->
-                                
+
                             <!-- Id and Date Section Input -->
                             <div class="row id-and-date-input">
                                 <div class="col-md-6">
@@ -50,11 +54,12 @@
                                 </div>
                             </div>
                             <!-- End of Id and Date Section Input -->
+
                         </div>
 
                         <!-- BP HR and PR -->
                         <div class="bp-hr-pr">
-                                
+                            
                             <!-- BP HR and PR Section Text -->
                             <div class="row bp-hr-pr-text">
                                 <div class="col-md-4">
@@ -68,28 +73,24 @@
                                 </div>
                             </div>
                             <!-- End of BP HR and PR Section Text -->
-                                
                             <!-- BP HR and PR Section Input -->
                             <div class="row vital-signs-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-bp" class="form-control bp-input" placeholder="">
+                                    <input type="text" name="vital-signs-bp" id="bpInput" class="form-control bp-input" placeholder="">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-hr" class="form-control hr-input" placeholder="">
+                                    <input type="text" name="vital-signs-hr" id="hrInput" class="form-control hr-input" placeholder="">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-pr" class="form-control pr-input" placeholder="">
+                                    <input type="text" name="vital-signs-pr" id="prInput" class="form-control pr-input" placeholder="">
                                 </div>
                             </div>
                             <!-- End of BP HR and PR Section Input -->
-
                         </div>
                         <!-- End of BP HR and PR -->
 
-
                         <!-- Temp, O2Sat, Pain Scale -->
                         <div class="bp-hr-pr">
-                                
                             <!-- Temp, O2Sat, Pain Scale Section Text -->
                             <div class="row temp-o2,ps-text">
                                 <div class="col-md-4">
@@ -103,27 +104,24 @@
                                 </div>
                             </div>
                             <!-- End of Temp, O2Sat, Pain Scale Section Text -->
-                                
                             <!-- Temp, O2Sat, Pain Scale Section Input -->
                             <div class="row temp-o2,ps-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-temp" class="form-control temp-input" placeholder="">
+                                    <input type="text" name="vital-signs-temp" id="tempInput" class="form-control temp-input" placeholder="">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-o2" class="form-control o2-input" placeholder="">
+                                    <input type="text" name="vital-signs-o2" id="o2Input" class="form-control o2-input" placeholder="">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-pain-scale" class="form-control pain-scale-input" placeholder="">
+                                    <input type="text" name="vital-signs-pain-scale" id="painScaleInput" class="form-control pain-scale-input" placeholder="">
                                 </div>
                             </div>
                             <!-- End of Temp, O2Sat, Pain Scale Section Input -->
-
                         </div>
                         <!-- End of Temp, O2Sat, Pain Scale -->
 
                         <!-- Resp Rate, Resp Pattern -->
                         <div class="bp-hr-pr">
-                                
                             <!-- Resp Rate, Resp Pattern Text -->
                             <div class="row resprate-resp-pattern-text">
                                 <div class="col-md-4">
@@ -134,14 +132,13 @@
                                 </div>
                             </div>
                             <!-- End of Resp Rate, Resp Pattern Text -->
-                                
                             <!-- Resp Rate, Resp Pattern Input -->
                             <div class="row resprate-resp-pattern-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-resp-rate" class="form-control resp-rate-input" placeholder="">
+                                    <input type="text" name="vital-signs-resp-rate" id="respRateInput" class="form-control resp-rate-input" placeholder="">
                                 </div>
                                 <div class="col-md-8">
-                                    <input list="resp-patterns" name="vital-signs-resp-pattern" class="form-control resp-pattern-input" placeholder="">
+                                    <input list="resp-patterns" name="vital-signs-resp-pattern" id="respPatternInput" class="form-control resp-pattern-input" placeholder="">
                                     <datalist id="resp-patterns">
                                         <option value="Normal">
                                         <option value="Tachypnea">
@@ -151,14 +148,12 @@
                                     </datalist>
                                 </div>
                             </div>
-                            <!-- Resp Rate, Rest Pattern Input -->
-
+                            <!-- End of Resp Rate, Resp Pattern Input -->
                         </div>
-                        <!-- End of Resp Rate, Rest Pattern --> 
+                        <!-- End of Resp Rate, Resp Pattern -->
 
                         <!-- weight, height,bmi -->
                         <div class="bp-hr-pr">
-                                
                             <!-- weight, height,bmi Text -->
                             <div class="row weight-height-bmi-text">
                                 <div class="col-md-4">
@@ -172,62 +167,52 @@
                                 </div>
                             </div>
                             <!-- End of weight, height,bmi Text -->
-                                
                             <!-- weight, height,bmi Input -->
                             <div class="row weight-height-bmi-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-weight" class="form-control weight-input" placeholder="">
+                                    <input type="text" name="vital-signs-weight" id="weightInput" class="form-control weight-input" placeholder="">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-height" class="form-control height-input" placeholder="">
+                                    <input type="text" name="vital-signs-height" id="heightInput" class="form-control height-input" placeholder="">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-bmi" class="form-control bmi-input" placeholder="">
+                                    <input type="text" name="vital-signs-bmi" id="bmiInput" class="form-control bmi-input" placeholder="">
                                 </div>
                             </div>
-                            <!-- weight, height,bmi Input -->
-
+                            <!-- End of weight, height,bmi Input -->
                         </div>
-                        <!-- End of weight, height,bmi --> 
-
+                        <!-- End of weight, height,bmi -->
 
                         <!-- Remarks Pattern -->
                         <div class="vital-signs-remarks">
-                                
                             <!-- Remarks Text -->
-                            <div>
-                                <div class="col-md-4">
-                                    <h5 class="remarks-text">Remarks</h5>
-                                </div>
-                                    
+                            <div class="col-md-4">
+                                <h5 class="remarks-text">Remarks</h5>
                             </div>
                             <!-- End of Remarks Text -->
-                                
                             <!-- Remarks Input -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text" name="vital-signs-remarks" class="remarks-input" placeholder="">
+                                    <input type="text" name="vital-signs-remarks" id="remarksInput" class="remarks-input" placeholder="">
                                 </div>
-                                    
                             </div>
                             <!-- End of Remarks Input -->
-
                         </div>
                         <!--End of Remarks Pattern -->
 
-
+                        <!-- Footer Buttons -->
                         <div class="card-footer d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary ms-3">Save</button>
                         </div>
-                </div>
-                <!-- End of card body for vital signs input-->
+                    </div>
+                    <!-- End of card body for vital signs input-->
 
 
                 </div>
             </div>
 
-
+            <!-- Table in the left side -->
             <div class="col-xl-7 col-xxl-12">
                 <div class="card">
 
@@ -291,18 +276,84 @@
 
 
                             </table>
-                                
-                                
-
-
                         </div>
                     </div>
 
                 </div>
             </div>
+            <!-- End of Table in the left side -->
+
         </div>
 
     </div>
 </div>
 
-    
+<script>
+    function showNormalRange(inputId, element) {
+        let message = '';
+        switch (inputId) {
+            case 'bpInput':
+                message = `Normal BP: ${normalRanges.bp.systolicMin}/${normalRanges.bp.diastolicMin} to ${normalRanges.bp.systolicMax}/${normalRanges.bp.diastolicMax}`;
+                break;
+            case 'hrInput':
+                message = `Normal HR: ${normalRanges.hr.min}-${normalRanges.hr.max}`;
+                break;
+            case 'prInput':
+                message = `Normal PR: ${normalRanges.pr.min}-${normalRanges.pr.max}`;
+                break;
+            case 'tempInput':
+                message = `Normal Temp: ${normalRanges.temp.min}-${normalRanges.temp.max} °C`;
+                break;
+            case 'o2Input':
+                message = `Normal O2Sat: ${normalRanges.o2.min}-${normalRanges.o2.max}%`;
+                break;
+            case 'painScaleInput':
+                message = `Pain Scale: ${normalRanges.painScale.min}-${normalRanges.painScale.max}`;
+                break;
+            case 'respPatternInput':
+                message = `Normal Resp Rate: ${normalRanges.respRate.min}-${normalRanges.respRate.max}`;
+                break;
+            case 'bmiInput':
+                message = `Normal BMI: ${normalRanges.bmi.min}-${normalRanges.bmi.max}`;
+                break;
+        }
+
+        // Set the tooltip content
+        element.setAttribute('title', message);
+        
+        // Initialize the Bootstrap tooltip
+        $(element).tooltip('show');
+    }
+
+    // Add event listeners to input fields to show tooltips on focus
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('focus', function () {
+            showNormalRange(this.id, this); // Pass the id instead of name
+        });
+    });
+
+    // Form validation on submission
+    document.querySelector('form').addEventListener('submit', function (event) {
+        let valid = true;
+        
+        // Loop through all input fields to check if they are filled
+        document.querySelectorAll('input').forEach(input => {
+            if (!input.value) {
+                valid = false;
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
+
+        if (!valid) {
+            event.preventDefault(); // Prevent form submission
+            alert('Please fill out all fields.');
+        }
+    });
+
+    // Initialize all tooltips on page load
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

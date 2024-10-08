@@ -1,3 +1,5 @@
+
+
 @extends('admin_med.layout.index')
 
 @section('med_content')
@@ -30,11 +32,13 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#diagnosisAndProcedure">Diagnosis and Procedure</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#vitalSigns">Vital Signs</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#diagnosisAndProcedure">Diagnosis and Procedure</a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#doctorsOrder">Doctor's Order</a>
                                 </li>
@@ -59,101 +63,20 @@
                             </ul>
 
                             <div class="tab-content">
+
+                                <!-- Patient Info Tab -->
                                 <div class="tab-pane fade show active" id="patientInfo1" role="tabpanel">
                                     <div class="pt-4">
-                                        <h4 class="card-title mb-4">General Information</h4>
-
-                                        <div class="row">
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Date of Birth:</dt>
-                                                        <dd class="mb-4">{{ $emergency_patient->emergency_dob }}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Nationality</dt>
-                                                        <dd class="mb-4">{{ $emergency_patient->emergency_information->ep_nationality ?? 'N/A'}}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Religion</dt>
-                                                        <dd class="mb-4">{{ $emergency_patient->emergency_information->ep_religion ?? 'N/A'}}</dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Sex:</dt>
-                                                        <dd class="mb-4">{{ $emergency_patient->emergency_sex }}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Full Address:</dt>
-                                                        <dd>{{ $emergency_patient->emergency_information->ep_full_address ?? 'N/A'}}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Phone Number:</dt>
-                                                        <dd>{{ $emergency_patient->emergency_information->ep_phone ?? 'N/A'}}</dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Civil Status:</dt>
-                                                        <dd class="mb-4">{{ $emergency_patient->emergency_information->ep_civil_status ?? 'N/A'}}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Employment:</dt>
-                                                        <dd>{{ $emergency_patient->emergency_information->ep_employment ?? 'N/A'}}</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <dl>
-                                                        <dt class="mb-2">Email:</dt>
-                                                        <dd>{{ $emergency_patient->emergency_information->ep_email ?? 'N/A'}}</dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <hr>
-                                        </div>
-
-
-
-                                        <div class="update-button">
-                                            <button type="button" class="btn btn-square btn-outline-primary btn-lg" aria-label="Update" 
-                                                onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">Update
-                                            </button>
-                                        </div>
-
-                                        <!-- <div>
-                                            <button type="button" id="updateButton" class="btn btn-square btn-outline-primary btn-lg"
-                                            data-toggle="modal" data-target="#emergencyEdit">{{ __('Update Information') }}</button>
-
-                                            {{-- @include('admin_med.patient.emergency.emergency_edit') --}}
-                                        </div> -->
-
-
-
-
-
+                                        @include('admin_med.patient.chart_tabs.patient_info')
                                     </div>
                                 </div>
+                                 <!-- End of Patient Info Tab -->
 
-
-
-                            <!-- Testing Tab -->
+                                <!-- Vital Signs Tab -->
+                                <div class="tab-pane fade" id="vitalSigns">
+                                    @include('blank4')
+                                </div>
+                                <!-- End of Vital Signs Tab -->
 
                                 <div class="tab-pane fade" id="diagnosisAndProcedure">
                                     <div class="pt-4">
@@ -163,13 +86,7 @@
 
                                 </div>
 
-                                <div class="tab-pane fade" id="vitalSigns">
-                                
-                                    @include('blank4')
 
-                    
-
-                                </div>
 
                                 <div class="tab-pane fade" id="doctorsOrder">
                                     <div class="pt-4">
@@ -218,11 +135,6 @@
 
                                 </div>
                             <!--End of Testing Tab -->
-
-
-
-
-
 
                             </div>
 
