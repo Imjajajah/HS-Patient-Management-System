@@ -289,91 +289,6 @@ class PatientController extends Controller
         //
     }
 
-    // public function emergency_person_store(Request $request)
-    // {
-    //     // info($request->all());
-    //     // Validation rules
-    //     $validated = $request->validate([
-    //         'patient_temporary_id' => 'nullable|string|unique:emergency_patients,patient_temporary_id|max:255',
-    //         // 'emergency_date' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
-    //         'emergency_time' => 'required|regex:/^\d{2}:\d{2}$/', // hh:mm AM/PM format
-    //         'emergency_first_name' => 'required|string|max:255',
-    //         'emergency_middle_name' => 'required|string|max:255',
-    //         'emergency_last_name' => 'required|string|max:255',
-    //         'emergency_extension' => 'nullable|string|max:10',
-    //         // 'emergency_dob' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
-    //         'emergency_sex' => 'nullable|in:Male,Female', // Ensure it's Male or Female
-    //         'emergency_age' => 'nullable|integer|min:0|max:120', // Age validation
-    //         'priority_level' => 'required|string|max:255',
-    //         'status' => 'nullable|string|max:255',
-    //         //
-    //         'B_P' => 'required|string|regex:/^\d{1,3}\/\d{1,3}$/', // Blood pressure in format: '120/80'
-    //         'temperature' => 'required|numeric|min:30|max:45', // Temperature validation (range: 30-45°C)
-    //         'heart_rate' => 'required|integer|min:30|max:200', // Heart rate in beats per minute
-    //         'pulse_rate' => 'required|integer|min:30|max:200', // Pulse rate in beats per minute
-    //         'respiratory_rate' => 'required|integer|min:10|max:60', // Respiratory rate in breaths per minute
-    //         'vitals_note' => 'required|string|max:1000', // Optional notes, up to 1000 characters
-    //     ]);
-
-
-    //     // Convert 24-hour time to 12-hour format with AM/PM
-    //     if (!empty($validated['emergency_time'])) {
-    //         $dateTime = \DateTime::createFromFormat('H:i', $validated['emergency_time']);
-    //         if ($dateTime) {
-    //             $validated['emergency_time'] = $dateTime->format('g:i A'); // 12-hour format
-    //         }
-    //     }
-
-    //     // Check if an emergency patient already exists with the same first, middle, and last names
-    //     $existingPatient = EmergencyPatient::where('emergency_first_name', $validated['emergency_first_name'])
-    //         ->where('emergency_middle_name', $validated['emergency_middle_name'])
-    //         ->where('emergency_last_name', $validated['emergency_last_name'])
-    //         ->where('emergency_dob', $request['emergency_dob'])
-    //         ->first();
-
-    //     if ($existingPatient) {
-    //         // If the patient already exists, redirect back with an error message
-    //         return redirect()->back()->withErrors(['duplicate' => 'An emergency patient with this name already exists.'])->withInput();
-    //     }
-
-    //     // Convert dates to 'Y-m-d' format
-    //     $dates = ['emergency_date', 'emergency_dob'];
-    //     foreach ($dates as $date) {
-    //         if (!empty($validated[$date])) {
-    //             $validated[$date] = Carbon\Carbon::createFromFormat('m-d-Y', $validated[$date])->format('Y-m-d');
-    //         }
-    //     }
-
-    //     $vitalSigns = VitalSigns::create([
-    //         'B_P' => $validated['B_P'],
-    //         'temperature' => $validated['temperature'],
-    //         'heart_rate' => $validated['heart_rate'],
-    //         'pulse_rate' => $validated['pulse_rate'],
-    //         'respiratory_rate' => $validated['respiratory_rate'],
-    //         'vitals_note' => $validated['vitals_note'],
-    //     ]);
-
-    //     // Create new EmergencyPatient record with validated data
-    //     EmergencyPatient::create([
-    //         "patient_temporary_id" => $validated['patient_temporary_id'],
-    //         "emergency_date" => $request->input('emergency_date'),
-    //         "emergency_time" => $validated['emergency_time'],
-    //         "emergency_first_name" => $validated['emergency_first_name'],
-    //         "emergency_middle_name" => $validated['emergency_middle_name'],
-    //         "emergency_last_name" => $validated['emergency_last_name'],
-    //         "emergency_extension" => $validated['emergency_extension'],
-    //         "emergency_dob" => $request->input('emergency_dob'),
-    //         "emergency_sex" => $validated['emergency_sex'],
-    //         "emergency_age" => $validated['emergency_age'],
-    //         "priority_level" => $validated['priority_level'],
-    //         "status" => "Active",
-    //         "vital_signs_id" => $vitalSigns->vital_signs_id,
-    //     ]);
-    //     $request->session()->flash('success', 'Emergency Patient data stored successfully!');
-
-    //     return redirect('/emergency_records');
-    // }
-
     public function emergency_person_store(Request $request)
     {
         info('Request data:', $request->all()); // Log incoming request data
@@ -416,18 +331,8 @@ class PatientController extends Controller
                     $validated['emergency_date'] = $request->input('emergency_date');
                     $validated['emergency_dob'] = $request->input('emergency_dob');
 
-                    // Store the vital signs data
-                    $vitalSigns = VitalSigns::create([
-                        'B_P' => $validated['B_P'],
-                        'temperature' => $validated['temperature'],
-                        'heart_rate' => $validated['heart_rate'],
-                        'pulse_rate' => $validated['pulse_rate'],
-                        'respiratory_rate' => $validated['respiratory_rate'],
-                        'vitals_note' => $validated['vitals_note'],
-                    ]);
-
                     // Create new EmergencyPatient record with validated data
-                    EmergencyPatient::create([
+                    $emergencyPatient = EmergencyPatient::create([
                         'patient_temporary_id' => $validated['patient_temporary_id'],
                         'emergency_date' => $validated['emergency_date'],
                         'emergency_time' => $validated['emergency_time'],
@@ -440,7 +345,19 @@ class PatientController extends Controller
                         'emergency_age' => $validated['emergency_age'],
                         'priority_level' => $validated['priority_level'],
                         'status' => 'Active',
-                        'vital_signs_id' => $vitalSigns->vital_signs_id,
+                    ]);
+
+                    // Store the vital signs data
+                    VitalSigns::create([
+                        'diagnosis_date' => $emergencyPatient->emergency_date,
+                        'diagnosis_time' => $emergencyPatient->emergency_time,
+                        'B_P' => $validated['B_P'],
+                        'temperature' => $validated['temperature'],
+                        'heart_rate' => $validated['heart_rate'],
+                        'pulse_rate' => $validated['pulse_rate'],
+                        'respiratory_rate' => $validated['respiratory_rate'],
+                        'vitals_note' => $validated['vitals_note'],
+                        'emergency_patient_id' => $emergencyPatient->emergency_patient_id,
                     ]);
 
                     // Only send email if the priority level is between 1 and 3
@@ -503,6 +420,7 @@ class PatientController extends Controller
     public function emergency_index()
     {
         $emergency_patients = EmergencyPatient::all();
+
         return view('admin_med.patient.emergency.emergency_records', compact('emergency_patients'));
     }
 
@@ -510,75 +428,23 @@ class PatientController extends Controller
     {
         $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information'])->findOrFail($emergency_patient_id);
 
+        if (!$emergency_patient) {
+            return response()->json(['message' => 'Emergency Patient not found'], 404);
+        }
+
         return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient'));
     }
 
     public function emergency_patient_edit($emergency_patient_id)
     {
-        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information'])->findOrFail($emergency_patient_id);
+        $emergency_patient = EmergencyPatient::with(['emergency_information'])->findOrFail($emergency_patient_id);
+
+        if (!$emergency_patient) {
+            return response()->json(['message' => 'Emergency Patient not found'], 404);
+        }
 
         return view('admin_med.patient.emergency.emergency_edit', compact('emergency_patient'));
     }
-
-    // public function emergency_patient_update(Request $request, $emergency_patient_id)
-    // {
-    //     info($request->all());
-    //     $validated = $request->validate([
-    //         'patient_temporary_id' => 'nullable|string|unique:emergency_patients,patient_temporary_id|max:255',
-    //         // 'emergency_date' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
-    //         'emergency_time' => 'required|regex:/^\d{2}:\d{2}$/', // hh:mm AM/PM format
-    //         'emergency_first_name' => 'required|string|max:255',
-    //         'emergency_middle_name' => 'required|string|max:255',
-    //         'emergency_last_name' => 'required|string|max:255',
-    //         'emergency_extension' => 'nullable|string|max:10',
-    //         // 'emergency_dob' => 'nullable|date_format:m-d-Y', // Format mm-dd-yyyy
-    //         'emergency_sex' => 'nullable|in:Male,Female', // Ensure it's Male or Female
-    //         'emergency_age' => 'nullable|integer|min:0|max:120', // Age validation
-    //         'priority_level' => 'required|string|max:255',
-    //         'status' => 'nullable|string|max:255',
-    //         //
-    //         'B_P' => 'required|string|regex:/^\d{1,3}\/\d{1,3}$/', // Blood pressure in format: '120/80'
-    //         'temperature' => 'required|numeric|min:30|max:45', // Temperature validation (range: 30-45°C)
-    //         'heart_rate' => 'required|integer|min:30|max:200', // Heart rate in beats per minute
-    //         'pulse_rate' => 'required|integer|min:30|max:200', // Pulse rate in beats per minute
-    //         'respiratory_rate' => 'required|integer|min:10|max:60', // Respiratory rate in breaths per minute
-    //         'vitals_note' => 'required|string|max:1000', // Optional notes, up to 1000 characters
-    //     ]);
-
-    //     $emergency_patient = EmergencyPatient::findOrFail($emergency_patient_id);
-
-    //     $emergency_patient->update([
-    //         'patient_temporary_id' => $validated['patient_temporary_id'],
-    //         'emergency_time' => $validated['emergency_time'],
-    //         'emergency_first_name' => $validated['emergency_first_name'],
-    //         'emergency_middle_name' => $validated['emergency_middle_name'],
-    //         'emergency_last_name' => $validated['emergency_last_name'],
-    //         'emergency_extension' => $validated['emergency_extension'],
-    //         'emergency_dob' => $request->input('emergency_dob'),
-    //         'emergency_sex' => $validated['emergency_sex'],
-    //         'emergency_age' => $validated['emergency_age'],
-    //         'priority_level' => $validated['priority_level'],
-    //         'status' => $validated['status'],
-    //     ]);
-
-    //     // Update health history data
-    //     // If health_history_id is present, update the health history record
-    //     if ($emergency_patient->vital_signs_id) {
-    //         $vitalSigns = HealthHistories::find($emergency_patient->vital_signs_id);
-    //         if ($vitalSigns) {
-    //             $vitalSigns->update([
-    //                 'B_P' => $validated['B_P'],
-    //                 'temperature' => $validated['temperature'],
-    //                 'heart_rate' => $validated['heart_rate'],
-    //                 'pulse_rate' => $validated['pulse_rate'],
-    //                 'respiratory_rate' => $validated['respiratory_rate'],
-    //                 'vitals_note' => $validated['vitals_note'],
-    //             ]);
-    //         }
-    //     }
-
-    //     return redirect('/emergency-records')->with('success', 'Emergency Patient was successfully updated');
-    // }
 
     public function emergency_patient_update(Request $request, $emergency_patient_id)
     {

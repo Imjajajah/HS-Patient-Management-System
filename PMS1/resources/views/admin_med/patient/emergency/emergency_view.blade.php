@@ -5,6 +5,7 @@
 @section('med_content')
     <div class="content-body">
         <div class="container-fluid">
+            @include('components.messages')
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -26,7 +27,7 @@
                             </div>
 
                             <ul class="nav nav-tabs">
-                                
+
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
                                 </li>
@@ -58,7 +59,7 @@
                                     <a class="nav-link" data-toggle="tab" href="#charges">Charges</a>
                                 </li>
 
-                               
+
 
                             </ul>
 
@@ -80,7 +81,7 @@
 
                                 <div class="tab-pane fade" id="diagnosisAndProcedure">
                                     <div class="pt-4">
-                                        
+
 
                                     </div>
 

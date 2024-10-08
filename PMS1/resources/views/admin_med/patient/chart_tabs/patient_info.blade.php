@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <dl>
                 <dt class="mb-2">Date of Birth:</dt>
-                <dd class="mb-4">{{ $emergency_patient->emergency_dob }}</dd>
+                <dd class="mb-4">{{ \Carbon\Carbon::parse($emergency_patient->emergency_dob)->format('m/d/Y') }}</dd>
             </dl>
         </div>
         <div class="col-lg-12">
@@ -69,7 +69,7 @@
 
 
 <div class="update-button">
-    <button type="button" class="btn btn-square btn-outline-primary btn-lg" aria-label="Update" 
+    <button type="button" class="btn btn-square btn-outline-primary btn-lg" aria-label="Update"
         onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">Update
     </button>
 </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VitalSignsController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(UserController::class)->group(function() {
@@ -26,6 +27,12 @@ Route::controller(PatientController::class)->group(function() {
     Route::put('/emergency-patient/update/{emergency_patient_id}', 'emergency_patient_update')->name('patients.emergency_patient_update');
     // UUID route
     Route::get('/generate-unique-id', 'generateUniqueId');
+});
+
+Route::controller(VitalSignsController::class)->group(function() {
+    Route::post('/emergency/vital-signs/store', 'vital_signs_store');
+    Route::get('/emergency-patient/vital-signs/{vital_signs_id}', 'vital_signs_show')->name('patients.vital_signs_show');
+    Route::get('/emergency-patient/vital-signs/edit/{vital_signs_id}', 'vital_signs_edit')->name('patients.vital_signs_edit');
 });
 
 

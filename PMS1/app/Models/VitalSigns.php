@@ -18,6 +18,6 @@ class VitalSigns extends Model
     // Define the inverse relationship with the Emergency_patient model
     public function emergency_patients()
     {
-        return $this->hasMany(EmergencyPatient::class, 'vital_signs_id');
+        return $this->belongsTo(EmergencyPatient::class, 'emergency_patient_id');
     }
 }
