@@ -1,5 +1,6 @@
 .card{
     margin-top: -1%;  
+    
 }
 
 .tooltip {
@@ -86,19 +87,37 @@
 /* Left side table CSS  */
 /* Left side table CSS  */
 table {
-    width: 100%; /* If you want the table to take full width */
+    width: 100%; 
 }
 
-.vital-signs-table-header, .vital-signs-table-body{
-    border-bottom: 20px solid white
-    
+.table-left {
+    width: 100%;
+    border-collapse: collapse; 
+    table-layout: auto; 
 }
 
-.vital-signs-header{
+.vital-signs-header th, 
+.vital-signs-table-body td {
+    padding: 8px 12px; 
+    margin: 0; 
+    text-align: left; 
+}
+
+.vital-signs-header th {
+    background-color: #f5f5f5; 
+    font-weight: bold;
     color: black;
-   
 }
 
+.vital-signs-table-body td {
+    border-bottom: 7px solid white;
+    padding-bottom: -3px;
+}
+
+.vital-signs-header th, 
+.vital-signs-table-body td {
+    white-space: nowrap;
+}
 
 
 

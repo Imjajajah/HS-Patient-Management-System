@@ -220,11 +220,27 @@ window.addEventListener('click', function(event) {
     }
 });
 
+function setCurrentDate() {
+    const dateInput = document.getElementById('datetime-input');
+    const now = new Date();
+    const formattedDate = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    dateInput.value = formattedDate;
+}
+
+// Function to set the current time
+function setCurrentTime() {
+    const timeInput = document.getElementById('datetime-input-time'); // Update to use a different ID for time
+    const now = new Date();
+    const formattedTime = now.toTimeString().split(' ')[0].substring(0, 5); // Format: HH:MM
+    timeInput.value = formattedTime;
+}
+
+
+
 // Event listeners for input validation and BMI calculation
 window.onload = function() {
-
-    document.getElementById('normalRanges').addEventListener('click', toggleTooltip);
-
+    setCurrentDate();
+    setCurrentTime();
 
 
     document.getElementById('weightInput').addEventListener('input', function() {
@@ -268,4 +284,64 @@ window.onload = function() {
     document.getElementById('bmiInput').addEventListener('input', function() {
         validateInput(this, 'bmi');
     });
+
+    
+
+    const tooltip = document.getElementById('tooltip');
+    const normalRangesLabel = document.getElementById('normalRanges');
+
+    // Function to toggle tooltip visibility
+    function toggleTooltip() {
+        const isVisible = tooltip.style.display === 'block';
+        tooltip.style.display = isVisible ? 'none' : 'block';
+    }
+
+    // Event listener for tooltip toggle on label click
+    normalRangesLabel.addEventListener('click', toggleTooltip);
+
+    // Optional: Hide tooltip when clicking outside
+    window.addEventListener('click', function(event) {
+        if (!normalRangesLabel.contains(event.target) && !tooltip.contains(event.target)) {
+            tooltip.style.display = 'none'; // Hide tooltip if clicked outside
+        }
+    });
+
+    // Optional: Show tooltip on hover
+    normalRangesLabel.addEventListener('mouseover', function() {
+        tooltip.style.display = 'block';
+    });
+    normalRangesLabel.addEventListener('mouseout', function() {
+        tooltip.style.display = 'none';
+    });
+
+
+
+
+    function sortTable(columnIndex) {
+        const table = document.getElementById("vitalSignsTable");
+        const rows = Array.from(table.querySelectorAll('tbody tr'));
+        const isAsc = table.getAttribute('data-sort-dir') === 'asc';
+    
+        rows.sort((rowA, rowB) => {
+            const cellA = rowA.querySelectorAll('td')[columnIndex].textContent;
+            const cellB = rowB.querySelectorAll('td')[columnIndex].textContent;
+            
+            // Parse the date from the string
+            const dateA = new Date(cellA);
+            const dateB = new Date(cellB);
+            
+            // Handle NaN for invalid dates
+            const comparison = isNaN(dateA) || isNaN(dateB) ? 0 : dateA - dateB;
+    
+            return isAsc ? comparison : -comparison;
+        });
+    
+        // Append sorted rows back to the tbody
+        table.querySelector('tbody').append(...rows);
+        // Toggle sort direction
+        table.setAttribute('data-sort-dir', isAsc ? 'desc' : 'asc');
+    }
 };
+
+
+

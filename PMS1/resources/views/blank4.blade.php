@@ -10,15 +10,7 @@
         <div class="row justify-content-center my-4">
             <div class="col-lg-12">
                 <div class="row align-items-center ">
-                    <div class="col">
-                        <!-- <h2 class="h1 mb-0 page-title">{{ __('Medical Chart') }}</h2> -->
-                    </div>
-                    <div class="col-auto">
-            
-                        {{-- <button type="button" id="registerBtn" class="btn btn-square btn-outline-primary btn-lg"
-                        data-toggle="modal" data-target="#exampleModalLong">{{ __('Register a Patient') }}</button> --}}
-                            
-                    </div>
+
                 </div>  
             </div>
         </div>
@@ -56,22 +48,24 @@
 
                             <!-- Id and Date Section Text -->
                             <div class="row id-and-date-text">
-                                <div class="col-md-6">
-                                    <h5 class="id-and-date-label">ID</h5>
-                                </div>
+                                
                                 <div class="col-md-6">
                                     <h5 class="id-and-date-label">Date</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="id-and-date-label">Time</h5>
                                 </div>
                             </div>
                             <!-- End of Id and Date Section Text -->
 
                             <!-- Id and Date Section Input -->
                             <div class="row id-and-date-input">
+                               
                                 <div class="col-md-6">
-                                    <input type="text" name="vital-signs-id" class="form-control id-input" placeholder="">
+                                    <input type="date" name="vital-signs-date" id="datetime-input" class="form-control date-input">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="date" name="vital-signs-date" class="form-control date-input" placeholder="">
+                                    <input type="time" name="vital-signs-time" id="datetime-input-time" class="form-control date-input">
                                 </div>
                             </div>
                             <!-- End of Id and Date Section Input -->
@@ -256,64 +250,81 @@
                         <h4 class="card-title">Patient's Vital Signs</h4>
                     </div>
 
-
                     <div class="card-body">
                         <div class="basic-form">
-                            <table class="table-left">
+
+                            <table class="table-left" id="vitalSignsTable" data-sort-dir="asc">
                                 <thead class="vital-signs-table-header">
                                     <tr class="vital-signs-header">
-
-                                        <!-- Lagyan ng diagnosis ID syempre pero di ididisplay -->
-                                        <!-- <th>DiagnosisID</th> -->
-
-
-                                        <th>DiagnosisDate</th>
+                                        <!-- Clickable headers for sorting -->
+                                        <th onclick="sortTable(0)">DiagnosisDate &#x25B2;&#x25BC;</th>
                                         <th>BP</th>
                                         <th>HR</th>
-                                        <th>PR</th>
-                                        <th>RR</th>
                                         <th>Temp</th>
                                         <th>O2Sat</th>
+                                        <th>PS</th>
+                                        <th>RR</th>
+                                        <th>Action</th>
                                     </tr>
-                                </thead>    
+                                </thead>
                                 <tbody>
                                     <tr class="vital-signs-table-body">
-                                            
-                                        <td>2024-10-05</td>
+                                        <td>10/8/2024, 4:30:57 PM</td>
                                         <td>120/80</td>
                                         <td>75</td>
-                                        <td>60</td>
-                                        <td>18</td>
                                         <td>36.5</td>
                                         <td>98%</td>
+                                        <td>2/10</td>
+                                        <td>18</td>
+                                        <td>
+                                            <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="View"
+                                                onclick="window.location='{{ route('patients.emergency_patient_show', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
+                                                <i class="fa fa-eye color-muted"></i>
+                                            </a>
+                                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                                onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
+                                                <i class="fa fa-pencil color-muted"></i>
+                                            </a>
+                                            <a href="javascript:void()" class="btn btn-square btn-danger"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
+                                                class="fa fa-close color-danger"></i>
+                                            </a>
+                                        </td>
                                     </tr>
+
                                     <tr class="vital-signs-table-body">
-                                           
-                                        <td>2024-10-05</td>
+                                        <td>10/8/2024, 4:30:57 PM</td>
                                         <td>120/80</td>
                                         <td>75</td>
-                                        <td>60</td>
-                                        <td>18</td>
                                         <td>36.5</td>
                                         <td>98%</td>
-                                    </tr>
-                                    <tr>
-                                          
-                                        <td>2024-10-05</td>
-                                        <td>120/80</td>
-                                        <td>75</td>
-                                        <td>60</td>
+                                        <td>2/10</td>
                                         <td>18</td>
-                                        <td>36.5</td>
-                                        <td>98%</td>
+                                        <td>
+                                            <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="View"
+                                                onclick="window.location='{{ route('patients.emergency_patient_show', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
+                                                <i class="fa fa-eye color-muted"></i>
+                                            </a>
+                                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                                onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
+                                                <i class="fa fa-pencil color-muted"></i>
+                                            </a>
+                                            <a href="javascript:void()" class="btn btn-square btn-danger"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
+                                                    class="fa fa-close color-danger"></i>
+                                            </a>
+                                        </td>
                                     </tr>
+                                    <!-- Additional rows here -->
                                 </tbody>
-
-
-
                             </table>
                         </div>
                     </div>
+                    <!-- End of Table card body -->
 
                 </div>
             </div>
