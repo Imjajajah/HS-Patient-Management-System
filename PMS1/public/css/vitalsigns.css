@@ -67,6 +67,18 @@ table {
     width: 100%; /* If you want the table to take full width */
 }
 
+.vital-signs-table-header, .vital-signs-table-body{
+    border-bottom: 20px solid white
+    
+}
+
+.vital-signs-header{
+    color: black;
+   
+}
+
+
+
 
 
 

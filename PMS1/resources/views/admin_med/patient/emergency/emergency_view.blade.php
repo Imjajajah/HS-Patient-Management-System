@@ -164,10 +164,10 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="vitalSigns">
-                                    <div class="pt-4">
+                                
+                                    @include('blank4')
 
-
-                                    </div>
+                    
 
                                 </div>
 
