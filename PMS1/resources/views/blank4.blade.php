@@ -1,11 +1,8 @@
 <link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
 <script src="{{ asset('js/patient_charts.js') }}"></script>
-<!-- Add jQuery and Bootstrap JS before your custom script -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
 
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+
 
 <div>
     <div>
@@ -27,11 +24,32 @@
         </div>
 
         <div class="row grid">
-            <div class="col-xl-5 col-xxl-12">
+            <div class="col-xl-4 col-xxl-12">
                 <div class="card">
 
                     <!-- Card body for vital signs input-->
                     <div class="card-body">
+
+                       
+                        <div class="tooltip-container" style="position: relative; display: inline-block;">
+                            <label class="normal-ranges-label" id="normalRanges" for="tooltip">
+                                <strong>Normal Ranges</strong>
+                            </label>
+                            <div class="tooltip" id="tooltip" style="display: none; position: absolute; background-color: white; border: 1px solid #ccc; padding: 10px; z-index: 1;">
+                                <ul>
+                                    <li>BP: Normal BP: 90/60 to 120/80 mmHg</li>
+                                    <li>HR: Normal HR: 60 to 100 bpm</li>
+                                    <li>PR: Normal PR: 60 to 100 bpm</li>
+                                    <li>Temp: Normal Temp: 36.1 to 37.2 °C</li>
+                                    <li>O2: Normal O2Sat: 95% to 100%</li>
+                                    <li>Pain Scale: Pain Scale: 0 (no pain) to 10 (worst pain)</li>
+                                    <li>Resp Rate: Normal Resp Rate: 12 to 20 breaths/min</li>
+                                    <li>BMI: Normal BMI: 18.5 to 24.9</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
 
                         <!-- Id and Date Section -->
                         <div class="id-and-date">
@@ -76,19 +94,24 @@
                                 </div>
                             </div>
                             <!-- End of BP HR and PR Section Text -->
+
                             <!-- BP HR and PR Section Input -->
                             <div class="row vital-signs-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-bp" id="bpInput" class="form-control bp-input" placeholder="">
+                                    <input type="text" name="vital-signs-bp" id="bpInput" class="form-control bp-input" data-toggle="tooltip" placeholder="Blood Pressure (e.g. 120/80)">
+                                    <small id="bpMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-hr" id="hrInput" class="form-control hr-input" placeholder="">
+                                    <input type="text" name="vital-signs-hr" id="hrInput" class="form-control hr-input" data-toggle="tooltip" placeholder="Heart Rate (bpm)">
+                                    <small id="hrMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-pr" id="prInput" class="form-control pr-input" placeholder="">
+                                    <input type="text" name="vital-signs-pr" id="prInput" class="form-control pr-input" data-toggle="tooltip" placeholder="Pulse Rate (bpm)">
+                                    <small id="prMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                             </div>
                             <!-- End of BP HR and PR Section Input -->
+                             
                         </div>
                         <!-- End of BP HR and PR -->
 
@@ -107,24 +130,29 @@
                                 </div>
                             </div>
                             <!-- End of Temp, O2Sat, Pain Scale Section Text -->
+
                             <!-- Temp, O2Sat, Pain Scale Section Input -->
                             <div class="row temp-o2,ps-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-temp" id="tempInput" class="form-control temp-input" placeholder="">
+                                    <input type="text" name="vital-signs-temp" id="tempInput" class="form-control temp-input" data-toggle="tooltip" placeholder="">
+                                    <small id="tempMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-o2" id="o2Input" class="form-control o2-input" placeholder="">
+                                    <input type="text" name="vital-signs-o2" id="o2Input" class="form-control o2-input" data-toggle="tooltip" placeholder="">
+                                    <small id="o2Message" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-pain-scale" id="painScaleInput" class="form-control pain-scale-input" placeholder="">
+                                    <input type="text" name="vital-signs-pain-scale" id="painScaleInput" class="form-control pain-scale-input" data-toggle="tooltip" placeholder="">
+                                    <small id="painScaleMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                             </div>
                             <!-- End of Temp, O2Sat, Pain Scale Section Input -->
+
                         </div>
                         <!-- End of Temp, O2Sat, Pain Scale -->
 
                         <!-- Resp Rate, Resp Pattern -->
-                        <div class="bp-hr-pr">
+                        <div class="resprate-resppatt">
                             <!-- Resp Rate, Resp Pattern Text -->
                             <div class="row resprate-resp-pattern-text">
                                 <div class="col-md-4">
@@ -138,10 +166,11 @@
                             <!-- Resp Rate, Resp Pattern Input -->
                             <div class="row resprate-resp-pattern-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-resp-rate" id="respRateInput" class="form-control resp-rate-input" placeholder="">
+                                    <input type="text" name="vital-signs-resp-rate" id="respRateInput" class="form-control resp-rate-input" data-toggle="tooltip" placeholder="">
+                                    <small id="respRateMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-8">
-                                    <input list="resp-patterns" name="vital-signs-resp-pattern" id="respPatternInput" class="form-control resp-pattern-input" placeholder="">
+                                    <input list="resp-patterns" name="vital-signs-resp-pattern" id="respPatternInput" class="form-control resp-pattern-input" data-toggle="tooltip" placeholder="">
                                     <datalist id="resp-patterns">
                                         <option value="Normal">
                                         <option value="Tachypnea">
@@ -149,6 +178,7 @@
                                         <option value="Apnea">
                                         <option value="Hyperventilation">
                                     </datalist>
+                                    
                                 </div>
                             </div>
                             <!-- End of Resp Rate, Resp Pattern Input -->
@@ -173,13 +203,16 @@
                             <!-- weight, height,bmi Input -->
                             <div class="row weight-height-bmi-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-weight" id="weightInput" class="form-control weight-input" placeholder="">
+                                    <input type="text" name="vital-signs-weight" id="weightInput" class="form-control weight-input" data-toggle="tooltip" placeholder="">
+                                    <small id="weightMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-height" id="heightInput" class="form-control height-input" placeholder="">
+                                    <input type="text" name="vital-signs-height" id="heightInput" class="form-control height-input" data-toggle="tooltip" placeholder="height (cm)">
+                                    <small id="heightMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="vital-signs-bmi" id="bmiInput" class="form-control bmi-input" placeholder="">
+                                    <input type="text" name="vital-signs-bmi" id="bmiInput" class="form-control bmi-input" data-toggle="tooltip" placeholder="">
+                                    <small id="bmiMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                             </div>
                             <!-- End of weight, height,bmi Input -->
@@ -196,7 +229,7 @@
                             <!-- Remarks Input -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text" name="vital-signs-remarks" id="remarksInput" class="remarks-input" placeholder="">
+                                    <textarea name="vital-signs-remarks" id="remarksInput" class="remarks-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
                                 </div>
                             </div>
                             <!-- End of Remarks Input -->
@@ -216,7 +249,7 @@
             </div>
 
             <!-- Table in the left side -->
-            <div class="col-xl-7 col-xxl-12">
+            <div class="col-xl-8 col-xxl-12">
                 <div class="card">
 
                     <div class="card-header">

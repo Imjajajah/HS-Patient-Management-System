@@ -2,6 +2,28 @@
     margin-top: -1%;  
 }
 
+.tooltip {
+    display: none; /* Hidden by default */
+    position: absolute; /* Positioning */
+    background-color: #fff; /* Background color */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    z-index: 10; /* Ensure it appears above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Label styling */
+.normal-ranges-label {
+    cursor: pointer; /* Pointer cursor */
+    color: blue; /* Label color */
+    text-decoration: underline; /* Underline the label */
+}
+
+.normal-ranges-label:hover {
+    color: darkblue; /* Darken on hover */
+}
+
 
 .id-and-date-text {
     margin-top: 5px;
