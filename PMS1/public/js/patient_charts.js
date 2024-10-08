@@ -235,6 +235,30 @@ function setCurrentTime() {
     timeInput.value = formattedTime;
 }
 
+function sortTable(columnIndex) {
+    const table = document.getElementById("vitalSignsTable");
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    const isAsc = table.getAttribute('data-sort-dir') === 'asc';
+
+    rows.sort((rowA, rowB) => {
+        const cellA = rowA.querySelectorAll('td')[columnIndex].textContent;
+        const cellB = rowB.querySelectorAll('td')[columnIndex].textContent;
+        
+        // Parse the date from the string
+        const dateA = new Date(cellA);
+        const dateB = new Date(cellB);
+        
+        // Handle NaN for invalid dates
+        const comparison = isNaN(dateA) || isNaN(dateB) ? 0 : dateA - dateB;
+
+        return isAsc ? comparison : -comparison;
+    });
+
+    // Append sorted rows back to the tbody
+    table.querySelector('tbody').append(...rows);
+    // Toggle sort direction
+    table.setAttribute('data-sort-dir', isAsc ? 'desc' : 'asc');
+}
 
 
 // Event listeners for input validation and BMI calculation
@@ -316,31 +340,6 @@ window.onload = function() {
 
 
 
-
-    function sortTable(columnIndex) {
-        const table = document.getElementById("vitalSignsTable");
-        const rows = Array.from(table.querySelectorAll('tbody tr'));
-        const isAsc = table.getAttribute('data-sort-dir') === 'asc';
-    
-        rows.sort((rowA, rowB) => {
-            const cellA = rowA.querySelectorAll('td')[columnIndex].textContent;
-            const cellB = rowB.querySelectorAll('td')[columnIndex].textContent;
-            
-            // Parse the date from the string
-            const dateA = new Date(cellA);
-            const dateB = new Date(cellB);
-            
-            // Handle NaN for invalid dates
-            const comparison = isNaN(dateA) || isNaN(dateB) ? 0 : dateA - dateB;
-    
-            return isAsc ? comparison : -comparison;
-        });
-    
-        // Append sorted rows back to the tbody
-        table.querySelector('tbody').append(...rows);
-        // Toggle sort direction
-        table.setAttribute('data-sort-dir', isAsc ? 'desc' : 'asc');
-    }
 };
 
 

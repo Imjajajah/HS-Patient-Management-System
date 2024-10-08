@@ -107,6 +107,7 @@ table {
     background-color: #f5f5f5; 
     font-weight: bold;
     color: black;
+    cursor: pointer;
 }
 
 .vital-signs-table-body td {
@@ -119,7 +120,9 @@ table {
     white-space: nowrap;
 }
 
-
+.vital-signs-header th:hover {
+    background-color: #f1f1f1; /* Change background color on hover */
+}
 
 
 

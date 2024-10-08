@@ -269,9 +269,9 @@
                                 </thead>
                                 <tbody>
                                     <tr class="vital-signs-table-body">
-                                        <td>10/8/2024, 4:30:57 PM</td>
-                                        <td>120/80</td>
-                                        <td>75</td>
+                                        <td>10/8/2023, 4:30:57 PM</td>
+                                        <td>110/30</td>
+                                        <td>65</td>
                                         <td>36.5</td>
                                         <td>98%</td>
                                         <td>2/10</td>
