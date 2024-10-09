@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syncore Medical Hospital</title>
     <link rel="icon" href="/build/assets/syncore.png">
-
+    <link rel="stylesheet" href="{{ asset('/css/patient_registration.css') }}">
     <!-- <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca" /> -->
     <style type="text/css">
         @media print {
@@ -197,7 +197,12 @@
             border: 1px solid #c3e6cb;
             border-radius: 4px;
             margin-bottom: 15px;
-        }
+        }   
+        .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
         #okayButton {
             background-color: #28a745;
             color: white;
@@ -220,7 +225,7 @@
         <input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="build-date-1723175856338" />
         <input type="hidden" id="submitSource" name="submitSource" value="unknown" />
         <input type="hidden" id="buildDate" name="buildDate" value="1723175856338" /> -->
-        <div role="main" class="form-all">
+        <div role="main" class="form-all">  
             <ul class="form-section page-section">
                 <li id="cid_322" class="form-input-wide" data-type="control_head">
                     <div class="form-header-group  header-large">
@@ -308,11 +313,6 @@
                             <option value="">Please Select</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Intersex">Intersex</option>
-                            <option value="Non-Binary">Non-Binary</option>
-                            <option value="Transgender Female (MTF)">Transgender Female (MTF)</option>
-                            <option value="Transgender Male (FTM)">Transgender Male (FTM)</option>
-                            <option value="Prefer Not to Say">Prefer Not to Say</option>
                         </select>
                         @if ($errors->has('sex'))
                             @foreach ($errors->get('sex') as $error)
@@ -343,6 +343,7 @@
                         @endif
                     </div>
                 </li>
+
                 <li class="form-line form-line-column form-col-3 jf-required" data-type="control_datetime" id="id_333">
                     <label class="form-label form-label-top" id="label_333" for="lite_mode_333" aria-hidden="false"> Date of Birth<span class="form-required">*</span> </label>
                     <div id="cid_333" class="form-input-wide jf-required" data-layout="half">
@@ -1321,8 +1322,8 @@
                     </div>
                 </li>
                 <li style="clear:both"></li>
-                <li style="display:none">Should be Empty: <input type="text" name="" value=""
-                        type="hidden" /></li>
+                {{-- <li style="display:none">Should be Empty: <input type="text" name="" value=""
+                        type="hidden" /></li> --}}
             </ul>
         </div>
     </form>
@@ -1330,3 +1331,4 @@
 </body>
 
 </html>
+        

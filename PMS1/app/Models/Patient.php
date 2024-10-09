@@ -29,10 +29,33 @@ class Patient extends Model
     // 'holder_street_address_2','holder_city','holder_state',
     // 'holder_zip',];
 
+    protected $table = 'patients';
+
+    protected $primaryKey = 'patient_id';
+
     protected $guarded = [];
 
-    protected $casts = [
-        'family_history' => 'json',
-    ];
+    // Define the relationship with the HealthHistory model
+    public function health_histories()
+    {
+        return $this->belongsTo(HealthHistories::class, 'health_history_id');
+    }
 
+    // Define the relationship with the InsuranceInformation model
+    public function insurance_information()
+    {
+        return $this->belongsTo(InsuranceInformation::class, 'insurance_information_id');
+    }
+
+    //
+    public function emergency_patients()
+    {
+        return $this->belongsTo(EmergencyPatient::class, 'emergency_patient_id');
+    }
+
+    //
+    public function emergency_contact()
+    {
+        return $this->belongsTo(EmergencyContact::class, 'emergency_contact_id');
+    }
 }

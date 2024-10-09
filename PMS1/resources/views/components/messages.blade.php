@@ -1,14 +1,54 @@
-@if(session()->has('message'))
-<div x-data="{show : true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="bg-teal-100 fixed m-2 bottom-0 right-0 z-20 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
-    <div class="flex">
-      <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
-      <div>
-        <p class="font-bold">Alert Message</p>
-        <p class="text-sm">{{session('message')}}</p>
-      </div>
+@if (session('success'))
+    <div id="confirmationMessage" class="confirmation-message">
+        <p>{{ session('success') }}</p>
+        <button id="okayButton">Okay</button>
     </div>
-  </div>
-
+@elseif (session('error'))
+    <div id="confirmationMessage" class="error-message">
+        <p>{{ session('error') }}</p>
+        <button id="okayButton">Okay</button>
+    </div>
 @endif
 
-{{-- for practice lang, no need intindihin haha --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var confirmationMessage = document.getElementById('confirmationMessage');
+        var okayButton = document.getElementById('okayButton');
+
+        if (confirmationMessage) {
+            okayButton.addEventListener('click', function() {
+                confirmationMessage.style.display = 'none'; // Hide the message
+            });
+        }
+    });
+</script>
+
+<style>
+    .confirmation-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border: 1px solid #c3e6cb;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+    .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+        padding: 15px;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+    #okayButton {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+    #okayButton:hover {
+        background-color: #218838;
+    }
+</style>
