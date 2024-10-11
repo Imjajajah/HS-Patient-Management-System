@@ -14,7 +14,7 @@
 
 .card-input-blue {
     border: 1px solid transparent; /* Remove solid border */
-    box-shadow: 0 0 15px 5px #083464; /* Greenish splashed border */
+    box-shadow: 0 0 15px 5px #083464; 
     border-radius: 10px; /* Optional, for softer edges */
 }
 
