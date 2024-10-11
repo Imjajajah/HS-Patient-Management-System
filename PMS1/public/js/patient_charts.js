@@ -191,6 +191,7 @@ function makeFormReadonly() {
     // Change card-input border color to blue
     const cardInput = document.querySelector('.card-input');
     cardInput.classList.remove('card-input-yellow'); // Remove yellow if in edit mode
+    cardInput.classList.remove('card-input-green'); // Remove yellow if in edit mode
     cardInput.classList.add('card-input-blue'); // Add blue class for view mode
 
     // Hide the Close and Save buttons
