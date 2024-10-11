@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
 <script src="{{ asset('js/patient_charts.js') }}"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
@@ -17,9 +18,14 @@
 
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
-                <div class="card">
+                <div class="card-input">
 
+
+                    <div class="card-header">
+                        <h4 class="input-header" id="inputHeader">Input Mode</h4>
+                    </div>
                     <!-- Card body for vital signs input-->
+                    
                     <div class="card-body">
 
 
@@ -42,7 +48,7 @@
                         </div>
 
 
-                        <form action="/emergency/vital-signs/store" class="step-form-horizontal" method="POST" onsubmit="">
+                        <form action="/emergency/vital-signs/store" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
                         @csrf
                         <!-- Id and Date Section -->
                         <div class="id-and-date">
@@ -232,10 +238,21 @@
                         <!--End of Remarks Pattern -->
                         <input type="hidden" name="emergency_patient_id" value="{{ $emergency_patient->emergency_patient_id }}">
 
+                 
+
                         <!-- Footer Buttons -->
                         <div class="card-footer d-flex justify-content-end">
-                            <button type="button" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary ms-3">Save</button>
+                            <!-- Back to Input Mode Button (Initially Hidden) -->
+                            <button type="button" class="btn btn-secondary" id="backToInputButton" style="display: none;" onclick="showInputMode();">Back to Input Mode</button>
+
+                            <button type="button" id="cancel-btn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
+
+                            
+                            <button type="submit" class="btn btn-primary ms-3" id="editSubmit" style="display: none;"  onclick="showSaveAlert();">Save Changes</button>
+                            
+                            <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
+
+
                         </div>
                     </div>
                     </form>
@@ -284,14 +301,15 @@
                                                 @php
                                                     $latestVitalSign = $emergency_patient->vital_signs->last(); // or first()
                                                 @endphp
-                                                <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                               <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                                     data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                    onclick="window.location='{{ route('patients.vital_signs_show', ['vital_signs_id' => $latestVitalSign->vital_signs_id]) }}'">
+                                                    onclick="makeFormReadonly();">
                                                     <i class="fa fa-eye color-muted"></i>
                                                 </a>
+
                                                 <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
                                                     data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                    onclick="window.location='{{ route('patients.vital_signs_edit', ['vital_signs_id' => $latestVitalSign->vital_signs_id]) }}'">
+                                                    onclick="enterEditMode();">
                                                     <i class="fa fa-pencil color-muted"></i>
                                                 </a>
                                                 <a href="javascript:void()" class="btn btn-square btn-danger"
@@ -301,58 +319,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    {{-- <tr class="vital-signs-table-body">
-                                        <td>10/8/2023, 4:30:57 PM</td>
-                                        <td>110/30</td>
-                                        <td>65</td>
-                                        <td>36.5</td>
-                                        <td>98%</td>
-                                        <td>2/10</td>
-                                        <td>18</td>
-                                        <td>
-                                            <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                onclick="window.location='{{ route('patients.emergency_patient_show', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
-                                                <i class="fa fa-eye color-muted"></i>
-                                            </a>
-                                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
-                                                <i class="fa fa-pencil color-muted"></i>
-                                            </a>
-                                            <a href="javascript:void()" class="btn btn-square btn-danger"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
-                                                class="fa fa-close color-danger"></i>
-                                            </a>
-                                        </td>
-                                    </tr> --}}
-
-                                    {{-- <tr class="vital-signs-table-body">
-                                        <td>10/8/2024, 4:30:57 PM</td>
-                                        <td>120/80</td>
-                                        <td>75</td>
-                                        <td>36.5</td>
-                                        <td>98%</td>
-                                        <td>2/10</td>
-                                        <td>18</td>
-                                        <td>
-                                            <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                onclick="window.location='{{ route('patients.emergency_patient_show', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
-                                                <i class="fa fa-eye color-muted"></i>
-                                            </a>
-                                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
-                                                <i class="fa fa-pencil color-muted"></i>
-                                            </a>
-                                            <a href="javascript:void()" class="btn btn-square btn-danger"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
-                                                    class="fa fa-close color-danger"></i>
-                                            </a>
-                                        </td>
-                                    </tr> --}}
-                                    <!-- Additional rows here -->
+                                    
                                 </tbody>
                             </table>
                         </div>

@@ -1,7 +1,36 @@
-.card{
-    margin-top: -1%;  
-    
+.input-header{
+    font-weight: bold;
 }
+
+
+
+
+.card-input {
+    margin-top: -1%;  
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px rgba(0, 128, 0, 0.5); /* Greenish splashed border */
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
+.card-input-blue {
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px #083464; /* Greenish splashed border */
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
+.card-input-green {
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px  rgba(0, 128, 0, 0.5);/* Greenish splashed border */
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
+
+.card-input-yellow {
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px  rgba(213, 248, 18, 0.5);/* Greenish splashed border */ 
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
 
 .tooltip {
     display: none; /* Hidden by default */
