@@ -1,8 +1,4 @@
 
-
-
-
-
 let remarks = [];
 // Normal ranges
 const normalRanges = {
@@ -172,151 +168,26 @@ function validateInput(input, type) {
 
 
 
-
-
-function makeFormReadonly() {
-    const inputs = document.querySelectorAll('.step-form-horizontal input, .step-form-horizontal textarea');
-    inputs.forEach(input => {
-        input.setAttribute('readonly', true);
+function showSaveAlert() {
+    // SweetAlert confirmation
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Click okay to save changes.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Okay',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked "Okay" - proceed with the save
+            document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual form ID
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // User clicked "Cancel" - no action taken
+            Swal.fire('Cancelled', 'Your changes were not saved.', 'error');
+        }
     });
-
-    const selects = document.querySelectorAll('.step-form-horizontal select');
-    selects.forEach(select => {
-        select.setAttribute('disabled', true);
-    });
-
-    // Change header text to "View Mode"
-    document.getElementById('inputHeader').innerText = 'View Mode';
-
-    // Change card-input border color to blue
-    const cardInput = document.querySelector('.card-input');
-    cardInput.classList.remove('card-input-yellow'); // Remove yellow if in edit mode
-    cardInput.classList.remove('card-input-green'); // Remove yellow if in edit mode
-    cardInput.classList.add('card-input-blue'); // Add blue class for view mode
-
-    // Hide the Close and Save buttons
-    document.querySelector('.btn-secondary.btn.sweet-confirm').style.display = 'none'; // Hide Close button
-    document.querySelector('.btn-primary.ms-3').style.display = 'none'; // Hide Save button
-
-    // Hide the Save Changes button
-    document.getElementById('editSubmit').style.display = 'none'; // Hide Save Changes button
-
-    // Show the Back to Input Mode button
-    document.getElementById('backToInputButton').style.display = 'block';
 }
-
-function enterEditMode() {
-    const inputs = document.querySelectorAll('.step-form-horizontal input, .step-form-horizontal textarea');
-    inputs.forEach(input => {
-        input.removeAttribute('readonly');
-    });
-
-    const selects = document.querySelectorAll('.step-form-horizontal select');
-    selects.forEach(select => {
-        select.removeAttribute('disabled');
-    });
-
-    // Change header text to "Edit Mode"
-    document.getElementById('inputHeader').innerText = 'Edit Mode';
-
-    // Change card-input border color to yellow
-    const cardInput = document.querySelector('.card-input');
-    cardInput.classList.remove('card-input-blue'); // Remove blue if in view mode
-    cardInput.classList.add('card-input-yellow'); // Add yellow class for edit mode
-
-    // Hide the "Save" button and show "Save Changes" button
-    document.getElementById('save-btn').style.display = 'none'; // Hide the "Save" button
-    document.getElementById('editSubmit').style.display = 'block'; // Show "Save Changes" button
-
-    // Hide the Close button and show the Back to Input Mode button
-    document.querySelector('.btn-secondary.btn.sweet-confirm').style.display = 'none'; // Hide the Close button
-    document.getElementById('backToInputButton').style.display = 'block'; // Show the Back to Input Mode button
-}
-
-function showInputMode() {
-    const inputs = document.querySelectorAll('.step-form-horizontal input, .step-form-horizontal textarea');
-    inputs.forEach(input => {
-        input.removeAttribute('readonly');
-    });
-
-    const selects = document.querySelectorAll('.step-form-horizontal select');
-    selects.forEach(select => {
-        select.removeAttribute('disabled');
-    });
-
-    // Change header text back to "Input Mode"
-    document.getElementById('inputHeader').innerText = 'Input Mode';
-
-    // Change card-input border color to green
-    const cardInput = document.querySelector('.card-input');
-    cardInput.classList.remove('card-input-blue'); // Remove blue if in view mode
-    cardInput.classList.remove('card-input-yellow'); // Remove yellow if in edit mode
-    cardInput.classList.add('card-input-green'); // Add green class for input mode
-
-    // Show the Close and Save buttons
-    document.querySelector('.btn-secondary.btn.sweet-confirm').style.display = 'block'; // Show Close button
-    document.getElementById('save-btn').style.display = 'block'; // Show Save button again
-
-    // Hide the Save Changes button
-    document.getElementById('editSubmit').style.display = 'none'; // Hide Save Changes button
-
-    // Hide the Back to Input Mode button
-    document.getElementById('backToInputButton').style.display = 'none'; // Hide Back to Input Mode button
-}
-
-
-
-
-
-
-
-
-function showSaveAlert(event) {
-    // Prevent the default form submission
-    event.preventDefault();
-
-    // Check if we are in Edit Mode
-    const inputHeader = document.getElementById('inputHeader').innerText;
-
-    if (inputHeader === 'Edit Mode') {
-        swal({
-            title: "Confirm Changes",
-            text: "Are you sure you want to save the changes?",
-            icon: "warning",
-            buttons: {
-                cancel: "Cancel",
-                confirm: {
-                    text: "Okay",
-                    value: true,
-                    visible: true,
-                    className: "btn-success",
-                    closeModal: true
-                }
-            },
-            dangerMode: true,
-        })
-        .then((willSave) => {
-            if (willSave) {
-                // User confirmed, proceed with saving data
-                // Here you can perform your save operation, such as submitting the form
-                document.getElementById('vitalSignsForm').submit(); // Replace with your actual form ID
-                swal("Success!", "Your changes have been saved.", "success");
-            } else {
-                // User canceled
-                swal("Changes not saved.");
-            }
-        });
-    } else {
-        // Add an alert or action for non-edit modes if necessary
-        swal("You are not in Edit Mode. Please switch to Edit Mode to save changes.");
-    }
-}
-
-
-
-
-
-
 
 
 function clearRemarks() {
@@ -463,6 +334,29 @@ window.onload = function() {
     document.getElementById('bmiInput').addEventListener('input', function() {
         validateInput(this, 'bmi');
     });
+
+
+    document.getElementById('cancel-btn').addEventListener('click', function () {
+        // Get the form element
+        var form = document.getElementById('vitalSignsForm');
+
+        // Loop through all input elements inside the form
+        var inputs = form.querySelectorAll('input');
+        
+        inputs.forEach(function (input) {
+            // Clear fields except for date and time inputs
+            if (input.type !== 'date' && input.type !== 'time' && input.type !== 'hidden') {
+                input.value = ''; // Clear the input value
+            }
+        });
+
+        // Clear the textarea field if applicable (remarks)
+        var textareas = form.querySelectorAll('textarea');
+        textareas.forEach(function (textarea) {
+            textarea.value = ''; // Clear textarea content
+        });
+    });
+
 
     
 

@@ -1,7 +1,17 @@
 <link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
 <script src="{{ asset('js/patient_charts.js') }}"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="{{ asset('js/charts_mode.js') }}"></script>
+<script src="{{ asset('js/charts_graph.js') }}"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
@@ -85,7 +95,8 @@
                             <!-- BP HR and PR Section Text -->
                             <div class="row bp-hr-pr-text">
                                 <div class="col-md-4">
-                                    <h5 class="bp-text">BP</h5>
+                                    <h5 class="bp-text">BP<span class="form-required text-danger">*</span></h5>
+                                    
                                 </div>
                                 <div class="col-md-4">
                                     <h5 class="hr-text">HR</h5>
@@ -99,7 +110,7 @@
                             <!-- BP HR and PR Section Input -->
                             <div class="row vital-signs-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="B_P" id="bpInput" class="form-control bp-input" data-toggle="tooltip" placeholder="Blood Pressure (e.g. 120/80)">
+                                    <input type="text" name="B_P" id="bpInput" class="form-control bp-input" data-toggle="tooltip" placeholder="Blood Pressure (e.g. 120/80)" required>
                                     <small id="bpMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
@@ -107,7 +118,7 @@
                                     <small id="hrMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="pulse_rate" id="prInput" class="form-control pr-input" data-toggle="tooltip" placeholder="Pulse Rate (bpm)">
+                                    <input type="text" name="pulse_rate" id="prInput" class="form-control pr-input" data-toggle="tooltip" placeholder="Pulse Rate (bpm)" required>
                                     <small id="prMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                             </div>
@@ -135,15 +146,15 @@
                             <!-- Temp, O2Sat, Pain Scale Section Input -->
                             <div class="row temp-o2,ps-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="temperature" id="tempInput" class="form-control temp-input" data-toggle="tooltip" placeholder="">
+                                    <input type="text" name="temperature" id="tempInput" class="form-control temp-input" data-toggle="tooltip" placeholder="Temperature °C" required>
                                     <small id="tempMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="oxygen_saturation" id="o2Input" class="form-control o2-input" data-toggle="tooltip" placeholder="">
+                                    <input type="text" name="oxygen_saturation" id="o2Input" class="form-control o2-input" data-toggle="tooltip" placeholder="O2Sat">
                                     <small id="o2Message" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="pain_scale" id="painScaleInput" class="form-control pain-scale-input" data-toggle="tooltip" placeholder="">
+                                    <input type="text" name="pain_scale" id="painScaleInput" class="form-control pain-scale-input" data-toggle="tooltip" placeholder="Pain Scale">
                                     <small id="painScaleMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                             </div>
@@ -167,7 +178,7 @@
                             <!-- Resp Rate, Resp Pattern Input -->
                             <div class="row resprate-resp-pattern-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="respiratory_rate" id="respRateInput" class="form-control resp-rate-input" data-toggle="tooltip" placeholder="">
+                                    <input type="text" name="respiratory_rate" id="respRateInput" class="form-control resp-rate-input" data-toggle="tooltip" placeholder="Resp Rate" required>
                                     <small id="respRateMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-8">
@@ -204,11 +215,11 @@
                             <!-- weight, height,bmi Input -->
                             <div class="row weight-height-bmi-input">
                                 <div class="col-md-4">
-                                    <input type="text" name="weight" id="weightInput" class="form-control weight-input" data-toggle="tooltip" placeholder="">
+                                    <input type="text" name="weight" id="weightInput" class="form-control weight-input" data-toggle="tooltip" placeholder="Weight (kg)">
                                     <small id="weightMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" name="height" id="heightInput" class="form-control height-input" data-toggle="tooltip" placeholder="height (cm)">
+                                    <input type="text" name="height" id="heightInput" class="form-control height-input" data-toggle="tooltip" placeholder="Height (cm)">
                                     <small id="heightMessage" class="text-danger" style="display: none;"></small>
                                 </div>
                                 <div class="col-md-4">
@@ -248,7 +259,9 @@
                             <button type="button" id="cancel-btn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
 
                             
-                            <button type="submit" class="btn btn-primary ms-3" id="editSubmit" style="display: none;"  onclick="showSaveAlert();">Save Changes</button>
+                            <button type="submit" class="btn btn-primary ms-3" id="editSubmit" style="display: none;" onclick="showSaveAlert(); return false;">
+                                Save Changes
+                            </button>
                             
                             <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
 
@@ -272,7 +285,7 @@
 
                     <div class="card-body">
                         <div class="basic-form">
-
+                           
                             <table class="table-left" id="vitalSignsTable" data-sort-dir="asc">
                                 <thead class="vital-signs-table-header">
                                     <tr class="vital-signs-header">
@@ -312,10 +325,7 @@
                                                     onclick="enterEditMode();">
                                                     <i class="fa fa-pencil color-muted"></i>
                                                 </a>
-                                                <a href="javascript:void()" class="btn btn-square btn-danger"
-                                                    data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
-                                                    class="fa fa-close color-danger"></i>
-                                                </a>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -323,8 +333,14 @@
                                 </tbody>
                             </table>
                         </div>
+                        <canvas id="vitalSignsChart" style="display: none;"></canvas>
                     </div>
+
                     <!-- End of Table card body -->
+                    <div class="card-footer d-flex justify-content-end">
+                        <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
+                        <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
+                    </div>
 
                 </div>
             </div>
