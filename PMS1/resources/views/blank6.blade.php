@@ -1,1 +1,3 @@
-<h1>Blank 6</h1>
+
+@extends('admin_med.layout.index')
+@include('admin_med.layout.header')

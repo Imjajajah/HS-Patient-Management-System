@@ -1,4 +1,4 @@
-@if (session('success'))
+<!-- @if (session('success'))
     <div id="confirmationMessage" class="confirmation-message">
         <p>{{ session('success') }}</p>
         <button id="okayButton">Okay</button>
@@ -51,4 +51,4 @@
     #okayButton:hover {
         background-color: #218838;
     }
-</style>
+</style> -->

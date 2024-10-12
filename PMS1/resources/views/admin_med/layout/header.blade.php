@@ -1,3 +1,6 @@
+
+
+
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
@@ -12,57 +15,25 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <ul class="list-unstyled">
-                                <li class="media dropdown-item">
-                                    <span class="success"><i class="ti-user"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Martin</strong> has added a <strong>customer</strong>
-                                                Successfully
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="danger"><i class="ti-bookmark"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="primary"><i class="ti-heart"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="success"><i class="ti-image"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong> James.</strong> has added a<strong>customer</strong>
-                                                Successfully
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
+                                @if (session('success'))
+                                    <li class="media dropdown-item notification-item" id="successNotification">
+                                        <span class="success"><i class="ti-check"></i></span>
+                                        <div class="media-body">
+                                            <p><strong>Success:</strong> {{ session('success') }}</p>
+                                        </div>
+                                        <span class="notify-time">Just now</span>
+                                    </li>
+                                @elseif (session('error'))
+                                    <li class="media dropdown-item notification-item" id="errorNotification">
+                                        <span class="danger"><i class="ti-alert"></i></span>
+                                        <div class="media-body">
+                                            <p><strong>Error:</strong> {{ session('error') }}</p>
+                                        </div>
+                                        <span class="notify-time">Just now</span>
+                                    </li>
+                                @endif
                             </ul>
+
                             <a class="all-notification" href="#">See all notifications <i
                                     class="ti-arrow-right"></i></a>
                         </div>
@@ -94,3 +65,26 @@
         </nav>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the notification items
+        var successNotification = document.getElementById('successNotification');
+        var errorNotification = document.getElementById('errorNotification');
+
+        // Add click event listener for success notification
+        if (successNotification) {
+            successNotification.addEventListener('click', function() {
+                successNotification.style.display = 'none';  // Hide the notification
+            });
+        }
+
+        // Add click event listener for error notification
+        if (errorNotification) {
+            errorNotification.addEventListener('click', function() {
+                errorNotification.style.display = 'none';  // Hide the notification
+            });
+        }
+    });
+</script>

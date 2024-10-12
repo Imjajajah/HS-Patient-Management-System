@@ -88,13 +88,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="patientCharts">Charts</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="medRecord1">Medical Record</a>
-                                </li>
-
                             </ul>
 
                             {{-- <form action="{{ route('patients.emergency_patient_update', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}" method="POST">
@@ -233,104 +226,10 @@
                                             <hr>
                                         </div>
 
-
-                                    <!-- DO NOT DELETE, THIS IS FOR MEDICAL DATA OF THE PATIENT  -->
-                                     <!-- BUT THE MEDICAL DATA SHOULD BE IN THE MEDICAL DATA TAB -->
-                                        <!-- <h4 class="card-title mb-4">Medical Data</h4>
-                                        <div class="row">
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-10">
-                                                    <dl>
-                                                        <dt class="mb-2">Complaints:</dt>
-                                                        <dd class="mb-4"></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    <dl>
-                                                        <dt class="mb-2">Diagnosis:</dt>
-                                                        <dd class="mb-4">
-
-                                                        </dd>
-                                                        
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-10">
-                                                    <dl>
-                                                        <dt class="mb-2">Allergies:</dt>
-                                                        <dd class="mb-4">
-                                                            <textarea type="text" name="" class="form-control" rows="2"
-                                                                id="allergies"></textarea>
-                                                        </dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    <dl>
-                                                        <dt class="mb-2">Chronic/Other Illness:</dt>
-                                                        <dd class="mb-4">
-                                                            <textarea type="text" name="" class="form-control" rows="2"
-                                                                value="[Chronic/Other Illness1], [Chronic/Other Illness2]" id="coroIllness"></textarea>
-
-                                                        </dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="col-lg-10">
-                                                    <dl>
-                                                        <dt class="mb-2">Surgeries Done:</dt>
-                                                        <dd class="mb-4">
-                                                            <textarea type="text" name="" class="form-control" rows="2"
-                                                                value="[Surgeries Done1], [Surgeries Done2]" id="surgeries"></textarea>
-                                                        </dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    <dl>
-                                                        <dt class="mb-2">Vices:</dt>
-                                                        <dd>
-
-                                                        </dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                        </div> -->
-
-                                    <!--END OF DO NOT DELETE, THIS IS FOR MEDICAL DATA OF THE PATIENT -->
-                                    <!--END OF BUT THE MEDICAL DATA SHOULD BE IN THE MEDICAL DATA TAB -->
-
-
-
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="patientCharts">
-                                    <div class="pt-4">
-                                        <div class="update-button">
-                                            <button class="update-charts">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="tab-pane fade" id="medRecord1">
-                                    <div class="pt-4">
-                                        <h4>Medical Record</h4>
-                                        <p>
-                                            <textarea type="text" name="" class="form-control" rows="2"
-                                                value="[Something Goes Here]" id="medRecord" placeholder="Something Goes Here..."></textarea>
-                                        </p>
-                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt
-                                            tofu
-                                            stumptown aliqua, retro synth master cleanse. Mustache cliche tempor.
-                                        </p>
-                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt
-                                            tofu
-                                            stumptown aliqua, retro synth master cleanse. Mustache cliche tempor.
-                                        </p>
-                                    </div>
-                                </div>
+                        
 
                             </div>
                             {{-- </div> --}}

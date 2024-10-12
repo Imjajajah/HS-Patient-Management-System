@@ -56,6 +56,9 @@ Route::get('/blank5', function () {
     return view('blank5');
 });
 
+Route::get('/blank6', function () {
+    return view('blank6');
+});
 
 
 

@@ -42,5 +42,32 @@ class UserController extends Controller
         return redirect('/')->with('message', 'Logout successful');
     }
 
+    // Controller action when adding a patient or editing info
+    public function storeOrUpdate(Request $request)
+    {
+        // Perform your action (e.g., save new patient, update details)
+
+        // Add new success message to the session as an array
+        $message = 'New patient added successfully!';
+        session()->push('messages.success', $message);
+
+        return redirect()->back();
+    }
+
+    public function editPatient(Request $request, $id)
+    {
+        // Perform your action (e.g., update patient info)
+
+        // Add success message to session
+        $message = 'Patient information updated successfully!';
+        session()->push('messages.success', $message);
+
+        return redirect()->back();
+    }
+
+
+
+
+
 
 }
