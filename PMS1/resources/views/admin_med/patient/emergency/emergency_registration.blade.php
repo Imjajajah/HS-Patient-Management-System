@@ -47,50 +47,6 @@
 
                             <div class="row form-material align-items-center">
 
-                                {{-- <div class="col-lg-4 mb-2">
-                                    <div class="form-group form-inline">
-                                        <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
-                                        <input type="checkbox" id="unidentifiedCB" name="" class="unidentifiedCB">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 mb-2">
-                                    <button type="button" id="generateID-btn" class="generate-btn" >
-                                        Generate Temporary ID
-                                    </button>
-                                </div>
-
-
-                                <input type="hidden" name="patient_temporary_id">
-                                @if ($errors->has('patient_temporary_id'))
-                                    @foreach ($errors->get('patient_temporary_id') as $error)
-                                        <span style="color:red;">{{ $error }}</span><br>
-                                    @endforeach
-                                @endif --}}
-
-                                <!-- <div class="col-lg-4 mb-2">
-                                    <div class="form-group form-inline">
-
-                                        <input type="checkbox" id="unidentifiedCB" class="unidentifiedCB">
-                                        <label for="unidentifiedCB" class="unidentified-label">Unidentified Patient</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 mb-2">
-                                    <button type="button" id="generateID-btn" class="generate-btn">
-                                        Generate Temporary ID
-                                    </button>
-                                </div>
-
-                                <input type="hidden" id="patientTemporaryID" name="patient_temporary_id">
-                                @if ($errors->has('patient_temporary_id'))
-                                    @foreach ($errors->get('patient_temporary_id') as $error)
-                                        <span style="color:red;">{{ $error }}</span><br>
-                                    @endforeach
-                                @endif -->
-
-
-
                                 <!-- WORKING CODE FOR UNIDENTIFIED -->
                                 <div class="col-lg-4 mb-2">
                                     <div class="form-group form-inline">
@@ -277,7 +233,7 @@
                                                 @endforeach
                                             @endif
                                         </div>
-                                        <span id="temperatureError" style="color:red; display:none;">Please enter a valid format (e.g., 20-45).</span>
+                                        <span id="temperatureError" style="color:red; display:none;">Invalid temp. (e.g., 24-44).</span>
                                     </div>
                                 </div>
 
@@ -363,42 +319,3 @@
         </div>
     </div>
 </div>
-
-{{--
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('generateID-btn').addEventListener('click', function() {
-            var id = 'TEMP-' + ('000000' + Math.floor(Math.random() * 1000000)).slice(-6);
-            document.getElementById('patientTemporaryID').value = id;
-        });
-    });
-</script> --}}
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('generateID-btn').addEventListener('click', function() {
-            fetch('/generate-unique-id')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('patientTemporaryID').value = data.id;
-                    document.getElementById('emergency_last_name').value = data.id; // Set the value to the last name input
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    });
-</script>
-
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('generateID-btn').addEventListener('click', function() {
-            fetch('/generate-unique-id')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('patientTemporaryID').value = data.id;
-                    // Check the checkbox when the button is clicked
-                    document.getElementById('unidentifiedCB').checked = true;
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    });
-</script> --}}
