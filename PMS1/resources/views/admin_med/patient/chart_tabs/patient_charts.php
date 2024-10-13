@@ -2,7 +2,7 @@
 <script src="{{ asset('js/patient_charts.js') }}"></script>
 <script src="{{ asset('js/charts_mode.js') }}"></script>
 <script src="{{ asset('js/charts_graph.js') }}"></script>
-<script src="{{ asset('js/charts_reminder.js') }}"></script>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -281,25 +281,9 @@
 
                     <div class="card-header">
                         <h4 class="card-title">Patient's Vital Signs</h4>
-
-                        <div class="reminder-settings d-flex align-items-center">
-                            <div class="toggle-container">
-                                <label for="reminderToggle">Reminder Mode:</label>
-                                <label class="switch">
-                                    <input type="checkbox" id="reminderToggle" checked>
-                                    <span class="slider ">
-                                        <span class="slider-text" id="sliderText">Auto</span>
-                                    </span>
-                                </label>
-                            </div>
-
-                            <div id="manualReminder" class="ms-3">
-                                <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
-                            </div>
-                        </div>
-        
+                        
                     </div>
-
+                   
                     <div class="card-body">
                         <div class="basic-form">
                            

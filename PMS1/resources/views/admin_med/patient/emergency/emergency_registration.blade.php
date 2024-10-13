@@ -253,6 +253,7 @@
                                         <span id="heartRateError" style="color:red; display:none;">Please enter a valid heart rate (e.g., 60-100 BPM).</span>
                                     </div>
                                 </div>
+
                                 <div class="w-100"></div>
 
                                 <div class="col-lg-3 mb-3">
@@ -302,8 +303,23 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="w-100"></div>
 
+                                <div class="col-lg-3 mb-5">
+                                    <h4 style="margin-bottom: -15px;"> Bed Assignment </h4>
+                                </div>
+                                <div class="w-100"></div>
 
+                                <div class="col-lg-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="text-label">Assign Bed
+                                            <!-- <span class="form-required text-danger">*</span> -->
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="assignBed" name="B_P" placeholder="Bed assignment">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </section>
                     </div>
