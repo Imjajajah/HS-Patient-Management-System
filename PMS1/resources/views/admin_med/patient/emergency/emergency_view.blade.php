@@ -75,7 +75,7 @@
 
                                 <!-- Vital Signs Tab -->
                                 <div class="tab-pane fade" id="vitalSigns">
-                                    @include('blank4')
+                                    @include('admin_med.patient.vitals.patient_vitals')
                                 </div>
                                 <!-- End of Vital Signs Tab -->
 

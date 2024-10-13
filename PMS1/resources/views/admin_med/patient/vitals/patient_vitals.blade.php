@@ -35,7 +35,7 @@
                         <h4 class="input-header" id="inputHeader">Input Mode</h4>
                     </div>
                     <!-- Card body for vital signs input-->
-                    
+
                     <div class="card-body">
 
 
@@ -58,8 +58,12 @@
                         </div>
 
 
-                        <form action="/emergency/vital-signs/store" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
+                        <form action="{{ isset($vital_sign) ? route('vital_signs.vital_signs_update', $vital_sign->vital_signs_id) : '/emergency/vital-signs/store' }}" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
                         @csrf
+                        @if(isset($vital_sign))
+                            @csrf
+                            @method('PATCH') <!-- This will be added only if editing -->
+                        @endif
                         <!-- Id and Date Section -->
                         <div class="id-and-date">
 
@@ -96,7 +100,7 @@
                             <div class="row bp-hr-pr-text">
                                 <div class="col-md-4">
                                     <h5 class="bp-text">BP<span class="form-required text-danger">*</span></h5>
-                                    
+
                                 </div>
                                 <div class="col-md-4">
                                     <h5 class="hr-text">HR</h5>
@@ -249,7 +253,7 @@
                         <!--End of Remarks Pattern -->
                         <input type="hidden" name="emergency_patient_id" value="{{ $emergency_patient->emergency_patient_id }}">
 
-                 
+
 
                         <!-- Footer Buttons -->
                         <div class="card-footer d-flex justify-content-end">
@@ -258,11 +262,11 @@
 
                             <button type="button" id="cancel-btn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
 
-                            
+
                             <button type="submit" class="btn btn-primary ms-3" id="editSubmit" style="display: none;" onclick="showSaveAlert(); return false;">
                                 Save Changes
                             </button>
-                            
+
                             <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
 
 
@@ -302,7 +306,7 @@
 
                     <div class="card-body">
                         <div class="basic-form">
-                           
+
                             <table class="table-left" id="vitalSignsTable" data-sort-dir="asc">
                                 <thead class="vital-signs-table-header">
                                     <tr class="vital-signs-header">
@@ -333,20 +337,20 @@
                                                 @endphp
                                                <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                                     data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                    onclick="makeFormReadonly();">
+                                                    onclick="populateFormView({{ json_encode($vitals) }}); makeFormReadonly();">
                                                     <i class="fa fa-eye color-muted"></i>
                                                 </a>
 
                                                 <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
                                                     data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                    onclick="enterEditMode();">
+                                                    onclick="populateForm({{ json_encode($vitals) }}); enterEditMode();">
                                                     <i class="fa fa-pencil color-muted"></i>
                                                 </a>
-                                                
+
                                             </td>
                                         </tr>
                                     @endforeach
-                                    
+
                                 </tbody>
                             </table>
                         </div>

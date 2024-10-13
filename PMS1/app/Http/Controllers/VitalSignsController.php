@@ -87,6 +87,45 @@ class VitalSignsController extends Controller
             return response()->json(['message' => 'Emergency Patient not found'], 404);
         }
 
-        return view('blank7', compact('vital_signs'));
+        return view('patient_vitals', [
+            'vital_signs' => $vital_signs
+        ]);
+    }
+
+    public function vital_signs_update(Request $request, $vital_signs_id)
+    {
+        info($request->all());
+        $validated = $request->validate([
+            'diagnosis_date' => 'required|date',
+            'diagnosis_time' => 'required',
+            'B_P' => 'required|string',
+            'heart_rate' => 'nullable|string',
+            'pulse_rate' => 'required|string',
+            'temperature' => 'required|string',
+            'oxygen_saturation' => 'nullable|string',
+            'pain_scale' => 'nullable|string',
+            'respiratory_rate' => 'required|string',
+            'respiratory_pattern' => 'nullable|string',
+            'weight' => 'nullable|string',
+            'height' => 'nullable|string',
+            'bmi' => 'nullable|string',
+            'vitals_note' => 'nullable|string',
+        ]);
+
+        // Convert 24-hour time to 12-hour format with AM/PM
+        if (!empty($validated['diagnosis_time'])) {
+            $dateTime = \DateTime::createFromFormat('H:i', $validated['diagnosis_time']);
+            if ($dateTime) {
+                $validated['diagnosis_time'] = $dateTime->format('g:i A');
+            }
+        }
+
+        // Convert dates to 'Y-m-d' format
+        $validated['diagnosis_date'] = $request->input('diagnosis_date');
+
+        $vital_signs = VitalSigns::findOrFail($vital_signs_id);
+        $vital_signs->update($validated);
+
+        return redirect()->back()->with('success', 'Vital signs updated successfully');
     }
 }

@@ -86,7 +86,7 @@ function validateInput(input, type) {
                     isValid = false;
                 }
                 break;
-            
+
             case 'height':
                 // Check if the input is a valid number (allowing decimals)
                 if (isNaN(numberValue)) {
@@ -181,7 +181,8 @@ function showSaveAlert() {
     }).then((result) => {
         if (result.isConfirmed) {
             // User clicked "Okay" - proceed with the save
-            document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual form ID
+            // document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual form ID
+            document.getElementById("vitalSignsForm").submit();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             // User clicked "Cancel" - no action taken
             Swal.fire('Cancelled', 'Your changes were not saved.', 'error');
@@ -269,11 +270,11 @@ function sortTable(columnIndex) {
     rows.sort((rowA, rowB) => {
         const cellA = rowA.querySelectorAll('td')[columnIndex].textContent;
         const cellB = rowB.querySelectorAll('td')[columnIndex].textContent;
-        
+
         // Parse the date from the string
         const dateA = new Date(cellA);
         const dateB = new Date(cellB);
-        
+
         // Handle NaN for invalid dates
         const comparison = isNaN(dateA) || isNaN(dateB) ? 0 : dateA - dateB;
 
@@ -342,7 +343,7 @@ window.onload = function() {
 
         // Loop through all input elements inside the form
         var inputs = form.querySelectorAll('input');
-        
+
         inputs.forEach(function (input) {
             // Clear fields except for date and time inputs
             if (input.type !== 'date' && input.type !== 'time' && input.type !== 'hidden') {
@@ -358,7 +359,7 @@ window.onload = function() {
     });
 
 
-    
+
 
     const tooltip = document.getElementById('tooltip');
     const normalRangesLabel = document.getElementById('normalRanges');
