@@ -33,7 +33,9 @@ Route::controller(VitalSignsController::class)->group(function() {
     Route::post('/emergency/vital-signs/store', 'vital_signs_store');
     Route::get('/emergency-patient/vital-signs/{vital_signs_id}', 'vital_signs_show')->name('patients.vital_signs_show');
     Route::get('/emergency-patient/vital-signs/edit/{vital_signs_id}', 'vital_signs_edit')->name('patients.vital_signs_edit');
+    Route::patch('/emergency/vital-signs/update/{vital_signs_id}', 'vital_signs_update')->name('vital_signs.vital_signs_update');
 });
+
 
 
 Route::get('/blank1', function () {

@@ -62,6 +62,18 @@ function enterEditMode() {
 }
 
 function showInputMode() {
+    const form = document.getElementById('vitalSignsForm');
+
+    // Reset form action to store data
+    form.action = '/emergency/vital-signs/store';  // Set action to store route
+
+    // Remove the hidden _method input for PATCH if it exists
+    const methodInput = document.getElementById('_method');
+    if (methodInput) {
+        methodInput.remove(); // Remove _method so it submits as POST
+    }
+
+    // Enable all inputs and selects for data input
     const inputs = document.querySelectorAll('.step-form-horizontal input, .step-form-horizontal textarea');
     inputs.forEach(input => {
         input.removeAttribute('readonly');
@@ -90,4 +102,73 @@ function showInputMode() {
 
     // Hide the Back to Input Mode button
     document.getElementById('backToInputButton').style.display = 'none'; // Hide Back to Input Mode button
+}
+
+
+function populateForm(vitals) {
+    // Set form action dynamically to the update route
+    const form = document.getElementById('vitalSignsForm');
+    form.action = `/emergency/vital-signs/update/${vitals.vital_signs_id}`;
+
+    let methodInput = document.getElementById('_method');
+    if (!methodInput) {
+        methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.id = '_method';
+        form.appendChild(methodInput);
+    }
+    methodInput.value = 'PATCH'; // Ensure the form method is PATCH for update
+
+    // Populate the form fields with the vital signs data
+    document.getElementById('datetime-input').value = vitals.diagnosis_date;
+    document.getElementById('datetime-input-time').value = convertTo24Hour(vitals.diagnosis_time);
+    document.getElementById('bpInput').value = vitals.B_P;
+    document.getElementById('hrInput').value = vitals.heart_rate;
+    document.getElementById('prInput').value = vitals.pulse_rate;
+    document.getElementById('tempInput').value = vitals.temperature;
+    document.getElementById('o2Input').value = vitals.oxygen_saturation;
+    document.getElementById('painScaleInput').value = vitals.pain_scale;
+    document.getElementById('respRateInput').value = vitals.respiratory_rate;
+    document.getElementById('respPatternInput').value = vitals.respiratory_pattern;
+    document.getElementById('weightInput').value = vitals.weight;
+    document.getElementById('heightInput').value = vitals.height;
+    document.getElementById('bmiInput').value = vitals.bmi;
+    document.getElementById('remarksInput').value = vitals.vitals_note;
+}
+
+// Helper function to convert 12-hour time to 24-hour format
+function convertTo24Hour(time) {
+    let [hours, minutes] = time.split(':');
+    let period = minutes.slice(-2); // Extract AM or PM
+    minutes = minutes.slice(0, -2).trim(); // Remove AM/PM from minutes
+    hours = parseInt(hours);
+
+    if (period === 'PM' && hours !== 12) {
+        hours += 12;
+    } else if (period === 'AM' && hours === 12) {
+        hours = 0;
+    }
+
+    // Format hours and minutes to HH:MM format
+    hours = hours < 10 ? '0' + hours : hours;
+    return `${hours}:${minutes}`;
+}
+
+function populateFormView(vitals) {
+    // Populate the form fields with the vital signs data
+    document.getElementById('datetime-input').value = vitals.diagnosis_date;
+    document.getElementById('datetime-input-time').value = convertTo24Hour(vitals.diagnosis_time);
+    document.getElementById('bpInput').value = vitals.B_P;
+    document.getElementById('hrInput').value = vitals.heart_rate;
+    document.getElementById('prInput').value = vitals.pulse_rate;
+    document.getElementById('tempInput').value = vitals.temperature;
+    document.getElementById('o2Input').value = vitals.oxygen_saturation;
+    document.getElementById('painScaleInput').value = vitals.pain_scale;
+    document.getElementById('respRateInput').value = vitals.respiratory_rate;
+    document.getElementById('respPatternInput').value = vitals.respiratory_pattern;
+    document.getElementById('weightInput').value = vitals.weight;
+    document.getElementById('heightInput').value = vitals.height;
+    document.getElementById('bmiInput').value = vitals.bmi;
+    document.getElementById('remarksInput').value = vitals.vitals_note;
 }
