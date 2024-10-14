@@ -201,9 +201,32 @@ input:checked + .slider:before{
 
 
 
+.tooltip {
+    display: none; /* Hidden by default */
+    position: absolute; /* Positioning */
+    background-color: #fff; /* Background color */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    z-index: 10; /* Ensure it appears above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+.view-logs-label {
+    cursor: pointer; /* Pointer cursor */
+    color: blue; /* Label color */
+    text-decoration: underline; /* Underline the label */
+}
 
+/* Table styling */
+#vitalSignsTable {
+    width: 100%; /* Ensure the table takes full width */
+    table-layout: auto; /* Allow the table to adjust based on content */
+}
 
-
+/* Optional: Add some styling for the logs section */
+#logsSection {
+    margin-top: 20px; /* Optional: add some spacing */
+}
 
 .vital-signs-header th, 
 .vital-signs-table-body td {
@@ -232,6 +255,19 @@ input:checked + .slider:before{
 .vital-signs-header th:hover {
     background-color: #f1f1f1; /* Change background color on hover */
 }
+
+.vital-sign-normal{
+    background-color: #d4edda !important;
+    color: #155724 !important;
+
+}
+
+.vital-sign-critical{
+    background-color: #f8d7da !important;
+    color: #721c24 !important;
+}
+
+
 
 
 

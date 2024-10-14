@@ -3,7 +3,7 @@
 <script src="{{ asset('js/charts_mode.js') }}"></script>
 <script src="{{ asset('js/charts_graph.js') }}"></script>
 <script src="{{ asset('js/charts_reminder.js') }}"></script>
-
+<script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -322,12 +322,12 @@
                                     @foreach ($emergency_patient->vital_signs as $vitals)
                                         <tr class="vital-signs-table-body">
                                             <td>{{ \Carbon\Carbon::parse($vitals->diagnosis_date)->format('m/d/Y') }}, {{ $vitals->diagnosis_time }}</td>
-                                            <td>{{ $vitals->B_P ?? 'N/A' }}</td>
-                                            <td>{{ $vitals->heart_rate ?? 'N/A' }}</td>
-                                            <td>{{ $vitals->temperature ?? 'N/A' }}</td>
-                                            <td>{{ $vitals->oxygen_saturation ?? 'N/A' }}</td>
+                                            <td data-bp="{{ $vitals->B_P ?? 'N/A' }}">{{ $vitals->B_P ?? 'N/A' }}</td>
+                                            <td data-hr="{{ $vitals->heart_rate ?? 'N/A' }}">{{ $vitals->heart_rate ?? 'N/A' }}</td>
+                                            <td data-temp="{{ $vitals->temperature ?? 'N/A' }}">{{ $vitals->temperature ?? 'N/A' }}</td>
+                                            <td data-o2="{{ $vitals->oxygen_saturation ?? 'N/A' }}">{{ $vitals->oxygen_saturation ?? 'N/A' }}</td>
                                             <td>{{ isset($vitals->pain_scale) ? $vitals->pain_scale . '/10' : 'N/A' }}</td>
-                                            <td>{{ $vitals->respiratory_rate ?? 'N/A' }}</td>
+                                            <td data-rr="{{ $vitals->respiratory_rate ?? 'N/A' }}">{{ $vitals->respiratory_rate ?? 'N/A' }}</td>
                                             <td>
                                                 @php
                                                     $latestVitalSign = $emergency_patient->vital_signs->last(); // or first()
