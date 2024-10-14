@@ -360,6 +360,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <canvas id="vitalSignsChart" style="display: none;"></canvas>
                     </div>
 
                     <div class="card-footer d-flex justify-content-end">
@@ -383,3 +384,4 @@
     </div>
 </div>
 
+    

@@ -102,7 +102,24 @@ function showInputMode() {
 
     // Hide the Back to Input Mode button
     document.getElementById('backToInputButton').style.display = 'none'; // Hide Back to Input Mode button
+
+    // Clear input fields except for date, time, and hidden inputs
+    const formInputs = form.querySelectorAll('input');
+    formInputs.forEach(function (input) {
+        if (input.type !== 'date' && input.type !== 'time' && input.type !== 'hidden') {
+            input.value = ''; // Clear the input value
+        }
+    });
+
+    // Clear textarea fields if applicable (e.g., remarks)
+    const textareas = form.querySelectorAll('textarea');
+    textareas.forEach(function (textarea) {
+        textarea.value = ''; // Clear textarea content
+    });
 }
+
+
+
 
 
 function populateForm(vitals) {
@@ -171,4 +188,21 @@ function populateFormView(vitals) {
     document.getElementById('heightInput').value = vitals.height;
     document.getElementById('bmiInput').value = vitals.bmi;
     document.getElementById('remarksInput').value = vitals.vitals_note;
+}
+
+
+function toggleLogs() {
+    var logsSection = document.getElementById('logsSection');
+    var vitalSignsTable = document.getElementById('vitalSignsTableContainer');
+
+    // Check if logs are currently visible
+    if (logsSection.style.display === "none" || logsSection.style.display === "") {
+        logsSection.style.display = "block"; // Show logs
+        vitalSignsTable.style.display = "none"; // Hide the table
+        document.getElementById('viewLogs').innerText = "View Vital Signs"; // Update label text
+    } else {
+        logsSection.style.display = "none"; // Hide logs
+        vitalSignsTable.style.display = "block"; // Show the table
+        document.getElementById('viewLogs').innerText = "View Logs"; // Update label text
+    }
 }
