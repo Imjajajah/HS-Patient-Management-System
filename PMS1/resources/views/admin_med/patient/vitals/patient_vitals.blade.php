@@ -291,7 +291,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Patient's Vital Signs</h4>
-                        
+
                         <div class="reminder-settings d-flex align-items-center">
                             <div class="toggle-container">
                                 <label for="reminderToggle">Reminder:</label>
@@ -307,15 +307,36 @@
                                 <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="card-body">
                         <div id="logsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
-                                <li>Jarrell entered new patient.</li>
-                                <li>Jarrell edited patient - John Doe. From BP: 120/80 to 130/90.</li>
+                                @forelse ($emergency_patient->emergency_logs as $log)
+                                    <li>
+                                        @php
+                                            $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
+                                            $user = $log->users;
+                                            $userRole = $user->authorization->role_name ?? 'N/A'; // Get role from authorization
+                                            $userName = $user->name ?? 'Unknown User';
+                                            $action = strtolower($log->action); // 'inputted' or 'edited'
+                                        @endphp
+
+                                        @if ($log->action === 'inputted')
+                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                            {{ $userRole }} - {{ $userName }} inputted new vital signs.
+                                        @else
+                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                            {{ $userRole }} - {{ $userName }} edited patient -
+                                            {{ $log->patient_name }}. {{ $log->message }}
+                                        @endif
+                                        <p></p>
+                                    </li>
+                                @empty
+                                    <li>No logs available for this patient.</li>
+                                @endforelse
                             </ul>
                         </div>
 
@@ -384,4 +405,3 @@
     </div>
 </div>
 
-    

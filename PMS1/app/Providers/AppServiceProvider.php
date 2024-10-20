@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
+use App\Models\Notification;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Share unread notifications with all views
+        View::composer('*', function ($view) {
+            // Check if the current route is 'notifications'
+            $currentRoute = Route::currentRouteName();
+
+            $notifications = ($currentRoute === 'notifications.allNotifications')
+                ? Notification::orderBy('created_at', 'desc')->get() // Show all notifications
+                : Notification::whereNull('read_at')->orderBy('created_at', 'desc')->get(); // Show unread notifications
+
+            $view->with('notifications', $notifications);
+        });
     }
 }

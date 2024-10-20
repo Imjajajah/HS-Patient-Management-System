@@ -29,4 +29,9 @@ class EmergencyPatient extends Model
     {
         return $this->hasMany(VitalSigns::class, 'emergency_patient_id');
     }
+
+    public function emergency_logs()
+    {
+        return $this->hasMany(EmergencyLogs::class, 'emergency_patient_id');
+    }
 }

@@ -28,7 +28,7 @@ class UserController extends Controller
         if(Auth::attempt($validated)){
             $request->session()->regenerate();
 
-            return redirect('/dashboard')->with('message', 'Welcome back!');
+            return redirect('/emergency-records')->with('message', 'Welcome back!');
         }
         return back()->withErrors(['email' => 'Login failed'])->onlyInput('email');
     }
@@ -39,7 +39,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message', 'Logout successful');
+        return redirect('/login')->with('message', 'Logout successful');
     }
 
     // Controller action when adding a patient or editing info

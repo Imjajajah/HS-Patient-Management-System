@@ -27,9 +27,10 @@
                                             <tr>
                                                 <td>{{ $emergency_patient->emergency_last_name }}</td>
                                                 <td>{{ $emergency_patient->emergency_first_name }}</td>
-                                                <td>{{ $emergency_patient->status }}</span></td>  
+                                                <td>10</td>
+                                                <td>{{ $emergency_patient->status }}</span></td>
                                                 <td>{{ $emergency_patient->priority_level }}</span></td>
-                                                
+
                                                 <td>
                                                     <a href="javascript:void()" class="btn btn-square btn-primary mr-4"
                                                         data-toggle="tooltip" type="button" data-placement="top" title="View"

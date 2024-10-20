@@ -316,7 +316,7 @@
                                             <!-- <span class="form-required text-danger">*</span> -->
                                         </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="assignBed" name="B_P" placeholder="Bed assignment">
+                                            <input type="text" class="form-control" id="assignBed" name="" placeholder="Bed assignment">
                                         </div>
                                     </div>
                                 </div>
