@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(UserController::class)->group(function() {
     Route::get('/', 'login')->name('login')->middleware('guest');
+    Route::get('/login', 'login')->name('login')->middleware('guest');
     Route::post('/login/process', 'process');
     Route::post('/logout', 'logout');
 });
