@@ -10,10 +10,10 @@
 <div class="card-body">
 
 
-    <form action="" id="diagnosisForm" class="step-form-horizontal" method="POST" onsubmit="">
+    <form action="/emergency/diagnosis-and-procedure/store" id="diagnosisForm" class="step-form-horizontal" method="POST" onsubmit="">
     @csrf
-   
-   
+
+
     <!-- doctors-evaluation -->
     <div class="doctors-evaluation">
 
@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <button class="add-button" onclick="addTextField(event, 'impairmentInput')">+ Add Impairment</button>
                     <div class="input-wrapper" id="impairments-container">
-                        <textarea id="impairmentInput" class="impairments-evaluation-input" data-toggle="tooltip" placeholder="" rows="1" style="display:none;"></textarea>
+                        <textarea id="impairmentInput" class="impairments-evaluation-input" name="impairment" data-toggle="tooltip" placeholder="" rows="1" style="display:none;"></textarea>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="col-md-12">
                     <button class="add-button" onclick="addTextField(event, 'activityRestrictionInput')">+ Add Activity Restriction</button>
                     <div class="input-wrapper" id="activity-restrictions-container">
-                        <textarea id="activityRestrictionInput" class="activity-restriction-input" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
+                        <textarea id="activityRestrictionInput" class="activity-restriction-input" name="activity_restriction" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="col-md-12">
                     <button class="add-button" onclick="addTextField(event, 'personalFactorInput')">+ Add Personal Factor</button>
                     <div class="input-wrapper" id="personal-factors-container">
-                        <textarea id="personalFactorInput" class="personal-factor-input" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
+                        <textarea id="personalFactorInput" class="personal-factor-input" name="personal_factor" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="col-md-12">
                     <button class="add-button" onclick="addTextField(event, 'environmentalFactorInput')">+ Add Environmental Factor</button>
                     <div class="input-wrapper" id="environmental-factors-container">
-                        <textarea id="environmentalFactorInput" class="environmental-factor-input" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
+                        <textarea id="environmentalFactorInput" class="environmental-factor-input" name="environmental_factor" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
                     </div>
                 </div>
             </div>
@@ -90,45 +90,45 @@
     <!--End of doctors-evaluation -->
 
 
-    
+
 
     <!-- DIAGNOSIS Pattern -->
     <div class="diagnosis-remarks">
-       
+
         <div class="col-md-3">
             <h5 class="diagnosis-text">Diagnosis</h5>
         </div>
-       
+
         <div class="row">
             <div class="col-md-12">
-                <textarea id="diagnosisInput" class="diagnosis-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea id="diagnosisInput" class="diagnosis-input" name="diagnosis" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
-       
+
     </div>
     <!--End of DIAGNOSIS Pattern -->
 
     <!-- PROGNOSIS Pattern -->
     <div class="prognosis-remarks">
-       
+
         <div class="col-md-3">
             <h5 class="prognosis-text">Prognosis</h5>
         </div>
-       
+
         <div class="row">
             <div class="col-md-12">
-                <textarea id="prognosisInput" class="prognosis-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea id="prognosisInput" class="prognosis-input" name="prognosis" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
-       
+
     </div>
-    <!--End of PROGNOSIS Pattern -->    
+    <!--End of PROGNOSIS Pattern -->
 
 
 
 
 
-        
+
 
 
 

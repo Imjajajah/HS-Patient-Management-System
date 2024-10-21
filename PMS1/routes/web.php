@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\NotificationController;
 
+use App\Http\Controllers\DiagnosisAndProcedureController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
@@ -44,6 +45,10 @@ Route::controller(VitalSignsController::class)->group(function() {
 Route::controller(NotificationsController::class)->group(function() {
     Route::get('/notifications', 'allNotifications')->name('notifications.allNotifications');
     Route::post('/notifications/read/{id}', 'markAsRead')->name('notifications.markAsRead');
+});
+
+Route::controller(DiagnosisAndProcedureController::class)->group(function() {
+    Route::post('/emergency/diagnosis-and-procedure/store', 'diagnosis_and_procedure_store');
 });
 
 
