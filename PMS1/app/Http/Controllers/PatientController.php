@@ -508,7 +508,7 @@ class PatientController extends Controller
 
     public function emergency_patient_show($emergency_patient_id)
     {
-        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information', 'emergency_logs.users.authorization'])->findOrFail($emergency_patient_id);
+        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information', 'emergency_logs.users.authorization', 'diagnosis_and_procedures.users'])->findOrFail($emergency_patient_id);
 
 
         if (!$emergency_patient) {

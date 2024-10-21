@@ -33,7 +33,7 @@
                 <div class="card-input">
 
                     @include('admin_med.patient.chart_tabs.doctor.diagnosis_input')
-                 
+
 
                 </div>
             </div>
@@ -89,30 +89,47 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                            onclick="makeFormReadonly();">
-                                            <i class="fa fa-eye color-muted"></i>
-                                        </a>
-                                        
-                                       
-                                        <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                            onclick="enterEditMode();">
-                                            <i class="fa fa-pencil color-muted"></i>
-                                        </a>
-                                        
-                                    </td>
+                                    @if ($emergency_patient->diagnosis_and_procedures && $emergency_patient->diagnosis_and_procedures->isNotEmpty())
+                                        @foreach ($emergency_patient->diagnosis_and_procedures as $procedure)
+                                            <tr>
+                                                <td>{{ \Carbon\Carbon::parse($procedure->diagnosis_and_procedure_date)->format('m/d/Y') }},
+                                                    {{ $procedure->diagnosis_and_procedure_time }}
+                                                </td>
+                                                <td>{{ $procedure->users->name ?? 'N/A' }}</td> <!-- Doctor's Name -->
+                                                <td>
+                                                    {{
+                                                        ($procedure->impairment ?? '') .
+                                                        ($procedure->activity_restriction ? ', ' . $procedure->activity_restriction : '') .
+                                                        ($procedure->personal_factor ? ', ' . $procedure->personal_factor : '') .
+                                                        ($procedure->environmental_factor ? ', ' . $procedure->environmental_factor : '')
+                                                    }}
+                                                </td>
+                                                <td>{{ $procedure->prognosis }}</td>
+                                                <td>{{ $procedure->diagnosis }}</td>
+                                                <td>
+                                                    <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                        data-toggle="tooltip" type="button" data-placement="top" title="View"
+                                                        onclick="">
+                                                        <i class="fa fa-eye color-muted"></i>
+                                                    </a>
+
+                                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
+                                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                                        onclick="">
+                                                        <i class="fa fa-pencil color-muted"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="6">No diagnosis and procedure records found.</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
-                        
+
 
                     </div>
 

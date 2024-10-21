@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Notification::class, 'user_id');
     }
+
+    public function diagnosis_and_procedures()
+    {
+        return $this->hasMany(DiagnosisAndProcedure::class, 'user_id');
+    }
 }
