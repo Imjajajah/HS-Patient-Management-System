@@ -314,15 +314,11 @@
                                     <div class="form-group">
                                         <label class="text-label">Assign Bed</label>
                                         <div class="input-group">
-<<<<<<< HEAD
                                          
                                             <button type="button" id="registerBtn" class="btn btn-square btn-outline-primary btn-lg"
                                             data-toggle="modal" data-target="#bedModal">{{ __('Select Bed') }}</button>
                                             @include('bed_assignment')
                                            
-=======
-                                            <input type="text" class="form-control" id="assignBed" name="" placeholder="Bed assignment">
->>>>>>> c616c9221c755583e105968da5a630a6ae5066fe
                                         </div>
                                     </div>
                                 </div>
