@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmergencyPatient;
+use App\Models\User;
+use App\Models\Authorizations;
+use App\Models\EmergencyLogs;
+use App\Models\Notification;
 use App\Models\VitalSigns;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Import Auth facade
 
 class VitalSignsController extends Controller
 {
@@ -43,6 +49,20 @@ class VitalSignsController extends Controller
         // Initialize emergencyPatientId
         $emergencyPatientId = $request->input('emergency_patient_id');
 
+        // Fetch the emergency patient data
+        $emergencyPatient = EmergencyPatient::findOrFail($emergencyPatientId);
+
+        // Construct the full patient name
+        $patientName = implode(' ', array_filter([
+            $emergencyPatient->emergency_first_name,
+            $emergencyPatient->emergency_middle_name,
+            $emergencyPatient->emergency_last_name,
+            $emergencyPatient->emergency_extension,
+        ]));
+
+        // Fetch the currently logged-in user
+        $user = Auth::user();
+
         // Create Vital Signs
         VitalSigns::create([
             'diagnosis_date' => $validated['diagnosis_date'],
@@ -62,9 +82,30 @@ class VitalSignsController extends Controller
             'emergency_patient_id' => $emergencyPatientId,
         ]);
 
-        $request->session()->flash('success', 'Vital Signs was added successfully!');
+        // Prepare logs for the newly added vital signs
+        $log = [
+            'emergency_date_logs' => $validated['diagnosis_date'],
+            'emergency_time_logs' => $validated['diagnosis_time'],
+            'patient_name' => $patientName,
+            'action' => 'inputted',
+            'field' => 'All',  // Since all fields are new
+            'old_value' => json_encode($validated),  // Same as the new value
+            'new_value' => json_encode($validated),  // Same as the old value
+            'message' => "{$user->name} inputted new vital signs.",
+            'user_id' => $user->user_id,
+            'emergency_patient_id' => $emergencyPatientId,
+        ];
+        // Store the log in the database
+        EmergencyLogs::create($log);
 
-        return redirect()->back();
+        //Getting Notification
+        Notification::create([
+            'notification_type' => 'success',
+            'notification_message' => 'Vital was added successfully. Name: ' . $patientName,
+            'user_id' => $user->user_id, // Set the user_id from the authenticated user
+        ]);
+
+        return redirect()->back()->with('success', 'Vital was added successfully');
     }
 
 
@@ -87,7 +128,7 @@ class VitalSignsController extends Controller
             return response()->json(['message' => 'Emergency Patient not found'], 404);
         }
 
-        return view('patient_vitals', [
+        return view('patient_charts', [
             'vital_signs' => $vital_signs
         ]);
     }
@@ -124,7 +165,60 @@ class VitalSignsController extends Controller
         $validated['diagnosis_date'] = $request->input('diagnosis_date');
 
         $vital_signs = VitalSigns::findOrFail($vital_signs_id);
+
+        // Fetch the currently logged-in user
+        $user = Auth::user(); // Directly get the currently authenticated user
+
+        // Assuming the emergency patient ID is available in the route
+        $emergencyPatient = EmergencyPatient::findOrFail($vital_signs->emergency_patient_id);
+
+        // Construct the full patient name
+        $patientName = implode(' ', array_filter([
+            $emergencyPatient->emergency_first_name,
+            $emergencyPatient->emergency_middle_name,
+            $emergencyPatient->emergency_last_name,
+            $emergencyPatient->emergency_extension
+        ]));
+
+        // Prepare the logs array to capture all changes
+        $logs = [];
+
+         // Compare each field and log changes
+        foreach ($validated as $key => $newValue) {
+            $oldValue = $vital_signs->$key;
+
+            // Only log if there's a change
+            if ($oldValue !== $newValue) {
+                $logs[] = [
+                    'emergency_date_logs' => $vital_signs->diagnosis_date,
+                    'emergency_time_logs' => $vital_signs->diagnosis_time,
+                    'patient_name' => $patientName,
+                    'action' => 'edited', // or 'inputted' based on your needs
+                    'field' => ucfirst(str_replace('_', ' ', $key)), // Convert 'B_P' to 'B P'
+                    'old_value' => $oldValue,
+                    'new_value' => $newValue,
+                    'message' => "Field '{$key}' changed from '{$oldValue}' to '{$newValue}'.",
+                    'user_id' => $user->user_id, // Get the currently logged-in user's ID
+                    'emergency_patient_id' => $emergencyPatient->emergency_patient_id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+        }
+
+        // Insert all logs into the database
+        if (!empty($logs)) {
+            EmergencyLogs::insert($logs);
+        }
+
         $vital_signs->update($validated);
+
+        //Getting Notification
+        Notification::create([
+            'notification_type' => 'success',
+            'notification_message' => 'Vital signs updated successfully. Name: ' . $patientName,
+            'user_id' => $user->user_id, // Set the user_id from the authenticated user
+        ]);
 
         return redirect()->back()->with('success', 'Vital signs updated successfully');
     }

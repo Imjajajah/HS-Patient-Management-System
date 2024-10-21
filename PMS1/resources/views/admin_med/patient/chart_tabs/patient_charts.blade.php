@@ -6,6 +6,7 @@
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -36,7 +37,7 @@
                         <h4 class="input-header" id="inputHeader">Input Mode</h4>
                     </div>
                     <!-- Card body for vital signs input-->
-                    
+
                     <div class="card-body">
 
 
@@ -59,8 +60,12 @@
                         </div>
 
 
-                        <form action="/emergency/vital-signs/store" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
+                        <form action="{{ isset($vital_sign) ? route('vital_signs.vital_signs_update', $vital_sign->vital_signs_id) : '/emergency/vital-signs/store' }}" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
                         @csrf
+                        @if(isset($vital_sign))
+                            @csrf
+                            @method('PATCH') <!-- This will be added only if editing -->
+                        @endif
                         <!-- Id and Date Section -->
                         <div class="id-and-date">
 
@@ -97,7 +102,7 @@
                             <div class="row bp-hr-pr-text">
                                 <div class="col-md-4">
                                     <h5 class="bp-text">BP<span class="form-required text-danger">*</span></h5>
-                                    
+
                                 </div>
                                 <div class="col-md-4">
                                     <h5 class="hr-text">HR</h5>
@@ -250,7 +255,7 @@
                         <!--End of Remarks Pattern -->
                         <input type="hidden" name="emergency_patient_id" value="{{ $emergency_patient->emergency_patient_id }}">
 
-                 
+
 
                         <!-- Footer Buttons -->
                         <div class="card-footer d-flex justify-content-end">
@@ -259,11 +264,11 @@
 
                             <button type="button" id="cancel-btn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
 
-                            
+
                             <button type="submit" class="btn btn-primary ms-3" id="editSubmit" style="display: none;" onclick="showSaveAlert(); return false;">
                                 Save Changes
                             </button>
-                            
+
                             <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
 
 
@@ -276,16 +281,20 @@
                 </div>
             </div>
 
+
+
+
+
+
             <!-- Table in the left side -->
             <div class="col-xl-8 col-xxl-12">
                 <div class="card">
-
                     <div class="card-header">
                         <h4 class="card-title">Patient's Vital Signs</h4>
 
                         <div class="reminder-settings d-flex align-items-center">
                             <div class="toggle-container">
-                                <label for="reminderToggle">Reminder Mode:</label>
+                                <label for="reminderToggle">Reminder:</label>
                                 <label class="switch">
                                     <input type="checkbox" id="reminderToggle" checked>
                                     <span class="slider ">
@@ -298,17 +307,44 @@
                                 <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
                             </div>
                         </div>
-        
+
                     </div>
-                   
+
                     <div class="card-body">
-                        <div class="basic-form">
-                           
-                            <table class="table-left" id="vitalSignsTable" data-sort-dir="asc">
+                        <div id="logsSection" style="display: none;">
+                            <h5>Activity Logs</h5>
+                            <ul id="logEntries">
+                                @forelse ($emergency_patient->emergency_logs as $log)
+                                    <li>
+                                        @php
+                                            $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
+                                            $user = $log->users;
+                                            $userRole = $user->authorization->role_name ?? 'N/A'; // Get role from authorization
+                                            $userName = $user->name ?? 'Unknown User';
+                                            $action = strtolower($log->action); // 'inputted' or 'edited'
+                                        @endphp
+
+                                        @if ($log->action === 'inputted')
+                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                            {{ $userRole }} - {{ $userName }} inputted new vital signs.
+                                        @else
+                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                            {{ $userRole }} - {{ $userName }} edited patient -
+                                            {{ $log->patient_name }}. {{ $log->message }}
+                                        @endif
+                                        <p></p>
+                                    </li>
+                                @empty
+                                    <li>No logs available for this patient.</li>
+                                @endforelse
+                            </ul>
+                        </div>
+
+                        <div id="vitalSignsTableContainer">
+                            <table class="table-left" id="vitalSignsTable">
                                 <thead class="vital-signs-table-header">
                                     <tr class="vital-signs-header">
-                                        <!-- Clickable headers for sorting -->
-                                        <th onclick="sortTable(0)">DiagnosisDate &#x25B2;&#x25BC;</th>
+                                        <th onclick="sortTable(0)">Diagnosis Date &#x25B2;&#x25BC;</th>
                                         <th>BP</th>
                                         <th>HR</th>
                                         <th>Temp</th>
@@ -329,39 +365,39 @@
                                             <td>{{ isset($vitals->pain_scale) ? $vitals->pain_scale . '/10' : 'N/A' }}</td>
                                             <td data-rr="{{ $vitals->respiratory_rate ?? 'N/A' }}">{{ $vitals->respiratory_rate ?? 'N/A' }}</td>
                                             <td>
-                                                @php
-                                                    $latestVitalSign = $emergency_patient->vital_signs->last(); // or first()
-                                                @endphp
-                                               <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                                     data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                    onclick="makeFormReadonly();">
+                                                    onclick="populateFormView({{ json_encode($vitals) }}); makeFormReadonly();">
                                                     <i class="fa fa-eye color-muted"></i>
                                                 </a>
-
                                                 <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
                                                     data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                    onclick="enterEditMode();">
+                                                    onclick="populateForm({{ json_encode($vitals) }}); enterEditMode();">
                                                     <i class="fa fa-pencil color-muted"></i>
                                                 </a>
-                                                
                                             </td>
                                         </tr>
                                     @endforeach
-                                    
                                 </tbody>
                             </table>
                         </div>
                         <canvas id="vitalSignsChart" style="display: none;"></canvas>
                     </div>
 
-                    <!-- End of Table card body -->
                     <div class="card-footer d-flex justify-content-end">
+                        <div class="tooltip-container" style="position: relative; display: inline-block;">
+                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="toggleLogs()">
+                                <strong>View Logs</strong>
+                            </label>
+                        </div>
+
+
                         <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
                         <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
                     </div>
-
                 </div>
             </div>
+
             <!-- End of Table in the left side -->
 
         </div>
