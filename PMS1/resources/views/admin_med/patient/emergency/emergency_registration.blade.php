@@ -312,14 +312,19 @@
 
                                 <div class="col-lg-3 mb-3">
                                     <div class="form-group">
-                                        <label class="text-label">Assign Bed
-                                            <!-- <span class="form-required text-danger">*</span> -->
-                                        </label>
+                                        <label class="text-label">Assign Bed</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="assignBed" name="B_P" placeholder="Bed assignment">
+                                         
+                                            <button type="button" id="registerBtn" class="btn btn-square btn-outline-primary btn-lg"
+                                            data-toggle="modal" data-target="#bedModal">{{ __('Select Bed') }}</button>
+                                            @include('bed_assignment')
+                                           
                                         </div>
                                     </div>
                                 </div>
+
+                                
+
                             </div>
                         </section>
                     </div>
