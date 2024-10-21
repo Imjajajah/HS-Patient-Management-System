@@ -1,5 +1,6 @@
 
 
+
 @extends('admin_med.layout.index')
 
 @section('med_content')
@@ -26,38 +27,36 @@
                                 </div>
                             </div>
 
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#patientInfo1" role="tab">Patient Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#vitalSigns" role="tab">Vital Signs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#diagnosisAndProcedure" role="tab">Diagnosis and Procedure</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#doctorsOrder" role="tab">Doctor's Order</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#nursesNotes" role="tab">Nurse's Notes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#intakeAndOutput" role="tab">Intake & Output</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#medicationLog" role="tab">Medication Log</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ivFluid" role="tab">IV Fluid</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#charges" role="tab">Charges</a>
+                                </li>
+                            </ul>
 
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#patientInfo1">Patient Information</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#vitalSigns">Vital Signs</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#diagnosisAndProcedure">Diagnosis and Procedure</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#doctorsOrder">Doctor's Order</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#nursesNotes">Nurse's Notes</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#intakeAndOutput">Intake & Output</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#medicationLog">Medication Log</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ivFluid">IV Fluid</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#charges">Charges</a>
-                                </li>
 
 
 
@@ -74,18 +73,17 @@
                                  <!-- End of Patient Info Tab -->
 
                                 <!-- Vital Signs Tab -->
-                                <div class="tab-pane fade" id="vitalSigns">
-                                    {{-- @include('admin_med.patient.vitals.patient_vitals') --}}
-                                    @include('admin_med.patient.chart_tabs.patient_charts')
+                                <div class="tab-pane fade" id="vitalSigns" role="tabpanel">
+                                    <div class="pt-4">
+                                        @include('admin_med.patient.chart_tabs.patient_charts')
+                                    </div>
                                 </div>
                                 <!-- End of Vital Signs Tab -->
 
-                                <div class="tab-pane fade" id="diagnosisAndProcedure">
+                                <div class="tab-pane fade" id="diagnosisAndProcedure" role="tabpanel">
                                     <div class="pt-4">
-
-
+                                        @include('admin_med.patient.chart_tabs.patient_diagnosis')
                                     </div>
-
                                 </div>
 
 

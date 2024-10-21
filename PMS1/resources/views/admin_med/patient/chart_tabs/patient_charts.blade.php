@@ -32,15 +32,11 @@
             <div class="col-xl-4 col-xxl-12">
                 <div class="card-input">
 
-                    @include('admin_med.patient.chart_tabs.nurse_vs_input')
+                    @include('admin_med.patient.chart_tabs.nurse.nurse_vs_input')
                     {{-- @include('admin_med.patient.chart_tabs.doc_vs') --}}
 
                 </div>
             </div>
-
-
-
-
 
 
             <!-- Table in the left side -->
@@ -51,23 +47,23 @@
 
                         {{-- Show the register button only if the user has an admin or medical staff role --}}
                         @if (auth()->check() && in_array(auth()->user()->authorization->role_name, ['Admin', 'Medical staff']))
-                        <div class="reminder-settings d-flex align-items-center">
-                            <div class="toggle-container">
-                                <label for="reminderToggle">Reminder:</label>
-                                <label class="switch">
-                                    <input type="checkbox" id="reminderToggle" checked>
-                                    <span class="slider ">
-                                        <span class="slider-text" id="sliderText">Auto</span>
-                                    </span>
-                                </label>
-                            </div>
-                            @endif
+                            <div class="reminder-settings d-flex align-items-center">
+                                <div class="toggle-container">
+                                    <label for="reminderToggle">Reminder:</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="reminderToggle" checked>
+                                        <span class="slider ">
+                                            <span class="slider-text" id="sliderText">Auto</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                
 
-                            <div id="manualReminder" class="ms-3">
-                                <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
+                                <div id="manualReminder" class="ms-3">
+                                    <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
+                                </div>
                             </div>
-                        </div>
-
+                        @endif
 
                     </div>
 
