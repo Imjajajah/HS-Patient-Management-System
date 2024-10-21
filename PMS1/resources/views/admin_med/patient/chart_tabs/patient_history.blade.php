@@ -1,49 +1,15 @@
-<link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
-<script src="{{ asset('js/patient_charts.js') }}"></script>
-<script src="{{ asset('js/charts_mode.js') }}"></script>
-<script src="{{ asset('js/charts_graph.js') }}"></script>
-<script src="{{ asset('js/charts_reminder.js') }}"></script>
-<script src="{{ asset('js/charts_vital_colors.js') }}"></script>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
-
 <div>
     <div>
-
-        <div class="row justify-content-center my-4">
-            <div class="col-lg-12">
-                <div class="row align-items-center ">
-
-                </div>
-            </div>
-        </div>
-
         <div class="row grid">
-            <div class="col-xl-4 col-xxl-12">
-                <div class="card-input">
-
-                    @include('admin_med.patient.chart_tabs.doctor.diagnosis_input')
-                 
-
-                </div>
-            </div>
-
-
+        
             <!-- Table in the left side -->
-            <div class="col-xl-8 col-xxl-12">
+            <div class="col-xl-12 col-xxl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Patient's Vital Signs</h4>
+                        <h4 class="card-title">Patient's Medical History</h4>
                     </div>
 
                     <div class="card-body">
@@ -76,24 +42,24 @@
                             </ul>
                         </div>
 
-                        <div id="diagnosis-and-procedure-container">
-                            <table class="table-left" id="diagnosisAndProcedureTable">
-                                <thead class="diagnosis-and-procedure-header">
-                                    <tr class="diagnosis-and-procedure-header">
-                                        <th onclick="sortTable(0)">Diagnosis Date &#x25B2;&#x25BC;</th>
-                                        <th>Doctor</th>
-                                        <th>Evaluation</th>
-                                        <th>Prognosis</th>
-                                        <th>Diagnosis</th>
+                        <div id="medical-history-container">
+                            <table class="medical-history-table" id="medicalHistoryTable">
+                                <thead class="medical-history-header">
+                                    <tr class="medical-history-header">
+                                        <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
+                                        <th>Diagnoses</th>
+                                        <th>Treatments</th>
+                                        <th>Surgeries</th>
+                                        <th>Medications</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>10/10/2024</td>
+                                    <td>Diagnoses</td>
+                                    <td>Treatments</td>
+                                    <td>Surgeries</td>
+                                    <td>Medications</td>
                                     <td>
                                         <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                             data-toggle="tooltip" type="button" data-placement="top" title="View"

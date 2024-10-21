@@ -219,8 +219,6 @@
         <!-- End of Remarks Input -->
     </div>
     <!--End of Remarks Pattern -->
-
-    
     <input type="hidden" name="emergency_patient_id" value="{{ $emergency_patient->emergency_patient_id }}">
 
 

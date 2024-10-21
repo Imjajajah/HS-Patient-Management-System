@@ -38,14 +38,15 @@
                                     <a class="nav-link" data-toggle="tab" href="#diagnosisAndProcedure" role="tab">Diagnosis and Procedure</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#doctorsOrder" role="tab">Doctor's Order</a>
+                                    <a class="nav-link" data-toggle="tab" href="#medicalHistory" role="tab">Medical History</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#doctorsAssessment" role="tab">Assessment</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#nursesNotes" role="tab">Nurse's Notes</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#intakeAndOutput" role="tab">Intake & Output</a>
-                                </li>
+                               
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#medicationLog" role="tab">Medication Log</a>
                                 </li>
@@ -88,13 +89,21 @@
 
 
 
-                                <div class="tab-pane fade" id="doctorsOrder">
+                                <div class="tab-pane fade" id="medicalHistory">
                                     <div class="pt-4">
+                                        @include('admin_med.patient.chart_tabs.patient_history')
+                                    </div>
 
+                                </div>
+
+                                <div class="tab-pane fade" id="doctorsAssessment">
+                                    <div class="pt-4">
+                                        @include('admin_med.patient.chart_tabs.patient_assessment')
 
                                     </div>
 
                                 </div>
+
 
                                 <div class="tab-pane fade" id="nursesNotes">
                                     <div class="pt-4">
@@ -104,13 +113,7 @@
 
                                 </div>
 
-                                <div class="tab-pane fade" id="intakeAndOutput">
-                                    <div class="pt-4">
-
-
-                                    </div>
-
-                                </div>
+                                
 
                                 <div class="tab-pane fade" id="medicationLog">
                                     <div class="pt-4">

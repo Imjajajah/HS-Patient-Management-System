@@ -32,8 +32,8 @@
             <div class="col-xl-4 col-xxl-12">
                 <div class="card-input">
 
-                    @include('admin_med.patient.chart_tabs.doctor.diagnosis_input')
-                 
+                    @include('admin_med.patient.chart_tabs.doctor.assessment')
+                    
 
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="col-xl-8 col-xxl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Patient's Vital Signs</h4>
+                        <h4 class="card-title">Assessment History</h4>
                     </div>
 
                     <div class="card-body">
@@ -76,43 +76,43 @@
                             </ul>
                         </div>
 
-                        <div id="diagnosis-and-procedure-container">
-                            <table class="table-left" id="diagnosisAndProcedureTable">
-                                <thead class="diagnosis-and-procedure-header">
-                                    <tr class="diagnosis-and-procedure-header">
-                                        <th onclick="sortTable(0)">Diagnosis Date &#x25B2;&#x25BC;</th>
+                        <div id="vitalSignsTableContainer">
+                            <table class="table-left" id="vitalSignsTable">
+                                <thead class="vital-signs-table-header">
+                                    <tr class="vital-signs-header">
+                                        <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
                                         <th>Doctor</th>
-                                        <th>Evaluation</th>
-                                        <th>Prognosis</th>
-                                        <th>Diagnosis</th>
+                                        <th>Summary</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                            onclick="makeFormReadonly();">
-                                            <i class="fa fa-eye color-muted"></i>
-                                        </a>
-                                        
-                                       
-                                        <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                            onclick="enterEditMode();">
-                                            <i class="fa fa-pencil color-muted"></i>
-                                        </a>
-                                        
-                                    </td>
+                                    
+                                    <tr class="vital-signs-table-body">
+                                        <td>Date</td>
+                                        <td>Doctor</td>
+                                        <td>Summary</td>
+                                        <td>
+                                            <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="View"
+                                                onclick="">
+                                                <i class="fa fa-eye color-muted"></i>
+                                            </a>
+                                            {{-- Show the register button only if the user has an admin or medical staff role --}}
+                                            
+                                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                                onclick="">
+                                                <i class="fa fa-pencil color-muted"></i>
+                                            </a>
+                                           
+                                        </td>
+                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
-                        
+                        <canvas id="vitalSignsChart" style="display: none;"></canvas>
 
                     </div>
 
@@ -124,6 +124,7 @@
                         </div>
 
                         <div>
+                            <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
                             <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
                         </div>
 
