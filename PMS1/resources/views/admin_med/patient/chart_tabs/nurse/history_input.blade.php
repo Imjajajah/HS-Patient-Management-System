@@ -7,7 +7,7 @@
 <div class="card-body">
 
 
-    <form action="" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
+    <form action="/emergency/ep-medical-history/store" method="POST" onsubmit="">
     @csrf
 
     <!-- Id and Date Section -->
@@ -29,17 +29,17 @@
         <div class="row id-and-date-input">
 
             <div class="col-md-6">
-                <input type="date" name="diagnosis_date" id="datetime-input" class="form-control date-input">
+                <input type="date" name="ep_medical_history_date" id="datetime-input" class="form-control date-input">
             </div>
             <div class="col-md-6">
-                <input type="time" name="diagnosis_time" id="datetime-input-time" class="form-control date-input">
+                <input type="time" name="ep_medical_history_time" id="datetime-input-time" class="form-control date-input">
             </div>
         </div>
         <!-- End of Id and Date Section Input -->
 
     </div>
 
-   
+
 
     <div class="diagnosis-remarks">
         <div class="col-md-4">
@@ -47,7 +47,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="diagnosis" id="diagnosisInput" class="diagnosis-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_diagnosis" id="diagnosisInput" class="diagnosis-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="treatment" id="treatmentInput" class="treatment-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_treatment" id="treatmentInput" class="treatment-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="surgeries" id="surgeriesInput" class="surgeries-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_surgery" id="surgeriesInput" class="surgeries-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
     </div>
@@ -79,12 +79,13 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="medication" id="medicationInput" class="medication-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_medications" id="medicationInput" class="medication-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
     </div>
-    
-   
+
+    <input type="hidden" name="emergency_patient_id" value="{{ $emergency_patient->emergency_patient_id }}">
+
 
     <!-- Footer Buttons -->
     <div class="card-footer d-flex justify-content-end">

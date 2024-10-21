@@ -17,6 +17,8 @@ class DiagnosisAndProcedureController extends Controller
         info($request->all());
 
         $validated = $request->validate([
+            'diagnosis_and_procedure_date' => 'required|date', // Ensure a valid date is provided
+            'diagnosis_and_procedure_time' => 'required|date_format:H:i', // Ensure time is in the correct format
             'impairment' => 'nullable|string|max:255',
             'activity_restriction' => 'nullable|string|max:255',
             'personal_factor' => 'nullable|string|max:255',
@@ -25,16 +27,16 @@ class DiagnosisAndProcedureController extends Controller
             'prognosis' => 'required|string|min:5|max:500', // Mandatory with length limits
         ]);
 
-        // Set the current date and time using Carbon
-        $validated['diagnosis_and_procedure_date'] = Carbon::now()->format('Y-m-d');
-        $validated['diagnosis_and_procedure_time'] = Carbon::now()->format('H:i'); // Store 24-hour format initially
-
-        // Convert 24-hour time to 12-hour format with AM/PM for display
-        $dateTime = Carbon::createFromFormat('H:i', $validated['diagnosis_and_procedure_time']);
-        $validated['diagnosis_and_procedure_time_display'] = $dateTime->format('g:i A');
+        // Convert 24-hour time to 12-hour format with AM/PM
+        if (!empty($validated['diagnosis_and_procedure_time'])) {
+            $dateTime = \DateTime::createFromFormat('H:i', $validated['diagnosis_and_procedure_time']);
+            if ($dateTime) {
+                $validated['diagnosis_and_procedure_time'] = $dateTime->format('g:i A');
+            }
+        }
 
         // Convert dates to 'Y-m-d' format
-        // $validated['diagnosis_and_procedure_date'] = $request->input('diagnosis_and_procedure_date');
+        $validated['diagnosis_and_procedure_date'] = $request->input('diagnosis_and_procedure_date');
 
         // Initialize emergencyPatientId
         $emergencyPatientId = $request->input('emergency_patient_id');
@@ -56,7 +58,7 @@ class DiagnosisAndProcedureController extends Controller
         // Create Vital Signs
         DiagnosisAndProcedure::create([
             'diagnosis_and_procedure_date' => $validated['diagnosis_and_procedure_date'],
-            'diagnosis_and_procedure_time' => $validated['diagnosis_and_procedure_time_display'], // Use the 12-hour format for storage/display
+            'diagnosis_and_procedure_time' => $validated['diagnosis_and_procedure_time'], // Use the 12-hour format for storage/display
             'impairment' => $validated['impairment'],
             'activity_restriction' => $validated['activity_restriction'],
             'personal_factor' => $validated['personal_factor'],

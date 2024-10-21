@@ -25,7 +25,7 @@
                 <div class="card-input">
 
                     @include('admin_med.patient.chart_tabs.doctor.assessment')
-                    
+
 
                 </div>
             </div>
@@ -79,28 +79,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                    <tr class="vital-signs-table-body">
-                                        <td>Date</td>
-                                        <td>Doctor</td>
-                                        <td>Summary</td>
-                                        <td>
-                                            <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                onclick="">
-                                                <i class="fa fa-eye color-muted"></i>
-                                            </a>
-                                            {{-- Show the register button only if the user has an admin or medical staff role --}}
-                                            
-                                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                onclick="">
-                                                <i class="fa fa-pencil color-muted"></i>
-                                            </a>
-                                           
-                                        </td>
-                                    </tr>
-                                    
+
+                                    @if ($emergency_patient->ep_assessments && $emergency_patient->ep_assessments->isNotEmpty())
+                                    @foreach ($emergency_patient->ep_assessments as $assessment)
+                                        <tr>
+                                            <td>{{ \Carbon\Carbon::parse($assessment->ep_assessment_date)->format('m/d/Y') }},
+                                                {{ $assessment->ep_assessment_time }}
+                                            </td>
+                                            <td>{{ $assessment->users->name ?? 'N/A' }}</td>
+                                            <td>{{ $assessment->ep_assessment_assessments ?? 'N/A' }}</td>
+                                            <td>
+                                                <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                   data-toggle="tooltip" type="button" data-placement="top" title="View"
+                                                   onclick="makeFormReadonly();">
+                                                    <i class="fa fa-eye color-muted"></i>
+                                                </a>
+
+                                                <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
+                                                   data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                                   onclick="enterEditMode();">
+                                                    <i class="fa fa-pencil color-muted"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="6">No assessment history records found.</td>
+                                        </tr>
+                                    @endif
+
                                 </tbody>
                             </table>
                         </div>

@@ -69,4 +69,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(DiagnosisAndProcedure::class, 'user_id');
     }
+
+    public function ep_medical_histories()
+    {
+        return $this->hasMany(EpMedicalHistory::class, 'user_id');
+    }
+
+    public function ep_assessments()
+    {
+        return $this->hasMany(EpAssessment::class, 'user_id');
+    }
 }

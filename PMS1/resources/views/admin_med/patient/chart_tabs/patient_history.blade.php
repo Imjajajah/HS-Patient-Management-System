@@ -22,13 +22,13 @@
 
 <div>
     <div>
-        
+
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
                 <div class="card-input">
 
                     @include('admin_med.patient.chart_tabs.nurse.history_input')
-                  
+
 
                 </div>
             </div>
@@ -82,30 +82,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td>10/10/2024</td>
-                                    <td>Diagnoses</td>
-                                    <td>Treatments</td>
-                                    <td>Surgeries</td>
-                                    <td>Medications</td>
-                                    <td>
-                                        <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                            onclick="makeFormReadonly();">
-                                            <i class="fa fa-eye color-muted"></i>
-                                        </a>
-                                        
-                                       
-                                        <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                            data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                            onclick="enterEditMode();">
-                                            <i class="fa fa-pencil color-muted"></i>
-                                        </a>
-                                        
-                                    </td>
+                                    @if ($emergency_patient->ep_medical_histories && $emergency_patient->ep_medical_histories->isNotEmpty())
+                                    @foreach ($emergency_patient->ep_medical_histories as $history)
+                                        <tr>
+                                            <td>{{ \Carbon\Carbon::parse($history->ep_medical_history_date)->format('m/d/Y') }},
+                                                {{ $history->ep_medical_history_time }}
+                                            </td>
+                                            <td>{{ $history->ep_medical_history_diagnosis ?? 'N/A' }}</td>
+                                            <td>{{ $history->ep_medical_history_treatment ?? 'N/A' }}</td>
+                                            <td>{{ $history->ep_medical_history_surgery ?? 'N/A' }}</td>
+                                            <td>{{ $history->ep_medical_history_medications ?? 'N/A' }}</td>
+                                            <td>
+                                                <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                   data-toggle="tooltip" type="button" data-placement="top" title="View"
+                                                   onclick="makeFormReadonly();">
+                                                    <i class="fa fa-eye color-muted"></i>
+                                                </a>
+
+                                                <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
+                                                   data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                                   onclick="enterEditMode();">
+                                                    <i class="fa fa-pencil color-muted"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="6">No medical history records found.</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
-                        
+
 
                     </div>
 

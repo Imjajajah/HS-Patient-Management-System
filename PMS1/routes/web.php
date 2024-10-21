@@ -3,6 +3,8 @@
 // use App\Http\Controllers\NotificationController;
 
 use App\Http\Controllers\DiagnosisAndProcedureController;
+use App\Http\Controllers\EpAssessmentController;
+use App\Http\Controllers\EpMedicalHistoryController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
@@ -49,6 +51,14 @@ Route::controller(NotificationsController::class)->group(function() {
 
 Route::controller(DiagnosisAndProcedureController::class)->group(function() {
     Route::post('/emergency/diagnosis-and-procedure/store', 'diagnosis_and_procedure_store');
+});
+
+Route::controller(EpMedicalHistoryController::class)->group(function() {
+    Route::post('/emergency/ep-medical-history/store', 'ep_medical_history_store');
+});
+
+Route::controller(EpAssessmentController::class)->group(function() {
+    Route::post('/emergency/ep-assessment/store', 'ep_assessment_store');
 });
 
 

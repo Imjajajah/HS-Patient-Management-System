@@ -10,7 +10,7 @@
 <div class="card-body">
 
 
-    <form action="" method="POST" onsubmit="">
+    <form action="/emergency/diagnosis-and-procedure/store" method="POST" onsubmit="">
     @csrf
 
     <!-- Id and Date Section -->
@@ -32,15 +32,15 @@
         <div class="row id-and-date-input">
 
             <div class="col-md-6">
-                <input type="date" name="diagnosis_date" id="datetime-input" class="form-control date-input">
+                <input type="date" name="diagnosis_and_procedure_date" id="datetime-input" class="form-control date-input">
             </div>
             <div class="col-md-6">
-                <input type="time" name="diagnosis_time" id="datetime-input-time" class="form-control date-input">
+                <input type="time" name="diagnosis_and_procedure_time" id="datetime-input-time" class="form-control date-input">
             </div>
         </div>
         <!-- End of Id and Date Section Input -->
 
-    </div>       
+    </div>
 
 
 
