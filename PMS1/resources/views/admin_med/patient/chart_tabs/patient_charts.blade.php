@@ -34,7 +34,7 @@
 
                     @include('admin_med.patient.chart_tabs.nurse_vs_input')
                     {{-- @include('admin_med.patient.chart_tabs.doc_vs') --}}
-                    
+
                 </div>
             </div>
 
@@ -49,6 +49,8 @@
                     <div class="card-header">
                         <h4 class="card-title">Patient's Vital Signs</h4>
 
+                        {{-- Show the register button only if the user has an admin or medical staff role --}}
+                        @if (auth()->check() && in_array(auth()->user()->authorization->role_name, ['Admin', 'Medical staff']))
                         <div class="reminder-settings d-flex align-items-center">
                             <div class="toggle-container">
                                 <label for="reminderToggle">Reminder:</label>
@@ -59,11 +61,13 @@
                                     </span>
                                 </label>
                             </div>
+                            @endif
 
                             <div id="manualReminder" class="ms-3">
                                 <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
                             </div>
                         </div>
+
 
                     </div>
 
@@ -127,11 +131,14 @@
                                                     onclick="populateFormView({{ json_encode($vitals) }}); makeFormReadonly();">
                                                     <i class="fa fa-eye color-muted"></i>
                                                 </a>
+                                                {{-- Show the register button only if the user has an admin or medical staff role --}}
+                                                @if (auth()->check() && in_array(auth()->user()->authorization->role_name, ['Admin', 'Medical staff']))
                                                 <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
                                                     data-toggle="tooltip" type="button" data-placement="top" title="Edit"
                                                     onclick="populateForm({{ json_encode($vitals) }}); enterEditMode();">
                                                     <i class="fa fa-pencil color-muted"></i>
                                                 </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -165,7 +172,7 @@
                             <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
                             <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

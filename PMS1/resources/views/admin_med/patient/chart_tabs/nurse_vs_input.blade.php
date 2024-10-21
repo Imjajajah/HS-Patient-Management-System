@@ -225,6 +225,8 @@
 
     <!-- Footer Buttons -->
     <div class="card-footer d-flex justify-content-end">
+        {{-- Show the register button only if the user has an admin or medical staff role --}}
+        @if (auth()->check() && in_array(auth()->user()->authorization->role_name, ['Admin', 'Medical staff']))
         <!-- Back to Input Mode Button (Initially Hidden) -->
         <button type="button" class="btn btn-secondary" id="backToInputButton" style="display: none;" onclick="showInputMode();">Back to Input Mode</button>
 
@@ -237,8 +239,9 @@
 
         <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
 
-
+        @endif
     </div>
 </div>
 </form>
+
 <!-- End of card body for vital signs input-->
