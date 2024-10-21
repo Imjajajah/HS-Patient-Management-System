@@ -13,6 +13,10 @@
 <link href="{{ asset('admin_medcss/theme/./vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
 <link href="{{ asset('admin_medcss/theme/./css/style.css') }}" rel="stylesheet">
 
+
+
+
+
 <!-- Form step -->
 <link href="{{ asset('admin_medcss/theme/vendor/jquery-steps/css/jquery.steps.css') }}" rel="stylesheet">
 <!-- Datatable -->

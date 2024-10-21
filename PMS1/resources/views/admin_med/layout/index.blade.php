@@ -3,8 +3,9 @@
 <html lang="en" class="supernova">
 
 <head>
-   
+
     @include('admin_med.layout.css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 

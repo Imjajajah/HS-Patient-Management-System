@@ -12,12 +12,15 @@ use App\Models\EmergencyInformation;
 use App\Models\EmergencyPatient;
 use App\Models\HealthHistories;
 use App\Models\InsuranceInformation;
+use App\Models\Logs;
+use App\Models\Notification;
 use App\Models\VitalSigns;
 use Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -120,7 +123,7 @@ class PatientController extends Controller
         // Check if the patient already exists based on first_name, middle_name, and last_name
         if ($existingPatient) {
             // Redirect back with an error message
-            return redirect()->back()->withErrors(['duplicate' => 'A patient with this name already exists.'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'A patient with this name already exists.'])->withInput();
         }
 
         // Convert dates to 'Y-m-d' format
@@ -204,9 +207,7 @@ class PatientController extends Controller
             "emergency_contact_id" => $emergencyContact->emergency_contact_id,
         ]);
 
-        $request->session()->flash('success', 'New Patient was added successfully!');
-
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('success', 'New Patient was added successfully');
 
     }
 
@@ -296,6 +297,8 @@ class PatientController extends Controller
         // Remove '_token' and any fields not required by the microservice
         $data = $request->except('_token', 'emergency_date', 'emergency_dob');
 
+        $user = Auth::user();
+
         try {
             // Send the data to the validation microservice
             $response = Http::post('https://data-validation-microservice-1.onrender.com/api/validate/emergency-patient', $data);
@@ -347,6 +350,17 @@ class PatientController extends Controller
                         'status' => 'Active',
                     ]);
 
+                    // Log the creation of the emergency patient
+                    info('New emergency patient created:', [
+                        'patient_id' => $emergencyPatient->emergency_patient_id,
+                        'name' => "{$validated['emergency_first_name']} {$validated['emergency_last_name']}",
+                    ]);
+
+                    // Log the vital signs entry
+                    info('Vital signs recorded for patient:', [
+                        'patient_id' => $emergencyPatient->emergency_patient_id,
+                        'vital_signs' => $validated,
+                    ]);
                     // Store the vital signs data
                     VitalSigns::create([
                         'diagnosis_date' => $emergencyPatient->emergency_date,
@@ -359,6 +373,14 @@ class PatientController extends Controller
                         'vitals_note' => $validated['vitals_note'],
                         'emergency_patient_id' => $emergencyPatient->emergency_patient_id,
                     ]);
+
+                    // For notification patient name
+                    $patientName = implode(' ', array_filter([
+                        $emergencyPatient->emergency_first_name,
+                        $emergencyPatient->emergency_middle_name,
+                        $emergencyPatient->emergency_last_name,
+                        $emergencyPatient->emergency_extension,
+                    ]));
 
                     // Only send email if the priority level is between 1 and 3
                     $priorityLevelsForEmail = ['1 - Resuscitation', '2 - Emergent', '3 - Urgent'];
@@ -376,33 +398,93 @@ class PatientController extends Controller
                         $response = Http::post('https://email-notification-microservice-xzv1.onrender.com/add-emergency-patient', $emailData);
 
                         // Flash success message and redirect
-                        // $request->session()->flash('success', 'Emergency Patient data stored successfully!');
                         if ($response->successful()) {
                             // Email sent successfully, you can log it or flash a success message if needed
-                            $request->session()->flash('success', 'Emergency Patient data stored successfully and email notification sent!');
+                            info('Email notification sent successfully for patient:', [
+                                'patient_id' => $emergencyPatient->emergency_patient_id,
+                                'name' => "{$validated['emergency_first_name']} {$validated['emergency_last_name']}",
+                            ]);
+
+                            //Getting Notification
+                            Notification::create([
+                                'notification_type' => 'success',
+                                'notification_message' => 'Emergency Patient data stored successfully. Name: ' .
+                                              $patientName .
+                                             ". Priority Level: {$validated['priority_level']}",
+                                'user_id' => $user->user_id, // Set the user_id from the authenticated user
+                            ]);
+                            return redirect('/emergency-records')->with('success', 'Emergency Patient data stored successfully and email notification sent.');
                         } else {
                             // Handle error when sending email
-                            $request->session()->flash('error', 'Emergency Patient data stored successfully, but there was an issue sending the email.');
+                            info('Email notification failed:', $response->json());
+
+                            //Getting Notification
+                            Notification::create([
+                                'notification_type' => 'success',
+                                'notification_message' => 'Emergency Patient data stored successfully, but there was an issue sending the email. Name: ' . $patientName .
+                                             ". Priority Level: {$validated['priority_level']}",
+                                'user_id' => $user->user_id, // Set the user_id from the authenticated user
+                            ]);
+                            return redirect('/emergency-records')->with('error', 'Emergency Patient data stored successfully, but there was an issue sending the email.');
                         }
                     } else {
-                        // No email sent, just flash success message for data stored
-                        $request->session()->flash('success', 'Emergency Patient data stored successfully!');
-                    }
+                        //Getting Notification
+                        Notification::create([
+                            'notification_type' => 'success',
+                            'notification_message' => 'Emergency Patient data stored successfully. Name: ' . $patientName .
+                                         ". Priority Level: {$validated['priority_level']}",
+                            'user_id' => $user->user_id, // Set the user_id from the authenticated user
+                        ]);
 
-                    return redirect('/emergency-records');
+                        // No email sent, just flash success message for data stored
+                        return redirect('/emergency-records')->with('success', 'Emergency Patient data stored successfully.');
+                    }
+                //Getting Notification
+                Notification::create([
+                    'notification_type' => 'success',
+                    'notification_message' => 'Emergency Patient data stored successfully. Name: ' . $patientName.
+                                 ". Priority Level: {$validated['priority_level']}",
+                    'user_id' => $user->user_id, // Set the user_id from the authenticated user
+                ]);
+
+                return redirect('/emergency-records')->with('success', 'Emergency Patient data stored successfully.');
                 } else {
                     // Log and handle if 'data' key is missing
                     info('Data key missing in response:', $response->json());
-                    return redirect()->back()->withErrors(['error' => 'Validation microservice did not return the expected data structure.'])->withInput();
-                }
+
+                    //Getting Notification
+                    Notification::create([
+                        'notification_type' => 'error',
+                        'notification_message' => 'Validation microservice did not return the expected data structure.',
+                        'user_id' => $user->user_id, // Set the user_id from the authenticated user
+                    ]);
+
+                        return redirect()->back()->withErrors(['error' => 'Validation microservice did not return the expected data structure.'])->withInput();
+                    }
             } else {
                 // Log the error if validation failed
                 info('Validation failed:', $response->json());
+
+                //Getting Notification
+                Notification::create([
+                    'notification_type' => 'error',
+                    'notification_message' => 'Validation failed. Check the data provided.',
+                    'user_id' => $user->user_id, // Set the user_id from the authenticated user
+                ]);
+
                 return redirect()->back()->withErrors(['error' => 'Validation failed. Check the data provided.'])->withInput();
             }
         } catch (\Exception $e) {
             // Log any exceptions that occur
             info('Error occurred:', ['message' => $e->getMessage()]);
+
+            //Getting Notification
+            Notification::create([
+                'notification_type' => 'error',
+                'notification_message' => 'An error occurred while processing the request: ' . $e->getMessage(),
+                'user_id' => $user->user_id, // Set the user_id from the authenticated user
+            ]);
+
             return redirect()->back()->withErrors(['error' => 'An error occurred while processing the request: ' . $e->getMessage()])->withInput();
         }
     }
@@ -426,13 +508,27 @@ class PatientController extends Controller
 
     public function emergency_patient_show($emergency_patient_id)
     {
-        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information'])->findOrFail($emergency_patient_id);
+        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information', 'emergency_logs.users.authorization'])->findOrFail($emergency_patient_id);
+
+        // Construct the full patient name
+        $patientName = implode(' ', array_filter([
+            $emergency_patient->emergency_first_name,
+            $emergency_patient->emergency_middle_name,
+            $emergency_patient->emergency_last_name,
+            $emergency_patient->emergency_extension,
+        ]));
+
+        // Fetch notifications related to this patient
+        $notifications = Notification::with('users.authorization')
+            ->where('notification_message', 'like', "%Name: {$patientName}%")
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         if (!$emergency_patient) {
             return response()->json(['message' => 'Emergency Patient not found'], 404);
         }
 
-        return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient'));
+        return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient', 'notifications'));
     }
 
     public function emergency_patient_edit($emergency_patient_id)
@@ -449,6 +545,9 @@ class PatientController extends Controller
     public function emergency_patient_update(Request $request, $emergency_patient_id)
     {
         info($request->all());
+
+        $user = Auth::user();
+
         $validated = $request->validate([
             'emergency_first_name' => 'required|string|max:255',
             'emergency_middle_name' => 'nullable|string|max:255',
@@ -465,6 +564,14 @@ class PatientController extends Controller
         ]);
 
         $emergency_patient = EmergencyPatient::findOrFail($emergency_patient_id);
+
+        // For notification patient name
+        $patientName = implode(' ', array_filter([
+            $emergency_patient->emergency_first_name,
+            $emergency_patient->emergency_middle_name,
+            $emergency_patient->emergency_last_name,
+            $emergency_patient->emergency_extension,
+        ]));
 
         // Check if emergency information exists
         if ($emergency_patient->emergency_information) {
@@ -505,6 +612,15 @@ class PatientController extends Controller
             'emergency_extension' => $validated['emergency_extension'],
             'emergency_sex' => $validated['emergency_sex'],
             'emergency_dob' => $request->input('emergency_dob'),
+        ]);
+
+
+        //Getting Notification
+        Notification::create([
+            'notification_type' => 'success',
+            'notification_message' => 'Emergency Patient was successfully updated. Name: ' . $patientName .
+                                             ". Priority Level: {$emergency_patient['priority_level']}",
+            'user_id' => $user->user_id, // Set the user_id from the authenticated user
         ]);
 
         return redirect('/emergency-records')->with('success', 'Emergency Patient was successfully updated');

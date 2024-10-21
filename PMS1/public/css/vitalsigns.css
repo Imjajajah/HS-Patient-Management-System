@@ -1,7 +1,36 @@
-.card{
-    margin-top: -1%;  
-    
+.input-header{
+    font-weight: bold;
 }
+
+
+
+
+.card-input {
+    margin-top: -1%;  
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px rgba(0, 128, 0, 0.5); /* Greenish splashed border */
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
+.card-input-blue {
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px #083464; 
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
+.card-input-green {
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px  rgba(0, 128, 0, 0.5);/* Greenish splashed border */
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
+
+.card-input-yellow {
+    border: 1px solid transparent; /* Remove solid border */
+    box-shadow: 0 0 15px 5px  rgba(213, 248, 18, 0.5);/* Greenish splashed border */ 
+    border-radius: 10px; /* Optional, for softer edges */
+}
+
 
 .tooltip {
     display: none; /* Hidden by default */
@@ -96,6 +125,109 @@ table {
     table-layout: auto; 
 }
 
+
+.switch{
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 25px;
+    margin-left: 10px; 
+}
+
+.switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 5px;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.slider-text{
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before{
+    transform: translateX(30px);
+}
+
+
+.reminder-settings{
+    margin-top: 10px;
+}
+
+.toggle-container{
+    display: inline-flex;
+    align-items: center;
+}
+
+#manualReminder{
+    display:inline-flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#manualMinutes {
+    width: 100px;
+}
+
+
+
+
+.tooltip {
+    display: none; /* Hidden by default */
+    position: absolute; /* Positioning */
+    background-color: #fff; /* Background color */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    z-index: 10; /* Ensure it appears above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+.view-logs-label {
+    cursor: pointer; /* Pointer cursor */
+    color: blue; /* Label color */
+    text-decoration: underline; /* Underline the label */
+}
+
+/* Table styling */
+#vitalSignsTable {
+    width: 100%; /* Ensure the table takes full width */
+    table-layout: auto; /* Allow the table to adjust based on content */
+}
+
+/* Optional: Add some styling for the logs section */
+#logsSection {
+    margin-top: 20px; /* Optional: add some spacing */
+}
+
 .vital-signs-header th, 
 .vital-signs-table-body td {
     padding: 8px 12px; 
@@ -123,6 +255,19 @@ table {
 .vital-signs-header th:hover {
     background-color: #f1f1f1; /* Change background color on hover */
 }
+
+.vital-sign-normal{
+    background-color: #d4edda !important;
+    color: #155724 !important;
+
+}
+
+.vital-sign-critical{
+    background-color: #f8d7da !important;
+    color: #721c24 !important;
+}
+
+
 
 
 

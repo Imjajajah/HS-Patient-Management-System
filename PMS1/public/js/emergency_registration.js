@@ -35,6 +35,14 @@ document.addEventListener('DOMContentLoaded', function () {
             firstNameInput.value = '';
         }
 
+        // Fetch a unique ID and set it in the relevant input fields
+        fetch('/generate-unique-id')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('patientTemporaryID').value = data.id;
+                lastNameInput.value = data.id; // Set the value to the last name input
+            })
+            .catch(error => console.error('Error:', error));
     });
 
     function updateButtonState() {
@@ -125,11 +133,15 @@ function validateBloodPressure() {
 function validateTemperature() {
     const temperature = document.getElementById('temperature').value;
     const temperatureError = document.getElementById('temperatureError');
-    const tempPattern = /^([3-4][0-9]\.\d{1})$/;
+
+    // Regular expression for matching temperature between 24.0 and 45.0
+    const tempPattern = /^(2[4-9](\.\d)?|3[0-9](\.\d)?|4[0-5](\.\d)?)$/;
 
     if (!tempPattern.test(temperature)) {
+        // If input doesn't match, show error message
         temperatureError.style.display = 'block';
     } else {
+        // Hide the error message if input is valid
         temperatureError.style.display = 'none';
     }
 }
@@ -137,11 +149,15 @@ function validateTemperature() {
 function validateHeartRate() {
     const heartRate = document.getElementById('heartRate').value;
     const heartRateError = document.getElementById('heartRateError');
-    const hrPattern = /^([4-9]\d|\d{3})$/;
+
+    // Regular expression for matching heart rate between 60 and 100 (inclusive)
+    const hrPattern = /^(6[0-9]|[7-9][0-9]|100)$/;
 
     if (!hrPattern.test(heartRate)) {
+        // If input doesn't match, show error message
         heartRateError.style.display = 'block';
     } else {
+        // Hide the error message if input is valid
         heartRateError.style.display = 'none';
     }
 }
@@ -149,11 +165,15 @@ function validateHeartRate() {
 function validatePulseRate() {
     const pulseRate = document.getElementById('pulseRate').value;
     const pulseRateError = document.getElementById('pulseRateError');
-    const prPattern = /^([4-9]\d|\d{3})$/;
+
+    // Regular expression for matching pulse rate between 60 and 100 (inclusive)
+    const prPattern = /^(6[0-9]|[7-9][0-9]|100)$/;
 
     if (!prPattern.test(pulseRate)) {
+        // If input doesn't match, show error message
         pulseRateError.style.display = 'block';
     } else {
+        // Hide the error message if input is valid
         pulseRateError.style.display = 'none';
     }
 }
@@ -161,11 +181,15 @@ function validatePulseRate() {
 function validateRespirationRate() {
     const respirationRate = document.getElementById('respirationRate').value;
     const respirationRateError = document.getElementById('respirationRateError');
-    const rrPattern = /^([1-2]\d)$/;
+
+    // Regular expression for matching respiration rate between 12 and 20 (inclusive)
+    const rrPattern = /^(1[2-9]|20)$/;
 
     if (!rrPattern.test(respirationRate)) {
+        // If input doesn't match, show error message
         respirationRateError.style.display = 'block';
     } else {
+        // Hide the error message if input is valid
         respirationRateError.style.display = 'none';
     }
 }

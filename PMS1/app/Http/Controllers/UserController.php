@@ -28,7 +28,7 @@ class UserController extends Controller
         if(Auth::attempt($validated)){
             $request->session()->regenerate();
 
-            return redirect('/dashboard')->with('message', 'Welcome back!');
+            return redirect('/emergency-records')->with('message', 'Welcome back!');
         }
         return back()->withErrors(['email' => 'Login failed'])->onlyInput('email');
     }
@@ -39,8 +39,35 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message', 'Logout successful');
+        return redirect('/login')->with('message', 'Logout successful');
     }
+
+    // Controller action when adding a patient or editing info
+    public function storeOrUpdate(Request $request)
+    {
+        // Perform your action (e.g., save new patient, update details)
+
+        // Add new success message to the session as an array
+        $message = 'New patient added successfully!';
+        session()->push('messages.success', $message);
+
+        return redirect()->back();
+    }
+
+    public function editPatient(Request $request, $id)
+    {
+        // Perform your action (e.g., update patient info)
+
+        // Add success message to session
+        $message = 'Patient information updated successfully!';
+        session()->push('messages.success', $message);
+
+        return redirect()->back();
+    }
+
+
+
+
 
 
 }
