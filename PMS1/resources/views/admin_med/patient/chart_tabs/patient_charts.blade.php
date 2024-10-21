@@ -1,32 +1,9 @@
-<link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
-<script src="{{ asset('js/patient_charts.js') }}"></script>
-<script src="{{ asset('js/charts_mode.js') }}"></script>
-<script src="{{ asset('js/charts_graph.js') }}"></script>
-<script src="{{ asset('js/charts_reminder.js') }}"></script>
-<script src="{{ asset('js/charts_vital_colors.js') }}"></script>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
 <div>
     <div>
-
-        <div class="row justify-content-center my-4">
-            <div class="col-lg-12">
-                <div class="row align-items-center ">
-
-                </div>
-            </div>
-        </div>
 
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">

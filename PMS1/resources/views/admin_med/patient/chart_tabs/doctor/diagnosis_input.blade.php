@@ -10,8 +10,39 @@
 <div class="card-body">
 
 
-    <form action="/emergency/diagnosis-and-procedure/store" id="diagnosisForm" class="step-form-horizontal" method="POST" onsubmit="">
+    <form action="" method="POST" onsubmit="">
     @csrf
+
+    <!-- Id and Date Section -->
+    <div class="id-and-date">
+
+        <!-- Id and Date Section Text -->
+        <div class="row id-and-date-text">
+
+            <div class="col-md-6">
+                <h5 class="id-and-date-label">Date</h5>
+            </div>
+            <div class="col-md-6">
+                <h5 class="id-and-date-label">Time</h5>
+            </div>
+        </div>
+        <!-- End of Id and Date Section Text -->
+
+        <!-- Id and Date Section Input -->
+        <div class="row id-and-date-input">
+
+            <div class="col-md-6">
+                <input type="date" name="diagnosis_date" id="datetime-input" class="form-control date-input">
+            </div>
+            <div class="col-md-6">
+                <input type="time" name="diagnosis_time" id="datetime-input-time" class="form-control date-input">
+            </div>
+        </div>
+        <!-- End of Id and Date Section Input -->
+
+    </div>       
+
+
 
 
     <!-- doctors-evaluation -->

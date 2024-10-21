@@ -20,14 +20,6 @@
 <div>
     <div>
 
-        <div class="row justify-content-center my-4">
-            <div class="col-lg-12">
-                <div class="row align-items-center ">
-
-                </div>
-            </div>
-        </div>
-
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
                 <div class="card-input">

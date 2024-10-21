@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <div class="card-header">
     <h4 class="input-header" id="inputHeader">Input Mode</h4>
 </div>
@@ -6,7 +6,11 @@
 
 <div class="card-body">
 
-        <!-- Id and Date Section -->
+
+    <form action="" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
+    @csrf
+
+    <!-- Id and Date Section -->
     <div class="id-and-date">
 
         <!-- Id and Date Section Text -->
@@ -33,27 +37,59 @@
         </div>
         <!-- End of Id and Date Section Input -->
 
-    </div>   
+    </div>
 
+   
 
-    
-    <div class="assessment-remarks">
-        
+    <div class="diagnosis-remarks">
         <div class="col-md-4">
-            <h5 class="assessment-text">Assessment</h5>
+            <h5 class="diagnosis-text">Diagnosis</h5>
         </div>
-       
         <div class="row">
             <div class="col-md-12">
-                <textarea name="assessment" id="assessmentInput" class="assessment-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="diagnosis" id="diagnosisInput" class="diagnosis-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
-      
     </div>
+
+    <div class="treatment-remarks">
+        <div class="col-md-4">
+            <h5 class="treatment-text">Treatment</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <textarea name="treatment" id="treatmentInput" class="treatment-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="surgeries-remarks">
+        <div class="col-md-4">
+            <h5 class="surgeries-text">Surgeries</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <textarea name="surgeries" id="surgeriesInput" class="surgeries-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="medication-remarks">
+        <div class="col-md-4">
+            <h5 class="medication-text">Medications</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <textarea name="medication" id="medicationInput" class="medication-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+    
+   
 
     <!-- Footer Buttons -->
     <div class="card-footer d-flex justify-content-end">
-        
+        {{-- Show the register button only if the user has an admin or medical staff role --}}
+        @if (auth()->check() && in_array(auth()->user()->authorization->role_name, ['Admin', 'Medical staff']))
         <!-- Back to Input Mode Button (Initially Hidden) -->
         <button type="button" class="btn btn-secondary" id="backToInputButton" style="display: none;" onclick="showInputMode();">Back to Input Mode</button>
 
@@ -65,6 +101,8 @@
         </button>
 
         <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
+
+        @endif
     </div>
 </div>
 </form>

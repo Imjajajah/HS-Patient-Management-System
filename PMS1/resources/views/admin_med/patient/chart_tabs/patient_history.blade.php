@@ -1,12 +1,39 @@
+<link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
+<script src="{{ asset('js/patient_charts.js') }}"></script>
+<script src="{{ asset('js/charts_mode.js') }}"></script>
+<script src="{{ asset('js/charts_graph.js') }}"></script>
+<script src="{{ asset('js/charts_reminder.js') }}"></script>
+<script src="{{ asset('js/charts_vital_colors.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ asset('js/current_date_time.js') }}"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
+
 <div>
     <div>
-        <div class="row grid">
         
+        <div class="row grid">
+            <div class="col-xl-4 col-xxl-12">
+                <div class="card-input">
+
+                    @include('admin_med.patient.chart_tabs.nurse.history_input')
+                  
+
+                </div>
+            </div>
             <!-- Table in the left side -->
-            <div class="col-xl-12 col-xxl-12">
+            <div class="col-xl-8 col-xxl-12">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Patient's Medical History</h4>

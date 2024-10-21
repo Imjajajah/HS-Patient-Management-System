@@ -83,7 +83,7 @@
 }
 
 
-.assessment-text, .bp-text, .hr-text, .pr-text, .temp-text, .o2-text, .pain-scale-text, .weight-text, .height-text, .bmi-text, .resp-rate-text, .resp-pattern-text, .remarks-text{
+.diagnosis-text, .treatment-text, .surgeries-text, .medication-text, .assessment-text, .bp-text, .hr-text, .pr-text, .temp-text, .o2-text, .pain-scale-text, .weight-text, .height-text, .bmi-text, .resp-rate-text, .resp-pattern-text, .remarks-text{
     margin-top: 2px;
     display: flex;
     justify-content: space-between;
@@ -98,7 +98,7 @@
     margin-bottom: 4px;
 }
 
-.remarks-input, .assessment-input {
+.diagnosis-input, .treatment-input, .surgeries-input, .medication-input, .assessment-input,.remarks-input, .assessment-input {
     margin-top: -3px;
     height: 100px;
     width: 100%;

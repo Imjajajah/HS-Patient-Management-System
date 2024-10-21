@@ -20,14 +20,6 @@
 <div>
     <div>
 
-        <div class="row justify-content-center my-4">
-            <div class="col-lg-12">
-                <div class="row align-items-center ">
-
-                </div>
-            </div>
-        </div>
-
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
                 <div class="card-input">
@@ -80,7 +72,7 @@
                             <table class="table-left" id="diagnosisAndProcedureTable">
                                 <thead class="diagnosis-and-procedure-header">
                                     <tr class="diagnosis-and-procedure-header">
-                                        <th onclick="sortTable(0)">Diagnosis Date &#x25B2;&#x25BC;</th>
+                                        <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
                                         <th>Doctor</th>
                                         <th>Evaluation</th>
                                         <th>Prognosis</th>
