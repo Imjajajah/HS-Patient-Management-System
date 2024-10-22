@@ -3,7 +3,7 @@
 
 
 <div class="card-header">
-    <h4 class="input-header" id="inputHeader">Input Mode</h4>
+    <h4 class="input-header" id="reviewInputHeader">Input Mode</h4>
 </div>
 <!-- Card body for vital signs input-->
 
@@ -30,12 +30,11 @@
 
         <!-- Id and Date Section Input -->
         <div class="row id-and-date-input">
-
             <div class="col-md-6">
-                <input type="date" name="diagnosis_and_procedure_date" id="datetime-input" class="form-control date-input">
+                <input type="date" name="diagnosis_and_procedure_date" id="diagnosis-date-input" class="form-control date-input datetime-input">
             </div>
             <div class="col-md-6">
-                <input type="time" name="diagnosis_and_procedure_time" id="datetime-input-time" class="form-control date-input">
+                <input type="time" name="diagnosis_and_procedure_time" id="diagnosis-time-input" class="form-control time-input datetime-input">
             </div>
         </div>
         <!-- End of Id and Date Section Input -->
@@ -172,16 +171,15 @@
     <!-- Footer Buttons -->
     <div class="card-footer d-flex justify-content-end">
         <!-- Back to Input Mode Button (Initially Hidden) -->
-        <button type="button" class="btn btn-secondary" id="backToInputButton" style="display: none;" onclick="showInputMode();">Back to Input Mode</button>
+        <button type="button" class="btn btn-secondary" id="backToInputButtonReview" style="display: none;" onclick="showReviewInputMode();">Back to Input Mode</button>
 
-        <button type="button" id="cancel-btn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
+        <button type="button" id="reviewCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
 
-
-        <button type="submit" class="btn btn-primary ms-3" id="editSubmit" style="display: none;" onclick="showSaveAlert(); return false;">
+        <button type="submit" class="btn btn-primary ms-3" id="editSubmitReview" style="display: none;" onclick="showSaveAlert(); return false;">
             Save Changes
         </button>
 
-        <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
+        <button type="submit" id="reviewSaveBtn" class="btn btn-primary ms-3">Save</button>
 
 
     </div>

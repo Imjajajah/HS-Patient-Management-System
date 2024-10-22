@@ -1,4 +1,10 @@
-
+<link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/logs.css') }}">
+<script src="{{ asset('js/patient_charts.js') }}"></script>
+<script src="{{ asset('js/charts_mode.js') }}"></script>
+<script src="{{ asset('js/charts_graph.js') }}"></script>
+<script src="{{ asset('js/charts_reminder.js') }}"></script>
+<script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
@@ -75,9 +81,9 @@
                         </div>
 
                         <div id="vitalSignsTableContainer">
-                            <table class="table-left" id="vitalSignsTable">
-                                <thead class="vital-signs-table-header">
-                                    <tr class="vital-signs-header">
+                            <table class="chart-tab-table-left" id="vitalSignsTable">
+                                <thead class="chart-tab-table-header">
+                                    <tr class="chart-tab-header">
                                         <th onclick="sortTable(0)">Diagnosis Date &#x25B2;&#x25BC;</th>
                                         <th>BP</th>
                                         <th>HR</th>
@@ -90,7 +96,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($emergency_patient->vital_signs as $vitals)
-                                        <tr class="vital-signs-table-body">
+                                        <tr class="chart-tab-table-body">
                                             <td>{{ \Carbon\Carbon::parse($vitals->diagnosis_date)->format('m/d/Y') }}, {{ $vitals->diagnosis_time }}</td>
                                             <td data-bp="{{ $vitals->B_P ?? 'N/A' }}">{{ $vitals->B_P ?? 'N/A' }}</td>
                                             <td data-hr="{{ $vitals->heart_rate ?? 'N/A' }}">{{ $vitals->heart_rate ?? 'N/A' }}</td>

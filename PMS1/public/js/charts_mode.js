@@ -1,7 +1,3 @@
-
-
-
-
 function makeFormReadonly() {
     const inputs = document.querySelectorAll('.step-form-horizontal input, .step-form-horizontal textarea');
     inputs.forEach(input => {

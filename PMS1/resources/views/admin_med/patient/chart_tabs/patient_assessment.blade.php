@@ -4,9 +4,9 @@
 <script src="{{ asset('js/charts_graph.js') }}"></script>
 <script src="{{ asset('js/charts_reminder.js') }}"></script>
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
+<script src="{{ asset('js/summary.js') }}"></script>
 
-
-
+<script src="{{ asset('js/assessment_mode.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -22,7 +22,7 @@
 
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
-                <div class="card-input">
+                <div class="assessment-card-input card-input-green">
 
                     @include('admin_med.patient.chart_tabs.doctor.assessment')
 
@@ -69,9 +69,9 @@
                         </div>
 
                         <div id="vitalSignsTableContainer">
-                            <table class="table-left" id="vitalSignsTable">
-                                <thead class="vital-signs-table-header">
-                                    <tr class="vital-signs-header">
+                            <table class="chart-tab-table-left" id="vitalSignsTable">
+                                <thead class="chart-tab-table-header">
+                                    <tr class="chart-tab-header">
                                         <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
                                         <th>Doctor</th>
                                         <th>Summary</th>
@@ -82,22 +82,32 @@
 
                                     @if ($emergency_patient->ep_assessments && $emergency_patient->ep_assessments->isNotEmpty())
                                     @foreach ($emergency_patient->ep_assessments as $assessment)
-                                        <tr>
+                                        <tr class="chart-tab-table-body">
                                             <td>{{ \Carbon\Carbon::parse($assessment->ep_assessment_date)->format('m/d/Y') }},
                                                 {{ $assessment->ep_assessment_time }}
                                             </td>
                                             <td>{{ $assessment->users->name ?? 'N/A' }}</td>
-                                            <td>{{ $assessment->ep_assessment_assessments ?? 'N/A' }}</td>
+                                            <td>
+                                                <div class="assessment-summary-container">
+                                                    <span class="assessment-summary" id="summary-{{ $assessment->id }}">
+                                                        {{ Str::limit($assessment->ep_assessment_assessments, 100, '') }} <!-- Limit the visible text -->
+                                                    </span>
+
+                                                    <span class="extra-text" id="extra-{{ $assessment->id }}">
+                                                        {{ substr($assessment->ep_assessment_assessments, 100) }} <!-- Remaining text -->
+                                                    </span>
+
+                                                </div>
                                             <td>
                                                 <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                                    data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                   onclick="makeFormReadonly();">
+                                                   onclick="makeAssessmentFormReadonly();">
                                                     <i class="fa fa-eye color-muted"></i>
                                                 </a>
 
                                                 <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
                                                    data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                   onclick="enterEditMode();">
+                                                   onclick="enterAssessmentEditMode();">
                                                     <i class="fa fa-pencil color-muted"></i>
                                                 </a>
                                             </td>
@@ -112,7 +122,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <canvas id="vitalSignsChart" style="display: none;"></canvas>
 
                     </div>
 
@@ -124,7 +133,6 @@
                         </div>
 
                         <div>
-                            <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
                             <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
                         </div>
 

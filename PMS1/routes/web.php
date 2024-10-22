@@ -19,14 +19,14 @@ Route::controller(UserController::class)->group(function() {
 });
 
 Route::controller(PatientController::class)->group(function() {
-    Route::get('/dashboard', 'index');
-    Route::get('/dashboard/modal', 'indexm');
-    Route::get('/create', 'create');
-    Route::post('/store', 'store');
-    Route::get('/patients/{patient_id}', 'show')->name('patients.show');
-    Route::get('/patients/edit/{patient_id}', 'edit')->name('patients.edit');
-    Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
-    //
+    // Route::get('/dashboard', 'index');
+    // Route::get('/dashboard/modal', 'indexm');
+    // Route::get('/create', 'create');
+    // Route::post('/store', 'store');
+    // Route::get('/patients/{patient_id}', 'show')->name('patients.show');
+    // Route::get('/patients/edit/{patient_id}', 'edit')->name('patients.edit');
+    // Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
+    
     Route::post('/emergency/store', 'emergency_person_store');
     Route::get('/emergency-records', 'emergency_index');
     Route::get('/emergency-patient/{emergency_patient_id}', 'emergency_patient_show')->name('patients.emergency_patient_show');

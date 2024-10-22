@@ -4,7 +4,7 @@
 <script src="{{ asset('js/charts_graph.js') }}"></script>
 <script src="{{ asset('js/charts_reminder.js') }}"></script>
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
-
+<script src="{{ asset('js/review_mode.js') }}"></script>
 
 
 
@@ -22,7 +22,7 @@
 
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
-                <div class="card-input">
+                <div class="review-card-input card-input-green">
 
                     @include('admin_med.patient.chart_tabs.doctor.diagnosis_input')
 
@@ -69,9 +69,9 @@
                         </div>
 
                         <div id="diagnosis-and-procedure-container">
-                            <table class="table-left" id="diagnosisAndProcedureTable">
-                                <thead class="diagnosis-and-procedure-header">
-                                    <tr class="diagnosis-and-procedure-header">
+                            <table class="chart-tab-table-left" id="diagnosisAndProcedureTable">
+                                <thead class="chart-tab-table-header">
+                                    <tr class="chart-tab-header">
                                         <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
                                         <th>Doctor</th>
                                         <th>Evaluation</th>
@@ -83,31 +83,40 @@
                                 <tbody>
                                     @if ($emergency_patient->diagnosis_and_procedures && $emergency_patient->diagnosis_and_procedures->isNotEmpty())
                                         @foreach ($emergency_patient->diagnosis_and_procedures as $procedure)
-                                            <tr>
+                                            <tr class="chart-tab-table-body">
                                                 <td>{{ \Carbon\Carbon::parse($procedure->diagnosis_and_procedure_date)->format('m/d/Y') }},
                                                     {{ $procedure->diagnosis_and_procedure_time }}
                                                 </td>
                                                 <td>{{ $procedure->users->name ?? 'N/A' }}</td> <!-- Doctor's Name -->
+    
                                                 <td>
                                                     {{
-                                                        ($procedure->impairment ?? '') .
-                                                        ($procedure->activity_restriction ? ', ' . $procedure->activity_restriction : '') .
-                                                        ($procedure->personal_factor ? ', ' . $procedure->personal_factor : '') .
-                                                        ($procedure->environmental_factor ? ', ' . $procedure->environmental_factor : '')
+                                                        Str::limit(
+                                                            ($procedure->impairment ?? '') .
+                                                            ($procedure->activity_restriction ? ', ' . $procedure->activity_restriction : '') .
+                                                            ($procedure->personal_factor ? ', ' . $procedure->personal_factor : '') .
+                                                            ($procedure->environmental_factor ? ', ' . $procedure->environmental_factor : ''),
+                                                            10, // Limit to 100 characters
+                                                            '...' // Optional suffix to indicate more text
+                                                        )
                                                     }}
                                                 </td>
-                                                <td>{{ $procedure->prognosis }}</td>
-                                                <td>{{ $procedure->diagnosis }}</td>
+                                                <td>{{ Str::limit($procedure->prognosis, 10, '...') }}</td>
+                                                <td>{{ Str::limit($procedure->diagnosis, 10, '...') }}</td>
+                                                
+
                                                 <td>
-                                                    <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                                        data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                        onclick="">
+                                                    
+
+                                                    <a href="javascript:void(0)" class="btn btn-square btn-primary mr-3"
+                                                        data-toggle="tooltip" data-placement="top" title="View"
+                                                        onclick="makeReviewFormReadonly();">
                                                         <i class="fa fa-eye color-muted"></i>
                                                     </a>
 
-                                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                                        data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                        onclick="">
+                                                    <a href="javascript:void(0)" class="btn btn-square btn-secondary mr-3"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit"
+                                                        onclick="enterReviewEditMode();">
                                                         <i class="fa fa-pencil color-muted"></i>
                                                     </a>
                                                 </td>

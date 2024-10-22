@@ -1,8 +1,10 @@
+<script src="{{ asset('js/current_date_time.js') }}"></script>
+<script src="{{ asset('js/history_mode.js') }}"></script>
 
 <div class="card-header">
-    <h4 class="input-header" id="inputHeader">Input Mode</h4>
+    <h4 class="input-header" id="historyInputHeader">Input Mode</h4>
 </div>
-<!-- Card body for vital signs input-->
+<!-- Card body for vital signs input--> 
 
 <div class="card-body">
 
@@ -27,12 +29,11 @@
 
         <!-- Id and Date Section Input -->
         <div class="row id-and-date-input">
-
             <div class="col-md-6">
-                <input type="date" name="ep_medical_history_date" id="datetime-input" class="form-control date-input">
+                <input type="date" id="history-date-input" class="form-control date-input datetime-input">
             </div>
             <div class="col-md-6">
-                <input type="time" name="ep_medical_history_time" id="datetime-input-time" class="form-control date-input">
+                <input type="time" id="history-time-input" class="form-control time-input datetime-input">
             </div>
         </div>
         <!-- End of Id and Date Section Input -->
@@ -91,17 +92,22 @@
     <div class="card-footer d-flex justify-content-end">
         {{-- Show the register button only if the user has an admin or medical staff role --}}
         @if (auth()->check() && in_array(auth()->user()->authorization->role_name, ['Admin', 'Medical staff']))
-        <!-- Back to Input Mode Button (Initially Hidden) -->
-        <button type="button" class="btn btn-secondary" id="backToInputButton" style="display: none;" onclick="showInputMode();">Back to Input Mode</button>
 
-        <button type="button" id="cancel-btn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
+        <!-- ASDASDASDASD -->
 
+        <button type="button" class="btn btn-secondary" id="backToInputButtonHistory" style="display: none;" onclick="showHistoryInputMode();">Back to Input Mode</button>
 
-        <button type="submit" class="btn btn-primary ms-3" id="editSubmit" style="display: none;" onclick="showSaveAlert(); return false;">
+        <button type="button" id="historyCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
+
+        <button type="submit" class="btn btn-primary ms-3" id="editSubmitHistory" style="display: none;" onclick="showSaveAlert(); return false;">
             Save Changes
         </button>
 
-        <button type="submit" id="save-btn" class="btn btn-primary ms-3">Save</button>
+        <button type="submit" id="historySaveBtn" class="btn btn-primary ms-3">Save</button>
+
+
+
+
 
         @endif
     </div>

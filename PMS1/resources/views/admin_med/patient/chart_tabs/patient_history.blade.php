@@ -1,14 +1,15 @@
 <link rel="stylesheet" href="{{ asset('/css/vitalsigns.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/logs.css') }}">
 <script src="{{ asset('js/patient_charts.js') }}"></script>
-<script src="{{ asset('js/charts_mode.js') }}"></script>
+
 <script src="{{ asset('js/charts_graph.js') }}"></script>
 <script src="{{ asset('js/charts_reminder.js') }}"></script>
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 
+<script src="{{ asset('js/history_mode.js') }}"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{ asset('js/current_date_time.js') }}"></script>
-
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
@@ -25,7 +26,7 @@
 
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
-                <div class="card-input">
+                <div class="history-card-input card-input-green">
 
                     @include('admin_med.patient.chart_tabs.nurse.history_input')
 
@@ -43,36 +44,36 @@
                         <div id="logsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
-                                @forelse ($emergency_patient->emergency_logs as $log)
-                                    <li>
-                                        @php
-                                            $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
-                                            $user = $log->users;
-                                            $userRole = $user->authorization->role_name ?? 'N/A'; // Get role from authorization
-                                            $userName = $user->name ?? 'Unknown User';
-                                            $action = strtolower($log->action); // 'inputted' or 'edited'
-                                        @endphp
+                            
+                                <li>
+                                    {{--@php
+                                        $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
+                                        $user = $log->users;
+                                        $userRole = $user->authorization->role_name ?? 'N/A'; // Get role from authorization
+                                        $userName = $user->name ?? 'Unknown User';
+                                        $action = strtolower($log->action); // 'inputted' or 'edited'
+                                    @endphp
 
-                                        @if ($log->action === 'inputted')
-                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
-                                            {{ $userRole }} - {{ $userName }} inputted new vital signs.
-                                        @else
-                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
-                                            {{ $userRole }} - {{ $userName }} edited patient -
-                                            {{ $log->patient_name }}. {{ $log->message }}
-                                        @endif
-                                        <p></p>
-                                    </li>
-                                @empty
-                                    <li>No logs available for this patient.</li>
-                                @endforelse
+                                    @if ($log->action === 'inputted')
+                                        {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                        {{ $userRole }} - {{ $userName }} inputted new vital signs.
+                                    @else
+                                        {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                        {{ $userRole }} - {{ $userName }} edited patient -
+                                        {{ $log->patient_name }}. {{ $log->message }}
+                                    @endif--}}
+                                    <p></p>
+                                </li>
+                            
+                                <li>No logs available for this patient.</li>
+                                
                             </ul>
                         </div>
 
-                        <div id="medical-history-container">
-                            <table class="medical-history-table" id="medicalHistoryTable">
-                                <thead class="medical-history-header">
-                                    <tr class="medical-history-header">
+                        <div id="vitalSignsTableContainer">
+                            <table class="chart-tab-table-left" id="vitalSignsTable">
+                                <thead class="chart-tab-table-header">
+                                    <tr class="chart-tab-header">
                                         <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
                                         <th>Diagnoses</th>
                                         <th>Treatments</th>
@@ -84,26 +85,27 @@
                                 <tbody>
                                     @if ($emergency_patient->ep_medical_histories && $emergency_patient->ep_medical_histories->isNotEmpty())
                                     @foreach ($emergency_patient->ep_medical_histories as $history)
-                                        <tr>
+                                        <tr class="chart-tab-table-body">
                                             <td>{{ \Carbon\Carbon::parse($history->ep_medical_history_date)->format('m/d/Y') }},
                                                 {{ $history->ep_medical_history_time }}
                                             </td>
-                                            <td>{{ $history->ep_medical_history_diagnosis ?? 'N/A' }}</td>
-                                            <td>{{ $history->ep_medical_history_treatment ?? 'N/A' }}</td>
-                                            <td>{{ $history->ep_medical_history_surgery ?? 'N/A' }}</td>
-                                            <td>{{ $history->ep_medical_history_medications ?? 'N/A' }}</td>
+                                            <td>{{ Str::limit($history->ep_medical_history_diagnosis ?? 'N/A', 10, '...') }}</td>  
+                                            <td>{{ Str::limit($history->ep_medical_history_treatment ?? 'N/A', 10, '...') }}</td>
+                                            <td>{{ Str::limit($history->ep_medical_history_surgery ?? 'N/A', 10, '...') }}</td>
+                                            <td>{{ Str::limit($history->ep_medical_history_medications ?? 'N/A', 10, '...') }}</td>
                                             <td>
-                                                <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                                   data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                   onclick="makeFormReadonly();">
-                                                    <i class="fa fa-eye color-muted"></i>
-                                                </a>
+                                            <a href="javascript:void(0)" class="btn btn-square btn-primary mr-3"
+                                                data-toggle="tooltip" data-placement="top" title="View"
+                                                onclick="makeHistoryFormReadonly();">
+                                                <i class="fa fa-eye color-muted"></i>
+                                            </a>
 
-                                                <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                                   data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                   onclick="enterEditMode();">
-                                                    <i class="fa fa-pencil color-muted"></i>
-                                                </a>
+                                            <a href="javascript:void(0)" class="btn btn-square btn-secondary mr-3"
+                                                data-toggle="tooltip" data-placement="top" title="Edit"
+                                                onclick="enterHistoryEditMode();">
+                                                <i class="fa fa-pencil color-muted"></i>
+                                            </a>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -121,7 +123,7 @@
 
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <div class="tooltip-container" style="position: relative; display: inline-block;">
-                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="toggleLogs()">
+                            <label class="view-logs-label" id="viewHistoryLogs" for="tooltip" onclick="toggleLogs()">
                                 <strong>View Logs</strong>
                             </label>
                         </div>
