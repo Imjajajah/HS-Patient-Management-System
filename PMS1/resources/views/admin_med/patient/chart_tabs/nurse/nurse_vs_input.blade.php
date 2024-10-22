@@ -1,4 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ asset('js/patient_charts.js') }}"></script>
 <div class="card-header">
     <h4 class="input-header" id="inputHeader">Input Mode</h4>
 </div>
@@ -49,12 +51,11 @@
 
         <!-- Id and Date Section Input -->
         <div class="row id-and-date-input">
-
             <div class="col-md-6">
-                <input type="date" name="diagnosis_date" id="datetime-input" class="form-control date-input">
+                <input type="date" name="diagnosis_date" id="diagnosis-date-input" class="form-control date-input datetime-input">
             </div>
             <div class="col-md-6">
-                <input type="time" name="diagnosis_time" id="datetime-input-time" class="form-control date-input">
+                <input type="time" name="diagnosis_time" id="diagnosis-time-input" class="form-control time-input datetime-input">
             </div>
         </div>
         <!-- End of Id and Date Section Input -->
