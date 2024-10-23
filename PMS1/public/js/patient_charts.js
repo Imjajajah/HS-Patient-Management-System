@@ -190,6 +190,72 @@ function showSaveAlert() {
     });
 }
 
+function showHistorySaveAlert() {
+    // SweetAlert confirmation
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Click okay to save changes.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Okay',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked "Okay" - proceed with the save
+            // document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual form ID
+            document.getElementById("epDiagnosisProcedureForm").submit();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // User clicked "Cancel" - no action taken
+            Swal.fire('Cancelled', 'Your changes were not saved.', 'error');
+        }
+    });
+}
+
+function showAssessmentSaveAlert() {
+    // SweetAlert confirmation
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Click okay to save changes.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Okay',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked "Okay" - proceed with the save
+            // document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual form ID
+            document.getElementById("assessmentForm").submit();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // User clicked "Cancel" - no action taken
+            Swal.fire('Cancelled', 'Your changes were not saved.', 'error');
+        }
+    });
+}
+
+function showDoctorsReviewSaveAlert() {
+    // SweetAlert confirmation
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Click okay to save changes.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Okay',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked "Okay" - proceed with the save
+            // document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual form ID
+            document.getElementById("doctorsReviewForm").submit();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // User clicked "Cancel" - no action taken
+            Swal.fire('Cancelled', 'Your changes were not saved.', 'error');
+        }
+    });
+}
+
 
 function clearRemarks() {
     remarks = []; // Reset the remarks array

@@ -34,4 +34,19 @@ class EmergencyPatient extends Model
     {
         return $this->hasMany(EmergencyLogs::class, 'emergency_patient_id');
     }
+
+    public function diagnosis_and_procedures()
+    {
+        return $this->hasMany(DiagnosisAndProcedure::class, 'emergency_patient_id');
+    }
+
+    public function ep_medical_histories()
+    {
+        return $this->hasMany(EpMedicalHistory::class, 'emergency_patient_id');
+    }
+
+    public function ep_assessments()
+    {
+        return $this->hasMany(EpAssessment::class, 'emergency_patient_id');
+    }
 }

@@ -27,17 +27,17 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $patients = Patient::all();
-        return view('admin_med.patient.records', compact('patients'));
-    }
+    // public function index()
+    // {
+    //     $patients = Patient::all();
+    //     return view('admin_med.patient.records', compact('patients'));
+    // }
 
-    public function indexm()
-    {
-        $patients = Patient::all();
-        return view('admin_med.patient.recordsm', compact('patients'));
-    }
+    // public function indexm()
+    // {
+    //     $patients = Patient::all();
+    //     return view('admin_med.patient.recordsm', compact('patients'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -508,27 +508,21 @@ class PatientController extends Controller
 
     public function emergency_patient_show($emergency_patient_id)
     {
-        $emergency_patient = EmergencyPatient::with(['vital_signs', 'emergency_information', 'emergency_logs.users.authorization'])->findOrFail($emergency_patient_id);
+        $emergency_patient = EmergencyPatient::with([
+            'vital_signs',
+            'emergency_information',
+            'emergency_logs.users.authorization',
+            'diagnosis_and_procedures.users',
+            'ep_medical_histories.users',
+            'ep_assessments.users'
+        ])->findOrFail($emergency_patient_id);
 
-        // Construct the full patient name
-        $patientName = implode(' ', array_filter([
-            $emergency_patient->emergency_first_name,
-            $emergency_patient->emergency_middle_name,
-            $emergency_patient->emergency_last_name,
-            $emergency_patient->emergency_extension,
-        ]));
-
-        // Fetch notifications related to this patient
-        $notifications = Notification::with('users.authorization')
-            ->where('notification_message', 'like', "%Name: {$patientName}%")
-            ->orderBy('created_at', 'desc')
-            ->get();
 
         if (!$emergency_patient) {
             return response()->json(['message' => 'Emergency Patient not found'], 404);
         }
 
-        return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient', 'notifications'));
+        return view('admin_med.patient.emergency.emergency_view', compact('emergency_patient'));
     }
 
     public function emergency_patient_edit($emergency_patient_id)

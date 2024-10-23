@@ -13,6 +13,10 @@
 <link href="{{ asset('admin_medcss/theme/./vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
 <link href="{{ asset('admin_medcss/theme/./css/style.css') }}" rel="stylesheet">
 
+
+
+
+
 <!-- Form step -->
 <link href="{{ asset('admin_medcss/theme/vendor/jquery-steps/css/jquery.steps.css') }}" rel="stylesheet">
 <!-- Datatable -->
@@ -47,6 +51,14 @@
 <link href="{{ asset('admin_medcss/theme/vendor/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
 
+<!-- Date picker plugins css -->
+<link href="{{ asset('admin_medcss/theme/./vendor/bootstrap-datepicker/bootstrap-datepicker.min.css') }}"
+    rel="stylesheet">
+<!-- Daterange picker plugins css -->
+<link href="{{ asset('admin_medcss/theme/./vendor/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+<link href="{{ asset('admin_medcss/theme/./vendor/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+
+
 
 <link id="custom-font" type="text/css" rel="stylesheet" href="//cdn.jotfor.ms/fonts/?family=Lato" />
 {{-- <link type="text/css" rel="stylesheet" href="https://cdn02.jotfor.ms/themes/CSS/defaultV2.css?v=de56e2d" /> --}}
@@ -55,10 +67,15 @@
 <link href="{{asset('admin_medcss/reg_form/css/form-common.css')}} " rel="stylesheet" />
 <link href="{{asset('admin_medcss/reg_form/css/form-design.css')}} " rel="stylesheet" />
 
+
+
+
 <!-- custom stylesheet -->
-<link rel="stylesheet" href="form/style.css">
+{{-- <link rel="stylesheet" href="form/style.css"> --}}
 
 <!-- Vanilla Datepicker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker/dist/css/datepicker.min.css">
 
 
+
+<link rel="stylesheet" href="{{ asset('/css/emergency_registration.css') }}">

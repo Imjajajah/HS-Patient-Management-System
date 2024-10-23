@@ -384,16 +384,18 @@
                         <canvas id="vitalSignsChart" style="display: none;"></canvas>
                     </div>
 
-                    <div class="card-footer d-flex justify-content-end">
+                    <div class="card-footer d-flex justify-content-between align-items-center">
                         <div class="tooltip-container" style="position: relative; display: inline-block;">
                             <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="toggleLogs()">
                                 <strong>View Logs</strong>
                             </label>
                         </div>
 
-
-                        <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
-                        <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
+                        <div>
+                            <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
+                            <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -3,7 +3,11 @@
 @section('med_content')
     <div class="content-body">
         <div class="container-fluid">
-            @include('admin_med.patient.emergency.register_button')
+            {{-- Show the register button only if the user has an admin or medical staff role --}}
+            @if (auth()->check() && in_array(auth()->user()->authorization->role_name, ['Admin', 'Medical staff']))
+                @include('admin_med.patient.emergency.register_button')
+            @endif
+
 
             <div class="row">
                 <div class="col-12">

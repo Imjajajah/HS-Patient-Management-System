@@ -1,3 +1,6 @@
+
+
+
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
@@ -6,65 +9,31 @@
 
                 <ul class="navbar-nav header-right">
                     <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" id="notificationToggle">
                             <i class="mdi mdi-bell"></i>
                             <div class="pulse-css"></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <ul class="list-unstyled">
-                                <li class="media dropdown-item">
-                                    <span class="success"><i class="ti-user"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Martin</strong> has added a <strong>customer</strong>
-                                                Successfully
+                            <ul class="list-unstyled" id="notification-list">
+                                @foreach($notifications as $notification)
+                                    <li class="media dropdown-item notification-item"
+                                        id="notification-{{ $notification->notification_id }}"
+                                        data-id="{{ $notification->notification_id }}">
+                                        <span class="success"><i class="ti-check"></i></span>
+                                        <div class="media-body">
+                                            <p>
+                                                <strong>{{ ucfirst($notification->notification_type) }}:</strong>
+                                                {{ $notification->notification_message }}
                                             </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="danger"><i class="ti-bookmark"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="primary"><i class="ti-heart"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="success"><i class="ti-image"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong> James.</strong> has added a<strong>customer</strong>
-                                                Successfully
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
+                                        </div>
+                                        <span class="notify-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                    </li>
+                                @endforeach
                             </ul>
-                            <a class="all-notification" href="#">See all notifications <i
-                                    class="ti-arrow-right"></i></a>
+
+                            <a class="all-notification" href="{{ route('notifications.allNotifications') }}">
+                                See all notifications <i class="ti-arrow-right"></i>
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item dropdown header-profile">
@@ -82,10 +51,10 @@
                             </a>
                             <form action="/logout" method="POST">
                                 @csrf
-                                <a class="dropdown-item block py-2 pr-5 pl-4">
+                                <button type="submit" class="dropdown-item block py-2 pr-5 pl-4 bg-transparent border-0">
                                     <i class="icon-key"></i>
-                                    <span class="ml-2">Logout </span>
-                                </a>
+                                    <span class="ml-2">Logout</span>
+                                </button>
                             </form>
                         </div>
                     </li>
@@ -94,3 +63,46 @@
         </nav>
     </div>
 </div>
+
+
+<script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     // Get the notification items
+    //     var successNotification = document.getElementById('successNotification');
+    //     var errorNotification = document.getElementById('errorNotification');
+
+    //     // Add click event listener for success notification
+    //     if (successNotification) {
+    //         successNotification.addEventListener('click', function() {
+    //             successNotification.style.display = 'none';  // Hide the notification
+    //         });
+    //     }
+
+    //     // Add click event listener for error notification
+    //     if (errorNotification) {
+    //         errorNotification.addEventListener('click', function() {
+    //             errorNotification.style.display = 'none';  // Hide the notification
+    //         });
+    //     }
+    // });
+// AJAX request to mark a notification as read and remove it from the dropdown
+document.querySelectorAll('.notification-item').forEach(item => {
+        item.addEventListener('click', function () {
+            const notificationId = this.getAttribute('data-id');
+            fetch(`/notifications/read/${notificationId}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`notification-${notificationId}`).remove();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
