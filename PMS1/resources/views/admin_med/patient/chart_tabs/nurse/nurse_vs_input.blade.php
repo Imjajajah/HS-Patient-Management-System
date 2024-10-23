@@ -31,7 +31,6 @@
     <form action="{{ isset($vital_sign) ? route('vital_signs.vital_signs_update', $vital_sign->vital_signs_id) : '/emergency/vital-signs/store' }}" id="vitalSignsForm" class="step-form-horizontal" method="POST" onsubmit="">
     @csrf
     @if(isset($vital_sign))
-        @csrf
         @method('PATCH') <!-- This will be added only if editing -->
     @endif
     <!-- Id and Date Section -->

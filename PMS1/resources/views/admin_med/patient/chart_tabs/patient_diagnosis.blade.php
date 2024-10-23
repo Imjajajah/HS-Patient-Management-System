@@ -88,7 +88,7 @@
                                                     {{ $procedure->diagnosis_and_procedure_time }}
                                                 </td>
                                                 <td>{{ $procedure->users->name ?? 'N/A' }}</td> <!-- Doctor's Name -->
-    
+
                                                 <td>
                                                     {{
                                                         Str::limit(
@@ -103,20 +103,20 @@
                                                 </td>
                                                 <td>{{ Str::limit($procedure->prognosis, 10, '...') }}</td>
                                                 <td>{{ Str::limit($procedure->diagnosis, 10, '...') }}</td>
-                                                
+
 
                                                 <td>
-                                                    
+
 
                                                     <a href="javascript:void(0)" class="btn btn-square btn-primary mr-3"
                                                         data-toggle="tooltip" data-placement="top" title="View"
-                                                        onclick="makeReviewFormReadonly();">
+                                                        onclick="populateFormViewProcedure({{ json_encode($procedure) }}); makeReviewFormReadonly();">
                                                         <i class="fa fa-eye color-muted"></i>
                                                     </a>
 
                                                     <a href="javascript:void(0)" class="btn btn-square btn-secondary mr-3"
                                                         data-toggle="tooltip" data-placement="top" title="Edit"
-                                                        onclick="enterReviewEditMode();">
+                                                        onclick="populateFormProcedure({{ json_encode($procedure) }}); enterReviewEditMode();">
                                                         <i class="fa fa-pencil color-muted"></i>
                                                     </a>
                                                 </td>

@@ -101,13 +101,13 @@
                                             <td>
                                                 <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                                    data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                   onclick="makeAssessmentFormReadonly();">
+                                                   onclick="populateFormViewAssessment({{ json_encode($assessment) }}); makeAssessmentFormReadonly();">
                                                     <i class="fa fa-eye color-muted"></i>
                                                 </a>
 
                                                 <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
                                                    data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                   onclick="enterAssessmentEditMode();">
+                                                   onclick="populateFormAssessment({{ json_encode($assessment) }}); enterAssessmentEditMode();">
                                                     <i class="fa fa-pencil color-muted"></i>
                                                 </a>
                                             </td>

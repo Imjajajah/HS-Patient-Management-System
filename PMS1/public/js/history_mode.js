@@ -17,7 +17,7 @@ function makeHistoryFormReadonly() {
     document.getElementById('historySaveBtn').style.display = 'none'; // Hide Save button
     document.getElementById('editSubmitHistory').style.display = 'none'; // Hide Save Changes button
     document.getElementById('historyCancelBtn').style.display = 'none'; // Hide Clear button
-    
+
     // Show the Back to Input Mode button
     document.getElementById('backToInputButtonHistory').style.display = 'block'; // Show Back to Input Mode button
 }
@@ -45,6 +45,17 @@ function enterHistoryEditMode() {
 }
 
 function showHistoryInputMode() {
+    const form = document.getElementById('epDiagnosisProcedureForm');
+
+    // Reset form action to store data
+    form.action = '/emergency/ep-medical-history/store';  // Set action to store route
+
+    // Remove the hidden _method input for PATCH if it exists
+    const methodInput = document.getElementById('_method');
+    if (methodInput) {
+        methodInput.remove(); // Remove _method so it submits as POST
+    }
+
     const inputs = document.querySelectorAll('.diagnosis-input, .treatment-input, .surgeries-input, .medication-input');
     inputs.forEach(input => {
         input.removeAttribute('readonly'); // Make inputs editable
@@ -68,4 +79,57 @@ function showHistoryInputMode() {
 
     // Optionally, you can also call enterHistoryEditMode to switch to edit mode after clearing fields
     // enterHistoryEditMode();
+}
+
+
+function populateFormHistory(history) {
+    // Set form action dynamically to the update route
+    const form = document.getElementById('epDiagnosisProcedureForm');
+    form.action = `/emergency/ep-medical-history/update/${history.ep_medical_history_id}`;
+
+    let methodInput = document.getElementById('_method');
+    if (!methodInput) {
+        methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.id = '_method';
+        form.appendChild(methodInput);
+    }
+    methodInput.value = 'PATCH'; // Ensure the form method is PATCH for update
+
+    //
+    document.getElementById('history-date-input').value = history.ep_medical_history_date;
+    document.getElementById('history-time-input').value = convertTo24Hour(history.ep_medical_history_time);
+    document.getElementById('diagnosisInput').value = history.ep_medical_history_diagnosis;
+    document.getElementById('treatmentInput').value = history.ep_medical_history_treatment;
+    document.getElementById('surgeriesInput').value = history.ep_medical_history_surgery;
+    document.getElementById('medicationInput').value = history.ep_medical_history_medications;
+}
+
+// Helper function to convert 12-hour time to 24-hour format
+function convertTo24Hour(time) {
+    let [hours, minutes] = time.split(':');
+    let period = minutes.slice(-2); // Extract AM or PM
+    minutes = minutes.slice(0, -2).trim(); // Remove AM/PM from minutes
+    hours = parseInt(hours);
+
+    if (period === 'PM' && hours !== 12) {
+        hours += 12;
+    } else if (period === 'AM' && hours === 12) {
+        hours = 0;
+    }
+
+    // Format hours and minutes to HH:MM format
+    hours = hours < 10 ? '0' + hours : hours;
+    return `${hours}:${minutes}`;
+}
+
+function populateFormViewHistory(history) {
+    //
+    document.getElementById('history-date-input').value = history.ep_medical_history_date;
+    document.getElementById('history-time-input').value = convertTo24Hour(history.ep_medical_history_time);
+    document.getElementById('diagnosisInput').value = history.ep_medical_history_diagnosis;
+    document.getElementById('treatmentInput').value = history.ep_medical_history_treatment;
+    document.getElementById('surgeriesInput').value = history.ep_medical_history_surgery;
+    document.getElementById('medicationInput').value = history.ep_medical_history_medications;
 }

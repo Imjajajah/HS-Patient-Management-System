@@ -6,8 +6,11 @@
 
 <div class="card-body">
 
-    <form action="/emergency/ep-assessment/store" method="POST" onsubmit="">
+    <form action="{{ isset($ep_assessment) ? route('ep_assessment.ep_assessment_update', $ep_assessment->ep_assessment_id) : '/emergency/ep-assessment/store' }}" id="assessmentForm" method="POST" onsubmit="">
         @csrf
+        @if(isset($ep_assessment))
+            @method('PATCH') <!-- This will be added only if editing -->
+        @endif
 
         <!-- Id and Date Section -->
     <div class="id-and-date">
@@ -63,7 +66,7 @@
 
         <button type="button" id="assessmentCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
 
-        <button type="submit" class="btn btn-primary ms-3" id="editSubmitAssessment" style="display: none;" onclick="showSaveAlert(); return false;">
+        <button type="submit" class="btn btn-primary ms-3" id="editSubmitAssessment" style="display: none;" onclick="showAssessmentSaveAlert(); return false;">
             Save Changes
         </button>
 

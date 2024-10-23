@@ -26,7 +26,7 @@ Route::controller(PatientController::class)->group(function() {
     // Route::get('/patients/{patient_id}', 'show')->name('patients.show');
     // Route::get('/patients/edit/{patient_id}', 'edit')->name('patients.edit');
     // Route::put('/patients/update/{patient_id}', 'update')->name('patients.update');
-    
+
     Route::post('/emergency/store', 'emergency_person_store');
     Route::get('/emergency-records', 'emergency_index');
     Route::get('/emergency-patient/{emergency_patient_id}', 'emergency_patient_show')->name('patients.emergency_patient_show');
@@ -51,14 +51,17 @@ Route::controller(NotificationsController::class)->group(function() {
 
 Route::controller(DiagnosisAndProcedureController::class)->group(function() {
     Route::post('/emergency/diagnosis-and-procedure/store', 'diagnosis_and_procedure_store');
+    Route::patch('/emergency/diagnosis-and-procedure/update/{diagnosis_and_procedure_id}', 'diagnosis_and_procedure_update')->name('diagnosis_and_procedure.diagnosis_and_procedure_update');
 });
 
 Route::controller(EpMedicalHistoryController::class)->group(function() {
     Route::post('/emergency/ep-medical-history/store', 'ep_medical_history_store');
+    Route::patch('/emergency/ep-medical-history/update/{ep_medical_history_id}', 'ep_medical_history_update')->name('ep_diagnosis_and_procedure.ep_medical_history_update');
 });
 
 Route::controller(EpAssessmentController::class)->group(function() {
     Route::post('/emergency/ep-assessment/store', 'ep_assessment_store');
+    Route::patch('/emergency/ep-assessment/update/{ep_assessment_id}', 'ep_assessment_update')->name('ep_assessment.ep_assessment_update');
 });
 
 

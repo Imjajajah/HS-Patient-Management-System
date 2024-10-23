@@ -44,7 +44,7 @@
                         <div id="logsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
-                            
+
                                 <li>
                                     {{--@php
                                         $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
@@ -64,9 +64,9 @@
                                     @endif--}}
                                     <p></p>
                                 </li>
-                            
+
                                 <li>No logs available for this patient.</li>
-                                
+
                             </ul>
                         </div>
 
@@ -89,23 +89,23 @@
                                             <td>{{ \Carbon\Carbon::parse($history->ep_medical_history_date)->format('m/d/Y') }},
                                                 {{ $history->ep_medical_history_time }}
                                             </td>
-                                            <td>{{ Str::limit($history->ep_medical_history_diagnosis ?? 'N/A', 10, '...') }}</td>  
+                                            <td>{{ Str::limit($history->ep_medical_history_diagnosis ?? 'N/A', 10, '...') }}</td>
                                             <td>{{ Str::limit($history->ep_medical_history_treatment ?? 'N/A', 10, '...') }}</td>
                                             <td>{{ Str::limit($history->ep_medical_history_surgery ?? 'N/A', 10, '...') }}</td>
                                             <td>{{ Str::limit($history->ep_medical_history_medications ?? 'N/A', 10, '...') }}</td>
                                             <td>
                                             <a href="javascript:void(0)" class="btn btn-square btn-primary mr-3"
                                                 data-toggle="tooltip" data-placement="top" title="View"
-                                                onclick="makeHistoryFormReadonly();">
+                                                onclick="populateFormViewHistory({{ json_encode($history) }}); makeHistoryFormReadonly();">
                                                 <i class="fa fa-eye color-muted"></i>
                                             </a>
 
                                             <a href="javascript:void(0)" class="btn btn-square btn-secondary mr-3"
                                                 data-toggle="tooltip" data-placement="top" title="Edit"
-                                                onclick="enterHistoryEditMode();">
+                                                onclick="populateFormHistory({{ json_encode($history) }}); enterHistoryEditMode();">
                                                 <i class="fa fa-pencil color-muted"></i>
                                             </a>
-                                                
+
                                             </td>
                                         </tr>
                                     @endforeach

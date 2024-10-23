@@ -4,13 +4,16 @@
 <div class="card-header">
     <h4 class="input-header" id="historyInputHeader">Input Mode</h4>
 </div>
-<!-- Card body for vital signs input--> 
+<!-- Card body for vital signs input-->
 
 <div class="card-body">
 
 
-    <form action="/emergency/ep-medical-history/store" method="POST" onsubmit="">
+    <form action="{{ isset($ep_medical_history) ? route('ep_diagnosis_and_procedure.ep_medical_history_update', $ep_medical_history->ep_medical_history_id) : '/emergency/ep-medical-history/store' }}" id="epDiagnosisProcedureForm" method="POST" onsubmit="">
     @csrf
+    @if(isset($ep_medical_history))
+        @method('PATCH') <!-- This will be added only if editing -->
+    @endif
 
     <!-- Id and Date Section -->
     <div class="id-and-date">
@@ -30,10 +33,10 @@
         <!-- Id and Date Section Input -->
         <div class="row id-and-date-input">
             <div class="col-md-6">
-                <input type="date" id="history-date-input" class="form-control date-input datetime-input">
+                <input type="date" name="ep_medical_history_date" id="history-date-input" class="form-control date-input datetime-input">
             </div>
             <div class="col-md-6">
-                <input type="time" id="history-time-input" class="form-control time-input datetime-input">
+                <input type="time" name="ep_medical_history_time" id="history-time-input" class="form-control time-input datetime-input">
             </div>
         </div>
         <!-- End of Id and Date Section Input -->
@@ -99,7 +102,7 @@
 
         <button type="button" id="historyCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
 
-        <button type="submit" class="btn btn-primary ms-3" id="editSubmitHistory" style="display: none;" onclick="showSaveAlert(); return false;">
+        <button type="submit" class="btn btn-primary ms-3" id="editSubmitHistory" style="display: none;" onclick="showHistorySaveAlert(); return false;">
             Save Changes
         </button>
 

@@ -10,8 +10,11 @@
 <div class="card-body">
 
 
-    <form action="/emergency/diagnosis-and-procedure/store" method="POST" onsubmit="">
+    <form action="{{ isset($diagnosis_and_procedure) ? route('diagnosis_and_procedure.diagnosis_and_procedure_update', $diagnosis_and_procedure->diagnosis_and_procedure_id) : '/emergency/diagnosis-and-procedure/store' }}" id="doctorsReviewForm" method="POST" onsubmit="">
     @csrf
+    @if(isset($diagnosis_and_procedure))
+        @method('PATCH') <!-- This will be added only if editing -->
+    @endif
 
     <!-- Id and Date Section -->
     <div class="id-and-date">
@@ -31,10 +34,10 @@
         <!-- Id and Date Section Input -->
         <div class="row id-and-date-input">
             <div class="col-md-6">
-                <input type="date" name="diagnosis_and_procedure_date" id="diagnosis-date-input" class="form-control date-input datetime-input">
+                <input type="date" name="diagnosis_and_procedure_date" id="diagnosis-date-input1" class="form-control date-input datetime-input">
             </div>
             <div class="col-md-6">
-                <input type="time" name="diagnosis_and_procedure_time" id="diagnosis-time-input" class="form-control time-input datetime-input">
+                <input type="time" name="diagnosis_and_procedure_time" id="diagnosis-time-input1" class="form-control time-input datetime-input">
             </div>
         </div>
         <!-- End of Id and Date Section Input -->
@@ -131,7 +134,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <textarea id="diagnosisInput" class="diagnosis-input" name="diagnosis" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea id="diagnosisInput1" class="diagnosis-input" name="diagnosis" data-toggle="tooltip" placeholder="" rows="4"></textarea>
             </div>
         </div>
 
@@ -175,7 +178,7 @@
 
         <button type="button" id="reviewCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
 
-        <button type="submit" class="btn btn-primary ms-3" id="editSubmitReview" style="display: none;" onclick="showSaveAlert(); return false;">
+        <button type="submit" class="btn btn-primary ms-3" id="editSubmitReview" style="display: none;" onclick="showDoctorsReviewSaveAlert(); return false;">
             Save Changes
         </button>
 
