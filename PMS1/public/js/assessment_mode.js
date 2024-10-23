@@ -76,6 +76,7 @@ function showAssessmentInputMode() {
     document.getElementById('editSubmitAssessment').style.display = 'none'; // Hide Save Changes button
     document.getElementById('assessmentCancelBtn').style.display = 'block'; // Show Clear button
     document.getElementById('backToInputButtonAssessment').style.display = 'none'; // Hide Back to Input Mode button
+    document.getElementById('downloadFileBtn').style.display = 'none';
 }
 
 function populateFormAssessment(assessment) {
@@ -122,4 +123,36 @@ function populateFormViewAssessment(assessment) {
     document.getElementById('assessment-date-input').value = assessment.ep_assessment_date;
     document.getElementById('assessment-time-input').value = convertTo24Hour(assessment.ep_assessment_time);
     document.getElementById('assessmentInput').value = assessment.ep_assessment_assessments;
+}
+
+
+function changeFileInputToDownload() {
+    // Hide the file input
+   
+
+    // Show the Download/Print buttons
+    document.getElementById('downloadFileBtn').style.display = 'block';
+}
+
+// Simulate downloading the file (you can replace this with your own logic)
+function downloadFile() {
+    alert('Downloading file...');
+    // Logic to download the file can be added here (e.g., using AJAX or linking to the file path)
+}
+
+
+function assessmentToggleLogs() {
+    var logsSection = document.getElementById('assessmentLogsSection');
+    var vitalSignsTable = document.getElementById('assessmentTableContainer');
+
+    // Check if logs are currently visible
+    if (logsSection.style.display === "none" || logsSection.style.display === "") {
+        logsSection.style.display = "block"; // Show logs
+        vitalSignsTable.style.display = "none"; // Hide the table
+        document.getElementById('viewLogs').innerText = "View Assessment History"; // Update label text
+    } else {
+        logsSection.style.display = "none"; // Hide logs
+        vitalSignsTable.style.display = "block"; // Show the table
+        document.getElementById('viewLogs').innerText = "View Logs"; // Update label text
+    }
 }

@@ -56,6 +56,56 @@
 
     </div>
 
+    <!-- New Diagnostic Test Ordering Section -->
+    <div class="diagnostic-test-order mt-4">
+        <div class="col-md-8">
+            <h5 class="assessment-text">Order Diagnostic Test</h5>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="diagnostic-test-select">Choose Test</label>
+                <select id="diagnostic-test-select" name="diagnostic_test" class="form-control">
+                    <option value="xray">X-ray</option>
+                    <option value="blood_test">Blood Test</option>
+                    <option value="mri">MRI</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="test-instructions">Test Instructions</label>
+                <input type="text" id="test-instructions" name="test_instructions" class="form-control" placeholder="e.g., fasting required">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="test-priority">Priority</label>
+                <select id="test-priority" name="test_priority" class="form-control">
+                    <option value="routine">Routine</option>
+                    <option value="urgent">Urgent</option>
+                </select>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="lab-request-file">Attach File (Optional)</label>
+                <input type="file" id="lab-request-file" name="lab_request_file" class="form-control">
+            </div>
+            
+        </div>
+
+        <div class="col-md-6">
+            <h5 class="id-and-date-label">Email: </h5>
+        </div>
+        <div class="col-md-12">
+           
+            <input type="text" id="labEmail" name="lab_email" class="form-control">
+        </div>
+        
+    </div>
+
+   
+
+
     <input type="hidden" name="emergency_patient_id" value="{{ $emergency_patient->emergency_patient_id }}">
 
     <!-- Footer Buttons -->
@@ -63,8 +113,8 @@
 
         <!-- Back to Input Mode Button (Initially Hidden) -->
         <button type="button" class="btn btn-secondary" id="backToInputButtonAssessment" style="display: none;" onclick="showAssessmentInputMode();">Back to Input Mode</button>
-
-        <button type="button" id="assessmentCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Clear</button>
+        <button id="downloadFileBtn" class="btn btn-primary ms-3" style="display: none;" onclick="downloadFile()">Download</button>
+        <button type="button" id="assessmentCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Print</button>
 
         <button type="submit" class="btn btn-primary ms-3" id="editSubmitAssessment" style="display: none;" onclick="showAssessmentSaveAlert(); return false;">
             Save Changes

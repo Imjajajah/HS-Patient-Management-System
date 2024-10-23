@@ -224,9 +224,7 @@ input:checked + .slider:before{
 }
 
 /* Optional: Add some styling for the logs section */
-#logsSection {
-    margin-top: 20px; /* Optional: add some spacing */
-}
+
 
 .chart-tab-header th, .chart-tab-table-body td, 
 .medical-history-header th, .medical-history-table-body{

@@ -1,19 +1,20 @@
 /* Ensure the logs section content is aligned to the left */
-#logsSection {
+#logsSection, #historyLogsSection, #assessmentLogsSection {
     text-align: left; /* Align text to the left */
+    margin-top: 20px; /* Optional: add some spacing */
 }
 
 /* Add padding/margin if needed for better spacing */
-#logsSection h5 {
+#logsSection h5, #historyLogsSection h5, #assessmentLogsSection h5 {
     margin-bottom: 10px;
 }
 
 /* Align list items to the left */
-#logEntries {
+#logEntries, #historyLogsSection, #assessmentLogsSection  {
     list-style-type: disc; /* Optional: Adds bullets */
     padding-left: 20px; /* Optional: Adds left indentation */
 }
 
-#logEntries li {
+#logEntries li, #historyLogsSection li, #assessmentLogsSection li {
     text-align: left; /* Ensure each list item is left-aligned */
 }

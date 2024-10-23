@@ -133,3 +133,20 @@ function populateFormViewHistory(history) {
     document.getElementById('surgeriesInput').value = history.ep_medical_history_surgery;
     document.getElementById('medicationInput').value = history.ep_medical_history_medications;
 }
+
+
+function historyToggleLogs() {
+    var logsSection = document.getElementById('historyLogsSection');
+    var vitalSignsTable = document.getElementById('historyTableContainer');
+
+    // Check if logs are currently visible
+    if (logsSection.style.display === "none" || logsSection.style.display === "") {
+        logsSection.style.display = "block"; // Show logs
+        vitalSignsTable.style.display = "none"; // Hide the table
+        document.getElementById('viewLogs').innerText = "View Medical History"; // Update label text
+    } else {
+        logsSection.style.display = "none"; // Hide logs
+        vitalSignsTable.style.display = "block"; // Show the table
+        document.getElementById('viewLogs').innerText = "View Logs"; // Update label text
+    }
+}

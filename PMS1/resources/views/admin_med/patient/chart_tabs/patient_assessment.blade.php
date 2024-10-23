@@ -39,12 +39,12 @@
                     </div>
 
                     <div class="card-body">
-                        <div id="logsSection" style="display: none;">
+                        <div id="assessmentLogsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
-                                @forelse ($emergency_patient->emergency_logs as $log)
+                                {{--@forelse ($emergency_patient->emergency_logs as $log)
                                     <li>
-                                        @php
+                                        {{@php
                                             $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
                                             $user = $log->users;
                                             $userRole = $user->authorization->role_name ?? 'N/A'; // Get role from authorization
@@ -64,17 +64,19 @@
                                     </li>
                                 @empty
                                     <li>No logs available for this patient.</li>
-                                @endforelse
+                                @endforelse --}}
                             </ul>
                         </div>
 
-                        <div id="vitalSignsTableContainer">
+                        <div id="assessmentTableContainer">
                             <table class="chart-tab-table-left" id="vitalSignsTable">
                                 <thead class="chart-tab-table-header">
                                     <tr class="chart-tab-header">
                                         <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
                                         <th>Doctor</th>
                                         <th>Summary</th>
+                                        <th>Test</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -98,10 +100,12 @@
                                                     </span>
 
                                                 </div>
+                                            <td>Test</td>
+                                            <td>Status</td>
                                             <td>
                                                 <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                                    data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                   onclick="populateFormViewAssessment({{ json_encode($assessment) }}); makeAssessmentFormReadonly();">
+                                                   onclick="populateFormViewAssessment({{ json_encode($assessment) }}); makeAssessmentFormReadonly(); changeFileInputToDownload();">
                                                     <i class="fa fa-eye color-muted"></i>
                                                 </a>
 
@@ -127,7 +131,7 @@
 
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <div class="tooltip-container" style="position: relative; display: inline-block;">
-                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="toggleLogs()">
+                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="assessmentToggleLogs()">
                                 <strong>View Logs</strong>
                             </label>
                         </div>

@@ -32,7 +32,6 @@
                                                 <td>{{ $emergency_patient->emergency_last_name }}</td>
                                                 <td>{{ $emergency_patient->emergency_first_name }}</td>
                                                 <td>10</td>
-                                                <td>{{ $emergency_patient->status }}</span></td>
                                                 <td>{{ $emergency_patient->priority_level }}</span></td>
 
                                                 <td>
