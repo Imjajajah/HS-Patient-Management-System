@@ -2952,11 +2952,11 @@ a {
 .hamburger:hover .line {
   width: 26px; }
 
-/*
+
     .hamburger.is-active {
       left: 60px;
     }
-    */
+   
 .hamburger.is-active .line:nth-child(1),
 .hamburger.is-active .line:nth-child(3) {
   width: 10px;

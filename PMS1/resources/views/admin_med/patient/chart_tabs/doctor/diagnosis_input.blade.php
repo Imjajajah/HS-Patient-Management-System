@@ -60,9 +60,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="add-button" onclick="addTextField(event, 'impairmentInput')">+ Add Impairment</button>
+                    
                     <div class="input-wrapper" id="impairments-container">
-                        <textarea id="impairmentInput" class="impairments-evaluation-input" name="impairment" data-toggle="tooltip" placeholder="" rows="1" style="display:none;"></textarea>
+                        <textarea id="impairmentInput" class="impairments-evaluation-input" name="impairment" data-toggle="tooltip" placeholder="" rows="1" required></textarea>
                     </div>
                 </div>
             </div>
@@ -76,9 +76,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="add-button" onclick="addTextField(event, 'activityRestrictionInput')">+ Add Activity Restriction</button>
+                   
                     <div class="input-wrapper" id="activity-restrictions-container">
-                        <textarea id="activityRestrictionInput" class="activity-restriction-input" name="activity_restriction" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
+                        <textarea id="activityRestrictionInput" class="activity-restriction-input" name="activity_restriction" data-toggle="tooltip" placeholder="" rows="2" required></textarea>
                     </div>
                 </div>
             </div>
@@ -92,9 +92,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="add-button" onclick="addTextField(event, 'personalFactorInput')">+ Add Personal Factor</button>
+                  
                     <div class="input-wrapper" id="personal-factors-container">
-                        <textarea id="personalFactorInput" class="personal-factor-input" name="personal_factor" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
+                        <textarea id="personalFactorInput" class="personal-factor-input" name="personal_factor" data-toggle="tooltip" placeholder="" rows="2" required></textarea>
                     </div>
                 </div>
             </div>
@@ -108,9 +108,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="add-button" onclick="addTextField(event, 'environmentalFactorInput')">+ Add Environmental Factor</button>
+                   
                     <div class="input-wrapper" id="environmental-factors-container">
-                        <textarea id="environmentalFactorInput" class="environmental-factor-input" name="environmental_factor" data-toggle="tooltip" placeholder="" rows="2" style="display:none;"></textarea>
+                        <textarea id="environmentalFactorInput" class="environmental-factor-input" name="environmental_factor" data-toggle="tooltip" placeholder="" rows="2" required></textarea>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <textarea id="diagnosisInput1" class="diagnosis-input" name="diagnosis" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea id="diagnosisInput1" class="diagnosis-input" name="diagnosis" data-toggle="tooltip" placeholder="" rows="4" required></textarea>
             </div>
         </div>
 
@@ -150,7 +150,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <textarea id="prognosisInput" class="prognosis-input" name="prognosis" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea id="prognosisInput" class="prognosis-input" name="prognosis" data-toggle="tooltip" placeholder="" rows="4" required></textarea>
             </div>
         </div>
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('emergency_date_logs')->nullable()->comment('mm-dd-yyyy');
             $table->string('emergency_time_logs', 8)->nullable()->comment('hh:mm am/pm');
             $table->string('patient_name'); // The patient affected
+            $table->string('type'); // e.g., 'edited' or 'inputted'
             $table->string('action'); // e.g., 'edited' or 'inputted'
             $table->string('field')->nullable(); // The field changed (like 'BP')
             $table->text('old_value')->nullable(); // Old value (for edits)

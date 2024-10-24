@@ -7,7 +7,7 @@
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 
 <script src="{{ asset('js/history_mode.js') }}"></script>
-
+<script src="{{ asset('js/data_validation.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -45,27 +45,29 @@
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
 
-                                <li>
-                                    {{--@php
-                                        $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
-                                        $user = $log->users;
-                                        $userRole = $user->authorization->role_name ?? 'N/A'; // Get role from authorization
-                                        $userName = $user->name ?? 'Unknown User';
-                                        $action = strtolower($log->action); // 'inputted' or 'edited'
-                                    @endphp
+                                @forelse ($emergency_patient->emergency_logs->where('type', 'ep_medical_history_type') as $log)
+                                    <li>
+                                        @php
+                                            $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
+                                            $user = $log->users;
+                                            $userRole = $user->authorization->role_name ?? 'N/A'; // Get role from authorization
+                                            $userName = $user->name ?? 'Unknown User';
+                                            $action = strtolower($log->action); // 'inputted' or 'edited'
+                                        @endphp
 
-                                    @if ($log->action === 'inputted')
-                                        {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
-                                        {{ $userRole }} - {{ $userName }} inputted new vital signs.
-                                    @else
-                                        {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
-                                        {{ $userRole }} - {{ $userName }} edited patient -
-                                        {{ $log->patient_name }}. {{ $log->message }}
-                                    @endif--}}
-                                    <p></p>
-                                </li>
-
-                                <li>No logs available for this patient.</li>
+                                        @if ($log->action === 'inputted')
+                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                            {{ $userRole }} - {{ $userName }} inputted new medical history.
+                                        @else
+                                            {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
+                                            {{ $userRole }} - {{ $userName }} edited patient -
+                                            {{ $log->patient_name }}. {{ $log->message }}
+                                        @endif
+                                        <p></p>
+                                    </li>
+                                @empty
+                                    <li>No logs available for this patient.</li>
+                                @endforelse
 
                             </ul>
                         </div>

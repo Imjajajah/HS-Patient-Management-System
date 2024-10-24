@@ -5,6 +5,10 @@
 <script src="{{ asset('js/charts_graph.js') }}"></script>
 <script src="{{ asset('js/charts_reminder.js') }}"></script>
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="{{ asset('js/data_validation.js') }}"></script>
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
@@ -40,7 +44,7 @@
                                         </span>
                                     </label>
                                 </div>
-                                
+
 
                                 <div id="manualReminder" class="ms-3">
                                     <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
@@ -54,7 +58,7 @@
                         <div id="logsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
-                                @forelse ($emergency_patient->emergency_logs as $log)
+                                @forelse ($emergency_patient->emergency_logs->where('type', 'vital_signs_type') as $log)
                                     <li>
                                         @php
                                             $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
@@ -162,4 +166,3 @@
 
     </div>
 </div>
-

@@ -579,13 +579,13 @@ html.rtl .sidebar-hide .sidebar.sidebar-shrink.sidebar-hide-to-small~.content-wr
 
 .hamburger:hover {
     cursor: pointer;
-}
+} */
 
-/*
+
 .hamburger.is-active {
   left: 65px;
 }
-*/
+
 
 .hamburger.is-active .line:nth-child(1), .hamburger.is-active .line:nth-child(3) {
     width: 10px;

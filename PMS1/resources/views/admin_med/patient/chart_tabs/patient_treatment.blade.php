@@ -5,6 +5,8 @@
 <script src="{{ asset('js/charts_reminder.js') }}"></script>
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 <script src="{{ asset('js/summary.js') }}"></script>
+<script src="{{ asset('js/treatment_mode.js') }}"></script>
+
 
 <script src="{{ asset('js/assessment_mode.js') }}"></script>
 <script src="{{ asset('js/data_validation.js') }}"></script>
@@ -23,9 +25,9 @@
 
         <div class="row grid">
             <div class="col-xl-4 col-xxl-12">
-                <div class="assessment-card-input card-input-green">
+                <div class="treatment-card-input card-input-green">
 
-                    @include('admin_med.patient.chart_tabs.doctor.assessment')
+                    @include('admin_med.patient.chart_tabs.doctor.treatment_input')
 
 
                 </div>
@@ -36,11 +38,11 @@
             <div class="col-xl-8 col-xxl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Assessment History</h4>
+                        <h4 class="card-title">Treatment History</h4>
                     </div>
 
                     <div class="card-body">
-                        <div id="assessmentLogsSection" style="display: none;">
+                        <div id="treatmentLogsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
                                 {{--@forelse ($emergency_patient->emergency_logs as $log)
@@ -69,61 +71,49 @@
                             </ul>
                         </div>
 
-                        <div id="assessmentTableContainer">
+                        <div id="treatmentTableContainer">
                             <table class="chart-tab-table-left" id="vitalSignsTable">
                                 <thead class="chart-tab-table-header">
                                     <tr class="chart-tab-header">
-                                        <th onclick="sortTable(0)">Date &#x25B2;&#x25BC;</th>
+                                        <th onclick="sortTable(0)">Created &#x25B2;&#x25BC;</th>
                                         <th>Doctor</th>
-                                        <th>Summary</th>
-                                        <th>Test</th>
+                                        <th>Medication</th>
+                                        <th>Dosage</th>
+                                        <th>Frequency</th>
+                                        <th>Duration</th>
+                                        <th>End Date</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @if ($emergency_patient->ep_assessments && $emergency_patient->ep_assessments->isNotEmpty())
-                                    @foreach ($emergency_patient->ep_assessments as $assessment)
-                                        <tr class="chart-tab-table-body">
-                                            <td style="display: none;">{{ $assessment->ep_assessment_id }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($assessment->ep_assessment_date)->format('m/d/Y') }},
-                                                {{ $assessment->ep_assessment_time }}
-                                            </td>
-                                            <td>{{ $assessment->users->name ?? 'N/A' }}</td>
-                                            <td>
-                                                <div class="assessment-summary-container">
-                                                    <span class="assessment-summary" id="summary-{{ $assessment->id }}">
-                                                        {{ Str::limit($assessment->ep_assessment_assessments, 50, '') }} <!-- Limit the visible text -->
-                                                    </span>
+                                   
+                                    <tr class="chart-tab-table-body">
+                                        <td>10/08/2024</td>
+                                        <td>Dr. Smith</td>
+                                        <td>Medication A</td>
+                                        <td>10 mg</td>
+                                        <td>Daily</td>
+                                        <td>7 days</td>
+                                        <td>10/08/2024</td>
+                                        <td>Active</td>
+                                        
+                                        <td>
+                                            <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="View"
+                                                onclick="makeTreatmentFormReadonly();">
+                                                <i class="fa fa-eye color-muted"></i>
+                                            </a>
 
-                                                    <span class="extra-text" id="extra-{{ $assessment->id }}">
-                                                        {{ substr($assessment->ep_assessment_assessments, 50) }} <!-- Remaining text -->
-                                                    </span>
-
-                                                </div>
-                                            <td>{{ $assessment->ep_assessment_test }}</td>
-                                            <td>{{ $assessment->ep_assessment_priority }}</td>
-                                            <td>
-                                                <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
-                                                   data-toggle="tooltip" type="button" data-placement="top" title="View"
-                                                   onclick="populateFormViewAssessment({{ json_encode($assessment) }}); makeAssessmentFormReadonly(); changeFileInputToDownload();">
-                                                    <i class="fa fa-eye color-muted"></i>
-                                                </a>
-
-                                                <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
-                                                   data-toggle="tooltip" type="button" data-placement="top" title="Edit"
-                                                   onclick="populateFormAssessment({{ json_encode($assessment) }}); enterAssessmentEditMode();">
-                                                    <i class="fa fa-pencil color-muted"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="6">No assessment history records found.</td>
-                                        </tr>
-                                    @endif
+                                            <a href="javascript:void()" class="btn btn-square btn-secondary mr-3"
+                                                data-toggle="tooltip" type="button" data-placement="top" title="Edit"
+                                                onclick="enterTreatmentEditMode();">
+                                                <i class="fa fa-pencil color-muted"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                       
 
                                 </tbody>
                             </table>
@@ -133,7 +123,7 @@
 
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <div class="tooltip-container" style="position: relative; display: inline-block;">
-                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="assessmentToggleLogs()">
+                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="treatmentToggleLogs()">
                                 <strong>View Logs</strong>
                             </label>
                         </div>

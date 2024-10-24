@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('diagnosis_and_procedures', function (Blueprint $table) {
-            $table->id('diagnosis_and_procedue_id');
+            $table->id('diagnosis_and_procedure_id');
             $table->date('diagnosis_and_procedure_date')->nullable()->comment('mm-dd-yyyy');
             $table->string('diagnosis_and_procedure_time', 8)->nullable()->comment('hh:mm am/pm');
             $table->text('impairment')->nullable();
