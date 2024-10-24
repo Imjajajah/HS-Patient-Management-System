@@ -81,7 +81,7 @@
                                         <th>Dosage</th>
                                         <th>Frequency</th>
                                         <th>Duration</th>
-                                        <th>End Date</th>
+                                        <th>End</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

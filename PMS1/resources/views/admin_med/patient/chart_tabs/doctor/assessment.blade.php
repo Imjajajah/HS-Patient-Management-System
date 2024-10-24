@@ -85,14 +85,6 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="test-priority">Priority</label>
-<<<<<<< HEAD
-                <select id="test-priority" name="test_priority" class="form-control">
-                    <option value="" disabled selected>Select priority</option> <!-- Default empty option -->
-                    <option value="routine">Routine</option>
-                    <option value="urgent">Urgent</option>
-                </select>
-            </div>
-=======
                 <select id="test-priority" name="ep_assessment_priority" class="form-control">
                     <option value="" disabled selected>Select priority</option>
                     <option value="Routine">Routine</option>
@@ -100,7 +92,6 @@
                 </select>
             </div>
 
->>>>>>> 39d7f057a3908de07e57a49de5b9f4411b67b571
             <div class="col-md-6">
                 <label for="lab-request-file">Attach File (Optional)</label>
                 <input type="file" id="lab-request-file" name="order_test_file" class="form-control">
@@ -130,12 +121,8 @@
 
         <!-- Back to Input Mode Button (Initially Hidden) -->
         <button type="button" class="btn btn-secondary" id="backToInputButtonAssessment" style="display: none;" onclick="showAssessmentInputMode();">Back to Input Mode</button>
-<<<<<<< HEAD
-        <!-- <button id="downloadFileBtn" class="btn btn-primary ms-3" style="display: none;" onclick="downloadFile()">Download</button> -->
-=======
         {{-- <button id="downloadFileBtn" class="btn btn-primary ms-3" style="display: none;" onclick="downloadFile()">Download</button> --}}
         <a id="downloadFileBtn" class="btn btn-primary ms-3" style="display: none;" onclick="downloadFile()">Download</a>
->>>>>>> 39d7f057a3908de07e57a49de5b9f4411b67b571
         <button type="button" id="assessmentCancelBtn" class="btn btn-secondary btn sweet-confirm me-3" data-dismiss="modal">Print</button>
 
         <button type="submit" class="btn btn-primary ms-3" id="editSubmitAssessment" style="display: none;" onclick="showAssessmentSaveAlert(); return false;">

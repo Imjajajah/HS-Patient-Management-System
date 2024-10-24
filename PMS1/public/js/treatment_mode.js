@@ -5,7 +5,7 @@ function makeTreatmentFormReadonly() {
     });
 
     // Change header text to "View Mode"
-    document.getElementById('assessmentInputHeader').innerText = 'View Mode';
+    document.getElementById('treatmentInputHeader').innerText = 'View Mode';
 
     // Change card-input border color to blue (View Mode)
     const cardInput = document.querySelector('.treatment-card-input'); // Assuming the entire card body is treated as card input
@@ -29,7 +29,7 @@ function enterTreatmentEditMode() {
     });
 
     // Change header text to "Edit Mode"
-    document.getElementById('assessmentInputHeader').innerText = 'Edit Mode';
+    document.getElementById('treatmentInputHeader').innerText = 'Edit Mode';
 
     // Change card-input border color to yellow (Edit Mode)
     const cardInput = document.querySelector('.treatment-card-input');
@@ -52,7 +52,7 @@ function showTreatmentInputMode() {
     });
 
     // Change header text back to "Input Mode"
-    document.getElementById('assessmentInputHeader').innerText = 'Input Mode';
+    document.getElementById('treatmentInputHeader').innerText = 'Input Mode';
 
     // Change card-input border color to green (Input Mode)
     const cardInput = document.querySelector('.treatment-card-input');
@@ -83,3 +83,5 @@ function treatmentToggleLogs() {
         document.getElementById('viewLogs').innerText = "View Logs"; // Update label text
     }
 }
+
+

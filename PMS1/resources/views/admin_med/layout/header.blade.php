@@ -1,8 +1,13 @@
 <style>
     /* Main Navigation styling */
 .main-navigation {
-    background-color: #f4f4f4; /* Light background for the navigation */
-    padding: 10px 20px; /* Padding around the navigation for spacing */
+    background-color: white;
+    padding: 3px 8px; /* Reduce padding for less height */
+    margin-left: -17.1875rem;
+}
+
+.new-header-navigation{
+    margin-bottom: 17rem;
 }
 
 .nav-links {
@@ -16,15 +21,18 @@
 
 .nav-links li {
     position: relative; /* Required for dropdowns */
+    padding: 0; /* Remove any padding from list items */
+    margin: 0; /* Remove margin if present */
 }
 
 .nav-links a {
     text-decoration: none; /* Remove underline from links */
-    color: #333; /* Text color */
-    padding: 10px 15px; /* Add padding to make the clickable area larger */
+    color: #003263; /* Text color */
+    padding: 3px 8px; /* Add padding to make the clickable area larger */
     display: inline-flex; /* Ensure the icon and text are aligned */
     align-items: center; /* Vertically align the icon and text */
     border-radius: 5px; /* Slight rounding for aesthetics */
+    font-size: 11px;
 }
 
 .nav-links a:hover {
@@ -46,7 +54,7 @@
 }
 
 .nav-links li ul.dropdown li {
-    width: 200px; /* Set a fixed width for the dropdown items */
+    width: 180px; /* Set a fixed width for the dropdown items */
 }
 
 .nav-links li ul.dropdown a {
@@ -129,22 +137,24 @@
             </div>
         </nav>
     </div>
-    <!-- <nav class="main-navigation">
-    <ul class="nav-links">
-        <li><a href="{{ url('') }}"><i class="mdi mdi-home mdi-24px"></i> Home</a></li>
-        <li><a href="calendar"><i class="mdi mdi-calendar mdi-24px"></i> Calendar</a></li>
-        <li><a href="overall_records"><i class="icon icon-single-04"></i> Overview</a></li>
-        <li>
-            <a href="records"><i class="mdi mdi-folder-outline mdi-24px"></i> Records</a>
-            <ul class="dropdown">
-                <li><a href="/emergency-records">Emergency Patients</a></li>
-                <li><a href="inpatient_records">In-Patients</a></li>
-                <li><a href="javascript:void()">Out-Patients</a></li>
-            </ul>
-        </li>
-        <li><a href="javascript:void()"><i class="mdi mdi-monitor mdi-24px"></i> Transactions</a></li>
-    </ul>
-</nav> -->
+    <div class="new-header-navigation">
+        <nav class="main-navigation">
+        <ul class="nav-links">
+            <li><a href="{{ url('') }}"><i class="mdi mdi-home mdi-24px"></i> Home</a></li>
+            <li><a href="calendar"><i class="mdi mdi-calendar mdi-24px"></i> Calendar</a></li>
+            <li>
+                <a href="records"><i class="mdi mdi-folder-outline mdi-24px"></i> Records</a>
+                <ul class="dropdown">
+                    <li><a href="/emergency-records">Emergency Patients</a></li>
+                    <li><a href="inpatient_records">In-Patients</a></li>
+                    <li><a href="javascript:void()">Out-Patients</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void()"><i class="mdi mdi-monitor mdi-24px"></i> Transactions</a></li>
+        </ul>
+        </nav>
+    </div>
+    
 </div>
 
 

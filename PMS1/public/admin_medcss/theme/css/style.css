@@ -7862,7 +7862,8 @@ a {
 
 .content-body .container-fluid {
   padding-right: 30px;
-  padding-left: 30px; }
+  padding-left: 30px;
+  padding-top: 50px; }
 
 .content-heading {
   font-size: 16px;
@@ -10306,7 +10307,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   top: 0.625rem; }
 
 .content-body {
-  margin-left: 17.1875rem;
+  /* margin-left: 17.1875rem; */
+  padding-top: 50px;
   z-index: 0;
   transition: all .2s ease; }
   @media only screen and (min-width: 1200px) and (max-width: 1350px) {
@@ -10314,7 +10316,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       margin-left: 14.375rem; } }
 
 .quixnav {
-  width: 17.1875rem;
+  /* width: 17.1875rem; */
   padding-bottom: 112px;
   height: 100%;
   position: absolute;

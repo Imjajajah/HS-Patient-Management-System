@@ -7,6 +7,7 @@
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
 <script src="{{ asset('js/data_validation.js') }}"></script>
 <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -128,19 +129,17 @@
                                 </tbody>
                             </table>
                         </div>
-                        <canvas id="vitalSignsChart" style="display: none;"></canvas>
+                        <div id="vitalSignsChartContainer" style="display: none;">
+                            <div class="row" style="display: flex; gap: 40px;">
+                                <canvas id="bpChart" width="430" height="300"></canvas>
+                                <canvas id="hrChart" width="430" height="300"></canvas>
+                               
+                            </div>
+                            <canvas id="tempChart" width="430" height="300"></canvas>
+                            
 
-                        <!-- <div>
-                            <canvas id="heartRespRateChart" style="display: none;"></canvas>
                         </div>
 
-                        <div>
-                            <canvas id="temperatureChart" style="display: none;"></canvas>
-                        </div>
-
-                        <div>
-                            <canvas id="bloodPressureChart" style="display: none;"></canvas>
-                        </div> -->
 
                     </div>
 
@@ -152,7 +151,8 @@
                         </div>
 
                         <div>
-                            <button type="button" id="viewGraph-btn" class="btn btn-secondary btn view-graph" data-dismiss="modal">View Graph</button>
+                            <button type="button" id="viewGraphButton" class="btn btn-secondary" onclick="viewGraph()">View Graph</button>
+                            <button type="button" id="viewTableButton" class="btn btn-secondary" style="display: none;" onclick="viewTable()">View Table</button>
                             <button type="submit" id="print-btn" class="btn btn-primary print-charts">Print</button>
                         </div>
 

@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('js/data_validation.js') }}"></script>
+<script src="{{ asset('js/treatment_end.js') }}"></script>
 
 <div class="card-header">
     <h4 class="input-header" id="assessmentInputHeader">Input Mode</h4>
@@ -15,7 +16,7 @@
 
 
         <!-- Id and Date Section -->
-    <div class="id-and-date">
+    <div class="id-and-date" style="display: none;">
 
         <!-- Id and Date Section Text -->
         <div class="row id-and-date-text">
@@ -41,6 +42,31 @@
         <!-- End of Id and Date Section Input -->
 
     </div>
+
+
+
+
+    <div class="treatment-remarks">
+        <div class="row id-and-date-text">
+            <div class="col-md-6">
+                <h5 class="id-and-date-label">Start Date</h5>
+            </div>
+            <div class="col-md-3">
+                <h5 class="id-and-date-label">End Date</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <input type="date" id="startDateInput" class="form-control weight-input" required min="{{ date('Y-m-d') }}"></input>
+            </div>
+            <div class="col-md-6">
+                <input type="date" id="endDateInput" class="form-control weight-input" required min="{{ date('Y-m-d') }}"></input>
+            </div>
+        </div>
+
+    </div>
+
 
     <div class="treatment-remarks">
         <div class="row id-and-date-text">
@@ -83,6 +109,8 @@
         </div>
 
     </div>
+
+
 
     <div class="form-group">
         <label for="additionalNotes">Additional Notes</label>
