@@ -65,6 +65,23 @@ class EpMedicalHistoryController extends Controller
             'emergency_patient_id' => $emergencyPatientId,
         ]);
 
+        // Prepare logs for the newly added medical history
+        $log = [
+            'emergency_date_logs' => $validated['ep_medical_history_date'],
+            'emergency_time_logs' => $validated['ep_medical_history_time'],
+            'patient_name' => $patientName,
+            'type' => 'ep_medical_history_type',
+            'action' => 'inputted',
+            'field' => 'All',  // Since all fields are new
+            'old_value' => json_encode($validated),  // Same as the new value
+            'new_value' => json_encode($validated),  // Same as the old value
+            'message' => "{$user->name} inputted new medical history.",
+            'user_id' => $user->user_id,
+            'emergency_patient_id' => $emergencyPatientId,
+        ];
+        // Store the log in the database
+        EmergencyLogs::create($log);
+
         //Getting Notification
         Notification::create([
             'notification_type' => 'success',
@@ -118,33 +135,36 @@ class EpMedicalHistoryController extends Controller
         // Prepare the logs array to capture all changes
         $logs = [];
 
-        //  // Compare each field and log changes
-        // foreach ($validated as $key => $newValue) {
-        //     $oldValue = $ep_medical_history->$key;
+        // Compare each field and log changes
+        foreach ($validated as $key => $newValue) {
+            $oldValue = $ep_medical_history->$key;
 
-        //     // Only log if there's a change
-        //     if ($oldValue !== $newValue) {
-        //         $logs[] = [
-        //             'emergency_date_logs' => $ep_medical_history->diagnosis_date,
-        //             'emergency_time_logs' => $ep_medical_history->diagnosis_time,
-        //             'patient_name' => $patientName,
-        //             'action' => 'edited', // or 'inputted' based on your needs
-        //             'field' => ucfirst(str_replace('_', ' ', $key)), // Convert 'B_P' to 'B P'
-        //             'old_value' => $oldValue,
-        //             'new_value' => $newValue,
-        //             'message' => "Field '{$key}' changed from '{$oldValue}' to '{$newValue}'.",
-        //             'user_id' => $user->user_id, // Get the currently logged-in user's ID
-        //             'emergency_patient_id' => $emergencyPatient->emergency_patient_id,
-        //             'created_at' => now(),
-        //             'updated_at' => now(),
-        //         ];
-        //     }
-        // }
+            // Only log if there's a change
+            if ($oldValue !== $newValue) {
+                $field = ucfirst(str_replace('_', ' ', $key));
 
-        // // Insert all logs into the database
-        // if (!empty($logs)) {
-        //     EmergencyLogs::insert($logs);
-        // }
+                $logs[] = [
+                    'emergency_date_logs' => $ep_medical_history->ep_medical_history_date,
+                    'emergency_time_logs' => $ep_medical_history->ep_medical_history_time,
+                    'patient_name' => $patientName,
+                    'type' => 'ep_medical_history_type',
+                    'action' => 'edited', // or 'inputted' based on your needs
+                    'field' => $field,
+                    'old_value' => $oldValue,
+                    'new_value' => $newValue,
+                    'message' => "Field '{$field}' changed from '{$oldValue}' to '{$newValue}'.",
+                    'user_id' => $user->user_id, // Get the currently logged-in user's ID
+                    'emergency_patient_id' => $emergencyPatient->emergency_patient_id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+        }
+
+        // Insert all logs into the database
+        if (!empty($logs)) {
+            EmergencyLogs::insert($logs);
+        }
 
         $ep_medical_history->update($validated);
 

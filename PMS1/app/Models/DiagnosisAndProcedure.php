@@ -11,7 +11,7 @@ class DiagnosisAndProcedure extends Model
 
     protected $table = 'diagnosis_and_procedures';
 
-    protected $primaryKey = 'diagnosis_and_procedue_id';
+    protected $primaryKey = 'diagnosis_and_procedure_id';
 
     protected $guarded = [];
 

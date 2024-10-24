@@ -80,8 +80,8 @@ function showReviewInputMode() {
 
 function populateFormProcedure(procedure) {
     // Set form action dynamically to the update route
-    const form = document.getElementById('epDiagnosisProcedureForm');
-    form.action = `/emergency/diagnosis-and-procedure/update/${history.ep_medical_history_id}`;
+    const form = document.getElementById('doctorsReviewForm');
+    form.action = `/emergency/diagnosis-and-procedure/update/${procedure.diagnosis_and_procedure_id}`;
 
     let methodInput = document.getElementById('_method');
     if (!methodInput) {
@@ -132,4 +132,20 @@ function populateFormViewProcedure(procedure) {
     document.getElementById('environmentalFactorInput').value = procedure.environmental_factor;
     document.getElementById('diagnosisInput1').value = procedure.diagnosis;
     document.getElementById('prognosisInput').value = procedure.prognosis;
+}
+
+function reviewToggleLogs() {
+    var logsSection = document.getElementById('reviewLogsSection');
+    var vitalSignsTable = document.getElementById('diagnosis-and-procedure-container');
+
+    // Check if logs are currently visible
+    if (logsSection.style.display === "none" || logsSection.style.display === "") {
+        logsSection.style.display = "block"; // Show logs
+        vitalSignsTable.style.display = "none"; // Hide the table
+        document.getElementById('viewLogs').innerText = "View Doctor Review"; // Update label text
+    } else {
+        logsSection.style.display = "none"; // Hide logs
+        vitalSignsTable.style.display = "block"; // Show the table
+        document.getElementById('viewLogs').innerText = "View Logs"; // Update label text
+    }
 }

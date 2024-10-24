@@ -9,7 +9,7 @@
 <div class="card-body">
 
 
-    <form action="{{ isset($ep_medical_history) ? route('ep_diagnosis_and_procedure.ep_medical_history_update', $ep_medical_history->ep_medical_history_id) : '/emergency/ep-medical-history/store' }}" id="epDiagnosisProcedureForm" method="POST" onsubmit="">
+    <form action="{{ isset($ep_medical_history) ? route('ep_diagnosis_and_procedure.ep_medical_history_update', $ep_medical_history->ep_medical_history_id) : '/emergency/ep-medical-history/store' }}" id="epHistoryForm" method="POST" onsubmit="">
     @csrf
     @if(isset($ep_medical_history))
         @method('PATCH') <!-- This will be added only if editing -->

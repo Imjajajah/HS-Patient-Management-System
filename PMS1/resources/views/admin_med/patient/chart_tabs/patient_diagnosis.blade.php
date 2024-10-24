@@ -39,10 +39,10 @@
                     </div>
 
                     <div class="card-body">
-                        <div id="logsSection" style="display: none;">
+                        <div id="reviewLogsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
-                                @forelse ($emergency_patient->emergency_logs as $log)
+                                @forelse ($emergency_patient->emergency_logs->where('type', 'diagnosis_and_procedure_type') as $log)
                                     <li>
                                         @php
                                             $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
@@ -54,7 +54,7 @@
 
                                         @if ($log->action === 'inputted')
                                             {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
-                                            {{ $userRole }} - {{ $userName }} inputted new vital signs.
+                                            {{ $userRole }} - {{ $userName }} inputted new review.
                                         @else
                                             {{ $formattedDate }}, {{ $log->emergency_time_logs }} -
                                             {{ $userRole }} - {{ $userName }} edited patient -
@@ -136,7 +136,7 @@
 
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <div class="tooltip-container" style="position: relative; display: inline-block;">
-                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="toggleLogs()">
+                            <label class="view-logs-label" id="viewLogs" for="tooltip" onclick="reviewToggleLogs()">
                                 <strong>View Logs</strong>
                             </label>
                         </div>

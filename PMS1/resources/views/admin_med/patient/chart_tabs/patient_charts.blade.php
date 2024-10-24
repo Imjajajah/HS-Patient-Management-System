@@ -40,7 +40,7 @@
                                         </span>
                                     </label>
                                 </div>
-                                
+
 
                                 <div id="manualReminder" class="ms-3">
                                     <input type="number" id="manualMinutes" class="form-control" placeholder="Enter minutes" min="1" disabled>
@@ -54,7 +54,7 @@
                         <div id="logsSection" style="display: none;">
                             <h5>Activity Logs</h5>
                             <ul id="logEntries">
-                                @forelse ($emergency_patient->emergency_logs as $log)
+                                @forelse ($emergency_patient->emergency_logs->where('type', 'vital_signs_type') as $log)
                                     <li>
                                         @php
                                             $formattedDate = \Carbon\Carbon::parse($log->emergency_date_logs)->format('m/d/Y');
@@ -162,4 +162,3 @@
 
     </div>
 </div>
-
