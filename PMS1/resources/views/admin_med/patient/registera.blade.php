@@ -1,3 +1,5 @@
+
+
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -14,34 +16,24 @@
                     @csrf
                     <div>
                         <h4>Information</h4>
-                        <section>
-                            <div class="form-group">
-                                <label class="radio-inline col-lg-4">
-                                    <input type="radio" name="optradio">Out-Patient</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optradio">In-Patient</label>
-                            </div>
+                        <section class="patientInfoSection">
                             <div class="row form-material">
                                 <div class="col-lg-3 mb-2">
                                     <div class="form-group">
-                                        <label class="text-label">Patient Name <span
-                                                class="form-required text-danger">*</span></label>
-                                        <input type="text" name="firstName"
-                                            class="form-control" placeholder="First Name">
+                                        <label class="text-label">Patient Name <span class="form-required text-danger">*</span></label>
+                                        <input type="text" name="firstName" class="form-control" placeholder="First Name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 mb-2">
                                     <div class="form-group">
                                         <label class="text-label">&#8203</label>
-                                        <input type="text" name="middleName"
-                                            class="form-control" placeholder="Middle Name">
+                                        <input type="text" name="middleName" class="form-control" placeholder="Middle Name">
                                     </div>
                                 </div>
                                 <div class="col-lg-3 mb-2">
                                     <div class="form-group">
                                         <label class="text-label">&#8203</label>
-                                        <input type="text" name="lastName"
-                                            class="form-control" placeholder="Last Name">
+                                        <input type="text" name="lastName" class="form-control" placeholder="Last Name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 mb-2">
@@ -56,7 +48,7 @@
                                             class="form-required text-danger">*</span></label>
                                     <input type="text" class="form-control"
                                         name="dateOfBirth" placeholder="2017-06-04"
-                                        id="mdate">
+                                        id="">
                                 </div>
                                 <div class="col-lg-3 mb-4">
                                     <div class="form-group">
@@ -176,7 +168,7 @@
                             </div>
                         </section>
                         <h4>Emergency</h4>
-                        <section>
+                        <section class="patientEmergencySection">
                             <div class="row">
                                 <div class="col-lg-3 mb-2">
                                     <div class="form-group">
@@ -251,11 +243,18 @@
                             </div>
                         </section>
                         <h4>Health</h4>
-                        <section>
+                        <section class="patientHealthSection">
                             <div class="row">
                                 <div class="col-lg-6 mb-4">
                                     <div class="form-group">
-                                        <label class="text-label">Reason for Registration <span
+                                        <label class="text-label">Admission Date <span
+                                                class="form-required text-danger">*</span></label>
+                                        <input type="date" name="dateRegistration" class="form-control" rows="2"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="form-group">
+                                        <label class="text-label">Reason for Admission <span
                                                 class="form-required text-danger">*</span></label>
                                         <textarea type="text" name="reasonRegistration" class="form-control" rows="2"></textarea>
                                     </div>
@@ -269,6 +268,7 @@
                                 <div class="col-lg-12 mb-1">
                                     <h5>Kindly indicate "N/A" if not applicable.</h5>
                                 </div>
+
                                 <div class="col-lg-6 mb-4">
                                     <div class="form-group">
                                         <label class="text-label">Past Surgeries/Medical
@@ -351,7 +351,7 @@
                                         </div>
                                     </fieldset>
                                 </div>
-                                {{-- <div class="col-lg-6 mb-4">
+                                <div class="col-lg-6 mb-4">
                                     <div class="form-group">
                                         <div class="form-check mb-2">
                                             <input type="checkbox" class="form-check-input" id="check1" value="">
@@ -406,11 +406,11 @@
                                             <label class="form-check-label" for="check12">Other</label>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                         </section>
-                        {{-- <h4>History</h4>
-                        <section>
+                        <h4>History</h4>
+                        <section class="patientHistorySection">
                             <div class="row">
                                 <div class="col-lg-6 mb-4">
                                     <fieldset class="form-group">
@@ -515,9 +515,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </section> --}}
+                        </section>
                         <h4>Insurance</h4>
-                        <section>
+                        <section class="">
                             <div class="row">
                                 <div class="col-lg-12 mb-3">
                                     <fieldset class="form-group">

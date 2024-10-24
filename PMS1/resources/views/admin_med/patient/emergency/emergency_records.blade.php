@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @extends('admin_med.layout.index')
 
 @section('med_content')
@@ -39,13 +41,16 @@
                                                         data-toggle="tooltip" type="button" data-placement="top" title="View"
                                                         onclick="window.location='{{ route('patients.emergency_patient_show', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'">
                                                         <i class="fa fa-eye color-muted"></i> </a>
-                                                    <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
+                                                    <!-- <a href="javascript:void()" class="btn btn-square btn-secondary mr-4"
                                                         data-toggle="tooltip" type="button" data-placement="top" title="Edit"
                                                         onclick="window.location='{{ route('patients.emergency_patient_edit', ['emergency_patient_id' => $emergency_patient->emergency_patient_id]) }}'"><i
-                                                            class="fa fa-pencil color-muted"></i> </a>
-                                                    <a href="javascript:void()" class="btn btn-square btn-danger"
-                                                        data-toggle="tooltip" type="button" data-placement="top" title="Close"><i
-                                                            class="fa fa-close color-danger"></i></a>
+                                                            class="fa fa-pencil color-muted"></i> </a> -->
+
+                                                    <button type="button" id="registerBtn" class="btn btn-square btn-success"
+                                                        data-toggle="modal" data-target="#patientAdmissionModal"> <i class="fa fa-user-plus color-success"></i></button>
+
+                                                        @include('admin_med.patient.registerm')
+                                                    
                                                 </td>
                                             </tr>
                                         @endforeach

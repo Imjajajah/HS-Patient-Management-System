@@ -1,0 +1,35 @@
+
+.bed-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 rooms per row */
+    gap: 10px;
+}
+
+.room {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.available {
+    background-color: #c8e6c9; /* Green for available */
+}
+
+.occupied {
+    background-color: #ffcdd2; /* Red for occupied */
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-status {
+    background-color: #007bff;
+    color: white;
+}
