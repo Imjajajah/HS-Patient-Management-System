@@ -314,14 +314,21 @@
                                     <div class="form-group">
                                         <label class="text-label">Assign Bed</label>
                                         <div class="input-group">
-                                         
-                                            <button type="button" id="registerBtn" class="btn btn-square btn-outline-primary btn-lg"
-                                            data-toggle="modal" data-target="#bedModal">{{ __('Select Bed') }}</button>
-                                            @include('bed_assignment')
-                                           
+                                            <select class="form-control" name="bed_assignment" id="bed-assignment-select">
+                                                <optgroup label="-- Available --">
+                                                    <option value="bed1">Bed 1</option>
+                                                    <option value="bed2">Bed 2</option>
+                                                    <option value="bed3">Bed 3</option>
+                                                </optgroup>
+                                                <optgroup label="-- Occupied --">
+                                                    <option value="bed4" disabled>Bed 4</option>
+                                                    <option value="bed5" disabled>Bed 5</option>
+                                                </optgroup>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+
 
                                 
 

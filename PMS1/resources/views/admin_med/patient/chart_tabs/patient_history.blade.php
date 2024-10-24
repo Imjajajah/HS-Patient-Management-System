@@ -7,7 +7,7 @@
 <script src="{{ asset('js/charts_vital_colors.js') }}"></script>
 
 <script src="{{ asset('js/history_mode.js') }}"></script>
-
+<script src="{{ asset('js/data_validation.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

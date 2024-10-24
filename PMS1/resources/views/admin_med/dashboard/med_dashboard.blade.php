@@ -90,77 +90,35 @@
             <div class="col-xl-4 col-lg-6 col-xxl-6 col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Notice Board</h4>
+                        <h4 class="card-title">Logs</h4>
                     </div>
                     <div class="card-body">
                         <div class="recent-comment m-t-15">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object mr-3"
-                                            src="{{asset('admin_medcss/theme/./images/avatar/4.png')}} " alt="..."></a>
+                            @foreach($notifications as $notification)
+                                <div class="media dropdown-item notification-item"
+                                    id="notification-{{ $notification->notification_id }}"
+                                    data-id="{{ $notification->notification_id }}">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="media-object mr-3"
+                                                src="{{ asset('admin_medcss/theme/./images/avatar/4.png') }}" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>
+                                            <strong>{{ ucfirst($notification->notification_type) }}:</strong>
+                                            {{ $notification->notification_message }}
+                                        </p>
+                                        <span class="notify-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading text-primary">john doe</h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                    <p class="comment-date">10 min ago</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object mr-3"
-                                            src="{{asset('admin_medcss/theme/./images/avatar/2.png')}} " alt="..."></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading text-success">Mr. John</h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                    <p class="comment-date">1 hour ago</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object mr-3"
-                                            src="{{asset('admin_medcss/theme/./images/avatar/3.png')}} " alt="..."></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading text-danger">Mr. John</h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                    <div class="comment-date">Yesterday</div>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object mr-3"
-                                            src="{{asset('admin_medcss/theme/./images/avatar/4.png')}} " alt="..."></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading text-primary">john doe</h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                    <p class="comment-date">10 min ago</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object mr-3"
-                                            src="{{asset('admin_medcss/theme/./images/avatar/2.png')}} " alt="..."></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading text-success">Mr. John</h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                    <p class="comment-date">1 hour ago</p>
-                                </div>
-                            </div>
-                            <div class="media no-border">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object mr-3"
-                                            src="{{asset('admin_medcss/theme/./images/avatar/3.png')}} " alt="..."></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading text-info">Mr. John</h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                    <div class="comment-date">Yesterday</div>
-                                </div>
-                            </div>
+                            @endforeach
+
+                            
                         </div>
+                        <a class="all-notification" href="{{ route('notifications.allNotifications') }}">
+                            See all Logs <i class="ti-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>

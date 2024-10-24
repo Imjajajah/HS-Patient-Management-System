@@ -51,7 +51,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="ep_medical_history_diagnosis" id="diagnosisInput" class="diagnosis-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_diagnosis" id="diagnosisInput" class="diagnosis-input" data-toggle="tooltip" placeholder="" rows="4" required></textarea>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="ep_medical_history_treatment" id="treatmentInput" class="treatment-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_treatment" id="treatmentInput" class="treatment-input" data-toggle="tooltip" placeholder="" rows="4" required></textarea>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="ep_medical_history_surgery" id="surgeriesInput" class="surgeries-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_surgery" id="surgeriesInput" class="surgeries-input" data-toggle="tooltip" placeholder="" rows="4" required></textarea>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea name="ep_medical_history_medications" id="medicationInput" class="medication-input" data-toggle="tooltip" placeholder="" rows="4"></textarea>
+                <textarea name="ep_medical_history_medications" id="medicationInput" class="medication-input" data-toggle="tooltip" placeholder="" rows="4" required></textarea>
             </div>
         </div>
     </div>

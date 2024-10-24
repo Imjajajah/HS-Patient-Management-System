@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('viewGraph-btn').addEventListener('click', function() {
         // Check if the button text is "View Graph"
         if (this.innerText === 'View Graph') {
+            console.log('View Graph button clicked'); // Debugging log
+
             // Get the table body
             var tbody = document.querySelector('#vitalSignsTable tbody');
             var rows = tbody.querySelectorAll('tr');
@@ -98,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Change button text to "Back"
             this.innerText = 'Back';
         } else {
+            console.log('Back button clicked'); // Debugging log
+
             // If the button text is "Back", hide the graph and show the table
             document.getElementById('vitalSignsTable').style.display = 'table'; // Ensure table displays as a table
             document.getElementById('vitalSignsChart').style.display = 'none';
