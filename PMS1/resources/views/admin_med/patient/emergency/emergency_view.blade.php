@@ -48,7 +48,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#vitalSigns" role="tab">Vital Signs</a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#medicalHistory" role="tab">Medical History</a>
                                 </li>
@@ -65,8 +65,15 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#nursesNotes" role="tab">Nurse's Notes</a>
                                 </li>
+<<<<<<< HEAD
                                
                                 
+=======
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#medicationLog" role="tab">Medication Log</a>
+                                </li>
+>>>>>>> 39d7f057a3908de07e57a49de5b9f4411b67b571
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#ivFluid" role="tab">IV Fluid</a>
                                 </li>
@@ -98,7 +105,7 @@
                                 </div>
                                 <!-- End of Vital Signs Tab -->
 
-                                
+
 
                                 <div class="tab-pane fade" id="medicalHistory">
                                     <div class="pt-4">
@@ -140,7 +147,7 @@
 
                                 </div>
 
-                                
+
 
                                 
 

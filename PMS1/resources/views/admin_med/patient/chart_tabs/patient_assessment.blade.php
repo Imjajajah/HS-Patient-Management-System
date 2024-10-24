@@ -86,6 +86,7 @@
                                     @if ($emergency_patient->ep_assessments && $emergency_patient->ep_assessments->isNotEmpty())
                                     @foreach ($emergency_patient->ep_assessments as $assessment)
                                         <tr class="chart-tab-table-body">
+                                            <td style="display: none;">{{ $assessment->ep_assessment_id }}</td>
                                             <td>{{ \Carbon\Carbon::parse($assessment->ep_assessment_date)->format('m/d/Y') }},
                                                 {{ $assessment->ep_assessment_time }}
                                             </td>
@@ -101,8 +102,8 @@
                                                     </span>
 
                                                 </div>
-                                            <td>Test</td>
-                                            <td>Status</td>
+                                            <td>{{ $assessment->ep_assessment_test }}</td>
+                                            <td>{{ $assessment->ep_assessment_priority }}</td>
                                             <td>
                                                 <a href="javascript:void()" class="btn btn-square btn-primary mr-3"
                                                    data-toggle="tooltip" type="button" data-placement="top" title="View"

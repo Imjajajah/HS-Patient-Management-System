@@ -45,7 +45,7 @@ function enterHistoryEditMode() {
 }
 
 function showHistoryInputMode() {
-    const form = document.getElementById('epDiagnosisProcedureForm');
+    const form = document.getElementById('epHistoryForm');
 
     // Reset form action to store data
     form.action = '/emergency/ep-medical-history/store';  // Set action to store route
@@ -84,7 +84,7 @@ function showHistoryInputMode() {
 
 function populateFormHistory(history) {
     // Set form action dynamically to the update route
-    const form = document.getElementById('epDiagnosisProcedureForm');
+    const form = document.getElementById('epHistoryForm');
     form.action = `/emergency/ep-medical-history/update/${history.ep_medical_history_id}`;
 
     let methodInput = document.getElementById('_method');

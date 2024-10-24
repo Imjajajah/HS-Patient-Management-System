@@ -87,6 +87,7 @@ class VitalSignsController extends Controller
             'emergency_date_logs' => $validated['diagnosis_date'],
             'emergency_time_logs' => $validated['diagnosis_time'],
             'patient_name' => $patientName,
+            'type' => 'vital_signs_type',
             'action' => 'inputted',
             'field' => 'All',  // Since all fields are new
             'old_value' => json_encode($validated),  // Same as the new value
@@ -189,15 +190,18 @@ class VitalSignsController extends Controller
 
             // Only log if there's a change
             if ($oldValue !== $newValue) {
+                $field = ucfirst(str_replace('_', ' ', $key)); // Convert 'B_P' to 'B P'
+
                 $logs[] = [
                     'emergency_date_logs' => $vital_signs->diagnosis_date,
                     'emergency_time_logs' => $vital_signs->diagnosis_time,
                     'patient_name' => $patientName,
+                    'type' => 'vital_signs_type',
                     'action' => 'edited', // or 'inputted' based on your needs
-                    'field' => ucfirst(str_replace('_', ' ', $key)), // Convert 'B_P' to 'B P'
+                    'field' => $field, // Convert 'B_P' to 'B P'
                     'old_value' => $oldValue,
                     'new_value' => $newValue,
-                    'message' => "Field '{$key}' changed from '{$oldValue}' to '{$newValue}'.",
+                    'message' => "Field '{$field}' changed from '{$oldValue}' to '{$newValue}'.",
                     'user_id' => $user->user_id, // Get the currently logged-in user's ID
                     'emergency_patient_id' => $emergencyPatient->emergency_patient_id,
                     'created_at' => now(),

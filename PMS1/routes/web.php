@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\NotificationController;
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DiagnosisAndProcedureController;
 use App\Http\Controllers\EpAssessmentController;
 use App\Http\Controllers\EpMedicalHistoryController;
@@ -16,6 +17,10 @@ Route::controller(UserController::class)->group(function() {
     Route::get('/login', 'login')->name('login')->middleware('guest');
     Route::post('/login/process', 'process');
     Route::post('/logout', 'logout');
+});
+
+Route::controller(AdminController::class)->group(function() {
+    Route::get('/admin/dashboard', 'index');
 });
 
 Route::controller(PatientController::class)->group(function() {
@@ -62,6 +67,9 @@ Route::controller(EpMedicalHistoryController::class)->group(function() {
 Route::controller(EpAssessmentController::class)->group(function() {
     Route::post('/emergency/ep-assessment/store', 'ep_assessment_store');
     Route::patch('/emergency/ep-assessment/update/{ep_assessment_id}', 'ep_assessment_update')->name('ep_assessment.ep_assessment_update');
+
+    Route::get('/download-lab-request/{ep_assessment_id}', 'downloadLabRequest')->name('ep_assessment.downloadLabRequest');
+    Route::get('/emergency/ep-assessment/download/{id}', 'downloadAssessmentPDF')->name('ep_assessment.downloadAssessmentPDF');
 });
 
 

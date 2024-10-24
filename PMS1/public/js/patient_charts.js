@@ -204,7 +204,7 @@ function showHistorySaveAlert() {
         if (result.isConfirmed) {
             // User clicked "Okay" - proceed with the save
             // document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual form ID
-            document.getElementById("epDiagnosisProcedureForm").submit();
+            document.getElementById("epHistoryForm").submit();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             // User clicked "Cancel" - no action taken
             Swal.fire('Cancelled', 'Your changes were not saved.', 'error');

@@ -28,6 +28,11 @@ class UserController extends Controller
         if(Auth::attempt($validated)){
             $request->session()->regenerate();
 
+            // Check if the logged-in user's authorization_id is 1
+            if(Auth::user()->authorization_id === 1){
+                return redirect('/admin/dashboard')->with('message', 'Welcome to the Admin Dashboard!');
+            }
+
             return redirect('/emergency-records')->with('message', 'Welcome back!');
         }
         return back()->withErrors(['email' => 'Login failed'])->onlyInput('email');

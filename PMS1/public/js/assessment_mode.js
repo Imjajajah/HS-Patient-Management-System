@@ -77,6 +77,10 @@ function showAssessmentInputMode() {
     document.getElementById('assessmentCancelBtn').style.display = 'block'; // Show Clear button
     document.getElementById('backToInputButtonAssessment').style.display = 'none'; // Hide Back to Input Mode button
     document.getElementById('downloadFileBtn').style.display = 'none';
+
+    // Reset the current file message back to the default
+    const currentFileElement = document.getElementById('current-file');
+    currentFileElement.textContent = ''; // Clear the message
 }
 
 function populateFormAssessment(assessment) {
@@ -98,7 +102,48 @@ function populateFormAssessment(assessment) {
     document.getElementById('assessment-date-input').value = assessment.ep_assessment_date;
     document.getElementById('assessment-time-input').value = convertTo24Hour(assessment.ep_assessment_time);
     document.getElementById('assessmentInput').value = assessment.ep_assessment_assessments;
+    // Populate the diagnostic test dropdown
+    document.getElementById('diagnostic-test-select').value = assessment.ep_assessment_test;
+
+    // Populate the test instructions
+    document.getElementById('test-instructions').value = assessment.ep_assessment_test_instruction;
+
+    // Populate the test priority dropdown
+    document.getElementById('test-priority').value = assessment.ep_assessment_priority;
+
+    // File input: Note that you cannot set the value of the file input for security reasons.
+    // Instead, display a message indicating the current file (if needed), or leave it empty for user to upload new file.
+
+    // Store and display the current file name
+    currentFileName = assessment.order_test_file || 'No file uploaded.';
+    const currentFileElement = document.getElementById('current-file');
+    if (currentFileElement) {
+        currentFileElement.textContent = `Current file: ${currentFileName}`;
+    }
+
+    // Populate the email field
+    document.getElementById('labEmail').value = assessment.ep_test_email;
 }
+
+// Modify the form submission to handle file uploads
+function handleFormSubmission(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const form = document.getElementById('assessmentForm');
+    const fileInput = document.getElementById('lab-request-file');
+
+    // Check if a new file is selected
+    if (fileInput.files.length === 0) {
+        // Notify user that the current file remains unchanged
+        alert(`Current file remains unchanged: ${currentFileName}`);
+    }
+
+    // Proceed with form submission
+    form.submit(); // Submit the form after checks
+}
+
+// Attach the handleFormSubmission function to the form's submit event
+document.getElementById('assessmentForm').addEventListener('submit', handleFormSubmission);
 
 // Helper function to convert 12-hour time to 24-hour format
 function convertTo24Hour(time) {
@@ -120,15 +165,36 @@ function convertTo24Hour(time) {
 
 function populateFormViewAssessment(assessment) {
     //
+    document.getElementById('epAssessmentId').value = assessment.ep_assessment_id;
     document.getElementById('assessment-date-input').value = assessment.ep_assessment_date;
     document.getElementById('assessment-time-input').value = convertTo24Hour(assessment.ep_assessment_time);
     document.getElementById('assessmentInput').value = assessment.ep_assessment_assessments;
+    // Populate the diagnostic test dropdown
+    document.getElementById('diagnostic-test-select').value = assessment.ep_assessment_test;
+
+    // Populate the test instructions
+    document.getElementById('test-instructions').value = assessment.ep_assessment_test_instruction;
+
+    // Populate the test priority dropdown
+    document.getElementById('test-priority').value = assessment.ep_assessment_priority;
+
+    // File input: Note that you cannot set the value of the file input for security reasons.
+    // Instead, display a message indicating the current file (if needed), or leave it empty for user to upload new file.
+    // Store and display the current file name
+    currentFileName = assessment.order_test_file || 'No file uploaded.';
+    const currentFileElement = document.getElementById('current-file');
+    if (currentFileElement) {
+        currentFileElement.textContent = `Current file: ${currentFileName}`;
+    }
+
+    // Populate the email field
+    document.getElementById('labEmail').value = assessment.ep_test_email;
 }
 
 
 function changeFileInputToDownload() {
     // Hide the file input
-   
+
 
     // Show the Download/Print buttons
     document.getElementById('downloadFileBtn').style.display = 'block';
@@ -136,8 +202,13 @@ function changeFileInputToDownload() {
 
 // Simulate downloading the file (you can replace this with your own logic)
 function downloadFile() {
-    alert('Downloading file...');
+    // alert('Downloading file...');
     // Logic to download the file can be added here (e.g., using AJAX or linking to the file path)
+    const assessmentId = document.getElementById('epAssessmentId').value; // Get the assessment ID
+    const downloadUrl = `/emergency/ep-assessment/download/${assessmentId}`; // Construct the URL
+
+    // Redirect to the download URL
+    window.location.href = downloadUrl;
 }
 
 

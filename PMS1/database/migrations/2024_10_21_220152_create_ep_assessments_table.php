@@ -18,6 +18,12 @@ return new class extends Migration
             $table->text('ep_assessment_assessments')->nullable();
             $table->text('ep_assessment_summary')->nullable();
             //
+            $table->string('ep_assessment_test')->nullable();
+            $table->string('ep_assessment_test_instruction')->nullable();
+            $table->string('ep_assessment_priority')->nullable();
+            $table->string('order_test_file')->nullable();
+            $table->string('ep_test_email')->nullable();
+            //
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('emergency_patient_id')->nullable();
 
